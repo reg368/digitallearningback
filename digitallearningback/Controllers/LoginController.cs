@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using digitallearningback.Models;
+using digitallearningback.Models.DAO.Service;
 
 namespace digitallearningback.Controllers
 {
@@ -17,13 +18,21 @@ namespace digitallearningback.Controllers
 
         // POST : check login
         [HttpPost]
-        public ActionResult Login(User user) {
+        public ActionResult Login(InfoUser user) {
 
             if (ModelState.IsValid){
-                return RedirectToAction("Index", "Home");
+
+                InfoUser dbuser  = new InfoUserService().findByUserLoginId(user.login_id);
+
+                if (dbuser != null && user.password.Equals(dbuser.password)){
+                    return RedirectToAction("Index", "Home");
+                }
+                else {
+                    ModelState.AddModelError(string.Empty, "帳號或密碼錯誤");
+                    return View(user);
+                }
             }
             else{
-                ModelState.AddModelError(string.Empty, "Student Name already exists.");
                 return View(user);
             }
 

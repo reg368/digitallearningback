@@ -172,7 +172,14 @@
     <Compile Include="Models\Concept.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAO\DBContextHelper.cs" />
+    <Compile Include="Models\DAO\Implements\InfoUser_im.cs" />
+    <Compile Include="Models\DAO\Interface\InfoUser_in.cs" />
+    <Compile Include="Models\DAO\Service\InfoUserService.cs" />
     <Compile Include="Models\Gc_mapping.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\InfoUser.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Level_group.cs">
@@ -200,9 +207,6 @@
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\S_Class_Question.cs">
-      <DependentUpon>yzucs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User_group.cs">
@@ -235,8 +239,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\yzucs.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>yzucs.Context.cs</LastGenOutput>
       <DependentUpon>yzucs.edmx</DependentUpon>
+      <LastGenOutput>yzucs.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\yzucs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -81,6 +81,30 @@
           <Property Name="c_id" Type="numeric" Precision="10" Scale="0" />
           <Property Name="g_id" Type="numeric" Precision="10" Scale="0" />
         </EntityType>
+        <EntityType Name="InfoUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="gender" Type="varchar" MaxLength="100" />
+          <Property Name="age" Type="varchar" MaxLength="100" />
+          <Property Name="grade" Type="varchar" MaxLength="100" />
+          <Property Name="character_image" Type="varchar" MaxLength="100" />
+          <Property Name="pet_image" Type="varchar" MaxLength="100" />
+          <Property Name="pet_name" Type="varchar" MaxLength="100" />
+          <Property Name="login_id" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="joindate" Type="datetime2" Precision="0" />
+          <Property Name="cimage_type" Type="varchar" MaxLength="20" />
+          <Property Name="pimage_type" Type="varchar" MaxLength="20" />
+          <Property Name="login_count" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="group_id" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="teacher_id" Type="varchar" MaxLength="10" />
+          <Property Name="money" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="experience" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="hp" Type="numeric" Precision="10" Scale="0" />
+        </EntityType>
         <EntityType Name="Level_group">
           <Key>
             <PropertyRef Name="lr_id" />
@@ -181,30 +205,6 @@
           <Property Name="student_id" Type="varchar" MaxLength="10" />
           <Property Name="joindate" Type="datetime2" Precision="0" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" />
-          <Property Name="gender" Type="varchar" MaxLength="100" />
-          <Property Name="age" Type="varchar" MaxLength="100" />
-          <Property Name="grade" Type="varchar" MaxLength="100" />
-          <Property Name="character_image" Type="varchar" MaxLength="100" />
-          <Property Name="pet_image" Type="varchar" MaxLength="100" />
-          <Property Name="pet_name" Type="varchar" MaxLength="100" />
-          <Property Name="login_id" Type="varchar" MaxLength="100" />
-          <Property Name="password" Type="varchar" MaxLength="100" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
-          <Property Name="cimage_type" Type="varchar" MaxLength="20" />
-          <Property Name="pimage_type" Type="varchar" MaxLength="20" />
-          <Property Name="login_count" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="group_id" Type="numeric" Precision="4" Scale="0" />
-          <Property Name="teacher_id" Type="varchar" MaxLength="10" />
-          <Property Name="money" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="experience" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="hp" Type="numeric" Precision="10" Scale="0" />
-        </EntityType>
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'yzucs.dbo.User_group' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="User_group">
@@ -222,6 +222,7 @@
           <EntitySet Name="Cimage_profession" EntityType="Self.Cimage_profession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Concept" EntityType="Self.Concept" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gc_mapping" EntityType="Self.Gc_mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InfoUser" EntityType="Self.InfoUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Level_group" EntityType="Self.Level_group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Q_Concept" EntityType="Self.Q_Concept" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QL_Mapping" EntityType="Self.QL_Mapping" Schema="dbo" store:Type="Tables" />
@@ -231,7 +232,6 @@
           <EntitySet Name="S_Class_Question" EntityType="Self.S_Class_Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_class_record" EntityType="Self.Student_class_record" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_group" EntityType="Self.User_group" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [User_group].[user_group_id] AS [user_group_id], 
@@ -319,6 +319,30 @@
           <Property Name="gc_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="c_id" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="g_id" Type="Decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="InfoUser">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="age" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="grade" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="character_image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pet_image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pet_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="login_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="joindate" Type="DateTime" Precision="0" />
+          <Property Name="cimage_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pimage_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="login_count" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="group_id" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="teacher_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="money" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="experience" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="hp" Type="Decimal" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="Level_group">
           <Key>
@@ -420,30 +444,6 @@
           <Property Name="student_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="joindate" Type="DateTime" Precision="0" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="gender" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="age" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="grade" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="character_image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="pet_image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="pet_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="login_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
-          <Property Name="cimage_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="pimage_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="login_count" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="group_id" Type="Decimal" Precision="4" Scale="0" />
-          <Property Name="teacher_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="money" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="experience" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="hp" Type="Decimal" Precision="10" Scale="0" />
-        </EntityType>
         <EntityType Name="User_group">
           <Key>
             <PropertyRef Name="user_group_id" />
@@ -459,6 +459,7 @@
           <EntitySet Name="Cimage_profession" EntityType="Self.Cimage_profession" />
           <EntitySet Name="Concepts" EntityType="Self.Concept" />
           <EntitySet Name="Gc_mapping" EntityType="Self.Gc_mapping" />
+          <EntitySet Name="InfoUsers" EntityType="Self.InfoUser" />
           <EntitySet Name="Level_group" EntityType="Self.Level_group" />
           <EntitySet Name="Q_Concept" EntityType="Self.Q_Concept" />
           <EntitySet Name="QL_Mapping" EntityType="Self.QL_Mapping" />
@@ -468,7 +469,6 @@
           <EntitySet Name="S_Class_Question" EntityType="Self.S_Class_Question" />
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" />
           <EntitySet Name="Student_class_record" EntityType="Self.Student_class_record" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="User_group" EntityType="Self.User_group" />
         </EntityContainer>
       </Schema>
@@ -557,6 +557,31 @@
                 <ScalarProperty Name="gc_id" ColumnName="gc_id" />
                 <ScalarProperty Name="c_id" ColumnName="c_id" />
                 <ScalarProperty Name="g_id" ColumnName="g_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfoUsers">
+            <EntityTypeMapping TypeName="yzucsModel.InfoUser">
+              <MappingFragment StoreEntitySet="InfoUser">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="character_image" ColumnName="character_image" />
+                <ScalarProperty Name="pet_image" ColumnName="pet_image" />
+                <ScalarProperty Name="pet_name" ColumnName="pet_name" />
+                <ScalarProperty Name="login_id" ColumnName="login_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="joindate" ColumnName="joindate" />
+                <ScalarProperty Name="cimage_type" ColumnName="cimage_type" />
+                <ScalarProperty Name="pimage_type" ColumnName="pimage_type" />
+                <ScalarProperty Name="login_count" ColumnName="login_count" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+                <ScalarProperty Name="hp" ColumnName="hp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -666,31 +691,6 @@
                 <ScalarProperty Name="class_id" ColumnName="class_id" />
                 <ScalarProperty Name="student_id" ColumnName="student_id" />
                 <ScalarProperty Name="joindate" ColumnName="joindate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="yzucsModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="age" ColumnName="age" />
-                <ScalarProperty Name="grade" ColumnName="grade" />
-                <ScalarProperty Name="character_image" ColumnName="character_image" />
-                <ScalarProperty Name="pet_image" ColumnName="pet_image" />
-                <ScalarProperty Name="pet_name" ColumnName="pet_name" />
-                <ScalarProperty Name="login_id" ColumnName="login_id" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="joindate" ColumnName="joindate" />
-                <ScalarProperty Name="cimage_type" ColumnName="cimage_type" />
-                <ScalarProperty Name="pimage_type" ColumnName="pimage_type" />
-                <ScalarProperty Name="login_count" ColumnName="login_count" />
-                <ScalarProperty Name="group_id" ColumnName="group_id" />
-                <ScalarProperty Name="teacher_id" ColumnName="teacher_id" />
-                <ScalarProperty Name="money" ColumnName="money" />
-                <ScalarProperty Name="experience" ColumnName="experience" />
-                <ScalarProperty Name="hp" ColumnName="hp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

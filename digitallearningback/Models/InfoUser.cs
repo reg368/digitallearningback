@@ -13,7 +13,7 @@ namespace digitallearningback.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class User
+    public partial class InfoUser
     {
         public int id { get; set; }
         public string name { get; set; }
