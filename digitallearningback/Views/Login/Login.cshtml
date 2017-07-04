@@ -1,0 +1,31 @@
+﻿@model digitallearningback.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>歡迎登入後台管理系統</title>
+    @Styles.Render("~/Content/login.css")
+</head>
+<body>
+    <div class="gwd-div-ilnq" style=""></div>
+
+    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+        @Html.TextBoxFor(m => m.login_id, new { @class = "gwd-input-gbnv", @placeholder = "請輸入帳號" })
+        @Html.PasswordFor(m => m.password, new { @class = "gwd-input-imcr", @placeholder = "請輸入密碼" })
+        <button type="submit" class="gwd-button-r673">登入</button>
+    }
+
+    <p class="gwd-button-fujb"> 歡迎登入數位學習後台系統  </p>
+
+    <div class="gwd-div-14v4" style="">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    </div>
+
+</body>
+</html>
