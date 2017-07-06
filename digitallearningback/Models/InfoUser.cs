@@ -36,5 +36,43 @@ namespace digitallearningback.Models
         public Nullable<decimal> money { get; set; }
         public Nullable<decimal> experience { get; set; }
         public Nullable<decimal> hp { get; set; }
+
+        public enum VaildType {
+              Teacher,
+              Student
+        };
+
+        public Boolean validLogin(String password, VaildType type) {
+
+            if (password.Equals(this.password))
+            {
+                switch (type)
+                {
+                    case VaildType.Teacher:
+                        if (this.group_id == 1)
+                        {
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
+                    case VaildType.Student:
+                        if (this.group_id == 2)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    default:
+                        return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

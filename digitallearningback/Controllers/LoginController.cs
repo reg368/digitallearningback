@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using digitallearningback.Filter;
 using digitallearningback.Models;
 using digitallearningback.Models.DAO.Service;
 
 namespace digitallearningback.Controllers
 {
+    
     public class LoginController : Controller
     {
         // GET: Login
+        [SkipMyGlobalActionFilter]
         public ActionResult Login()
         {
             return View();
@@ -18,13 +17,15 @@ namespace digitallearningback.Controllers
 
         // POST : check login
         [HttpPost]
+        [SkipMyGlobalActionFilter]
         public ActionResult Login(InfoUser user) {
 
             if (ModelState.IsValid){
 
                 InfoUser dbuser  = new InfoUserService().findByUserLoginId(user.login_id);
 
-                if (dbuser != null && user.password.Equals(dbuser.password)){
+                if (dbuser != null && dbuser.validLogin(user.password,InfoUser.VaildType.Teacher)){
+                    Session["infoUser"] = dbuser;
                     return RedirectToAction("Index", "Home");
                 }
                 else {
