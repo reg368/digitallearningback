@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using digitallearningback.Models
+@{ InfoUser user = (InfoUser)HttpContext.Current.Session["infoUser"]; }
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -17,13 +19,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("應用程式名稱", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("數位學習後台管理系統", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("首頁", "Index", "Home")</li>
-                    <li>@Html.ActionLink("關於", "About", "Home")</li>
-                    <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("學生管理", "Index", "Home")</li>
+                    <li>@Html.ActionLink("課程管理", "Index", "Home")</li>
+                    <li>@Html.ActionLink("題目管理", "Index", "Home")</li>
+                    <li>@Html.ActionLink("遊戲圖片管理", "Index", "GameImage")</li>
                 </ul>
             </div>
         </div>
@@ -32,7 +35,8 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
+            <!--<p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>-->
+            <p>@user.name 您好 - 歡迎使用後台管理系統</p>
         </footer>
     </div>
 
