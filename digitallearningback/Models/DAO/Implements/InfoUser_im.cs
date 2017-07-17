@@ -8,8 +8,9 @@ namespace digitallearningback.Models.DAO.Implements
     {
         public InfoUser findByUserLoginId(string loginid)
         {
-            var context = DBContextHelper.getContext();
-            return context.InfoUsers.SqlQuery("Select * from InfoUser where login_id =  @p0 ",loginid).FirstOrDefault<InfoUser>();
+            
+            var lineQuery = DBContextHelper.GetContext().InfoUser.Where(u=>u.login_id == loginid);
+            return lineQuery.FirstOrDefault<InfoUser>();
         }  
     }
 }

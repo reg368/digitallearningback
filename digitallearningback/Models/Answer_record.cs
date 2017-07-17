@@ -14,21 +14,21 @@ namespace digitallearningback.Models
     
     public partial class Answer_record
     {
-        public decimal id { get; set; }
-        public Nullable<decimal> lr_id { get; set; }
+        public int id { get; set; }
+        public Nullable<int> lr_id { get; set; }
         public string user_id { get; set; }
-        public Nullable<decimal> q_id { get; set; }
-        public Nullable<decimal> a_id1 { get; set; }
-        public Nullable<decimal> a_id2 { get; set; }
-        public Nullable<decimal> a_id3 { get; set; }
-        public Nullable<decimal> a_id4 { get; set; }
-        public Nullable<decimal> correct_a_id1 { get; set; }
-        public Nullable<decimal> correct_a_id2 { get; set; }
-        public Nullable<decimal> correct_a_id3 { get; set; }
-        public Nullable<decimal> correct_a_id4 { get; set; }
+        public Nullable<int> q_id { get; set; }
+        public Nullable<int> a_id1 { get; set; }
+        public Nullable<int> a_id2 { get; set; }
+        public Nullable<int> a_id3 { get; set; }
+        public Nullable<int> a_id4 { get; set; }
+        public Nullable<int> correct_a_id1 { get; set; }
+        public Nullable<int> correct_a_id2 { get; set; }
+        public Nullable<int> correct_a_id3 { get; set; }
+        public Nullable<int> correct_a_id4 { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
-        public Nullable<decimal> user_login_count { get; set; }
-        public Nullable<decimal> is_correct { get; set; }
-        public Nullable<decimal> ismulti { get; set; }
+        public Nullable<int> user_login_count { get; set; }
+        public Nullable<int> is_correct { get; set; }
+        public Nullable<int> ismulti { get; set; }
     }
 }

@@ -14,8 +14,8 @@ namespace digitallearningback.Models
     
     public partial class Gc_mapping
     {
-        public decimal gc_id { get; set; }
-        public Nullable<decimal> c_id { get; set; }
-        public Nullable<decimal> g_id { get; set; }
+        public int gc_id { get; set; }
+        public Nullable<int> c_id { get; set; }
+        public Nullable<int> g_id { get; set; }
     }
 }

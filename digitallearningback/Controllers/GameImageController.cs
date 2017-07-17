@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using digitallearningback.Models.DAO.Service;
 
 namespace digitallearningback.Controllers
 {
@@ -7,7 +8,8 @@ namespace digitallearningback.Controllers
         // GET: GameImage
         public ActionResult Index()
         {
-            return View();
+            var cimages = new Character_imageService().selectAll();
+            return View(cimages);
         }
     }
 }

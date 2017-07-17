@@ -14,8 +14,8 @@ namespace digitallearningback.Models
     
     public partial class S_Class_Question
     {
-        public decimal qc_id { get; set; }
-        public Nullable<decimal> group_id { get; set; }
-        public Nullable<decimal> class_id { get; set; }
+        public int qc_id { get; set; }
+        public Nullable<int> group_id { get; set; }
+        public Nullable<int> class_id { get; set; }
     }
 }

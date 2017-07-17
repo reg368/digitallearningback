@@ -25,7 +25,7 @@ namespace digitallearningback.Controllers
 
                 InfoUser dbuser  = new InfoUserService().findByUserLoginId(user.login_id);
 
-                if (dbuser != null && dbuser.validLogin(user.password,InfoUser.VaildType.Teacher)){
+                if (dbuser != null && dbuser.validLogined(user.password,InfoUser.VaildTypes.Teacher)){
                     Session["infoUser"] = dbuser;
                     return RedirectToAction("Index", "Home");
                 }

@@ -14,14 +14,14 @@ namespace digitallearningback.Models
     
     public partial class Question
     {
-        public decimal id { get; set; }
-        public decimal groupid { get; set; }
+        public int id { get; set; }
+        public int groupid { get; set; }
         public string text { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
         public string point { get; set; }
         public string tip { get; set; }
-        public byte[] pic { get; set; }
-        public Nullable<decimal> level_id { get; set; }
-        public Nullable<decimal> ismulti { get; set; }
+        public string pic { get; set; }
+        public Nullable<int> level_id { get; set; }
+        public Nullable<int> ismulti { get; set; }
     }
 }

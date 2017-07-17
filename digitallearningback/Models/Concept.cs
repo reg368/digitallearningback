@@ -14,7 +14,7 @@ namespace digitallearningback.Models
     
     public partial class Concept
     {
-        public decimal id { get; set; }
+        public int id { get; set; }
         public string name { get; set; }
         public string user_id { get; set; }
     }

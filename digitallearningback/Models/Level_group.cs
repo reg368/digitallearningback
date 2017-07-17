@@ -14,14 +14,14 @@ namespace digitallearningback.Models
     
     public partial class Level_group
     {
-        public decimal lr_id { get; set; }
+        public int lr_id { get; set; }
         public string lr_user_id { get; set; }
-        public Nullable<decimal> lr_group_id { get; set; }
-        public Nullable<decimal> lr_user_login_id { get; set; }
-        public Nullable<decimal> lr_correct_count { get; set; }
-        public Nullable<decimal> lr_incorrect_count { get; set; }
+        public Nullable<int> lr_group_id { get; set; }
+        public Nullable<int> lr_user_login_id { get; set; }
+        public Nullable<int> lr_correct_count { get; set; }
+        public Nullable<int> lr_incorrect_count { get; set; }
         public Nullable<System.DateTime> lr_joindate { get; set; }
-        public Nullable<decimal> lr_qsize { get; set; }
-        public Nullable<decimal> lr_level_id { get; set; }
+        public Nullable<int> lr_qsize { get; set; }
+        public Nullable<int> lr_level_id { get; set; }
     }
 }

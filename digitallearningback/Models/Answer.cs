@@ -14,11 +14,11 @@ namespace digitallearningback.Models
     
     public partial class Answer
     {
-        public decimal id { get; set; }
-        public decimal qid { get; set; }
+        public int id { get; set; }
+        public int qid { get; set; }
         public string text { get; set; }
-        public Nullable<decimal> is_correct { get; set; }
+        public Nullable<int> is_correct { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
-        public byte[] pic { get; set; }
+        public string pic { get; set; }
     }
 }

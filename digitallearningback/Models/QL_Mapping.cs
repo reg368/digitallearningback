@@ -14,9 +14,9 @@ namespace digitallearningback.Models
     
     public partial class QL_Mapping
     {
-        public decimal id { get; set; }
-        public Nullable<decimal> l_id { get; set; }
-        public Nullable<decimal> q_id { get; set; }
-        public Nullable<decimal> g_id { get; set; }
+        public int id { get; set; }
+        public Nullable<int> l_id { get; set; }
+        public Nullable<int> q_id { get; set; }
+        public Nullable<int> g_id { get; set; }
     }
 }

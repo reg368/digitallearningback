@@ -14,8 +14,8 @@ namespace digitallearningback.Models
     
     public partial class Student_class_record
     {
-        public decimal id { get; set; }
-        public Nullable<decimal> class_id { get; set; }
+        public int id { get; set; }
+        public Nullable<int> class_id { get; set; }
         public string student_id { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
     }

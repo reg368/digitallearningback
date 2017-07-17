@@ -11,15 +11,22 @@ namespace digitallearningback.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Character_image
     {
-        public decimal cimage_id { get; set; }
+        public int cimage_id { get; set; }
+        [DisplayName("圖片")]
         public string cimage_path { get; set; }
-        public Nullable<decimal> cimage_mood { get; set; }
+        public Nullable<int> cimage_mood { get; set; }
+        [DisplayName("性別")]
         public string cimage_gander { get; set; }
-        public Nullable<decimal> cimage_profession { get; set; }
+        public Nullable<int> cimage_profession { get; set; }
+        [DisplayName("新增時間")]
         public Nullable<System.DateTime> cimage_joindate { get; set; }
-        public Nullable<decimal> image_level { get; set; }
+        public Nullable<int> image_level { get; set; }
+    
+        public virtual Cimage_mood Cimage_mood1 { get; set; }
+        public virtual Cimage_profession Cimage_profession1 { get; set; }
     }
 }

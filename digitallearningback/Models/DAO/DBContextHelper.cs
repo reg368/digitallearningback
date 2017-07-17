@@ -1,19 +1,17 @@
-﻿using System.Data.Entity;
-
-namespace digitallearningback.Models.DAO
+﻿namespace digitallearningback.Models.DAO
 {
     public class DBContextHelper
     {
+        private static readonly yzucsEntities context;
 
-        private static readonly yzucsentities context;
-
-        public static yzucsentities getContext()
+        public static yzucsEntities GetContext()
         {
             return context;
         }
 
-        static DBContextHelper() {
-            context = new yzucsentities();
+        static DBContextHelper()
+        {
+            context = new yzucsEntities();
         }
     }
 }

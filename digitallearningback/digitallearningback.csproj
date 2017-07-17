@@ -175,8 +175,11 @@
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO\DBContextHelper.cs" />
+    <Compile Include="Models\DAO\Implements\Character_image_im.cs" />
     <Compile Include="Models\DAO\Implements\InfoUser_im.cs" />
+    <Compile Include="Models\DAO\Interface\Character_image_in.cs" />
     <Compile Include="Models\DAO\Interface\InfoUser_in.cs" />
+    <Compile Include="Models\DAO\Service\Character_imageService.cs" />
     <Compile Include="Models\DAO\Service\InfoUserService.cs" />
     <Compile Include="Models\Gc_mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
@@ -206,6 +209,9 @@
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student_class_record.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\S_Class_Question.cs">
@@ -289,10 +295,10 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\GameImage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\GameImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -14,17 +14,17 @@ namespace digitallearningback.Models
     
     public partial class Question_level
     {
-        public decimal id { get; set; }
+        public int id { get; set; }
         public string level { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
-        public Nullable<decimal> group_id { get; set; }
-        public Nullable<decimal> isvisible { get; set; }
-        public Nullable<decimal> israndom { get; set; }
-        public Nullable<decimal> totalqnumber { get; set; }
-        public Nullable<decimal> correctqnumber { get; set; }
-        public Nullable<decimal> awardmoney { get; set; }
-        public Nullable<decimal> awardexperience { get; set; }
-        public Nullable<decimal> fromquestion { get; set; }
-        public Nullable<decimal> toquestion { get; set; }
+        public Nullable<int> group_id { get; set; }
+        public Nullable<int> isvisible { get; set; }
+        public Nullable<int> israndom { get; set; }
+        public Nullable<int> totalqnumber { get; set; }
+        public Nullable<int> correctqnumber { get; set; }
+        public Nullable<int> awardmoney { get; set; }
+        public Nullable<int> awardexperience { get; set; }
+        public Nullable<int> fromquestion { get; set; }
+        public Nullable<int> toquestion { get; set; }
     }
 }

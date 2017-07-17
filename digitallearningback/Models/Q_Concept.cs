@@ -14,9 +14,9 @@ namespace digitallearningback.Models
     
     public partial class Q_Concept
     {
-        public decimal id { get; set; }
-        public Nullable<decimal> c_id { get; set; }
-        public Nullable<decimal> percentage { get; set; }
-        public Nullable<decimal> q_id { get; set; }
+        public int id { get; set; }
+        public Nullable<int> c_id { get; set; }
+        public Nullable<int> percentage { get; set; }
+        public Nullable<int> q_id { get; set; }
     }
 }

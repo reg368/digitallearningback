@@ -14,7 +14,7 @@ namespace digitallearningback.Models
     
     public partial class Question_group
     {
-        public decimal id { get; set; }
+        public int id { get; set; }
         public string name { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
         public string userid { get; set; }

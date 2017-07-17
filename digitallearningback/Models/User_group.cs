@@ -14,7 +14,7 @@ namespace digitallearningback.Models
     
     public partial class User_group
     {
-        public decimal user_group_id { get; set; }
+        public int user_group_id { get; set; }
         public string user_group_name { get; set; }
     }
 }

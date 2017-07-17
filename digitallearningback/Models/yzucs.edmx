@@ -9,201 +9,211 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="qid" Type="numeric" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="text" Type="varchar" MaxLength="100" />
-          <Property Name="is_correct" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
-          <Property Name="pic" Type="varbinary(max)" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="qid" Type="int" Nullable="false" />
+          <Property Name="text" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_correct" Type="int" />
+          <Property Name="joindate" Type="datetime" />
+          <Property Name="pic" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Answer_record">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lr_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="user_id" Type="varchar" MaxLength="10" />
-          <Property Name="q_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="a_id1" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="a_id2" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="a_id3" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="a_id4" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="correct_a_id1" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="correct_a_id2" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="correct_a_id3" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="correct_a_id4" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
-          <Property Name="user_login_count" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="is_correct" Type="numeric" Precision="2" Scale="0" />
-          <Property Name="ismulti" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lr_id" Type="int" />
+          <Property Name="user_id" Type="nvarchar" MaxLength="20" />
+          <Property Name="q_id" Type="int" />
+          <Property Name="a_id1" Type="int" />
+          <Property Name="a_id2" Type="int" />
+          <Property Name="a_id3" Type="int" />
+          <Property Name="a_id4" Type="int" />
+          <Property Name="correct_a_id1" Type="int" />
+          <Property Name="correct_a_id2" Type="int" />
+          <Property Name="correct_a_id3" Type="int" />
+          <Property Name="correct_a_id4" Type="int" />
+          <Property Name="joindate" Type="datetime" />
+          <Property Name="user_login_count" Type="int" />
+          <Property Name="is_correct" Type="int" />
+          <Property Name="ismulti" Type="int" />
         </EntityType>
         <EntityType Name="Character_image">
           <Key>
             <PropertyRef Name="cimage_id" />
           </Key>
-          <Property Name="cimage_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cimage_path" Type="varchar" MaxLength="100" />
-          <Property Name="cimage_mood" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="cimage_gander" Type="varchar" MaxLength="10" />
-          <Property Name="cimage_profession" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="cimage_joindate" Type="datetime2" Precision="0" />
-          <Property Name="image_level" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="cimage_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cimage_path" Type="nvarchar" MaxLength="100" />
+          <Property Name="cimage_mood" Type="int" />
+          <Property Name="cimage_gander" Type="nvarchar" MaxLength="50" />
+          <Property Name="cimage_profession" Type="int" />
+          <Property Name="cimage_joindate" Type="datetime" />
+          <Property Name="image_level" Type="int" />
         </EntityType>
         <EntityType Name="Cimage_mood">
           <Key>
             <PropertyRef Name="cmood_id" />
           </Key>
-          <Property Name="cmood_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cmood_title" Type="varchar" MaxLength="100" />
-          <Property Name="cmood_joindate" Type="datetime2" Precision="0" />
+          <Property Name="cmood_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cmood_title" Type="nvarchar" MaxLength="100" />
+          <Property Name="cmood_joindate" Type="datetime" />
         </EntityType>
         <EntityType Name="Cimage_profession">
           <Key>
             <PropertyRef Name="cprofession_id" />
           </Key>
-          <Property Name="cprofession_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="cprofession_title" Type="varchar" MaxLength="100" />
-          <Property Name="cprofession_joindate" Type="datetime2" Precision="0" />
+          <Property Name="cprofession_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cprofession_title" Type="nvarchar" MaxLength="100" />
+          <Property Name="cprofession_joindate" Type="datetime" />
         </EntityType>
         <EntityType Name="Concept">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="20" />
-          <Property Name="user_id" Type="varchar" MaxLength="10" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_id" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Gc_mapping">
           <Key>
             <PropertyRef Name="gc_id" />
           </Key>
-          <Property Name="gc_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="c_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="g_id" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="gc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="g_id" Type="int" />
         </EntityType>
         <EntityType Name="InfoUser">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" />
-          <Property Name="gender" Type="varchar" MaxLength="100" />
-          <Property Name="age" Type="varchar" MaxLength="100" />
-          <Property Name="grade" Type="varchar" MaxLength="100" />
-          <Property Name="character_image" Type="varchar" MaxLength="100" />
-          <Property Name="pet_image" Type="varchar" MaxLength="100" />
-          <Property Name="pet_name" Type="varchar" MaxLength="100" />
-          <Property Name="login_id" Type="varchar" MaxLength="100" />
-          <Property Name="password" Type="varchar" MaxLength="100" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
-          <Property Name="cimage_type" Type="varchar" MaxLength="20" />
-          <Property Name="pimage_type" Type="varchar" MaxLength="20" />
-          <Property Name="login_count" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="group_id" Type="numeric" Precision="4" Scale="0" />
-          <Property Name="teacher_id" Type="varchar" MaxLength="10" />
-          <Property Name="money" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="experience" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="hp" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="gender" Type="nvarchar" MaxLength="100" />
+          <Property Name="age" Type="nvarchar" MaxLength="100" />
+          <Property Name="grade" Type="nvarchar" MaxLength="100" />
+          <Property Name="character_image" Type="nvarchar" MaxLength="100" />
+          <Property Name="pet_image" Type="nvarchar" MaxLength="100" />
+          <Property Name="pet_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="login_id" Type="nvarchar" MaxLength="100" />
+          <Property Name="password" Type="nvarchar" MaxLength="100" />
+          <Property Name="joindate" Type="datetime" />
+          <Property Name="cimage_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="pimage_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="login_count" Type="int" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="teacher_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="money" Type="int" />
+          <Property Name="experience" Type="int" />
+          <Property Name="hp" Type="int" />
         </EntityType>
         <EntityType Name="Level_group">
           <Key>
             <PropertyRef Name="lr_id" />
           </Key>
-          <Property Name="lr_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lr_user_id" Type="varchar" MaxLength="10" />
-          <Property Name="lr_group_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="lr_user_login_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="lr_correct_count" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="lr_incorrect_count" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="lr_joindate" Type="datetime2" Precision="0" />
-          <Property Name="lr_qsize" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="lr_level_id" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="lr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lr_user_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="lr_group_id" Type="int" />
+          <Property Name="lr_user_login_id" Type="int" />
+          <Property Name="lr_correct_count" Type="int" />
+          <Property Name="lr_incorrect_count" Type="int" />
+          <Property Name="lr_joindate" Type="datetime" />
+          <Property Name="lr_qsize" Type="int" />
+          <Property Name="lr_level_id" Type="int" />
         </EntityType>
         <EntityType Name="Q_Concept">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="c_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="percentage" Type="numeric" Precision="3" Scale="0" />
-          <Property Name="q_id" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="percentage" Type="int" />
+          <Property Name="q_id" Type="int" />
         </EntityType>
         <EntityType Name="QL_Mapping">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="l_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="q_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="g_id" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="l_id" Type="int" />
+          <Property Name="q_id" Type="int" />
+          <Property Name="g_id" Type="int" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="groupid" Type="numeric" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="text" Type="varchar" MaxLength="100" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
-          <Property Name="point" Type="varchar" MaxLength="10" />
-          <Property Name="tip" Type="varchar" MaxLength="100" />
-          <Property Name="pic" Type="varbinary(max)" />
-          <Property Name="level_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="ismulti" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupid" Type="int" Nullable="false" />
+          <Property Name="text" Type="nvarchar" MaxLength="100" />
+          <Property Name="joindate" Type="datetime" />
+          <Property Name="point" Type="nvarchar" MaxLength="50" />
+          <Property Name="tip" Type="nvarchar" MaxLength="100" />
+          <Property Name="pic" Type="nvarchar" MaxLength="100" />
+          <Property Name="level_id" Type="int" />
+          <Property Name="ismulti" Type="int" />
         </EntityType>
         <EntityType Name="Question_group">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
-          <Property Name="userid" Type="varchar" MaxLength="10" />
-          <Property Name="number" Type="varchar" MaxLength="20" />
-          <Property Name="semester" Type="varchar" MaxLength="20" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="joindate" Type="datetime" />
+          <Property Name="userid" Type="nvarchar" MaxLength="50" />
+          <Property Name="number" Type="nvarchar" MaxLength="50" />
+          <Property Name="semester" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Question_level">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="level" Type="varchar" MaxLength="100" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
-          <Property Name="group_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="isvisible" Type="numeric" Precision="2" Scale="0" />
-          <Property Name="israndom" Type="numeric" Precision="2" Scale="0" />
-          <Property Name="totalqnumber" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="correctqnumber" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="awardmoney" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="awardexperience" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="fromquestion" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="toquestion" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="level" Type="nvarchar" MaxLength="100" />
+          <Property Name="joindate" Type="datetime" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="isvisible" Type="int" />
+          <Property Name="israndom" Type="int" />
+          <Property Name="totalqnumber" Type="int" />
+          <Property Name="correctqnumber" Type="int" />
+          <Property Name="awardmoney" Type="int" />
+          <Property Name="awardexperience" Type="int" />
+          <Property Name="fromquestion" Type="int" />
+          <Property Name="toquestion" Type="int" />
         </EntityType>
         <EntityType Name="S_Class_Question">
           <Key>
             <PropertyRef Name="qc_id" />
           </Key>
-          <Property Name="qc_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="group_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="class_id" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="qc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="class_id" Type="int" />
         </EntityType>
         <EntityType Name="Student_Class">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" />
-          <Property Name="teacher_id" Type="varchar" MaxLength="10" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="teacher_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="joindate" Type="datetime" />
         </EntityType>
         <EntityType Name="Student_class_record">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="class_id" Type="numeric" Precision="10" Scale="0" />
-          <Property Name="student_id" Type="varchar" MaxLength="10" />
-          <Property Name="joindate" Type="datetime2" Precision="0" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="class_id" Type="int" />
+          <Property Name="student_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="joindate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'yzucs.dbo.User_group' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
@@ -211,9 +221,33 @@
           <Key>
             <PropertyRef Name="user_group_id" />
           </Key>
-          <Property Name="user_group_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="user_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="user_group_id" Type="int" Nullable="false" />
+          <Property Name="user_group_name" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <Association Name="cimage_mood_fk">
+          <End Role="Cimage_mood" Type="Self.Cimage_mood" Multiplicity="0..1" />
+          <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cimage_mood">
+              <PropertyRef Name="cmood_id" />
+            </Principal>
+            <Dependent Role="Character_image">
+              <PropertyRef Name="cimage_mood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cimage_profession_fk">
+          <End Role="Cimage_profession" Type="Self.Cimage_profession" Multiplicity="0..1" />
+          <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cimage_profession">
+              <PropertyRef Name="cprofession_id" />
+            </Principal>
+            <Dependent Role="Character_image">
+              <PropertyRef Name="cimage_profession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="yzucsModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Answer_record" EntityType="Self.Answer_record" Schema="dbo" store:Type="Tables" />
@@ -232,12 +266,21 @@
           <EntitySet Name="S_Class_Question" EntityType="Self.S_Class_Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_class_record" EntityType="Self.Student_class_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_group" EntityType="Self.User_group" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [User_group].[user_group_id] AS [user_group_id], 
     [User_group].[user_group_name] AS [user_group_name]
     FROM [dbo].[User_group] AS [User_group]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="cimage_mood_fk" Association="Self.cimage_mood_fk">
+            <End Role="Cimage_mood" EntitySet="Cimage_mood" />
+            <End Role="Character_image" EntitySet="Character_image" />
+          </AssociationSet>
+          <AssociationSet Name="cimage_profession_fk" Association="Self.cimage_profession_fk">
+            <End Role="Cimage_profession" EntitySet="Cimage_profession" />
+            <End Role="Character_image" EntitySet="Character_image" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -248,236 +291,283 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="qid" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="is_correct" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
-          <Property Name="pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="qid" Type="Int32" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="is_correct" Type="Int32" />
+          <Property Name="joindate" Type="DateTime" Precision="3" />
+          <Property Name="pic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Answer_record">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="lr_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="user_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="q_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="a_id1" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="a_id2" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="a_id3" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="a_id4" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="correct_a_id1" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="correct_a_id2" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="correct_a_id3" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="correct_a_id4" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
-          <Property Name="user_login_count" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="is_correct" Type="Decimal" Precision="2" Scale="0" />
-          <Property Name="ismulti" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lr_id" Type="Int32" />
+          <Property Name="user_id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="q_id" Type="Int32" />
+          <Property Name="a_id1" Type="Int32" />
+          <Property Name="a_id2" Type="Int32" />
+          <Property Name="a_id3" Type="Int32" />
+          <Property Name="a_id4" Type="Int32" />
+          <Property Name="correct_a_id1" Type="Int32" />
+          <Property Name="correct_a_id2" Type="Int32" />
+          <Property Name="correct_a_id3" Type="Int32" />
+          <Property Name="correct_a_id4" Type="Int32" />
+          <Property Name="joindate" Type="DateTime" Precision="3" />
+          <Property Name="user_login_count" Type="Int32" />
+          <Property Name="is_correct" Type="Int32" />
+          <Property Name="ismulti" Type="Int32" />
         </EntityType>
         <EntityType Name="Character_image">
           <Key>
             <PropertyRef Name="cimage_id" />
           </Key>
-          <Property Name="cimage_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cimage_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="cimage_mood" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="cimage_gander" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="cimage_profession" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="cimage_joindate" Type="DateTime" Precision="0" />
-          <Property Name="image_level" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="cimage_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cimage_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cimage_mood" Type="Int32" />
+          <Property Name="cimage_gander" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cimage_profession" Type="Int32" />
+          <Property Name="cimage_joindate" Type="DateTime" Precision="3" />
+          <Property Name="image_level" Type="Int32" />
+          <NavigationProperty Name="Cimage_mood1" Relationship="Self.cimage_mood_fk" FromRole="Character_image" ToRole="Cimage_mood" />
+          <NavigationProperty Name="Cimage_profession1" Relationship="Self.cimage_profession_fk" FromRole="Character_image" ToRole="Cimage_profession" />
         </EntityType>
         <EntityType Name="Cimage_mood">
           <Key>
             <PropertyRef Name="cmood_id" />
           </Key>
-          <Property Name="cmood_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cmood_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="cmood_joindate" Type="DateTime" Precision="0" />
+          <Property Name="cmood_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cmood_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cmood_joindate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Character_image" Relationship="Self.cimage_mood_fk" FromRole="Cimage_mood" ToRole="Character_image" />
         </EntityType>
         <EntityType Name="Cimage_profession">
           <Key>
             <PropertyRef Name="cprofession_id" />
           </Key>
-          <Property Name="cprofession_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cprofession_title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="cprofession_joindate" Type="DateTime" Precision="0" />
+          <Property Name="cprofession_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cprofession_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="cprofession_joindate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Character_image" Relationship="Self.cimage_profession_fk" FromRole="Cimage_profession" ToRole="Character_image" />
         </EntityType>
         <EntityType Name="Concept">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="user_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Gc_mapping">
           <Key>
             <PropertyRef Name="gc_id" />
           </Key>
-          <Property Name="gc_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="c_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="g_id" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="gc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_id" Type="Int32" />
+          <Property Name="g_id" Type="Int32" />
         </EntityType>
         <EntityType Name="InfoUser">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="gender" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="age" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="grade" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="character_image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="pet_image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="pet_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="login_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
-          <Property Name="cimage_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="pimage_type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="login_count" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="group_id" Type="Decimal" Precision="4" Scale="0" />
-          <Property Name="teacher_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="money" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="experience" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="hp" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="age" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="grade" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="character_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pet_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pet_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="login_id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="joindate" Type="DateTime" Precision="3" />
+          <Property Name="cimage_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pimage_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="login_count" Type="Int32" />
+          <Property Name="group_id" Type="Int32" />
+          <Property Name="teacher_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="money" Type="Int32" />
+          <Property Name="experience" Type="Int32" />
+          <Property Name="hp" Type="Int32" />
         </EntityType>
         <EntityType Name="Level_group">
           <Key>
             <PropertyRef Name="lr_id" />
           </Key>
-          <Property Name="lr_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="lr_user_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="lr_group_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="lr_user_login_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="lr_correct_count" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="lr_incorrect_count" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="lr_joindate" Type="DateTime" Precision="0" />
-          <Property Name="lr_qsize" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="lr_level_id" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="lr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lr_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lr_group_id" Type="Int32" />
+          <Property Name="lr_user_login_id" Type="Int32" />
+          <Property Name="lr_correct_count" Type="Int32" />
+          <Property Name="lr_incorrect_count" Type="Int32" />
+          <Property Name="lr_joindate" Type="DateTime" Precision="3" />
+          <Property Name="lr_qsize" Type="Int32" />
+          <Property Name="lr_level_id" Type="Int32" />
         </EntityType>
         <EntityType Name="Q_Concept">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="c_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="percentage" Type="Decimal" Precision="3" Scale="0" />
-          <Property Name="q_id" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_id" Type="Int32" />
+          <Property Name="percentage" Type="Int32" />
+          <Property Name="q_id" Type="Int32" />
         </EntityType>
         <EntityType Name="QL_Mapping">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="l_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="q_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="g_id" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="l_id" Type="Int32" />
+          <Property Name="q_id" Type="Int32" />
+          <Property Name="g_id" Type="Int32" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="groupid" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
-          <Property Name="point" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="tip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="pic" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="level_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="ismulti" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupid" Type="Int32" Nullable="false" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="joindate" Type="DateTime" Precision="3" />
+          <Property Name="point" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="level_id" Type="Int32" />
+          <Property Name="ismulti" Type="Int32" />
         </EntityType>
         <EntityType Name="Question_group">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
-          <Property Name="userid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="number" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="semester" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="joindate" Type="DateTime" Precision="3" />
+          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="semester" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Question_level">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
-          <Property Name="group_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="isvisible" Type="Decimal" Precision="2" Scale="0" />
-          <Property Name="israndom" Type="Decimal" Precision="2" Scale="0" />
-          <Property Name="totalqnumber" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="correctqnumber" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="awardmoney" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="awardexperience" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="fromquestion" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="toquestion" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="joindate" Type="DateTime" Precision="3" />
+          <Property Name="group_id" Type="Int32" />
+          <Property Name="isvisible" Type="Int32" />
+          <Property Name="israndom" Type="Int32" />
+          <Property Name="totalqnumber" Type="Int32" />
+          <Property Name="correctqnumber" Type="Int32" />
+          <Property Name="awardmoney" Type="Int32" />
+          <Property Name="awardexperience" Type="Int32" />
+          <Property Name="fromquestion" Type="Int32" />
+          <Property Name="toquestion" Type="Int32" />
         </EntityType>
         <EntityType Name="S_Class_Question">
           <Key>
             <PropertyRef Name="qc_id" />
           </Key>
-          <Property Name="qc_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="group_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="class_id" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="qc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="group_id" Type="Int32" />
+          <Property Name="class_id" Type="Int32" />
         </EntityType>
         <EntityType Name="Student_Class">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="teacher_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="teacher_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="joindate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Student_class_record">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="class_id" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="student_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="joindate" Type="DateTime" Precision="0" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="class_id" Type="Int32" />
+          <Property Name="student_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="joindate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User_group">
           <Key>
             <PropertyRef Name="user_group_id" />
           </Key>
-          <Property Name="user_group_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="user_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_group_id" Type="Int32" Nullable="false" />
+          <Property Name="user_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="yzucsentities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Answers" EntityType="Self.Answer" />
+        <Association Name="cimage_mood_fk">
+          <End Role="Cimage_mood" Type="Self.Cimage_mood" Multiplicity="0..1" />
+          <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cimage_mood">
+              <PropertyRef Name="cmood_id" />
+            </Principal>
+            <Dependent Role="Character_image">
+              <PropertyRef Name="cimage_mood" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cimage_profession_fk">
+          <End Role="Cimage_profession" Type="Self.Cimage_profession" Multiplicity="0..1" />
+          <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cimage_profession">
+              <PropertyRef Name="cprofession_id" />
+            </Principal>
+            <Dependent Role="Character_image">
+              <PropertyRef Name="cimage_profession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="yzucsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Answer" EntityType="Self.Answer" />
           <EntitySet Name="Answer_record" EntityType="Self.Answer_record" />
           <EntitySet Name="Character_image" EntityType="Self.Character_image" />
           <EntitySet Name="Cimage_mood" EntityType="Self.Cimage_mood" />
           <EntitySet Name="Cimage_profession" EntityType="Self.Cimage_profession" />
-          <EntitySet Name="Concepts" EntityType="Self.Concept" />
+          <EntitySet Name="Concept" EntityType="Self.Concept" />
           <EntitySet Name="Gc_mapping" EntityType="Self.Gc_mapping" />
-          <EntitySet Name="InfoUsers" EntityType="Self.InfoUser" />
+          <EntitySet Name="InfoUser" EntityType="Self.InfoUser" />
           <EntitySet Name="Level_group" EntityType="Self.Level_group" />
           <EntitySet Name="Q_Concept" EntityType="Self.Q_Concept" />
           <EntitySet Name="QL_Mapping" EntityType="Self.QL_Mapping" />
-          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="Question" EntityType="Self.Question" />
           <EntitySet Name="Question_group" EntityType="Self.Question_group" />
           <EntitySet Name="Question_level" EntityType="Self.Question_level" />
           <EntitySet Name="S_Class_Question" EntityType="Self.S_Class_Question" />
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" />
           <EntitySet Name="Student_class_record" EntityType="Self.Student_class_record" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User_group" EntityType="Self.User_group" />
+          <AssociationSet Name="cimage_mood_fk" Association="Self.cimage_mood_fk">
+            <End Role="Cimage_mood" EntitySet="Cimage_mood" />
+            <End Role="Character_image" EntitySet="Character_image" />
+          </AssociationSet>
+          <AssociationSet Name="cimage_profession_fk" Association="Self.cimage_profession_fk">
+            <End Role="Cimage_profession" EntitySet="Cimage_profession" />
+            <End Role="Character_image" EntitySet="Character_image" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="yzucsModelStoreContainer" CdmEntityContainer="yzucsentities">
-          <EntitySetMapping Name="Answers">
+        <EntityContainerMapping StorageEntityContainer="yzucsModelStoreContainer" CdmEntityContainer="yzucsEntities">
+          <EntitySetMapping Name="Answer">
             <EntityTypeMapping TypeName="yzucsModel.Answer">
               <MappingFragment StoreEntitySet="Answer">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -542,7 +632,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Concepts">
+          <EntitySetMapping Name="Concept">
             <EntityTypeMapping TypeName="yzucsModel.Concept">
               <MappingFragment StoreEntitySet="Concept">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -560,7 +650,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="InfoUsers">
+          <EntitySetMapping Name="InfoUser">
             <EntityTypeMapping TypeName="yzucsModel.InfoUser">
               <MappingFragment StoreEntitySet="InfoUser">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -620,7 +710,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Questions">
+          <EntitySetMapping Name="Question">
             <EntityTypeMapping TypeName="yzucsModel.Question">
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -694,6 +784,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="yzucsModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="User_group">
             <EntityTypeMapping TypeName="yzucsModel.User_group">
               <MappingFragment StoreEntitySet="User_group">
@@ -716,7 +817,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="無" />

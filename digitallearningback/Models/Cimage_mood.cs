@@ -11,11 +11,22 @@ namespace digitallearningback.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Cimage_mood
     {
-        public decimal cmood_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cimage_mood()
+        {
+            this.Character_image = new HashSet<Character_image>();
+        }
+    
+        public int cmood_id { get; set; }
+        [DisplayName("表情")]
         public string cmood_title { get; set; }
         public Nullable<System.DateTime> cmood_joindate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Character_image> Character_image { get; set; }
     }
 }
