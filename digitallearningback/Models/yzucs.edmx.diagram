@@ -4,28 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6f81feac459947d78b20c332e6dce64d" Name="Diagram1">
-        <EntityTypeShape EntityType="yzucsModel.Answer" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Answer_record" Width="1.5" PointX="4.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Character_image" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Cimage_mood" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Cimage_profession" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Concept" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Gc_mapping" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.InfoUser" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Level_group" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Q_Concept" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.QL_Mapping" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Question" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Question_group" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Question_level" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.S_Class_Question" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Student_Class" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Student_class_record" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.sysdiagrams" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.User_group" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
-        <AssociationConnector Association="yzucsModel.cimage_mood_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.cimage_profession_fk" ManuallyRouted="false" />
+      <Diagram DiagramId="d5ff4222cc44497faff530603208e9c3" Name="Diagram1">
+        <EntityTypeShape EntityType="yzucsModel.Answer" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Answer_record" Width="1.5" PointX="2.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Character_image" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Cimage_mood" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Cimage_profession" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Concept" Width="1.5" PointX="4.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Gc_mapping" Width="1.5" PointX="6.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.InfoUser" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Level_group" Width="1.5" PointX="7.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Q_Concept" Width="1.5" PointX="8.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.QL_Mapping" Width="1.5" PointX="8.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Question" Width="1.5" PointX="9.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Question_group" Width="1.5" PointX="4.75" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Question_level" Width="1.5" PointX="10.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.S_Class_Question" Width="1.5" PointX="6.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Student_Class" Width="1.5" PointX="10.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.Student_class_record" Width="1.5" PointX="11.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="yzucsModel.User_group" Width="1.5" PointX="8.75" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="yzucsModel.Character_image_mood_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="yzucsModel.Character_image_profession_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="yzucsModel.infoUser_character_image_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="yzucsModel.infoUser_pet_image_fk" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

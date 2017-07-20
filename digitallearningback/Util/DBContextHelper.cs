@@ -1,4 +1,6 @@
-﻿namespace digitallearningback.Models.DAO
+﻿using digitallearningback.Models;
+
+namespace digitallearningback.Util
 {
     public class DBContextHelper
     {

@@ -20,8 +20,8 @@ namespace digitallearningback.Models
         public string gender { get; set; }
         public string age { get; set; }
         public string grade { get; set; }
-        public string character_image { get; set; }
-        public string pet_image { get; set; }
+        public Nullable<int> character_image { get; set; }
+        public Nullable<int> pet_image { get; set; }
         public string pet_name { get; set; }
         [Required]
         public string login_id { get; set; }
@@ -36,6 +36,9 @@ namespace digitallearningback.Models
         public Nullable<int> money { get; set; }
         public Nullable<int> experience { get; set; }
         public Nullable<int> hp { get; set; }
+    
+        public virtual Character_image Character_image1 { get; set; }
+        public virtual Character_image Character_image2 { get; set; }
 
         public enum VaildTypes
         {
@@ -77,6 +80,5 @@ namespace digitallearningback.Models
                 return false;
             }
         }
-
     }
 }

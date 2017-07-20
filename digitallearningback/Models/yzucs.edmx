@@ -14,7 +14,7 @@
           <Property Name="text" Type="nvarchar" MaxLength="100" />
           <Property Name="is_correct" Type="int" />
           <Property Name="joindate" Type="datetime" />
-          <Property Name="pic" Type="nvarchar" MaxLength="200" />
+          <Property Name="pic_path" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Answer_record">
           <Key>
@@ -90,8 +90,8 @@
           <Property Name="gender" Type="nvarchar" MaxLength="100" />
           <Property Name="age" Type="nvarchar" MaxLength="100" />
           <Property Name="grade" Type="nvarchar" MaxLength="100" />
-          <Property Name="character_image" Type="nvarchar" MaxLength="100" />
-          <Property Name="pet_image" Type="nvarchar" MaxLength="100" />
+          <Property Name="character_image" Type="int" />
+          <Property Name="pet_image" Type="int" />
           <Property Name="pet_name" Type="nvarchar" MaxLength="100" />
           <Property Name="login_id" Type="nvarchar" MaxLength="100" />
           <Property Name="password" Type="nvarchar" MaxLength="100" />
@@ -147,7 +147,7 @@
           <Property Name="joindate" Type="datetime" />
           <Property Name="point" Type="nvarchar" MaxLength="50" />
           <Property Name="tip" Type="nvarchar" MaxLength="100" />
-          <Property Name="pic" Type="nvarchar" MaxLength="100" />
+          <Property Name="pic_path" Type="nvarchar" MaxLength="100" />
           <Property Name="level_id" Type="int" />
           <Property Name="ismulti" Type="int" />
         </EntityType>
@@ -224,7 +224,7 @@
           <Property Name="user_group_id" Type="int" Nullable="false" />
           <Property Name="user_group_name" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <Association Name="cimage_mood_fk">
+        <Association Name="Character_image_mood_fk">
           <End Role="Cimage_mood" Type="Self.Cimage_mood" Multiplicity="0..1" />
           <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
           <ReferentialConstraint>
@@ -236,7 +236,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="cimage_profession_fk">
+        <Association Name="Character_image_profession_fk">
           <End Role="Cimage_profession" Type="Self.Cimage_profession" Multiplicity="0..1" />
           <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
           <ReferentialConstraint>
@@ -245,6 +245,30 @@
             </Principal>
             <Dependent Role="Character_image">
               <PropertyRef Name="cimage_profession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="infoUser_character_image_fk">
+          <End Role="Character_image" Type="Self.Character_image" Multiplicity="0..1" />
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_image">
+              <PropertyRef Name="cimage_id" />
+            </Principal>
+            <Dependent Role="InfoUser">
+              <PropertyRef Name="character_image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="infoUser_pet_image_fk">
+          <End Role="Character_image" Type="Self.Character_image" Multiplicity="0..1" />
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_image">
+              <PropertyRef Name="cimage_id" />
+            </Principal>
+            <Dependent Role="InfoUser">
+              <PropertyRef Name="pet_image" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -273,13 +297,21 @@
     [User_group].[user_group_name] AS [user_group_name]
     FROM [dbo].[User_group] AS [User_group]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="cimage_mood_fk" Association="Self.cimage_mood_fk">
+          <AssociationSet Name="Character_image_mood_fk" Association="Self.Character_image_mood_fk">
             <End Role="Cimage_mood" EntitySet="Cimage_mood" />
             <End Role="Character_image" EntitySet="Character_image" />
           </AssociationSet>
-          <AssociationSet Name="cimage_profession_fk" Association="Self.cimage_profession_fk">
+          <AssociationSet Name="Character_image_profession_fk" Association="Self.Character_image_profession_fk">
             <End Role="Cimage_profession" EntitySet="Cimage_profession" />
             <End Role="Character_image" EntitySet="Character_image" />
+          </AssociationSet>
+          <AssociationSet Name="infoUser_character_image_fk" Association="Self.infoUser_character_image_fk">
+            <End Role="Character_image" EntitySet="Character_image" />
+            <End Role="InfoUser" EntitySet="InfoUser" />
+          </AssociationSet>
+          <AssociationSet Name="infoUser_pet_image_fk" Association="Self.infoUser_pet_image_fk">
+            <End Role="Character_image" EntitySet="Character_image" />
+            <End Role="InfoUser" EntitySet="InfoUser" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -296,7 +328,7 @@
           <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="is_correct" Type="Int32" />
           <Property Name="joindate" Type="DateTime" Precision="3" />
-          <Property Name="pic" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="pic_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Answer_record">
           <Key>
@@ -330,8 +362,10 @@
           <Property Name="cimage_profession" Type="Int32" />
           <Property Name="cimage_joindate" Type="DateTime" Precision="3" />
           <Property Name="image_level" Type="Int32" />
-          <NavigationProperty Name="Cimage_mood1" Relationship="Self.cimage_mood_fk" FromRole="Character_image" ToRole="Cimage_mood" />
-          <NavigationProperty Name="Cimage_profession1" Relationship="Self.cimage_profession_fk" FromRole="Character_image" ToRole="Cimage_profession" />
+          <NavigationProperty Name="Cimage_mood1" Relationship="Self.Character_image_mood_fk" FromRole="Character_image" ToRole="Cimage_mood" />
+          <NavigationProperty Name="Cimage_profession1" Relationship="Self.Character_image_profession_fk" FromRole="Character_image" ToRole="Cimage_profession" />
+          <NavigationProperty Name="InfoUser" Relationship="Self.infoUser_character_image_fk" FromRole="Character_image" ToRole="InfoUser" />
+          <NavigationProperty Name="InfoUser1" Relationship="Self.infoUser_pet_image_fk" FromRole="Character_image" ToRole="InfoUser" />
         </EntityType>
         <EntityType Name="Cimage_mood">
           <Key>
@@ -340,7 +374,7 @@
           <Property Name="cmood_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cmood_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="cmood_joindate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Character_image" Relationship="Self.cimage_mood_fk" FromRole="Cimage_mood" ToRole="Character_image" />
+          <NavigationProperty Name="Character_image" Relationship="Self.Character_image_mood_fk" FromRole="Cimage_mood" ToRole="Character_image" />
         </EntityType>
         <EntityType Name="Cimage_profession">
           <Key>
@@ -349,7 +383,7 @@
           <Property Name="cprofession_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="cprofession_title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="cprofession_joindate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Character_image" Relationship="Self.cimage_profession_fk" FromRole="Cimage_profession" ToRole="Character_image" />
+          <NavigationProperty Name="Character_image" Relationship="Self.Character_image_profession_fk" FromRole="Cimage_profession" ToRole="Character_image" />
         </EntityType>
         <EntityType Name="Concept">
           <Key>
@@ -376,8 +410,8 @@
           <Property Name="gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="age" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="grade" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="character_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="pet_image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="character_image" Type="Int32" />
+          <Property Name="pet_image" Type="Int32" />
           <Property Name="pet_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="login_id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -390,6 +424,8 @@
           <Property Name="money" Type="Int32" />
           <Property Name="experience" Type="Int32" />
           <Property Name="hp" Type="Int32" />
+          <NavigationProperty Name="Character_image1" Relationship="Self.infoUser_character_image_fk" FromRole="InfoUser" ToRole="Character_image" />
+          <NavigationProperty Name="Character_image2" Relationship="Self.infoUser_pet_image_fk" FromRole="InfoUser" ToRole="Character_image" />
         </EntityType>
         <EntityType Name="Level_group">
           <Key>
@@ -433,7 +469,7 @@
           <Property Name="joindate" Type="DateTime" Precision="3" />
           <Property Name="point" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="tip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="pic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pic_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="level_id" Type="Int32" />
           <Property Name="ismulti" Type="Int32" />
         </EntityType>
@@ -508,7 +544,7 @@
           <Property Name="user_group_id" Type="Int32" Nullable="false" />
           <Property Name="user_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <Association Name="cimage_mood_fk">
+        <Association Name="Character_image_mood_fk">
           <End Role="Cimage_mood" Type="Self.Cimage_mood" Multiplicity="0..1" />
           <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
           <ReferentialConstraint>
@@ -520,7 +556,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="cimage_profession_fk">
+        <Association Name="Character_image_profession_fk">
           <End Role="Cimage_profession" Type="Self.Cimage_profession" Multiplicity="0..1" />
           <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
           <ReferentialConstraint>
@@ -529,6 +565,30 @@
             </Principal>
             <Dependent Role="Character_image">
               <PropertyRef Name="cimage_profession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="infoUser_character_image_fk">
+          <End Role="Character_image" Type="Self.Character_image" Multiplicity="0..1" />
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_image">
+              <PropertyRef Name="cimage_id" />
+            </Principal>
+            <Dependent Role="InfoUser">
+              <PropertyRef Name="character_image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="infoUser_pet_image_fk">
+          <End Role="Character_image" Type="Self.Character_image" Multiplicity="0..1" />
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Character_image">
+              <PropertyRef Name="cimage_id" />
+            </Principal>
+            <Dependent Role="InfoUser">
+              <PropertyRef Name="pet_image" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -552,13 +612,21 @@
           <EntitySet Name="Student_class_record" EntityType="Self.Student_class_record" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User_group" EntityType="Self.User_group" />
-          <AssociationSet Name="cimage_mood_fk" Association="Self.cimage_mood_fk">
+          <AssociationSet Name="Character_image_mood_fk" Association="Self.Character_image_mood_fk">
             <End Role="Cimage_mood" EntitySet="Cimage_mood" />
             <End Role="Character_image" EntitySet="Character_image" />
           </AssociationSet>
-          <AssociationSet Name="cimage_profession_fk" Association="Self.cimage_profession_fk">
+          <AssociationSet Name="Character_image_profession_fk" Association="Self.Character_image_profession_fk">
             <End Role="Cimage_profession" EntitySet="Cimage_profession" />
             <End Role="Character_image" EntitySet="Character_image" />
+          </AssociationSet>
+          <AssociationSet Name="infoUser_character_image_fk" Association="Self.infoUser_character_image_fk">
+            <End Role="Character_image" EntitySet="Character_image" />
+            <End Role="InfoUser" EntitySet="InfoUser" />
+          </AssociationSet>
+          <AssociationSet Name="infoUser_pet_image_fk" Association="Self.infoUser_pet_image_fk">
+            <End Role="Character_image" EntitySet="Character_image" />
+            <End Role="InfoUser" EntitySet="InfoUser" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -575,7 +643,7 @@
                 <ScalarProperty Name="text" ColumnName="text" />
                 <ScalarProperty Name="is_correct" ColumnName="is_correct" />
                 <ScalarProperty Name="joindate" ColumnName="joindate" />
-                <ScalarProperty Name="pic" ColumnName="pic" />
+                <ScalarProperty Name="pic_path" ColumnName="pic_path" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -719,7 +787,7 @@
                 <ScalarProperty Name="joindate" ColumnName="joindate" />
                 <ScalarProperty Name="point" ColumnName="point" />
                 <ScalarProperty Name="tip" ColumnName="tip" />
-                <ScalarProperty Name="pic" ColumnName="pic" />
+                <ScalarProperty Name="pic_path" ColumnName="pic_path" />
                 <ScalarProperty Name="level_id" ColumnName="level_id" />
                 <ScalarProperty Name="ismulti" ColumnName="ismulti" />
               </MappingFragment>

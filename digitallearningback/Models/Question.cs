@@ -20,7 +20,7 @@ namespace digitallearningback.Models
         public Nullable<System.DateTime> joindate { get; set; }
         public string point { get; set; }
         public string tip { get; set; }
-        public string pic { get; set; }
+        public string pic_path { get; set; }
         public Nullable<int> level_id { get; set; }
         public Nullable<int> ismulti { get; set; }
     }

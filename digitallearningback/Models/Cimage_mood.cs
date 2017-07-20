@@ -11,8 +11,7 @@ namespace digitallearningback.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class Cimage_mood
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +21,6 @@ namespace digitallearningback.Models
         }
     
         public int cmood_id { get; set; }
-        [DisplayName("表情")]
         public string cmood_title { get; set; }
         public Nullable<System.DateTime> cmood_joindate { get; set; }
     

@@ -174,13 +174,6 @@
     <Compile Include="Models\Concept.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAO\DBContextHelper.cs" />
-    <Compile Include="Models\DAO\Implements\Character_image_im.cs" />
-    <Compile Include="Models\DAO\Implements\InfoUser_im.cs" />
-    <Compile Include="Models\DAO\Interface\Character_image_in.cs" />
-    <Compile Include="Models\DAO\Interface\InfoUser_in.cs" />
-    <Compile Include="Models\DAO\Service\Character_imageService.cs" />
-    <Compile Include="Models\DAO\Service\InfoUserService.cs" />
     <Compile Include="Models\Gc_mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
@@ -235,6 +228,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>yzucs.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Util\AppSettingHelper.cs" />
+    <Compile Include="Util\DBContextHelper.cs" />
+    <Compile Include="Models\DAO\Implements\Character_image_im.cs" />
+    <Compile Include="Models\DAO\Implements\InfoUser_im.cs" />
+    <Compile Include="Models\DAO\Interface\Character_image_in.cs" />
+    <Compile Include="Models\DAO\Interface\InfoUser_in.cs" />
+    <Compile Include="Models\DAO\Service\Character_imageService.cs" />
+    <Compile Include="Models\DAO\Service\InfoUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

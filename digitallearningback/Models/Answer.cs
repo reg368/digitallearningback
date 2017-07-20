@@ -19,6 +19,6 @@ namespace digitallearningback.Models
         public string text { get; set; }
         public Nullable<int> is_correct { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
-        public string pic { get; set; }
+        public string pic_path { get; set; }
     }
 }
