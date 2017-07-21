@@ -174,6 +174,12 @@
     <Compile Include="Models\Concept.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DAO\Implements\Cimage_mood_im.cs" />
+    <Compile Include="Models\DAO\Implements\Cimage_profession_im.cs" />
+    <Compile Include="Models\DAO\Interface\Cimage_mood_in.cs" />
+    <Compile Include="Models\DAO\Interface\Cimage_profession_in.cs" />
+    <Compile Include="Models\DAO\Service\Cimage_moodService.cs" />
+    <Compile Include="Models\DAO\Service\Cimage_professionService.cs" />
     <Compile Include="Models\Gc_mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
@@ -297,6 +303,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\GameImage\Index.cshtml" />
+    <Content Include="Views\GameImage\CreateView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

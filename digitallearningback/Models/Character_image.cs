@@ -11,7 +11,8 @@ namespace digitallearningback.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Character_image
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,9 +24,20 @@ namespace digitallearningback.Models
     
         public int cimage_id { get; set; }
         public string cimage_path { get; set; }
+
+        [Required]
+        [Display(Name = "表情")]
         public Nullable<int> cimage_mood { get; set; }
+
+        [Required]
+        [Display(Name = "性別")]
         public string cimage_gander { get; set; }
+
+        [Required]
+        [Display(Name = "職業")]
         public Nullable<int> cimage_profession { get; set; }
+
+
         public Nullable<System.DateTime> cimage_joindate { get; set; }
         public Nullable<int> image_level { get; set; }
     
