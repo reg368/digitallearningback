@@ -15,6 +15,11 @@ namespace digitallearningback.Models.DAO.Service
             this.dao = new Character_image_im();
         }
 
+        public void insert(Character_image model)
+        {
+            dao.insert(model);
+        }
+
         public List<Character_image> selectAll()
         {
             return dao.selectAll();

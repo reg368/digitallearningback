@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create", "Create", "GameImage")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -35,7 +35,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <a href="@Html.DisplayFor(modelItem => item.cimage_path)">查看</a>     
+            @Html.DisplayFor(modelItem => item.cimage_path)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.cimage_gander)

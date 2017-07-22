@@ -1,0 +1,66 @@
+﻿@model digitallearningback.Models.Character_image
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Character_image</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cimage_path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cimage_path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cimage_gander)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cimage_gander)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cimage_joindate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cimage_joindate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image_level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image_level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cimage_mood1.cmood_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cimage_mood1.cmood_title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cimage_profession1.cprofession_title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cimage_profession1.cprofession_title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cimage_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
