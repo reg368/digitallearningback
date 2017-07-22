@@ -29,7 +29,7 @@ namespace digitallearningback.Controllers
             return View();
         }
 
-        [HttpPost]
+       /* [HttpPost]
         public ActionResult Create(Character_image model) {
 
             var validImageTypes = new string[]{"image/jpg","image/jpeg"};
@@ -53,6 +53,6 @@ namespace digitallearningback.Controllers
             }
 
             return View(model);
-        }
+        } */
     }
 }

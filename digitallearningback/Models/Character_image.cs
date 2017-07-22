@@ -28,9 +28,9 @@ namespace digitallearningback.Models
         public string cimage_path { get; set; }
 
     
-        [Display(Name = "圖片")]
-        [DataType(DataType.Upload)]
-        public HttpPostedFileBase imageUploadFile { get; set; }
+       // [Display(Name = "圖片")]
+       // [DataType(DataType.Upload)]
+        //public HttpPostedFileBase imageUploadFile { get; set; }
 
         [Required]
         [Display(Name = "表情")]

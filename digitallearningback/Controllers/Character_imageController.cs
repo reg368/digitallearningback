@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -49,10 +50,35 @@ namespace digitallearningback.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "cimage_id,cimage_path,cimage_mood,cimage_gander,cimage_profession,cimage_joindate,image_level")] Character_image character_image)
+        public ActionResult Create(
+            [Bind(Include = "cimage_id,cimage_path,cimage_mood,cimage_gander,cimage_profession,cimage_joindate,image_level")] Character_image character_image,
+            [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
-            if (ModelState.IsValid)
+
+            var validImageTypes = new string[] { "image/jpg", "image/jpeg", "image/png" };
+
+            if (uploadFile == null || uploadFile.ContentLength == 0)
             {
+                ModelState.AddModelError("imageUploadFile", "Image field is required");
+            }
+            else if (!validImageTypes.Any(t => t.Equals(uploadFile.ContentType)))
+            {
+                ModelState.AddModelError("imageUploadFile", "Only accept for jpg / jpeg /png file");
+            }
+
+            InfoUser user = (InfoUser)Session["infoUser"];
+
+            if (ModelState.IsValid && user != null )
+            {
+                var uploadDir = "~/Images/Character_image";
+
+                //String fileId = Guid.NewGuid().ToString().Replace("-", "");
+                
+                var imagePath = Path.Combine(Server.MapPath(uploadDir), uploadFile.FileName);
+                uploadFile.SaveAs(imagePath);
+
+                character_image.cimage_path = "/Images/Character_image/"+ uploadFile.FileName;
+
                 db.Character_image.Add(character_image);
                 db.SaveChanges();
                 return RedirectToAction("Index");
