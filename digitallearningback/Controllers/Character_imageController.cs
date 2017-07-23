@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using digitallearningback.Models;
+using digitallearningback.DAO;
+using System;
 
 namespace digitallearningback.Controllers
 {
     public class Character_imageController : Controller
     {
-        private yzucsEntities db = new yzucsEntities();
+        private Character_imageService imageService = new Character_imageService();
+        private Cimage_moodService moodService = new Cimage_moodService();
+        private Cimage_professionService proService = new Cimage_professionService();
 
         // GET: Character_image
         public ActionResult Index()
         {
-            var character_image = db.Character_image.Include(c => c.Cimage_mood1).Include(c => c.Cimage_profession1);
-            return View(character_image.ToList());
+            return View(imageService.selectAllInclude());
         }
 
         // GET: Character_image/Details/5
@@ -29,7 +29,7 @@ namespace digitallearningback.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character_image character_image = db.Character_image.Find(id);
+            Character_image character_image = imageService.selectById(id);
             if (character_image == null)
             {
                 return HttpNotFound();
@@ -40,8 +40,8 @@ namespace digitallearningback.Controllers
         // GET: Character_image/Create
         public ActionResult Create()
         {
-            ViewBag.cimage_mood = new SelectList(db.Cimage_mood, "cmood_id", "cmood_title");
-            ViewBag.cimage_profession = new SelectList(db.Cimage_profession, "cprofession_id", "cprofession_title");
+            ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title");
+            ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title");
             return View();
         }
 
@@ -72,20 +72,22 @@ namespace digitallearningback.Controllers
             {
                 var uploadDir = "~/Images/Character_image";
 
-                //String fileId = Guid.NewGuid().ToString().Replace("-", "");
-                
-                var imagePath = Path.Combine(Server.MapPath(uploadDir), uploadFile.FileName);
+                String fileId = Guid.NewGuid().ToString().Replace("-", "");
+
+                String filename = fileId + Path.GetExtension(uploadFile.FileName);
+
+                var imagePath = Path.Combine(Server.MapPath(uploadDir), filename);
                 uploadFile.SaveAs(imagePath);
 
-                character_image.cimage_path = "/Images/Character_image/"+ uploadFile.FileName;
+                character_image.cimage_path = "/Images/Character_image/"+ filename;
+                character_image.cimage_joindate = DateTime.Today;
 
-                db.Character_image.Add(character_image);
-                db.SaveChanges();
+                imageService.insert(character_image);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cimage_mood = new SelectList(db.Cimage_mood, "cmood_id", "cmood_title", character_image.cimage_mood);
-            ViewBag.cimage_profession = new SelectList(db.Cimage_profession, "cprofession_id", "cprofession_title", character_image.cimage_profession);
+            ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title", character_image.cimage_mood);
+            ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title", character_image.cimage_profession);
             return View(character_image);
         }
 
@@ -96,13 +98,13 @@ namespace digitallearningback.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character_image character_image = db.Character_image.Find(id);
+            Character_image character_image = imageService.selectById(id);
             if (character_image == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.cimage_mood = new SelectList(db.Cimage_mood, "cmood_id", "cmood_title", character_image.cimage_mood);
-            ViewBag.cimage_profession = new SelectList(db.Cimage_profession, "cprofession_id", "cprofession_title", character_image.cimage_profession);
+            ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title", character_image.cimage_mood);
+            ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title", character_image.cimage_profession);
             return View(character_image);
         }
 
@@ -115,12 +117,11 @@ namespace digitallearningback.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(character_image).State = EntityState.Modified;
-                db.SaveChanges();
+                imageService.update(character_image);
                 return RedirectToAction("Index");
             }
-            ViewBag.cimage_mood = new SelectList(db.Cimage_mood, "cmood_id", "cmood_title", character_image.cimage_mood);
-            ViewBag.cimage_profession = new SelectList(db.Cimage_profession, "cprofession_id", "cprofession_title", character_image.cimage_profession);
+            ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title", character_image.cimage_mood);
+            ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title", character_image.cimage_profession);
             return View(character_image);
         }
 
@@ -131,7 +132,7 @@ namespace digitallearningback.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Character_image character_image = db.Character_image.Find(id);
+            Character_image character_image = imageService.selectById(id);
             if (character_image == null)
             {
                 return HttpNotFound();
@@ -144,19 +145,17 @@ namespace digitallearningback.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Character_image character_image = db.Character_image.Find(id);
-            db.Character_image.Remove(character_image);
-            db.SaveChanges();
+            imageService.deleteByPrimaryKey(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

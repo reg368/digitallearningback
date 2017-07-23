@@ -150,9 +150,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Character_imageController.cs" />
-    <Compile Include="Controllers\GameImageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\Character_imageService.cs" />
+    <Compile Include="DAO\Cimage_moodService.cs" />
+    <Compile Include="DAO\Cimage_professionService.cs" />
+    <Compile Include="DAO\InfoUserService.cs" />
     <Compile Include="Filter\UserVaildHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -175,12 +178,6 @@
     <Compile Include="Models\Concept.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAO\Implements\Cimage_mood_im.cs" />
-    <Compile Include="Models\DAO\Implements\Cimage_profession_im.cs" />
-    <Compile Include="Models\DAO\Interface\Cimage_mood_in.cs" />
-    <Compile Include="Models\DAO\Interface\Cimage_profession_in.cs" />
-    <Compile Include="Models\DAO\Service\Cimage_moodService.cs" />
-    <Compile Include="Models\DAO\Service\Cimage_professionService.cs" />
     <Compile Include="Models\Gc_mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
@@ -236,13 +233,6 @@
       <DependentUpon>yzucs.edmx</DependentUpon>
     </Compile>
     <Compile Include="Util\AppSettingHelper.cs" />
-    <Compile Include="Util\DBContextHelper.cs" />
-    <Compile Include="Models\DAO\Implements\Character_image_im.cs" />
-    <Compile Include="Models\DAO\Implements\InfoUser_im.cs" />
-    <Compile Include="Models\DAO\Interface\Character_image_in.cs" />
-    <Compile Include="Models\DAO\Interface\InfoUser_in.cs" />
-    <Compile Include="Models\DAO\Service\Character_imageService.cs" />
-    <Compile Include="Models\DAO\Service\InfoUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

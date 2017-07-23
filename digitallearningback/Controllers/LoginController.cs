@@ -2,13 +2,15 @@
 using System.Web.Mvc;
 using digitallearningback.Filter;
 using digitallearningback.Models;
-using digitallearningback.Models.DAO.Service;
+using digitallearningback.DAO;
 
 namespace digitallearningback.Controllers
 {
     
     public class LoginController : Controller
     {
+        private InfoUserService userService = new InfoUserService();
+
         // GET: Login
         [SkipMyGlobalActionFilter]
         public ActionResult Login()
@@ -23,7 +25,7 @@ namespace digitallearningback.Controllers
 
             if (ModelState.IsValid){
 
-                InfoUser dbuser  = new InfoUserService().findByUserLoginId(user.login_id);
+                InfoUser dbuser  = userService.findByUserLoginId(user.login_id);
 
                 if (dbuser != null && dbuser.validLogined(user.password,InfoUser.VaildTypes.Teacher)){
                     Session["infoUser"] = dbuser;
