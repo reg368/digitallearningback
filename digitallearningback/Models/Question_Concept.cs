@@ -12,24 +12,22 @@ namespace digitallearningback.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student_Class
+    public partial class Question_Concept
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student_Class()
+        public Question_Concept()
         {
-            this.Group_Class_Mapping = new HashSet<Group_Class_Mapping>();
-            this.Student_Class_Mapping = new HashSet<Student_Class_Mapping>();
+            this.Question_Concept_Mapping = new HashSet<Question_Concept_Mapping>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
-        public Nullable<int> teacher_id { get; set; }
-        public Nullable<System.DateTime> joindate { get; set; }
+        public Nullable<int> user_id { get; set; }
+        public Nullable<int> group_id { get; set; }
+        public Nullable<int> percentage { get; set; }
     
+        public virtual Question_Concept_Group Question_Concept_Group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group_Class_Mapping> Group_Class_Mapping { get; set; }
-        public virtual InfoUser InfoUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student_Class_Mapping> Student_Class_Mapping { get; set; }
+        public virtual ICollection<Question_Concept_Mapping> Question_Concept_Mapping { get; set; }
     }
 }

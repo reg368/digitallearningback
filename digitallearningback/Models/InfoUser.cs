@@ -11,10 +11,18 @@ namespace digitallearningback.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class InfoUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public InfoUser()
+        {
+            this.Answer_Group_Log = new HashSet<Answer_Group_Log>();
+            this.Answer_Log = new HashSet<Answer_Log>();
+            this.Student_Class = new HashSet<Student_Class>();
+            this.Student_Class_Mapping = new HashSet<Student_Class_Mapping>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
         public string gender { get; set; }
@@ -23,9 +31,7 @@ namespace digitallearningback.Models
         public Nullable<int> character_image { get; set; }
         public Nullable<int> pet_image { get; set; }
         public string pet_name { get; set; }
-        [Required]
         public string login_id { get; set; }
-        [Required]
         public string password { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
         public string cimage_type { get; set; }
@@ -37,8 +43,16 @@ namespace digitallearningback.Models
         public Nullable<int> experience { get; set; }
         public Nullable<int> hp { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Group_Log> Answer_Group_Log { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Log> Answer_Log { get; set; }
         public virtual Character_image Character_image1 { get; set; }
         public virtual Character_image Character_image2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student_Class> Student_Class { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Student_Class_Mapping> Student_Class_Mapping { get; set; }
 
         public enum VaildTypes
         {
@@ -80,5 +94,6 @@ namespace digitallearningback.Models
                 return false;
             }
         }
+
     }
 }

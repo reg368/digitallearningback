@@ -163,7 +163,10 @@
     <Compile Include="Models\Answer.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Answer_record.cs">
+    <Compile Include="Models\Answer_Group_Log.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Answer_Log.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Character_image.cs">
@@ -175,22 +178,22 @@
     <Compile Include="Models\Cimage_profession.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Concept.cs">
-      <DependentUpon>yzucs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Gc_mapping.cs">
+    <Compile Include="Models\Group_Class_Mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InfoUser.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Level_group.cs">
-      <DependentUpon>yzucs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\QL_Mapping.cs">
-      <DependentUpon>yzucs.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Question.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question_Concept.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question_Concept_Group.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question_Concept_Mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Question_group.cs">
@@ -199,22 +202,16 @@
     <Compile Include="Models\Question_level.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Q_Concept.cs">
+    <Compile Include="Models\Question_Level_Mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student_Class.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Student_class_record.cs">
+    <Compile Include="Models\Student_Class_Mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>yzucs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\S_Class_Question.cs">
-      <DependentUpon>yzucs.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User_group.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\yzucs.Context.cs">

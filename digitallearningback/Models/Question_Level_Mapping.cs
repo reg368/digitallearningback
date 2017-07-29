@@ -12,10 +12,15 @@ namespace digitallearningback.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class S_Class_Question
+    public partial class Question_Level_Mapping
     {
-        public int qc_id { get; set; }
-        public Nullable<int> group_id { get; set; }
-        public Nullable<int> class_id { get; set; }
+        public int id { get; set; }
+        public Nullable<int> l_id { get; set; }
+        public Nullable<int> q_id { get; set; }
+        public Nullable<int> g_id { get; set; }
+    
+        public virtual Question Question { get; set; }
+        public virtual Question_group Question_group { get; set; }
+        public virtual Question_level Question_level { get; set; }
     }
 }

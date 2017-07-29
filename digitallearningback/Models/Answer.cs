@@ -14,11 +14,24 @@ namespace digitallearningback.Models
     
     public partial class Answer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Answer()
+        {
+            this.Answer_Log = new HashSet<Answer_Log>();
+            this.Answer_Log1 = new HashSet<Answer_Log>();
+        }
+    
         public int id { get; set; }
         public int qid { get; set; }
         public string text { get; set; }
         public Nullable<int> is_correct { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
         public string pic_path { get; set; }
+    
+        public virtual Question Question { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Log> Answer_Log { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Log> Answer_Log1 { get; set; }
     }
 }

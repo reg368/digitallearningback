@@ -14,6 +14,15 @@ namespace digitallearningback.Models
     
     public partial class Question
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Question()
+        {
+            this.Answer = new HashSet<Answer>();
+            this.Answer_Log = new HashSet<Answer_Log>();
+            this.Question_Concept_Mapping = new HashSet<Question_Concept_Mapping>();
+            this.Question_Level_Mapping = new HashSet<Question_Level_Mapping>();
+        }
+    
         public int id { get; set; }
         public int groupid { get; set; }
         public string text { get; set; }
@@ -23,5 +32,15 @@ namespace digitallearningback.Models
         public string pic_path { get; set; }
         public Nullable<int> level_id { get; set; }
         public Nullable<int> ismulti { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer> Answer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Log> Answer_Log { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Question_Concept_Mapping> Question_Concept_Mapping { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Question_Level_Mapping> Question_Level_Mapping { get; set; }
+        public virtual Question_group Question_group { get; set; }
     }
 }

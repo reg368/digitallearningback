@@ -12,10 +12,19 @@ namespace digitallearningback.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Concept
+    public partial class Question_Concept_Group
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Question_Concept_Group()
+        {
+            this.Question_Concept = new HashSet<Question_Concept>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
-        public string user_id { get; set; }
+        public Nullable<int> user_id { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Question_Concept> Question_Concept { get; set; }
     }
 }

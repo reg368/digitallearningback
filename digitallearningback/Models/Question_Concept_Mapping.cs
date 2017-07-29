@@ -12,11 +12,14 @@ namespace digitallearningback.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student_class_record
+    public partial class Question_Concept_Mapping
     {
         public int id { get; set; }
-        public Nullable<int> class_id { get; set; }
-        public string student_id { get; set; }
-        public Nullable<System.DateTime> joindate { get; set; }
+        public Nullable<int> q_id { get; set; }
+        public Nullable<int> c_id { get; set; }
+        public Nullable<int> percentage { get; set; }
+    
+        public virtual Question Question { get; set; }
+        public virtual Question_Concept Question_Concept { get; set; }
     }
 }

@@ -12,24 +12,27 @@ namespace digitallearningback.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Student_Class
+    public partial class Answer_Group_Log
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student_Class()
+        public Answer_Group_Log()
         {
-            this.Group_Class_Mapping = new HashSet<Group_Class_Mapping>();
-            this.Student_Class_Mapping = new HashSet<Student_Class_Mapping>();
+            this.Answer_Log = new HashSet<Answer_Log>();
         }
     
         public int id { get; set; }
-        public string name { get; set; }
-        public Nullable<int> teacher_id { get; set; }
+        public Nullable<int> user_id { get; set; }
+        public Nullable<int> level_id { get; set; }
+        public Nullable<int> group_id { get; set; }
+        public Nullable<int> correct_count { get; set; }
+        public Nullable<int> incorrect_count { get; set; }
         public Nullable<System.DateTime> joindate { get; set; }
+        public Nullable<int> qsize { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Group_Class_Mapping> Group_Class_Mapping { get; set; }
+        public virtual Question_level Question_level { get; set; }
+        public virtual Question_group Question_group { get; set; }
         public virtual InfoUser InfoUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student_Class_Mapping> Student_Class_Mapping { get; set; }
+        public virtual ICollection<Answer_Log> Answer_Log { get; set; }
     }
 }

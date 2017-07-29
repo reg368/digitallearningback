@@ -26,23 +26,22 @@ namespace digitallearningback.Models
         }
     
         public virtual DbSet<Answer> Answer { get; set; }
-        public virtual DbSet<Answer_record> Answer_record { get; set; }
+        public virtual DbSet<Answer_Group_Log> Answer_Group_Log { get; set; }
+        public virtual DbSet<Answer_Log> Answer_Log { get; set; }
         public virtual DbSet<Character_image> Character_image { get; set; }
         public virtual DbSet<Cimage_mood> Cimage_mood { get; set; }
         public virtual DbSet<Cimage_profession> Cimage_profession { get; set; }
-        public virtual DbSet<Concept> Concept { get; set; }
-        public virtual DbSet<Gc_mapping> Gc_mapping { get; set; }
+        public virtual DbSet<Group_Class_Mapping> Group_Class_Mapping { get; set; }
         public virtual DbSet<InfoUser> InfoUser { get; set; }
-        public virtual DbSet<Level_group> Level_group { get; set; }
-        public virtual DbSet<Q_Concept> Q_Concept { get; set; }
-        public virtual DbSet<QL_Mapping> QL_Mapping { get; set; }
         public virtual DbSet<Question> Question { get; set; }
+        public virtual DbSet<Question_Concept> Question_Concept { get; set; }
+        public virtual DbSet<Question_Concept_Group> Question_Concept_Group { get; set; }
+        public virtual DbSet<Question_Concept_Mapping> Question_Concept_Mapping { get; set; }
         public virtual DbSet<Question_group> Question_group { get; set; }
         public virtual DbSet<Question_level> Question_level { get; set; }
-        public virtual DbSet<S_Class_Question> S_Class_Question { get; set; }
+        public virtual DbSet<Question_Level_Mapping> Question_Level_Mapping { get; set; }
         public virtual DbSet<Student_Class> Student_Class { get; set; }
-        public virtual DbSet<Student_class_record> Student_class_record { get; set; }
+        public virtual DbSet<Student_Class_Mapping> Student_Class_Mapping { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<User_group> User_group { get; set; }
     }
 }

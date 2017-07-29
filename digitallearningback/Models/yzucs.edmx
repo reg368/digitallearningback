@@ -16,26 +16,31 @@
           <Property Name="joindate" Type="datetime" />
           <Property Name="pic_path" Type="nvarchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="Answer_record">
+        <EntityType Name="Answer_Group_Log">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lr_id" Type="int" />
-          <Property Name="user_id" Type="nvarchar" MaxLength="20" />
-          <Property Name="q_id" Type="int" />
-          <Property Name="a_id1" Type="int" />
-          <Property Name="a_id2" Type="int" />
-          <Property Name="a_id3" Type="int" />
-          <Property Name="a_id4" Type="int" />
-          <Property Name="correct_a_id1" Type="int" />
-          <Property Name="correct_a_id2" Type="int" />
-          <Property Name="correct_a_id3" Type="int" />
-          <Property Name="correct_a_id4" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="level_id" Type="int" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="correct_count" Type="int" />
+          <Property Name="incorrect_count" Type="int" />
           <Property Name="joindate" Type="datetime" />
+          <Property Name="qsize" Type="int" />
+        </EntityType>
+        <EntityType Name="Answer_Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ag_id" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="q_id" Type="int" />
+          <Property Name="a_id" Type="int" />
+          <Property Name="correct_a_id" Type="int" />
           <Property Name="user_login_count" Type="int" />
           <Property Name="is_correct" Type="int" />
-          <Property Name="ismulti" Type="int" />
         </EntityType>
         <EntityType Name="Character_image">
           <Key>
@@ -65,21 +70,13 @@
           <Property Name="cprofession_title" Type="nvarchar" MaxLength="100" />
           <Property Name="cprofession_joindate" Type="datetime" />
         </EntityType>
-        <EntityType Name="Concept">
+        <EntityType Name="Group_Class_Mapping">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="user_id" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Gc_mapping">
-          <Key>
-            <PropertyRef Name="gc_id" />
-          </Key>
-          <Property Name="gc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="c_id" Type="int" />
-          <Property Name="g_id" Type="int" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="class_id" Type="int" />
         </EntityType>
         <EntityType Name="InfoUser">
           <Key>
@@ -105,38 +102,6 @@
           <Property Name="experience" Type="int" />
           <Property Name="hp" Type="int" />
         </EntityType>
-        <EntityType Name="Level_group">
-          <Key>
-            <PropertyRef Name="lr_id" />
-          </Key>
-          <Property Name="lr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="lr_user_id" Type="nvarchar" MaxLength="50" />
-          <Property Name="lr_group_id" Type="int" />
-          <Property Name="lr_user_login_id" Type="int" />
-          <Property Name="lr_correct_count" Type="int" />
-          <Property Name="lr_incorrect_count" Type="int" />
-          <Property Name="lr_joindate" Type="datetime" />
-          <Property Name="lr_qsize" Type="int" />
-          <Property Name="lr_level_id" Type="int" />
-        </EntityType>
-        <EntityType Name="Q_Concept">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="c_id" Type="int" />
-          <Property Name="percentage" Type="int" />
-          <Property Name="q_id" Type="int" />
-        </EntityType>
-        <EntityType Name="QL_Mapping">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="l_id" Type="int" />
-          <Property Name="q_id" Type="int" />
-          <Property Name="g_id" Type="int" />
-        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="id" />
@@ -151,6 +116,33 @@
           <Property Name="level_id" Type="int" />
           <Property Name="ismulti" Type="int" />
         </EntityType>
+        <EntityType Name="Question_Concept">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="percentage" Type="int" />
+        </EntityType>
+        <EntityType Name="Question_Concept_Group">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Question_Concept_Mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="q_id" Type="int" />
+          <Property Name="c_id" Type="int" />
+          <Property Name="percentage" Type="int" />
+        </EntityType>
         <EntityType Name="Question_group">
           <Key>
             <PropertyRef Name="id" />
@@ -158,7 +150,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="100" />
           <Property Name="joindate" Type="datetime" />
-          <Property Name="userid" Type="nvarchar" MaxLength="50" />
+          <Property Name="userid" Type="int" />
           <Property Name="number" Type="nvarchar" MaxLength="50" />
           <Property Name="semester" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -179,13 +171,14 @@
           <Property Name="fromquestion" Type="int" />
           <Property Name="toquestion" Type="int" />
         </EntityType>
-        <EntityType Name="S_Class_Question">
+        <EntityType Name="Question_Level_Mapping">
           <Key>
-            <PropertyRef Name="qc_id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="qc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="group_id" Type="int" />
-          <Property Name="class_id" Type="int" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="l_id" Type="int" />
+          <Property Name="q_id" Type="int" />
+          <Property Name="g_id" Type="int" />
         </EntityType>
         <EntityType Name="Student_Class">
           <Key>
@@ -193,16 +186,16 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="100" />
-          <Property Name="teacher_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="teacher_id" Type="int" />
           <Property Name="joindate" Type="datetime" />
         </EntityType>
-        <EntityType Name="Student_class_record">
+        <EntityType Name="Student_Class_Mapping">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="class_id" Type="int" />
-          <Property Name="student_id" Type="nvarchar" MaxLength="50" />
+          <Property Name="student_id" Type="int" />
           <Property Name="joindate" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -215,15 +208,114 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'yzucs.dbo.User_group' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
-        <EntityType Name="User_group">
-          <Key>
-            <PropertyRef Name="user_group_id" />
-          </Key>
-          <Property Name="user_group_id" Type="int" Nullable="false" />
-          <Property Name="user_group_name" Type="nvarchar" MaxLength="100" />
-        </EntityType>
+        <Association Name="AGL_level_id_fk">
+          <End Role="Question_level" Type="Self.Question_level" Multiplicity="0..1" />
+          <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_level">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Group_Log">
+              <PropertyRef Name="level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGL_Question_group_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Group_Log">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGL_user_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Group_Log">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answer_qid_fk">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="qid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_a_id_fk">
+          <End Role="Answer" Type="Self.Answer" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="a_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_ag_id_fk">
+          <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer_Group_Log">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="ag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_correct_a_id_fk">
+          <End Role="Answer" Type="Self.Answer" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="correct_a_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_q_id_fk">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="q_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_user_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Character_image_mood_fk">
           <End Role="Cimage_mood" Type="Self.Cimage_mood" Multiplicity="0..1" />
           <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
@@ -245,6 +337,30 @@
             </Principal>
             <Dependent Role="Character_image">
               <PropertyRef Name="cimage_profession" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GCM_class_id_fk">
+          <End Role="Student_Class" Type="Self.Student_Class" Multiplicity="0..1" />
+          <End Role="Group_Class_Mapping" Type="Self.Group_Class_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_Class">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Group_Class_Mapping">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GCM_group_id_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Group_Class_Mapping" Type="Self.Group_Class_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Group_Class_Mapping">
+              <PropertyRef Name="group_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -272,31 +388,193 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="QC_group_id_fk">
+          <End Role="Question_Concept_Group" Type="Self.Question_Concept_Group" Multiplicity="0..1" />
+          <End Role="Question_Concept" Type="Self.Question_Concept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_Concept_Group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Concept">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QCM_c_id_fk">
+          <End Role="Question_Concept" Type="Self.Question_Concept" Multiplicity="0..1" />
+          <End Role="Question_Concept_Mapping" Type="Self.Question_Concept_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_Concept">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Concept_Mapping">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QCM_q_id_fk">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Question_Concept_Mapping" Type="Self.Question_Concept_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Concept_Mapping">
+              <PropertyRef Name="q_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QL_groupid_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Question_level" Type="Self.Question_level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_level">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QLM_g_id_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Question_Level_Mapping" Type="Self.Question_Level_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Level_Mapping">
+              <PropertyRef Name="g_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QLM_l_id_fk">
+          <End Role="Question_level" Type="Self.Question_level" Multiplicity="0..1" />
+          <End Role="Question_Level_Mapping" Type="Self.Question_Level_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_level">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Level_Mapping">
+              <PropertyRef Name="l_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QLM_q_id_fk">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Question_Level_Mapping" Type="Self.Question_Level_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Level_Mapping">
+              <PropertyRef Name="q_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Question_groupid_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="groupid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SC_teacher_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Student_Class" Type="Self.Student_Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Student_Class">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SCM_class_id_fk">
+          <End Role="Student_Class" Type="Self.Student_Class" Multiplicity="0..1" />
+          <End Role="Student_Class_Mapping" Type="Self.Student_Class_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_Class">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Student_Class_Mapping">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SCM_student_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Student_Class_Mapping" Type="Self.Student_Class_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Student_Class_Mapping">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="yzucsModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Answer_record" EntityType="Self.Answer_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answer_Group_Log" EntityType="Self.Answer_Group_Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answer_Log" EntityType="Self.Answer_Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Character_image" EntityType="Self.Character_image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cimage_mood" EntityType="Self.Cimage_mood" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cimage_profession" EntityType="Self.Cimage_profession" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Concept" EntityType="Self.Concept" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Gc_mapping" EntityType="Self.Gc_mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group_Class_Mapping" EntityType="Self.Group_Class_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InfoUser" EntityType="Self.InfoUser" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Level_group" EntityType="Self.Level_group" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Q_Concept" EntityType="Self.Q_Concept" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="QL_Mapping" EntityType="Self.QL_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question_Concept" EntityType="Self.Question_Concept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question_Concept_Group" EntityType="Self.Question_Concept_Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question_Concept_Mapping" EntityType="Self.Question_Concept_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question_group" EntityType="Self.Question_group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question_level" EntityType="Self.Question_level" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="S_Class_Question" EntityType="Self.S_Class_Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Question_Level_Mapping" EntityType="Self.Question_Level_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Student_class_record" EntityType="Self.Student_class_record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student_Class_Mapping" EntityType="Self.Student_Class_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User_group" EntityType="Self.User_group" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [User_group].[user_group_id] AS [user_group_id], 
-    [User_group].[user_group_name] AS [user_group_name]
-    FROM [dbo].[User_group] AS [User_group]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="AGL_level_id_fk" Association="Self.AGL_level_id_fk">
+            <End Role="Question_level" EntitySet="Question_level" />
+            <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
+          </AssociationSet>
+          <AssociationSet Name="AGL_Question_group_fk" Association="Self.AGL_Question_group_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
+          </AssociationSet>
+          <AssociationSet Name="AGL_user_id_fk" Association="Self.AGL_user_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answer_qid_fk" Association="Self.answer_qid_fk">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_a_id_fk" Association="Self.answerlog_a_id_fk">
+            <End Role="Answer" EntitySet="Answer" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_ag_id_fk" Association="Self.answerlog_ag_id_fk">
+            <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_correct_a_id_fk" Association="Self.answerlog_correct_a_id_fk">
+            <End Role="Answer" EntitySet="Answer" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_q_id_fk" Association="Self.answerlog_q_id_fk">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_user_id_fk" Association="Self.answerlog_user_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
           <AssociationSet Name="Character_image_mood_fk" Association="Self.Character_image_mood_fk">
             <End Role="Cimage_mood" EntitySet="Cimage_mood" />
             <End Role="Character_image" EntitySet="Character_image" />
@@ -305,6 +583,14 @@
             <End Role="Cimage_profession" EntitySet="Cimage_profession" />
             <End Role="Character_image" EntitySet="Character_image" />
           </AssociationSet>
+          <AssociationSet Name="GCM_class_id_fk" Association="Self.GCM_class_id_fk">
+            <End Role="Student_Class" EntitySet="Student_Class" />
+            <End Role="Group_Class_Mapping" EntitySet="Group_Class_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="GCM_group_id_fk" Association="Self.GCM_group_id_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Group_Class_Mapping" EntitySet="Group_Class_Mapping" />
+          </AssociationSet>
           <AssociationSet Name="infoUser_character_image_fk" Association="Self.infoUser_character_image_fk">
             <End Role="Character_image" EntitySet="Character_image" />
             <End Role="InfoUser" EntitySet="InfoUser" />
@@ -312,6 +598,50 @@
           <AssociationSet Name="infoUser_pet_image_fk" Association="Self.infoUser_pet_image_fk">
             <End Role="Character_image" EntitySet="Character_image" />
             <End Role="InfoUser" EntitySet="InfoUser" />
+          </AssociationSet>
+          <AssociationSet Name="QC_group_id_fk" Association="Self.QC_group_id_fk">
+            <End Role="Question_Concept_Group" EntitySet="Question_Concept_Group" />
+            <End Role="Question_Concept" EntitySet="Question_Concept" />
+          </AssociationSet>
+          <AssociationSet Name="QCM_c_id_fk" Association="Self.QCM_c_id_fk">
+            <End Role="Question_Concept" EntitySet="Question_Concept" />
+            <End Role="Question_Concept_Mapping" EntitySet="Question_Concept_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="QCM_q_id_fk" Association="Self.QCM_q_id_fk">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Question_Concept_Mapping" EntitySet="Question_Concept_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="QL_groupid_fk" Association="Self.QL_groupid_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Question_level" EntitySet="Question_level" />
+          </AssociationSet>
+          <AssociationSet Name="QLM_g_id_fk" Association="Self.QLM_g_id_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Question_Level_Mapping" EntitySet="Question_Level_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="QLM_l_id_fk" Association="Self.QLM_l_id_fk">
+            <End Role="Question_level" EntitySet="Question_level" />
+            <End Role="Question_Level_Mapping" EntitySet="Question_Level_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="QLM_q_id_fk" Association="Self.QLM_q_id_fk">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Question_Level_Mapping" EntitySet="Question_Level_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="Question_groupid_fk" Association="Self.Question_groupid_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="SC_teacher_id_fk" Association="Self.SC_teacher_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Student_Class" EntitySet="Student_Class" />
+          </AssociationSet>
+          <AssociationSet Name="SCM_class_id_fk" Association="Self.SCM_class_id_fk">
+            <End Role="Student_Class" EntitySet="Student_Class" />
+            <End Role="Student_Class_Mapping" EntitySet="Student_Class_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="SCM_student_id_fk" Association="Self.SCM_student_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Student_Class_Mapping" EntitySet="Student_Class_Mapping" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -329,27 +659,44 @@
           <Property Name="is_correct" Type="Int32" />
           <Property Name="joindate" Type="DateTime" Precision="3" />
           <Property Name="pic_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Question" Relationship="Self.answer_qid_fk" FromRole="Answer" ToRole="Question" />
+          <NavigationProperty Name="Answer_Log" Relationship="Self.answerlog_a_id_fk" FromRole="Answer" ToRole="Answer_Log" />
+          <NavigationProperty Name="Answer_Log1" Relationship="Self.answerlog_correct_a_id_fk" FromRole="Answer" ToRole="Answer_Log" />
         </EntityType>
-        <EntityType Name="Answer_record">
+        <EntityType Name="Answer_Group_Log">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="lr_id" Type="Int32" />
-          <Property Name="user_id" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="q_id" Type="Int32" />
-          <Property Name="a_id1" Type="Int32" />
-          <Property Name="a_id2" Type="Int32" />
-          <Property Name="a_id3" Type="Int32" />
-          <Property Name="a_id4" Type="Int32" />
-          <Property Name="correct_a_id1" Type="Int32" />
-          <Property Name="correct_a_id2" Type="Int32" />
-          <Property Name="correct_a_id3" Type="Int32" />
-          <Property Name="correct_a_id4" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="level_id" Type="Int32" />
+          <Property Name="group_id" Type="Int32" />
+          <Property Name="correct_count" Type="Int32" />
+          <Property Name="incorrect_count" Type="Int32" />
           <Property Name="joindate" Type="DateTime" Precision="3" />
+          <Property Name="qsize" Type="Int32" />
+          <NavigationProperty Name="Question_level" Relationship="Self.AGL_level_id_fk" FromRole="Answer_Group_Log" ToRole="Question_level" />
+          <NavigationProperty Name="Question_group" Relationship="Self.AGL_Question_group_fk" FromRole="Answer_Group_Log" ToRole="Question_group" />
+          <NavigationProperty Name="InfoUser" Relationship="Self.AGL_user_id_fk" FromRole="Answer_Group_Log" ToRole="InfoUser" />
+          <NavigationProperty Name="Answer_Log" Relationship="Self.answerlog_ag_id_fk" FromRole="Answer_Group_Log" ToRole="Answer_Log" />
+        </EntityType>
+        <EntityType Name="Answer_Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ag_id" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="q_id" Type="Int32" />
+          <Property Name="a_id" Type="Int32" />
+          <Property Name="correct_a_id" Type="Int32" />
           <Property Name="user_login_count" Type="Int32" />
           <Property Name="is_correct" Type="Int32" />
-          <Property Name="ismulti" Type="Int32" />
+          <NavigationProperty Name="Answer" Relationship="Self.answerlog_a_id_fk" FromRole="Answer_Log" ToRole="Answer" />
+          <NavigationProperty Name="Answer1" Relationship="Self.answerlog_correct_a_id_fk" FromRole="Answer_Log" ToRole="Answer" />
+          <NavigationProperty Name="Answer_Group_Log" Relationship="Self.answerlog_ag_id_fk" FromRole="Answer_Log" ToRole="Answer_Group_Log" />
+          <NavigationProperty Name="Question" Relationship="Self.answerlog_q_id_fk" FromRole="Answer_Log" ToRole="Question" />
+          <NavigationProperty Name="InfoUser" Relationship="Self.answerlog_user_id_fk" FromRole="Answer_Log" ToRole="InfoUser" />
         </EntityType>
         <EntityType Name="Character_image">
           <Key>
@@ -385,21 +732,15 @@
           <Property Name="cprofession_joindate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Character_image" Relationship="Self.Character_image_profession_fk" FromRole="Cimage_profession" ToRole="Character_image" />
         </EntityType>
-        <EntityType Name="Concept">
+        <EntityType Name="Group_Class_Mapping">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Gc_mapping">
-          <Key>
-            <PropertyRef Name="gc_id" />
-          </Key>
-          <Property Name="gc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="c_id" Type="Int32" />
-          <Property Name="g_id" Type="Int32" />
+          <Property Name="group_id" Type="Int32" />
+          <Property Name="class_id" Type="Int32" />
+          <NavigationProperty Name="Student_Class" Relationship="Self.GCM_class_id_fk" FromRole="Group_Class_Mapping" ToRole="Student_Class" />
+          <NavigationProperty Name="Question_group" Relationship="Self.GCM_group_id_fk" FromRole="Group_Class_Mapping" ToRole="Question_group" />
         </EntityType>
         <EntityType Name="InfoUser">
           <Key>
@@ -424,40 +765,12 @@
           <Property Name="money" Type="Int32" />
           <Property Name="experience" Type="Int32" />
           <Property Name="hp" Type="Int32" />
+          <NavigationProperty Name="Answer_Group_Log" Relationship="Self.AGL_user_id_fk" FromRole="InfoUser" ToRole="Answer_Group_Log" />
+          <NavigationProperty Name="Answer_Log" Relationship="Self.answerlog_user_id_fk" FromRole="InfoUser" ToRole="Answer_Log" />
           <NavigationProperty Name="Character_image1" Relationship="Self.infoUser_character_image_fk" FromRole="InfoUser" ToRole="Character_image" />
           <NavigationProperty Name="Character_image2" Relationship="Self.infoUser_pet_image_fk" FromRole="InfoUser" ToRole="Character_image" />
-        </EntityType>
-        <EntityType Name="Level_group">
-          <Key>
-            <PropertyRef Name="lr_id" />
-          </Key>
-          <Property Name="lr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="lr_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lr_group_id" Type="Int32" />
-          <Property Name="lr_user_login_id" Type="Int32" />
-          <Property Name="lr_correct_count" Type="Int32" />
-          <Property Name="lr_incorrect_count" Type="Int32" />
-          <Property Name="lr_joindate" Type="DateTime" Precision="3" />
-          <Property Name="lr_qsize" Type="Int32" />
-          <Property Name="lr_level_id" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Q_Concept">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="c_id" Type="Int32" />
-          <Property Name="percentage" Type="Int32" />
-          <Property Name="q_id" Type="Int32" />
-        </EntityType>
-        <EntityType Name="QL_Mapping">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="l_id" Type="Int32" />
-          <Property Name="q_id" Type="Int32" />
-          <Property Name="g_id" Type="Int32" />
+          <NavigationProperty Name="Student_Class" Relationship="Self.SC_teacher_id_fk" FromRole="InfoUser" ToRole="Student_Class" />
+          <NavigationProperty Name="Student_Class_Mapping" Relationship="Self.SCM_student_id_fk" FromRole="InfoUser" ToRole="Student_Class_Mapping" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -472,6 +785,43 @@
           <Property Name="pic_path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="level_id" Type="Int32" />
           <Property Name="ismulti" Type="Int32" />
+          <NavigationProperty Name="Answer" Relationship="Self.answer_qid_fk" FromRole="Question" ToRole="Answer" />
+          <NavigationProperty Name="Answer_Log" Relationship="Self.answerlog_q_id_fk" FromRole="Question" ToRole="Answer_Log" />
+          <NavigationProperty Name="Question_Concept_Mapping" Relationship="Self.QCM_q_id_fk" FromRole="Question" ToRole="Question_Concept_Mapping" />
+          <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_q_id_fk" FromRole="Question" ToRole="Question_Level_Mapping" />
+          <NavigationProperty Name="Question_group" Relationship="Self.Question_groupid_fk" FromRole="Question" ToRole="Question_group" />
+        </EntityType>
+        <EntityType Name="Question_Concept">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="group_id" Type="Int32" />
+          <Property Name="percentage" Type="Int32" />
+          <NavigationProperty Name="Question_Concept_Group" Relationship="Self.QC_group_id_fk" FromRole="Question_Concept" ToRole="Question_Concept_Group" />
+          <NavigationProperty Name="Question_Concept_Mapping" Relationship="Self.QCM_c_id_fk" FromRole="Question_Concept" ToRole="Question_Concept_Mapping" />
+        </EntityType>
+        <EntityType Name="Question_Concept_Group">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_id" Type="Int32" />
+          <NavigationProperty Name="Question_Concept" Relationship="Self.QC_group_id_fk" FromRole="Question_Concept_Group" ToRole="Question_Concept" />
+        </EntityType>
+        <EntityType Name="Question_Concept_Mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="q_id" Type="Int32" />
+          <Property Name="c_id" Type="Int32" />
+          <Property Name="percentage" Type="Int32" />
+          <NavigationProperty Name="Question" Relationship="Self.QCM_q_id_fk" FromRole="Question_Concept_Mapping" ToRole="Question" />
+          <NavigationProperty Name="Question_Concept" Relationship="Self.QCM_c_id_fk" FromRole="Question_Concept_Mapping" ToRole="Question_Concept" />
         </EntityType>
         <EntityType Name="Question_group">
           <Key>
@@ -480,9 +830,14 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="joindate" Type="DateTime" Precision="3" />
-          <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userid" Type="Int32" />
           <Property Name="number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="semester" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Answer_Group_Log" Relationship="Self.AGL_Question_group_fk" FromRole="Question_group" ToRole="Answer_Group_Log" />
+          <NavigationProperty Name="Group_Class_Mapping" Relationship="Self.GCM_group_id_fk" FromRole="Question_group" ToRole="Group_Class_Mapping" />
+          <NavigationProperty Name="Question" Relationship="Self.Question_groupid_fk" FromRole="Question_group" ToRole="Question" />
+          <NavigationProperty Name="Question_level" Relationship="Self.QL_groupid_fk" FromRole="Question_group" ToRole="Question_level" />
+          <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_g_id_fk" FromRole="Question_group" ToRole="Question_Level_Mapping" />
         </EntityType>
         <EntityType Name="Question_level">
           <Key>
@@ -500,14 +855,21 @@
           <Property Name="awardexperience" Type="Int32" />
           <Property Name="fromquestion" Type="Int32" />
           <Property Name="toquestion" Type="Int32" />
+          <NavigationProperty Name="Answer_Group_Log" Relationship="Self.AGL_level_id_fk" FromRole="Question_level" ToRole="Answer_Group_Log" />
+          <NavigationProperty Name="Question_group" Relationship="Self.QL_groupid_fk" FromRole="Question_level" ToRole="Question_group" />
+          <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_l_id_fk" FromRole="Question_level" ToRole="Question_Level_Mapping" />
         </EntityType>
-        <EntityType Name="S_Class_Question">
+        <EntityType Name="Question_Level_Mapping">
           <Key>
-            <PropertyRef Name="qc_id" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="qc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="group_id" Type="Int32" />
-          <Property Name="class_id" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="l_id" Type="Int32" />
+          <Property Name="q_id" Type="Int32" />
+          <Property Name="g_id" Type="Int32" />
+          <NavigationProperty Name="Question" Relationship="Self.QLM_q_id_fk" FromRole="Question_Level_Mapping" ToRole="Question" />
+          <NavigationProperty Name="Question_group" Relationship="Self.QLM_g_id_fk" FromRole="Question_Level_Mapping" ToRole="Question_group" />
+          <NavigationProperty Name="Question_level" Relationship="Self.QLM_l_id_fk" FromRole="Question_Level_Mapping" ToRole="Question_level" />
         </EntityType>
         <EntityType Name="Student_Class">
           <Key>
@@ -515,17 +877,22 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="teacher_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="teacher_id" Type="Int32" />
           <Property Name="joindate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Group_Class_Mapping" Relationship="Self.GCM_class_id_fk" FromRole="Student_Class" ToRole="Group_Class_Mapping" />
+          <NavigationProperty Name="InfoUser" Relationship="Self.SC_teacher_id_fk" FromRole="Student_Class" ToRole="InfoUser" />
+          <NavigationProperty Name="Student_Class_Mapping" Relationship="Self.SCM_class_id_fk" FromRole="Student_Class" ToRole="Student_Class_Mapping" />
         </EntityType>
-        <EntityType Name="Student_class_record">
+        <EntityType Name="Student_Class_Mapping">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="class_id" Type="Int32" />
-          <Property Name="student_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="student_id" Type="Int32" />
           <Property Name="joindate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="InfoUser" Relationship="Self.SCM_student_id_fk" FromRole="Student_Class_Mapping" ToRole="InfoUser" />
+          <NavigationProperty Name="Student_Class" Relationship="Self.SCM_class_id_fk" FromRole="Student_Class_Mapping" ToRole="Student_Class" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -537,13 +904,114 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="User_group">
-          <Key>
-            <PropertyRef Name="user_group_id" />
-          </Key>
-          <Property Name="user_group_id" Type="Int32" Nullable="false" />
-          <Property Name="user_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
+        <Association Name="answer_qid_fk">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer">
+              <PropertyRef Name="qid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_a_id_fk">
+          <End Role="Answer" Type="Self.Answer" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="a_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_correct_a_id_fk">
+          <End Role="Answer" Type="Self.Answer" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="correct_a_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGL_level_id_fk">
+          <End Role="Question_level" Type="Self.Question_level" Multiplicity="0..1" />
+          <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_level">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Group_Log">
+              <PropertyRef Name="level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGL_Question_group_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Group_Log">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AGL_user_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Group_Log">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_ag_id_fk">
+          <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer_Group_Log">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="ag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_q_id_fk">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="q_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="answerlog_user_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Character_image_mood_fk">
           <End Role="Cimage_mood" Type="Self.Cimage_mood" Multiplicity="0..1" />
           <End Role="Character_image" Type="Self.Character_image" Multiplicity="*" />
@@ -592,26 +1060,217 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="GCM_class_id_fk">
+          <End Role="Student_Class" Type="Self.Student_Class" Multiplicity="0..1" />
+          <End Role="Group_Class_Mapping" Type="Self.Group_Class_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_Class">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Group_Class_Mapping">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GCM_group_id_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Group_Class_Mapping" Type="Self.Group_Class_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Group_Class_Mapping">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SC_teacher_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Student_Class" Type="Self.Student_Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Student_Class">
+              <PropertyRef Name="teacher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SCM_student_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Student_Class_Mapping" Type="Self.Student_Class_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Student_Class_Mapping">
+              <PropertyRef Name="student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QCM_q_id_fk">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Question_Concept_Mapping" Type="Self.Question_Concept_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Concept_Mapping">
+              <PropertyRef Name="q_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QLM_q_id_fk">
+          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+          <End Role="Question_Level_Mapping" Type="Self.Question_Level_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Level_Mapping">
+              <PropertyRef Name="q_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Question_groupid_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="groupid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QC_group_id_fk">
+          <End Role="Question_Concept_Group" Type="Self.Question_Concept_Group" Multiplicity="0..1" />
+          <End Role="Question_Concept" Type="Self.Question_Concept" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_Concept_Group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Concept">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QCM_c_id_fk">
+          <End Role="Question_Concept" Type="Self.Question_Concept" Multiplicity="0..1" />
+          <End Role="Question_Concept_Mapping" Type="Self.Question_Concept_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_Concept">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Concept_Mapping">
+              <PropertyRef Name="c_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QL_groupid_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Question_level" Type="Self.Question_level" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_level">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QLM_g_id_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Question_Level_Mapping" Type="Self.Question_Level_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Level_Mapping">
+              <PropertyRef Name="g_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QLM_l_id_fk">
+          <End Role="Question_level" Type="Self.Question_level" Multiplicity="0..1" />
+          <End Role="Question_Level_Mapping" Type="Self.Question_Level_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_level">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Question_Level_Mapping">
+              <PropertyRef Name="l_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SCM_class_id_fk">
+          <End Role="Student_Class" Type="Self.Student_Class" Multiplicity="0..1" />
+          <End Role="Student_Class_Mapping" Type="Self.Student_Class_Mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student_Class">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Student_Class_Mapping">
+              <PropertyRef Name="class_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="yzucsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Answer" EntityType="Self.Answer" />
-          <EntitySet Name="Answer_record" EntityType="Self.Answer_record" />
+          <EntitySet Name="Answer_Group_Log" EntityType="Self.Answer_Group_Log" />
+          <EntitySet Name="Answer_Log" EntityType="Self.Answer_Log" />
           <EntitySet Name="Character_image" EntityType="Self.Character_image" />
           <EntitySet Name="Cimage_mood" EntityType="Self.Cimage_mood" />
           <EntitySet Name="Cimage_profession" EntityType="Self.Cimage_profession" />
-          <EntitySet Name="Concept" EntityType="Self.Concept" />
-          <EntitySet Name="Gc_mapping" EntityType="Self.Gc_mapping" />
+          <EntitySet Name="Group_Class_Mapping" EntityType="Self.Group_Class_Mapping" />
           <EntitySet Name="InfoUser" EntityType="Self.InfoUser" />
-          <EntitySet Name="Level_group" EntityType="Self.Level_group" />
-          <EntitySet Name="Q_Concept" EntityType="Self.Q_Concept" />
-          <EntitySet Name="QL_Mapping" EntityType="Self.QL_Mapping" />
           <EntitySet Name="Question" EntityType="Self.Question" />
+          <EntitySet Name="Question_Concept" EntityType="Self.Question_Concept" />
+          <EntitySet Name="Question_Concept_Group" EntityType="Self.Question_Concept_Group" />
+          <EntitySet Name="Question_Concept_Mapping" EntityType="Self.Question_Concept_Mapping" />
           <EntitySet Name="Question_group" EntityType="Self.Question_group" />
           <EntitySet Name="Question_level" EntityType="Self.Question_level" />
-          <EntitySet Name="S_Class_Question" EntityType="Self.S_Class_Question" />
+          <EntitySet Name="Question_Level_Mapping" EntityType="Self.Question_Level_Mapping" />
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" />
-          <EntitySet Name="Student_class_record" EntityType="Self.Student_class_record" />
+          <EntitySet Name="Student_Class_Mapping" EntityType="Self.Student_Class_Mapping" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="User_group" EntityType="Self.User_group" />
+          <AssociationSet Name="answer_qid_fk" Association="Self.answer_qid_fk">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Answer" EntitySet="Answer" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_a_id_fk" Association="Self.answerlog_a_id_fk">
+            <End Role="Answer" EntitySet="Answer" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_correct_a_id_fk" Association="Self.answerlog_correct_a_id_fk">
+            <End Role="Answer" EntitySet="Answer" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="AGL_level_id_fk" Association="Self.AGL_level_id_fk">
+            <End Role="Question_level" EntitySet="Question_level" />
+            <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
+          </AssociationSet>
+          <AssociationSet Name="AGL_Question_group_fk" Association="Self.AGL_Question_group_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
+          </AssociationSet>
+          <AssociationSet Name="AGL_user_id_fk" Association="Self.AGL_user_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_ag_id_fk" Association="Self.answerlog_ag_id_fk">
+            <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_q_id_fk" Association="Self.answerlog_q_id_fk">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_user_id_fk" Association="Self.answerlog_user_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
           <AssociationSet Name="Character_image_mood_fk" Association="Self.Character_image_mood_fk">
             <End Role="Cimage_mood" EntitySet="Cimage_mood" />
             <End Role="Character_image" EntitySet="Character_image" />
@@ -627,6 +1286,58 @@
           <AssociationSet Name="infoUser_pet_image_fk" Association="Self.infoUser_pet_image_fk">
             <End Role="Character_image" EntitySet="Character_image" />
             <End Role="InfoUser" EntitySet="InfoUser" />
+          </AssociationSet>
+          <AssociationSet Name="GCM_class_id_fk" Association="Self.GCM_class_id_fk">
+            <End Role="Student_Class" EntitySet="Student_Class" />
+            <End Role="Group_Class_Mapping" EntitySet="Group_Class_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="GCM_group_id_fk" Association="Self.GCM_group_id_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Group_Class_Mapping" EntitySet="Group_Class_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="SC_teacher_id_fk" Association="Self.SC_teacher_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Student_Class" EntitySet="Student_Class" />
+          </AssociationSet>
+          <AssociationSet Name="SCM_student_id_fk" Association="Self.SCM_student_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Student_Class_Mapping" EntitySet="Student_Class_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="QCM_q_id_fk" Association="Self.QCM_q_id_fk">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Question_Concept_Mapping" EntitySet="Question_Concept_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="QLM_q_id_fk" Association="Self.QLM_q_id_fk">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="Question_Level_Mapping" EntitySet="Question_Level_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="Question_groupid_fk" Association="Self.Question_groupid_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="QC_group_id_fk" Association="Self.QC_group_id_fk">
+            <End Role="Question_Concept_Group" EntitySet="Question_Concept_Group" />
+            <End Role="Question_Concept" EntitySet="Question_Concept" />
+          </AssociationSet>
+          <AssociationSet Name="QCM_c_id_fk" Association="Self.QCM_c_id_fk">
+            <End Role="Question_Concept" EntitySet="Question_Concept" />
+            <End Role="Question_Concept_Mapping" EntitySet="Question_Concept_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="QL_groupid_fk" Association="Self.QL_groupid_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Question_level" EntitySet="Question_level" />
+          </AssociationSet>
+          <AssociationSet Name="QLM_g_id_fk" Association="Self.QLM_g_id_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Question_Level_Mapping" EntitySet="Question_Level_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="QLM_l_id_fk" Association="Self.QLM_l_id_fk">
+            <End Role="Question_level" EntitySet="Question_level" />
+            <End Role="Question_Level_Mapping" EntitySet="Question_Level_Mapping" />
+          </AssociationSet>
+          <AssociationSet Name="SCM_class_id_fk" Association="Self.SCM_class_id_fk">
+            <End Role="Student_Class" EntitySet="Student_Class" />
+            <End Role="Student_Class_Mapping" EntitySet="Student_Class_Mapping" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -647,25 +1358,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Answer_record">
-            <EntityTypeMapping TypeName="yzucsModel.Answer_record">
-              <MappingFragment StoreEntitySet="Answer_record">
+          <EntitySetMapping Name="Answer_Group_Log">
+            <EntityTypeMapping TypeName="yzucsModel.Answer_Group_Log">
+              <MappingFragment StoreEntitySet="Answer_Group_Log">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="lr_id" ColumnName="lr_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="level_id" ColumnName="level_id" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="correct_count" ColumnName="correct_count" />
+                <ScalarProperty Name="incorrect_count" ColumnName="incorrect_count" />
+                <ScalarProperty Name="joindate" ColumnName="joindate" />
+                <ScalarProperty Name="qsize" ColumnName="qsize" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answer_Log">
+            <EntityTypeMapping TypeName="yzucsModel.Answer_Log">
+              <MappingFragment StoreEntitySet="Answer_Log">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ag_id" ColumnName="ag_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="q_id" ColumnName="q_id" />
-                <ScalarProperty Name="a_id1" ColumnName="a_id1" />
-                <ScalarProperty Name="a_id2" ColumnName="a_id2" />
-                <ScalarProperty Name="a_id3" ColumnName="a_id3" />
-                <ScalarProperty Name="a_id4" ColumnName="a_id4" />
-                <ScalarProperty Name="correct_a_id1" ColumnName="correct_a_id1" />
-                <ScalarProperty Name="correct_a_id2" ColumnName="correct_a_id2" />
-                <ScalarProperty Name="correct_a_id3" ColumnName="correct_a_id3" />
-                <ScalarProperty Name="correct_a_id4" ColumnName="correct_a_id4" />
-                <ScalarProperty Name="joindate" ColumnName="joindate" />
+                <ScalarProperty Name="a_id" ColumnName="a_id" />
+                <ScalarProperty Name="correct_a_id" ColumnName="correct_a_id" />
                 <ScalarProperty Name="user_login_count" ColumnName="user_login_count" />
                 <ScalarProperty Name="is_correct" ColumnName="is_correct" />
-                <ScalarProperty Name="ismulti" ColumnName="ismulti" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -700,21 +1417,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Concept">
-            <EntityTypeMapping TypeName="yzucsModel.Concept">
-              <MappingFragment StoreEntitySet="Concept">
+          <EntitySetMapping Name="Group_Class_Mapping">
+            <EntityTypeMapping TypeName="yzucsModel.Group_Class_Mapping">
+              <MappingFragment StoreEntitySet="Group_Class_Mapping">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Gc_mapping">
-            <EntityTypeMapping TypeName="yzucsModel.Gc_mapping">
-              <MappingFragment StoreEntitySet="Gc_mapping">
-                <ScalarProperty Name="gc_id" ColumnName="gc_id" />
-                <ScalarProperty Name="c_id" ColumnName="c_id" />
-                <ScalarProperty Name="g_id" ColumnName="g_id" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -743,41 +1451,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Level_group">
-            <EntityTypeMapping TypeName="yzucsModel.Level_group">
-              <MappingFragment StoreEntitySet="Level_group">
-                <ScalarProperty Name="lr_id" ColumnName="lr_id" />
-                <ScalarProperty Name="lr_user_id" ColumnName="lr_user_id" />
-                <ScalarProperty Name="lr_group_id" ColumnName="lr_group_id" />
-                <ScalarProperty Name="lr_user_login_id" ColumnName="lr_user_login_id" />
-                <ScalarProperty Name="lr_correct_count" ColumnName="lr_correct_count" />
-                <ScalarProperty Name="lr_incorrect_count" ColumnName="lr_incorrect_count" />
-                <ScalarProperty Name="lr_joindate" ColumnName="lr_joindate" />
-                <ScalarProperty Name="lr_qsize" ColumnName="lr_qsize" />
-                <ScalarProperty Name="lr_level_id" ColumnName="lr_level_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Q_Concept">
-            <EntityTypeMapping TypeName="yzucsModel.Q_Concept">
-              <MappingFragment StoreEntitySet="Q_Concept">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="c_id" ColumnName="c_id" />
-                <ScalarProperty Name="percentage" ColumnName="percentage" />
-                <ScalarProperty Name="q_id" ColumnName="q_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QL_Mapping">
-            <EntityTypeMapping TypeName="yzucsModel.QL_Mapping">
-              <MappingFragment StoreEntitySet="QL_Mapping">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="l_id" ColumnName="l_id" />
-                <ScalarProperty Name="q_id" ColumnName="q_id" />
-                <ScalarProperty Name="g_id" ColumnName="g_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Question">
             <EntityTypeMapping TypeName="yzucsModel.Question">
               <MappingFragment StoreEntitySet="Question">
@@ -790,6 +1463,36 @@
                 <ScalarProperty Name="pic_path" ColumnName="pic_path" />
                 <ScalarProperty Name="level_id" ColumnName="level_id" />
                 <ScalarProperty Name="ismulti" ColumnName="ismulti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_Concept">
+            <EntityTypeMapping TypeName="yzucsModel.Question_Concept">
+              <MappingFragment StoreEntitySet="Question_Concept">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_Concept_Group">
+            <EntityTypeMapping TypeName="yzucsModel.Question_Concept_Group">
+              <MappingFragment StoreEntitySet="Question_Concept_Group">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_Concept_Mapping">
+            <EntityTypeMapping TypeName="yzucsModel.Question_Concept_Mapping">
+              <MappingFragment StoreEntitySet="Question_Concept_Mapping">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="q_id" ColumnName="q_id" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -823,12 +1526,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="S_Class_Question">
-            <EntityTypeMapping TypeName="yzucsModel.S_Class_Question">
-              <MappingFragment StoreEntitySet="S_Class_Question">
-                <ScalarProperty Name="qc_id" ColumnName="qc_id" />
-                <ScalarProperty Name="group_id" ColumnName="group_id" />
-                <ScalarProperty Name="class_id" ColumnName="class_id" />
+          <EntitySetMapping Name="Question_Level_Mapping">
+            <EntityTypeMapping TypeName="yzucsModel.Question_Level_Mapping">
+              <MappingFragment StoreEntitySet="Question_Level_Mapping">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="l_id" ColumnName="l_id" />
+                <ScalarProperty Name="q_id" ColumnName="q_id" />
+                <ScalarProperty Name="g_id" ColumnName="g_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -842,9 +1546,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Student_class_record">
-            <EntityTypeMapping TypeName="yzucsModel.Student_class_record">
-              <MappingFragment StoreEntitySet="Student_class_record">
+          <EntitySetMapping Name="Student_Class_Mapping">
+            <EntityTypeMapping TypeName="yzucsModel.Student_Class_Mapping">
+              <MappingFragment StoreEntitySet="Student_Class_Mapping">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="class_id" ColumnName="class_id" />
                 <ScalarProperty Name="student_id" ColumnName="student_id" />
@@ -860,14 +1564,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User_group">
-            <EntityTypeMapping TypeName="yzucsModel.User_group">
-              <MappingFragment StoreEntitySet="User_group">
-                <ScalarProperty Name="user_group_id" ColumnName="user_group_id" />
-                <ScalarProperty Name="user_group_name" ColumnName="user_group_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

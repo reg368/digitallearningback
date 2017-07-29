@@ -12,16 +12,14 @@ namespace digitallearningback.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Level_group
+    public partial class Student_Class_Mapping
     {
-        public int lr_id { get; set; }
-        public string lr_user_id { get; set; }
-        public Nullable<int> lr_group_id { get; set; }
-        public Nullable<int> lr_user_login_id { get; set; }
-        public Nullable<int> lr_correct_count { get; set; }
-        public Nullable<int> lr_incorrect_count { get; set; }
-        public Nullable<System.DateTime> lr_joindate { get; set; }
-        public Nullable<int> lr_qsize { get; set; }
-        public Nullable<int> lr_level_id { get; set; }
+        public int id { get; set; }
+        public Nullable<int> class_id { get; set; }
+        public Nullable<int> student_id { get; set; }
+        public Nullable<System.DateTime> joindate { get; set; }
+    
+        public virtual InfoUser InfoUser { get; set; }
+        public virtual Student_Class Student_Class { get; set; }
     }
 }
