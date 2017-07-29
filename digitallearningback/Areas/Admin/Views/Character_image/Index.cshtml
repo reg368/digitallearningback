@@ -18,9 +18,6 @@
             @Html.DisplayNameFor(model => model.cimage_gander)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cimage_joindate)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.image_level)
         </th>
         <th>
@@ -41,9 +38,6 @@
             @Html.DisplayFor(modelItem => item.cimage_gander)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.cimage_joindate)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.image_level)
         </td>
         <td>
@@ -54,7 +48,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.cimage_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.cimage_id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.cimage_id })
         </td>
     </tr>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -16,6 +17,8 @@ namespace digitallearningback.Areas.Admin.Controllers
         private Character_imageService imageService = new Character_imageService();
         private Cimage_moodService moodService = new Cimage_moodService();
         private Cimage_professionService proService = new Cimage_professionService();
+        private Dictionary<string, string> genderDict =  new Dictionary<string, string> { {"male","男" }, {"female","女" } };
+
 
         // GET: Character_image
         public ActionResult Index()
@@ -41,6 +44,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         // GET: Character_image/Create
         public ActionResult Create()
         {
+            ViewBag.cimage_gander = new SelectList(this.genderDict, "key", "value");
             ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title");
             ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title");
             return View();
@@ -56,32 +60,22 @@ namespace digitallearningback.Areas.Admin.Controllers
             [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
 
-            var validImageTypes = new string[] { "image/jpg", "image/jpeg", "image/png" };
 
             if (uploadFile == null || uploadFile.ContentLength == 0)
             {
                 ModelState.AddModelError("imageUploadFile", "Image field is required");
             }
-            else if (!validImageTypes.Any(t => t.Equals(uploadFile.ContentType)))
+            else if (!UploadFileHelper.validImageTypes(uploadFile.ContentType))
             {
                 ModelState.AddModelError("imageUploadFile", "Only accept for jpg / jpeg /png file");
             }
 
-            InfoUser user = (InfoUser)Session["infoUser"];
-
-            if (ModelState.IsValid && user != null)
+            if (ModelState.IsValid)
             {
-                var uploadDir = System.Configuration.ConfigurationManager.AppSettings["Character_imageDir"].ToString();
-                var uploadUrl = System.Configuration.ConfigurationManager.AppSettings["Character_imageUrl"].ToString();
+       
+                var path = UploadFileHelper.uploadFile(this, uploadFile, "Character_imageDir", "Character_imageUrl");
 
-                String fileId = Guid.NewGuid().ToString().Replace("-", "");
-
-                String filename = fileId + Path.GetExtension(uploadFile.FileName);
-
-                var imagePath = Path.Combine(Server.MapPath(uploadDir), filename);
-                uploadFile.SaveAs(imagePath);
-
-                character_image.cimage_path = uploadUrl + filename;
+                character_image.cimage_path = path;
                 character_image.cimage_joindate = DateTime.Today;
 
                 imageService.insert(character_image);
@@ -105,6 +99,8 @@ namespace digitallearningback.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.cimage_gander = new SelectList(this.genderDict, "key", "value", character_image.cimage_gander);
             ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title", character_image.cimage_mood);
             ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title", character_image.cimage_profession);
             return View(character_image);
@@ -115,11 +111,40 @@ namespace digitallearningback.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "cimage_id,cimage_path,cimage_mood,cimage_gander,cimage_profession,cimage_joindate,image_level")] Character_image character_image)
+        public ActionResult Edit(
+            [Bind(Include = "cimage_id,cimage_mood,cimage_gander,cimage_profession,image_level")] Character_image character_image,
+            [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
+
+            Character_image record = imageService.selectById(character_image.cimage_id);
+
+            if (record == null) {
+                return HttpNotFound();
+            }
+
+            if (uploadFile != null && uploadFile.ContentLength > 0)
+            {
+                if (UploadFileHelper.validImageTypes(uploadFile.ContentType))
+                {
+                    String image_path = UploadFileHelper.uploadFile(this, uploadFile, "Character_imageDir", "Character_imageUrl");
+                    record.cimage_path = image_path;
+                }
+                else
+                {
+                    ModelState.AddModelError("imageUploadFile", "Only accept for jpg / jpeg /png file");
+                }
+            }
+
+
             if (ModelState.IsValid)
             {
-                imageService.update(character_image);
+                Debug.WriteLine("cimage_gander: " + character_image.cimage_gander);
+                record.cimage_mood = character_image.cimage_mood;
+                record.cimage_gander = character_image.cimage_gander;
+                record.image_level = character_image.image_level;
+
+                imageService.update(record);
+
                 return RedirectToAction("Index");
             }
             ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title", character_image.cimage_mood);

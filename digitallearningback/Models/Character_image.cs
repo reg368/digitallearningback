@@ -23,12 +23,9 @@ namespace digitallearningback.Models
         }
 
         public int cimage_id { get; set; }
+
+        [Display(Name = "圖片")]
         public string cimage_path { get; set; }
-
-
-        // [Display(Name = "圖片")]
-        // [DataType(DataType.Upload)]
-        //public HttpPostedFileBase imageUploadFile { get; set; }
 
         [Required]
         [Display(Name = "表情")]
@@ -43,6 +40,8 @@ namespace digitallearningback.Models
         public Nullable<int> cimage_profession { get; set; }
 
         public Nullable<System.DateTime> cimage_joindate { get; set; }
+
+        [Display(Name = "等級")]
         public Nullable<int> image_level { get; set; }
 
         public virtual Cimage_mood Cimage_mood1 { get; set; }
