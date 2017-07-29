@@ -1,14 +1,14 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using digitallearningback.Models;
 using digitallearningback.DAO;
-using System;
+using digitallearningback.Models;
 
-namespace digitallearningback.Controllers
+namespace digitallearningback.Areas.Admin.Controllers
 {
     public class Character_imageController : Controller
     {
@@ -68,7 +68,7 @@ namespace digitallearningback.Controllers
 
             InfoUser user = (InfoUser)Session["infoUser"];
 
-            if (ModelState.IsValid && user != null )
+            if (ModelState.IsValid && user != null)
             {
                 var uploadDir = "~/Images/Character_image";
 
@@ -79,7 +79,7 @@ namespace digitallearningback.Controllers
                 var imagePath = Path.Combine(Server.MapPath(uploadDir), filename);
                 uploadFile.SaveAs(imagePath);
 
-                character_image.cimage_path = "/Images/Character_image/"+ filename;
+                character_image.cimage_path = "/Images/Character_image/" + filename;
                 character_image.cimage_joindate = DateTime.Today;
 
                 imageService.insert(character_image);

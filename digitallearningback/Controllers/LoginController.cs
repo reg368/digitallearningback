@@ -29,7 +29,7 @@ namespace digitallearningback.Controllers
 
                 if (dbuser != null && dbuser.validLogined(user.password,InfoUser.VaildTypes.Teacher)){
                     Session["infoUser"] = dbuser;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home",new { area = "Admin" });
                 }
                 else {
                     ModelState.AddModelError(string.Empty, "帳號或密碼錯誤");
