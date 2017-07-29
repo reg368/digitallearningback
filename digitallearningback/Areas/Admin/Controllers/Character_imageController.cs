@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using digitallearningback.DAO;
 using digitallearningback.Models;
+using digitallearningback.Util;
 
 namespace digitallearningback.Areas.Admin.Controllers
 {
@@ -70,7 +71,8 @@ namespace digitallearningback.Areas.Admin.Controllers
 
             if (ModelState.IsValid && user != null)
             {
-                var uploadDir = "~/Images/Character_image";
+                var uploadDir = System.Configuration.ConfigurationManager.AppSettings["Character_imageDir"].ToString();
+                var uploadUrl = System.Configuration.ConfigurationManager.AppSettings["Character_imageUrl"].ToString();
 
                 String fileId = Guid.NewGuid().ToString().Replace("-", "");
 
@@ -79,7 +81,7 @@ namespace digitallearningback.Areas.Admin.Controllers
                 var imagePath = Path.Combine(Server.MapPath(uploadDir), filename);
                 uploadFile.SaveAs(imagePath);
 
-                character_image.cimage_path = "/Images/Character_image/" + filename;
+                character_image.cimage_path = uploadUrl + filename;
                 character_image.cimage_joindate = DateTime.Today;
 
                 imageService.insert(character_image);
