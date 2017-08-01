@@ -7,6 +7,14 @@ namespace digitallearningback.DAO
     {
         private yzucsEntities db = new yzucsEntities();
 
+        public void disposing()
+        {
+            if (db != null)
+            {
+                db.Dispose();
+            }
+        }
+
         public DbSet<Cimage_profession> getDbSet()
         {
             return db.Cimage_profession;

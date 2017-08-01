@@ -41,5 +41,14 @@ namespace digitallearningback.Controllers
             }
 
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                userService.disposing();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

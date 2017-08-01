@@ -176,13 +176,15 @@ namespace digitallearningback.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                imageService.disposing();
+                moodService.disposing();
+                proService.disposing();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

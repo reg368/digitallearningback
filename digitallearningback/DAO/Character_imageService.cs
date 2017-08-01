@@ -10,6 +10,12 @@ namespace digitallearningback.DAO
 
         private yzucsEntities db = new yzucsEntities();
 
+        public void disposing() {
+            if (db != null) {
+                db.Dispose();
+            }
+        }
+
         public int insert(Character_image model) {
             db.Character_image.Add(model);
             return db.SaveChanges();

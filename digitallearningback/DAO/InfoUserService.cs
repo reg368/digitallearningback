@@ -8,6 +8,14 @@ namespace digitallearningback.DAO
     {
         private yzucsEntities db = new yzucsEntities();
 
+        public void disposing()
+        {
+            if (db != null)
+            {
+                db.Dispose();
+            }
+        }
+
         public InfoUser findByUserLoginId(string loginid)
         {
             var lineQuery = db.InfoUser.Where(u => u.login_id == loginid);
