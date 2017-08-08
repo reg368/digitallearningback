@@ -54,46 +54,6 @@ namespace digitallearningback.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Class_Mapping> Student_Class_Mapping { get; set; }
 
-        public enum VaildTypes
-        {
-            Teacher,
-            Student
-        };
-
-        public Boolean validLogined(String password, VaildTypes type)
-        {
-
-            if (password.Equals(this.password))
-            {
-                switch (type)
-                {
-                    case VaildTypes.Teacher:
-                        if (this.group_id == 1)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    case VaildTypes.Student:
-                        if (this.group_id == 2)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    default:
-                        return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
 
     }
 }

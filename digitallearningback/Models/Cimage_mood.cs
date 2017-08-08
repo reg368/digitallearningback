@@ -23,8 +23,8 @@ namespace digitallearningback.Models
     
         public int cmood_id { get; set; }
 
-        [Display(Name = "表情")]
         public string cmood_title { get; set; }
+
         public Nullable<System.DateTime> cmood_joindate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

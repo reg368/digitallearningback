@@ -179,6 +179,7 @@
     <Compile Include="Models\Cimage_profession.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extends\InfoUser.cs" />
     <Compile Include="Models\Group_Class_Mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
@@ -186,6 +187,8 @@
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata\Character_image.cs" />
+    <Compile Include="Models\Metadata\Cimage_moods.cs" />
+    <Compile Include="Models\Metadata\Cimage_profession.cs" />
     <Compile Include="Models\Question.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
