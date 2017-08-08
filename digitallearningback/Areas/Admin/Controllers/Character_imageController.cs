@@ -17,7 +17,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         private Character_imageService imageService = new Character_imageService();
         private Cimage_moodService moodService = new Cimage_moodService();
         private Cimage_professionService proService = new Cimage_professionService();
-        private Dictionary<string, string> genderDict =  new Dictionary<string, string> { {"male","男" }, {"female","女" } };
+        private Dictionary<string, string> genderDict =  new Dictionary<string, string> { { "","請選擇"} ,{"male","男" }, {"female","女" } };
 
 
         // GET: Character_image
@@ -116,7 +116,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
 
-            Debug.WriteLine("Edit controller start");
+            //Debug.WriteLine("Edit controller start");
 
             Character_image record = imageService.selectById(character_image.cimage_id);
 

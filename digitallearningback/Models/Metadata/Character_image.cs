@@ -15,6 +15,7 @@ namespace digitallearningback.Models
             [Display(Name = "表情")]
             public Nullable<int> cimage_mood { get; set; }
 
+            [Required]
             [Display(Name = "性別")]
             public string cimage_gander { get; set; }
 
@@ -22,6 +23,7 @@ namespace digitallearningback.Models
             [Display(Name = "職業")]
             public Nullable<int> cimage_profession { get; set; }
 
+            [Required]
             [Display(Name = "等級")]
             public Nullable<int> image_level { get; set; }
         }

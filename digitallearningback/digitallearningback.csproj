@@ -185,6 +185,7 @@
     <Compile Include="Models\InfoUser.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\Character_image.cs" />
     <Compile Include="Models\Question.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
