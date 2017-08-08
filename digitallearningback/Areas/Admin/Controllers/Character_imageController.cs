@@ -47,7 +47,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             ViewBag.cimage_gander = new SelectList(this.genderDict, "key", "value");
             ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title");
             ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title");
-            return View();
+            return View(new Character_image());
         }
 
         // POST: Character_image/Create
@@ -56,11 +56,10 @@ namespace digitallearningback.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "cimage_id,cimage_path,cimage_mood,cimage_gander,cimage_profession,cimage_joindate,image_level")] Character_image character_image,
+            [Bind(Include = "cimage_mood,cimage_gander,cimage_profession,image_level")] Character_image character_image,
             [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
-
-
+            
             if (uploadFile == null || uploadFile.ContentLength == 0)
             {
                 ModelState.AddModelError("imageUploadFile", "Image field is required");
@@ -82,6 +81,7 @@ namespace digitallearningback.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.cimage_gander = new SelectList(this.genderDict, "key", "value", character_image.cimage_gander);
             ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title", character_image.cimage_mood);
             ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title", character_image.cimage_profession);
             return View(character_image);
@@ -116,6 +116,8 @@ namespace digitallearningback.Areas.Admin.Controllers
             [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
 
+            Debug.WriteLine("Edit controller start");
+
             Character_image record = imageService.selectById(character_image.cimage_id);
 
             if (record == null) {
@@ -138,7 +140,7 @@ namespace digitallearningback.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                Debug.WriteLine("cimage_gander: " + character_image.cimage_gander);
+                //Debug.WriteLine("cimage_gander: " + character_image.cimage_gander);
                 record.cimage_mood = character_image.cimage_mood;
                 record.cimage_gander = character_image.cimage_gander;
                 record.image_level = character_image.image_level;
@@ -147,6 +149,8 @@ namespace digitallearningback.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            ViewBag.cimage_gander = new SelectList(this.genderDict, "key", "value", character_image.cimage_gander);
             ViewBag.cimage_mood = new SelectList(moodService.getDbSet(), "cmood_id", "cmood_title", character_image.cimage_mood);
             ViewBag.cimage_profession = new SelectList(proService.getDbSet(), "cprofession_id", "cprofession_title", character_image.cimage_profession);
             return View(character_image);
