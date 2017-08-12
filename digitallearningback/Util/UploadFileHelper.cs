@@ -16,7 +16,7 @@ namespace digitallearningback.Util
             return imageTypes.Any(t => t.Equals(contentType));
         }
 
-        public static String uploadFile(Controller ctr , HttpPostedFileBase uploadFile, String dirKey, String urlKey) {
+        public static String uploadFile(HttpPostedFileBase uploadFile, String dirKey, String urlKey) {
 
             var uploadDir = System.Configuration.ConfigurationManager.AppSettings[dirKey].ToString();
             var uploadUrl = System.Configuration.ConfigurationManager.AppSettings[urlKey].ToString();
@@ -25,7 +25,7 @@ namespace digitallearningback.Util
 
             String filename = fileId + Path.GetExtension(uploadFile.FileName);
 
-            var imagePath = Path.Combine(ctr.Server.MapPath(uploadDir), filename);
+            var imagePath = Path.Combine(HttpContext.Current.Server.MapPath(uploadDir), filename);
 
             uploadFile.SaveAs(imagePath);
 

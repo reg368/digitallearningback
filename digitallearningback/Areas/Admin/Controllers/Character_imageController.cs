@@ -72,7 +72,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
        
-                var path = UploadFileHelper.uploadFile(this, uploadFile, "Character_imageDir", "Character_imageUrl");
+                var path = UploadFileHelper.uploadFile(uploadFile, "Character_imageDir", "Character_imageUrl");
 
                 character_image.cimage_path = path;
                 character_image.cimage_joindate = DateTime.Today;
@@ -128,7 +128,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             {
                 if (UploadFileHelper.validImageTypes(uploadFile.ContentType))
                 {
-                    String image_path = UploadFileHelper.uploadFile(this, uploadFile, "Character_imageDir", "Character_imageUrl");
+                    String image_path = UploadFileHelper.uploadFile(uploadFile, "Character_imageDir", "Character_imageUrl");
                     record.cimage_path = image_path;
                 }
                 else

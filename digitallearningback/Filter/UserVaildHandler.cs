@@ -11,7 +11,7 @@ namespace digitallearningback.Filter
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            Log("OnActionExecuting", filterContext.RouteData);
+            FilterHelper.Log("OnActionExecuting", filterContext.RouteData, "UserVaildHandler");
 
             if (filterContext.ActionDescriptor.GetCustomAttributes(typeof(SkipMyGlobalActionFilterAttribute), false).Any())
             {
@@ -38,19 +38,8 @@ namespace digitallearningback.Filter
             }
 
         }
-
-        private void Log(string methodName, RouteData routeData)
-        {
-            var controllerName = routeData.Values["controller"];
-            var actionName = routeData.Values["action"];
-            var message = String.Format("{0} controller:{1} action:{2}", methodName, controllerName, actionName);
-            Debug.WriteLine(message, "Action Filter Log");
-        }
-
     }
 
     public class SkipMyGlobalActionFilterAttribute : Attribute
-    {
-
-    }
+    {}
 }

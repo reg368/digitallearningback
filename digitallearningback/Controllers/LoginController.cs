@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using digitallearningback.Filter;
 using digitallearningback.Models;
 using digitallearningback.DAO;
+using digitallearningback.Util;
 
 namespace digitallearningback.Controllers
 {
@@ -10,6 +11,8 @@ namespace digitallearningback.Controllers
     public class LoginController : Controller
     {
         private InfoUserService userService = new InfoUserService();
+        private Log4Net logger = new Log4Net("LoginController");
+
 
         // GET: Login
         [SkipMyGlobalActionFilter]
