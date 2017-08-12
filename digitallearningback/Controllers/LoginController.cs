@@ -18,6 +18,7 @@ namespace digitallearningback.Controllers
         [SkipMyGlobalActionFilter]
         public ActionResult Login()
         {
+            logger.debug("test", "test .log");
             return View();
         }
 

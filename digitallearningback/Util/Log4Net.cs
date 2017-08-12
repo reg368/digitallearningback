@@ -25,7 +25,7 @@ namespace digitallearningback.Util
                 sb.AppendLine("Class :" + this.className);
                 sb.AppendLine(title + " : " + message);
                 sb.AppendLine("=========================================================================");
-                string filePath = logDir + DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+                string filePath = logDir + DateTime.Now.ToString("yyyy-MM-dd") + ".log";
                 System.IO.File.AppendAllText(HttpContext.Current.Server.MapPath(filePath), sb.ToString());
             }
         }
