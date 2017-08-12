@@ -307,7 +307,6 @@
     <Content Include="Areas\Admin\Views\Character_image\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Images\Character_image\" />
     <Folder Include="App_Data\Logs\App_Debug\" />
     <Folder Include="App_Data\Logs\App_Exception\" />
     <Folder Include="Areas\Admin\Models\" />
