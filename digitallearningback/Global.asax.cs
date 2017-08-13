@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using digitallearningback.App_Start;
 
 namespace digitallearningback
 {
@@ -16,11 +17,7 @@ namespace digitallearningback
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            //調整ViewEngine 順序 先找.cshtml (RazorViewEngine) 後找 .aspx (WebFormViewEngine)
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new RazorViewEngine());
-            ViewEngines.Engines.Add(new WebFormViewEngine());
+            ViewEngineConfig.Register(ViewEngines.Engines);
         }
     }
 }
