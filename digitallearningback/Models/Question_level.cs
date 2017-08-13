@@ -27,7 +27,7 @@ namespace digitallearningback.Models
         public Nullable<int> group_id { get; set; }
         public Nullable<int> isvisible { get; set; }
         public Nullable<int> israndom { get; set; }
-        public Nullable<int> totalqnumber { get; set; }
+        public Nullable<int> levelorder { get; set; }
         public Nullable<int> correctqnumber { get; set; }
         public Nullable<int> awardmoney { get; set; }
         public Nullable<int> awardexperience { get; set; }

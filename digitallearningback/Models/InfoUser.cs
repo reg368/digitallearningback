@@ -53,7 +53,5 @@ namespace digitallearningback.Models
         public virtual ICollection<Student_Class> Student_Class { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Class_Mapping> Student_Class_Mapping { get; set; }
-
-
     }
 }

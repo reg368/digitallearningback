@@ -11,8 +11,7 @@ namespace digitallearningback.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Character_image
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,24 +20,17 @@ namespace digitallearningback.Models
             this.InfoUser = new HashSet<InfoUser>();
             this.InfoUser1 = new HashSet<InfoUser>();
         }
-
+    
         public int cimage_id { get; set; }
-
         public string cimage_path { get; set; }
-
         public Nullable<int> cimage_mood { get; set; }
-
         public string cimage_gander { get; set; }
-
         public Nullable<int> cimage_profession { get; set; }
-
         public Nullable<System.DateTime> cimage_joindate { get; set; }
-
         public Nullable<int> image_level { get; set; }
-
+    
         public virtual Cimage_mood Cimage_mood1 { get; set; }
         public virtual Cimage_profession Cimage_profession1 { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<InfoUser> InfoUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

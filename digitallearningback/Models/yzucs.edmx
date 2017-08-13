@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="yzucsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="yzucsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Answer">
           <Key>
             <PropertyRef Name="id" />
@@ -164,7 +164,7 @@
           <Property Name="group_id" Type="int" />
           <Property Name="isvisible" Type="int" />
           <Property Name="israndom" Type="int" />
-          <Property Name="totalqnumber" Type="int" />
+          <Property Name="levelorder" Type="int" />
           <Property Name="correctqnumber" Type="int" />
           <Property Name="awardmoney" Type="int" />
           <Property Name="awardexperience" Type="int" />
@@ -644,8 +644,7 @@
             <End Role="Student_Class_Mapping" EntitySet="Student_Class_Mapping" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="yzucsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -849,7 +848,7 @@
           <Property Name="group_id" Type="Int32" />
           <Property Name="isvisible" Type="Int32" />
           <Property Name="israndom" Type="Int32" />
-          <Property Name="totalqnumber" Type="Int32" />
+          <Property Name="levelorder" Type="Int32" />
           <Property Name="correctqnumber" Type="Int32" />
           <Property Name="awardmoney" Type="Int32" />
           <Property Name="awardexperience" Type="Int32" />
@@ -1511,13 +1510,13 @@
           <EntitySetMapping Name="Question_level">
             <EntityTypeMapping TypeName="yzucsModel.Question_level">
               <MappingFragment StoreEntitySet="Question_level">
+                <ScalarProperty Name="levelorder" ColumnName="levelorder" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="level" ColumnName="level" />
                 <ScalarProperty Name="joindate" ColumnName="joindate" />
                 <ScalarProperty Name="group_id" ColumnName="group_id" />
                 <ScalarProperty Name="isvisible" ColumnName="isvisible" />
                 <ScalarProperty Name="israndom" ColumnName="israndom" />
-                <ScalarProperty Name="totalqnumber" ColumnName="totalqnumber" />
                 <ScalarProperty Name="correctqnumber" ColumnName="correctqnumber" />
                 <ScalarProperty Name="awardmoney" ColumnName="awardmoney" />
                 <ScalarProperty Name="awardexperience" ColumnName="awardexperience" />

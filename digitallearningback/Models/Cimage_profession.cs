@@ -11,8 +11,7 @@ namespace digitallearningback.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Cimage_profession
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,9 +21,7 @@ namespace digitallearningback.Models
         }
     
         public int cprofession_id { get; set; }
-
         public string cprofession_title { get; set; }
-
         public Nullable<System.DateTime> cprofession_joindate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

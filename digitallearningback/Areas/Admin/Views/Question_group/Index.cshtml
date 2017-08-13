@@ -20,7 +20,12 @@
         <th>
             @Html.DisplayNameFor(model => model.semester)
         </th>
-        <th></th>
+        <th>
+            @Html.Raw("課程資料維護")
+        </th>
+        <th>
+            @Html.Raw("課程關卡設定")
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,9 +40,12 @@
             @Html.DisplayFor(modelItem => item.semester)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+        <td>
+            @Html.ActionLink("關卡設定", "Index", "Question_level", new { id = item.id },null)
         </td>
     </tr>
 }
