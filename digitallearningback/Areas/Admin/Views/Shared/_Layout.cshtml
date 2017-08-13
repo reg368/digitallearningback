@@ -1,5 +1,6 @@
 ﻿@using digitallearningback.Models
-@{ InfoUser user = (InfoUser)HttpContext.Current.Session["infoUser"]; }
+@using digitallearningback.Util
+@{ InfoUser user =  SessionHelper.getLoginUser(); }
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("學生管理", "Index", "Home")</li>
-                    <li>@Html.ActionLink("課程管理", "Index", "Home")</li>
+                    <li>@Html.ActionLink("課程管理", "Index", "Question_group")</li>
                     <li>@Html.ActionLink("題目管理", "Index", "Home")</li>
                     @if (user.role == InfoUser.UserRole.Admin)
                     {

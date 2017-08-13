@@ -121,7 +121,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             Character_image record = imageService.selectById(character_image.cimage_id);
 
             if (record == null) {
-                return HttpNotFound();
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             if (uploadFile != null && uploadFile.ContentLength > 0)
