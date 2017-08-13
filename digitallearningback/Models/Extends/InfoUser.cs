@@ -7,38 +7,59 @@ namespace digitallearningback.Models
 {
     public partial class InfoUser
     {
-        public enum VaildTypes
+
+        public UserRole role { get; set; }
+
+        public enum UserRole
         {
+            Admin,
             Teacher,
-            Student
+            Student,
+            None
         };
 
-        public Boolean validLogined(String password, VaildTypes type)
+        public Boolean validLogined(String password, UserRole role)
         {
 
             if (password.Equals(this.password))
             {
-                switch (type)
+                switch (role)
                 {
-                    case VaildTypes.Teacher:
+                    case UserRole.Admin:
                         if (this.group_id == 1)
                         {
+                            this.role = UserRole.Admin;
                             return true;
                         }
                         else
                         {
+                            this.role = UserRole.None;
                             return false;
                         }
-                    case VaildTypes.Student:
+                    case UserRole.Teacher:
                         if (this.group_id == 2)
                         {
+                            this.role = UserRole.Teacher;
                             return true;
                         }
                         else
                         {
+                            this.role = UserRole.None;
+                            return false;
+                        }
+                    case UserRole.Student:
+                        if (this.group_id == 3)
+                        {
+                            this.role = UserRole.Student;
+                            return true;
+                        }
+                        else
+                        {
+                            this.role = UserRole.None;
                             return false;
                         }
                     default:
+                        this.role = UserRole.None;
                         return false;
                 }
             }

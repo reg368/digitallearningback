@@ -30,8 +30,13 @@ namespace digitallearningback.Controllers
             if (ModelState.IsValid){
 
                 InfoUser dbuser  = userService.findByUserLoginId(user.login_id);
+               
 
-                if (dbuser != null && dbuser.validLogined(user.password,InfoUser.VaildTypes.Teacher)){
+                //如果登入帳號 是管理者或老師 則進入後台
+                if (dbuser != null && 
+                        (dbuser.validLogined(user.password,InfoUser.UserRole.Teacher) ||
+                         dbuser.validLogined(user.password, InfoUser.UserRole.Admin))
+                    ){
                     Session["infoUser"] = dbuser;
                     return RedirectToAction("Index", "Home",new { area = "Admin" });
                 }
