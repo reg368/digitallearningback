@@ -6,21 +6,22 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using digitallearningback.DAO;
 using digitallearningback.Models;
 
 namespace digitallearningback.Areas.Admin.Controllers
 {
     public class Question_levelController : Controller
     {
-        private yzucsEntities db = new yzucsEntities();
+        private Question_levelService levelService = new Question_levelService();
 
         // GET: Admin/Question_level
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var question_level = db.Question_level.Include(q => q.Question_group);
-            return View(question_level.ToList());
+            return View(levelService.selectListByGroupid(id));
         }
 
+        /*
         // GET: Admin/Question_level/Details/5
         public ActionResult Details(int? id)
         {
@@ -28,7 +29,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Question_level question_level = db.Question_level.Find(id);
+            Question_level question_level = levelService.selectById(id);
             if (question_level == null)
             {
                 return HttpNotFound();
@@ -37,9 +38,9 @@ namespace digitallearningback.Areas.Admin.Controllers
         }
 
         // GET: Admin/Question_level/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            ViewBag.group_id = new SelectList(db.Question_group, "id", "name");
+            ViewBag.group_id = id;
             return View();
         }
 
@@ -52,15 +53,13 @@ namespace digitallearningback.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Question_level.Add(question_level);
-                db.SaveChanges();
+                levelService.insert(question_level);
                 return RedirectToAction("Index");
             }
-
-            ViewBag.group_id = new SelectList(db.Question_group, "id", "name", question_level.group_id);
             return View(question_level);
         }
 
+        
         // GET: Admin/Question_level/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -119,12 +118,12 @@ namespace digitallearningback.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                levelService.disposing();
             }
             base.Dispose(disposing);
         }

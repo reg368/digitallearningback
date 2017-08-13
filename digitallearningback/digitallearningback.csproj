@@ -154,12 +154,14 @@
     <Compile Include="Areas\Admin\Controllers\Character_imageController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_groupController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Question_levelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="DAO\Character_imageService.cs" />
     <Compile Include="DAO\Cimage_moodService.cs" />
     <Compile Include="DAO\Cimage_professionService.cs" />
     <Compile Include="DAO\InfoUserService.cs" />
     <Compile Include="DAO\Question_groupService.cs" />
+    <Compile Include="DAO\Question_levelService.cs" />
     <Compile Include="Filter\LogToFileAttribute.cs" />
     <Compile Include="Filter\FilterHelper.cs" />
     <Compile Include="Filter\LogOutputAttribute.cs" />
@@ -282,6 +284,11 @@
     <Content Include="Areas\Admin\Views\Question_group\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Question_group\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Question_group\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_level\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_level\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_level\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_level\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_level\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -355,7 +362,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59106</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

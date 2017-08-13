@@ -15,16 +15,10 @@
             @Html.DisplayNameFor(model => model.level)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.joindate)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.isvisible)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.israndom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.totalqnumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.correctqnumber)
@@ -41,9 +35,6 @@
         <th>
             @Html.DisplayNameFor(model => model.toquestion)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Question_group.name)
-        </th>
         <th></th>
     </tr>
 
@@ -53,16 +44,10 @@
             @Html.DisplayFor(modelItem => item.level)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.joindate)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.isvisible)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.israndom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.totalqnumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.correctqnumber)
@@ -78,9 +63,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.toquestion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Question_group.name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
