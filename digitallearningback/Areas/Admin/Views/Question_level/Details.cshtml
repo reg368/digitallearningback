@@ -1,0 +1,106 @@
+﻿@model digitallearningback.Models.Question_level
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question_level</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.joindate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.joindate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isvisible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isvisible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.israndom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.israndom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalqnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalqnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.correctqnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correctqnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.awardmoney)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.awardmoney)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.awardexperience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.awardexperience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fromquestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fromquestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.toquestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.toquestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question_group.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question_group.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

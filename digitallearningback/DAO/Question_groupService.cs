@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web;
 using digitallearningback.Models;
 
 namespace digitallearningback.DAO
 {
-    public class Question_groupService
-    {
+	public class Question_groupService
+	{
         private yzucsEntities db = new yzucsEntities();
 
         public void disposing()
@@ -41,7 +43,8 @@ namespace digitallearningback.DAO
             return db.Question_group.Find(id);
         }
 
-        public List<Question_group> selectListByUserid(int userid) {
+        public List<Question_group> selectListByUserid(int userid)
+        {
             var linq = db.Question_group.Where(q => q.userid == userid);
             return linq.ToList<Question_group>();
         }

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<digitallearningback.Models.Question_level>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.joindate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isvisible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.israndom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalqnumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correctqnumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.awardmoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.awardexperience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fromquestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.toquestion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question_group.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.level)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.joindate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isvisible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.israndom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalqnumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correctqnumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.awardmoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.awardexperience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fromquestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.toquestion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question_group.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
