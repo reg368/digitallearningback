@@ -1,10 +1,7 @@
 ﻿@model digitallearningback.Models.Question_level
 
-@{
-    ViewBag.Title = "Create";
-}
 
-<h2>Create</h2>
+<h2>@ViewBag.groupname - 關卡建立</h2>
 
 
 @using (Html.BeginForm()) 
@@ -14,7 +11,20 @@
     <div class="form-horizontal">
         <h4>Question_level</h4>
         <hr />
+
+        <input type="hidden" name="group_id" value="@ViewBag.group_id" />
+        <input type="hidden" name="groupname" value="@ViewBag.groupname" />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.levelorder, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.levelorder, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.levelorder, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.level, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -24,25 +34,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.joindate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.joindate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.joindate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.group_id, "group_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("group_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.group_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.isvisible, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.isvisible, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButtonFor(model => model.isvisible, 1)  是
+                @Html.RadioButtonFor(model => model.isvisible, 0)  否
                 @Html.ValidationMessageFor(model => model.isvisible, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -50,16 +45,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.israndom, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.israndom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButtonFor(model => model.israndom, 1)  是
+                @Html.RadioButtonFor(model => model.israndom, 0)  否
                 @Html.ValidationMessageFor(model => model.israndom, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.totalqnumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.totalqnumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.totalqnumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -84,22 +72,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.awardexperience, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.awardexperience, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.fromquestion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fromquestion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fromquestion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.toquestion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.toquestion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.toquestion, "", new { @class = "text-danger" })
             </div>
         </div>
 

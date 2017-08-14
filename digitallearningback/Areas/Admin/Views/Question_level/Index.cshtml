@@ -1,16 +1,14 @@
 ﻿@model IEnumerable<digitallearningback.Models.Question_level>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
+<h2> @ViewBag.groupname - 關卡設定</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create",new { id = ViewBag.group_id , groupname  = ViewBag.groupname })
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.levelorder)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.level)
         </th>
@@ -29,25 +27,22 @@
         <th>
             @Html.DisplayNameFor(model => model.awardexperience)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fromquestion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.toquestion)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.levelorder)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.level)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.isvisible)
+            @(item.isvisible == 1 ? "是" : "否")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.israndom)
+            @(item.israndom == 1 ? "是" : "否")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.correctqnumber)
@@ -57,12 +52,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.awardexperience)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fromquestion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.toquestion)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

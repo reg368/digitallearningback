@@ -16,8 +16,10 @@ namespace digitallearningback.Areas.Admin.Controllers
         private Question_levelService levelService = new Question_levelService();
 
         // GET: Admin/Question_level
-        public ActionResult Index(int id)
+        public ActionResult Index(int id,String groupname)
         {
+            ViewBag.group_id = id;
+            ViewBag.groupname = groupname;
             return View(levelService.selectListByGroupid(id));
         }
 
@@ -36,10 +38,11 @@ namespace digitallearningback.Areas.Admin.Controllers
             }
             return View(question_level);
         }
-
+        */
         // GET: Admin/Question_level/Create
-        public ActionResult Create(int id)
+        public ActionResult Create(int id, String groupname)
         {
+            ViewBag.groupname = groupname;
             ViewBag.group_id = id;
             return View();
         }
@@ -49,17 +52,19 @@ namespace digitallearningback.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,level,joindate,group_id,isvisible,israndom,totalqnumber,correctqnumber,awardmoney,awardexperience,fromquestion,toquestion")] Question_level question_level)
+        public ActionResult Create(
+            String groupname,
+            [Bind(Include = "group_id,levelorder,level,isvisible,israndom,correctqnumber,awardmoney,awardexperience")] Question_level question_level)
         {
             if (ModelState.IsValid)
             {
                 levelService.insert(question_level);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",new { id = question_level.group_id , groupname = groupname });
             }
             return View(question_level);
         }
 
-        
+        /*
         // GET: Admin/Question_level/Edit/5
         public ActionResult Edit(int? id)
         {

@@ -45,7 +45,7 @@
             @Html.ActionLink("Delete", "Delete", new { id = item.id })
         </td>
         <td>
-            @Html.ActionLink("關卡設定", "Index", "Question_level", new { id = item.id },null)
+            @Html.ActionLink("關卡設定", "Index", "Question_level", new { id = item.id , groupname = item.name },null)
         </td>
     </tr>
 }

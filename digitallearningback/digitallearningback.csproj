@@ -198,6 +198,7 @@
     <Compile Include="Models\Metadata\Cimage_moods.cs" />
     <Compile Include="Models\Metadata\Cimage_profession.cs" />
     <Compile Include="Models\Metadata\Question_group.cs" />
+    <Compile Include="Models\Metadata\Question_level.cs" />
     <Compile Include="Models\Question.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
