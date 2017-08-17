@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using digitallearningback.DAO;
 using digitallearningback.Models;
+using digitallearningback.Util;
 
 namespace digitallearningback.Areas.Admin.Controllers
 {
@@ -39,11 +40,12 @@ namespace digitallearningback.Areas.Admin.Controllers
             return View(question);
         }
         */
-        /*
+        
         // GET: Admin/Questions/Create
-        public ActionResult Create()
+        public ActionResult Create(int id, String groupname)
         {
-            ViewBag.groupid = new SelectList(db.Question_group, "id", "name");
+            ViewBag.groupid = id;
+            ViewBag.groupname = groupname;
             return View();
         }
 
@@ -52,20 +54,49 @@ namespace digitallearningback.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,groupid,text,joindate,point,tip,pic_path,level_id,ismulti")] Question question)
+        public ActionResult Create(
+            [Bind(Include = "groupname")] String groupname,
+            [Bind(Include = "groupid,text,point,tip")] Question question,
+            [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
-            if (ModelState.IsValid)
+
+            if ((question.text == null || question.text.Length == 0)
+                    && (uploadFile == null || uploadFile.ContentLength == 0))
             {
-                db.Question.Add(question);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ModelState.AddModelError("error", "請填寫題目文字或題目圖片");
             }
 
-            ViewBag.groupid = new SelectList(db.Question_group, "id", "name", question.groupid);
+            if ((uploadFile != null && uploadFile.ContentLength != 0) &&
+                !UploadFileHelper.validImageTypes(uploadFile.ContentType))
+            {
+                ModelState.AddModelError("imageUploadFile", "Only accept for jpg / jpeg /png file");
+            }
+
+          
+
+            if (ModelState.IsValid)
+            {
+
+                if (uploadFile != null && uploadFile.ContentLength != 0) {
+
+                    var path = UploadFileHelper.uploadFile(uploadFile, "Question_imageDir", "Question_imageUrl");
+                    question.pic_path = path;
+                }
+
+                question.joindate = DateTime.Today;
+
+                questionservice.insert(question);
+
+                return RedirectToAction("Index",new { id = question.groupid  , groupname  = groupname });
+            }
+
+            ViewBag.groupid = question.groupid;
+            ViewBag.groupname = groupname;
+
             return View(question);
         }
         
-        */
+        
         /*
         // GET: Admin/Questions/Edit/5
         public ActionResult Edit(int? id)

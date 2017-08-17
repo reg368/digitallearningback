@@ -11,7 +11,6 @@ namespace digitallearningback.Models
     {
         public class QuestionMD
         {
-            [Required]
             [Display(Name = "題目")]
             public string text { get; set; }
 
