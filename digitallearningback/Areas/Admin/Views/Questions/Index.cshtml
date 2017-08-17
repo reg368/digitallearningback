@@ -1,0 +1,47 @@
+﻿@model IEnumerable<digitallearningback.Models.Question>
+
+<h2>@ViewBag.groupname-題目設定</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.groupid, groupname = ViewBag.groupname })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.point)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pic_path)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.Raw(@item.minimalText())
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.point)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tip)
+        </td>
+        <td>
+            <a href="@Html.DisplayFor(modelItem => item.pic_path)">查看</a>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

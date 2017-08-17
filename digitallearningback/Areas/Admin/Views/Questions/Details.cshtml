@@ -1,0 +1,82 @@
+﻿@model digitallearningback.Models.Question
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.joindate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.joindate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.point)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.point)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pic_path)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pic_path)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.level_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.level_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ismulti)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ismulti)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question_group.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question_group.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -24,6 +24,9 @@
             @Html.Raw("課程資料維護")
         </th>
         <th>
+            @Html.Raw("課程題目設定")
+        </th>
+        <th>
             @Html.Raw("課程關卡設定")
         </th>
     </tr>
@@ -43,6 +46,9 @@
             @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
             @Html.ActionLink("Details", "Details", new { id = item.id }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.id })
+        </td>
+        <td>
+            @Html.ActionLink("題目設定", "Index", "Questions", new { id = item.id, groupname = item.name }, null)
         </td>
         <td>
             @Html.ActionLink("關卡設定", "Index", "Question_level", new { id = item.id , groupname = item.name },null)
