@@ -34,12 +34,19 @@
             @Html.DisplayFor(modelItem => item.tip)
         </td>
         <td>
-            <a href="@Html.DisplayFor(modelItem => item.pic_path)">查看</a>
+            @if (item.pic_path != null)
+            {
+                <a href="@Html.DisplayFor(modelItem => item.pic_path)">查看</a>
+            }
+            else
+            {
+                @Html.Raw("無")
+            }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id , groupname = ViewBag.groupname }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id , groupname = ViewBag.groupname }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id , groupname = ViewBag.groupname })
         </td>
     </tr>
 }

@@ -97,20 +97,21 @@ namespace digitallearningback.Areas.Admin.Controllers
         }
         
         
-        /*
+        
         // GET: Admin/Questions/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, String groupname)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Question question = db.Question.Find(id);
+
+            Question question = questionservice.selectById(id);
             if (question == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.groupid = new SelectList(db.Question_group, "id", "name", question.groupid);
+            ViewBag.groupname = groupname;
             return View(question);
         }
 
@@ -119,18 +120,57 @@ namespace digitallearningback.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,groupid,text,joindate,point,tip,pic_path,level_id,ismulti")] Question question)
+        public ActionResult Edit(
+            [Bind(Include = "groupname")] String groupname,
+            [Bind(Include = "id,text,point,tip")] Question question,
+            [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
+            Question record = questionservice.selectById(question.id);
+
+            if (record == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if ((question.text == null || question.text.Length == 0)
+                   && (uploadFile == null || uploadFile.ContentLength == 0))
+            {
+                ModelState.AddModelError("error", "請填寫題目文字或題目圖片");
+            }
+
+            if ((uploadFile != null && uploadFile.ContentLength != 0) &&
+                !UploadFileHelper.validImageTypes(uploadFile.ContentType))
+            {
+                ModelState.AddModelError("imageUploadFile", "Only accept for jpg / jpeg /png file");
+            }
+
+
             if (ModelState.IsValid)
             {
-                db.Entry(question).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (uploadFile != null && uploadFile.ContentLength != 0)
+                {
+                    var path = UploadFileHelper.uploadFile(uploadFile, "Question_imageDir", "Question_imageUrl");
+                    record.pic_path = path;
+                }
+
+                record.text = question.text;
+                record.point = question.point;
+                record.tip = question.tip;
+
+                questionservice.update(record);
+
+                return RedirectToAction("Index", new { id = record.groupid , groupname = groupname });
             }
-            ViewBag.groupid = new SelectList(db.Question_group, "id", "name", question.groupid);
+
+
+            ViewBag.groupid = question.groupid;
+            ViewBag.groupname = groupname;
+
             return View(question);
         }
 
+        /*
         // GET: Admin/Questions/Delete/5
         public ActionResult Delete(int? id)
         {
