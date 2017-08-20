@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using digitallearningback.Models;
 
@@ -44,6 +45,18 @@ namespace digitallearningback.DAO
         public List<Question> selectByGroupid(int groupid) {
             var linq = db.Question.Where(q => q.groupid == groupid);
             return linq.ToList<Question>();
+        }
+
+        public List<Question> selectQuesitonLevelAddable(int gid , int lid)
+        {
+            var list = db.Question.SqlQuery(
+               "select * from Question where groupid = @gid " +
+               "and id not in(" +
+               "select q.id from Question q join Question_Level_Mapping m " +
+               "on q.id = m.q_id where m.l_id = @lid )",
+               new SqlParameter("@gid", gid),
+               new SqlParameter("@lid", lid));
+            return list.ToList<Question>();
         }
     }
 }

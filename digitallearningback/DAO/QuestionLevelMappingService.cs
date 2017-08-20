@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Linq;
 using digitallearningback.Models;
 
 namespace digitallearningback.DAO
@@ -17,35 +18,23 @@ namespace digitallearningback.DAO
             }
         }
 
-        public int insert(Question_Level_Mapping model)
-        {
-            db.Question_Level_Mapping.Add(model);
-            return db.SaveChanges();
-        }
-
         public int insert(List<Question_Level_Mapping> models)
         {
             db.Question_Level_Mapping.AddRange(models);
             return db.SaveChanges();
         }
 
-        public int deleteByPrimaryKey(int pk)
+        public int deleted(List<Question_Level_Mapping> models)
         {
-            Question_Level_Mapping record = db.Question_Level_Mapping.Find(pk);
-            db.Question_Level_Mapping.Remove(record);
+            db.Question_Level_Mapping.RemoveRange(models);
             return db.SaveChanges();
         }
 
-        public int deleteByLid(int lid)
+        public List<Question_Level_Mapping> selectBylid(int lid)
         {
-            db.Database.ExecuteSqlCommand(
-                TransactionalBehavior.EnsureTransaction,
-                "Delete from Question_Level_Mapping where lid = @lid",
-                new SqlParameter("@lid", lid)
-                );
-            return db.SaveChanges();
+            var linq = db.Question_Level_Mapping.Where(l => l.l_id == lid);
+            return linq.ToList<Question_Level_Mapping>();
         }
-
 
     }
 }
