@@ -14,14 +14,13 @@ namespace digitallearningback.Areas.Admin.Controllers
 {
     public class QuestionsController : Controller
     {
+        private Question_groupService groupservice = new Question_groupService();
         private QuestionService questionservice = new QuestionService();
 
         // GET: Admin/Questions
-        public ActionResult Index(int id,String groupname)
+        public ActionResult Index(int id)
         {
-            ViewBag.groupid = id;
-            ViewBag.groupname = groupname;
-            return View(questionservice.selectByGroupid(id));
+            return View(groupservice.selectById(id));
         }
 
         /*
@@ -87,7 +86,7 @@ namespace digitallearningback.Areas.Admin.Controllers
 
                 questionservice.insert(question);
 
-                return RedirectToAction("Index",new { id = question.groupid  , groupname  = groupname });
+                return RedirectToAction("Index",new { id = question.groupid});
             }
 
             ViewBag.groupid = question.groupid;
@@ -99,7 +98,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         
         
         // GET: Admin/Questions/Edit/5
-        public ActionResult Edit(int? id, String groupname)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -111,7 +110,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.groupname = groupname;
+            
             return View(question);
         }
 
@@ -121,7 +120,6 @@ namespace digitallearningback.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "groupname")] String groupname,
             [Bind(Include = "id,text,point,tip")] Question question,
             [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
@@ -160,12 +158,8 @@ namespace digitallearningback.Areas.Admin.Controllers
 
                 questionservice.update(record);
 
-                return RedirectToAction("Index", new { id = record.groupid , groupname = groupname });
+                return RedirectToAction("Index", new { id = record.groupid});
             }
-
-
-            ViewBag.groupid = question.groupid;
-            ViewBag.groupname = groupname;
 
             return View(question);
         }

@@ -1,28 +1,28 @@
-﻿@model IEnumerable<digitallearningback.Models.Question>
+﻿@model digitallearningback.Models.Question_group
 
-<h2>@ViewBag.groupname-題目設定</h2>
+<h2>@Model.name - 題目設定</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { id = ViewBag.groupid, groupname = ViewBag.groupname })
+    @Html.ActionLink("Create New", "Create", new { id = Model.id, groupname = Model.name })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.text)
+            @Html.DisplayNameFor(model => model.Question.FirstOrDefault().text)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.point)
+            @Html.DisplayNameFor(model => model.Question.FirstOrDefault().point)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tip)
+            @Html.DisplayNameFor(model => model.Question.FirstOrDefault().tip)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.pic_path)
+            @Html.DisplayNameFor(model => model.Question.FirstOrDefault().pic_path)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Question) {
     <tr>
         <td>
             @Html.Raw(@item.minimalText())
@@ -44,9 +44,9 @@
             }
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id , groupname = ViewBag.groupname }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id , groupname = ViewBag.groupname }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id , groupname = ViewBag.groupname })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
         <td>
             @Html.ActionLink("題目選項設定", "Index", "Answers", new { qid = item.id }, null)

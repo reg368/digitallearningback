@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>課程管理</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -48,7 +48,7 @@
             @Html.ActionLink("Delete", "Delete", new { id = item.id })
         </td>
         <td>
-            @Html.ActionLink("題目設定", "Index", "Questions", new { id = item.id, groupname = item.name }, null)
+            @Html.ActionLink("題目設定", "Index", "Questions", new { id = item.id}, null)
         </td>
         <td>
             @Html.ActionLink("關卡設定", "Index", "Question_level", new { id = item.id },null)

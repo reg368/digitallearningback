@@ -52,6 +52,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
+            [Bind(Include = "groupname")] String groupname,
             [Bind(Include = "group_id,levelorder,level,isvisible,israndom,correctqnumber,awardmoney,awardexperience")] Question_level question_level)
         {
             if (ModelState.IsValid)
@@ -59,6 +60,10 @@ namespace digitallearningback.Areas.Admin.Controllers
                 levelService.insert(question_level);
                 return RedirectToAction("Index", new { id = question_level.group_id});
             }
+
+            ViewBag.groupname = groupname;
+            ViewBag.group_id = question_level.group_id;
+
             return View(question_level);
         }
 

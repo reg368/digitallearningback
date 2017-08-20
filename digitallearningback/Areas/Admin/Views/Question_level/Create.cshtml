@@ -10,6 +10,7 @@
     
     <div class="form-horizontal">
 
+        <input type="hidden" name="groupname" value="@ViewBag.groupname" />
         <input type="hidden" name="group_id" value="@ViewBag.group_id" />
 
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })

@@ -1,6 +1,6 @@
 ﻿@model digitallearningback.Models.Question
 
-<h2>@ViewBag.groupname - 編修題目</h2>
+<h2>@Model.Question_group.name - 編修題目</h2>
 
 
 @using (Html.BeginForm("Edit", "Questions", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -11,8 +11,6 @@
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
-
-        <input type="hidden" name="groupname" value="@ViewBag.groupname" />
 
         <div class="form-group">
             @Html.LabelFor(model => model.text, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -55,7 +53,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", "Questions", new { id = ViewBag.groupid, groupname = @ViewBag.groupname }, null)
+    @Html.ActionLink("Back to List", "Index", new { id = Model.Question_group.id })
 </div>
 
 @section Scripts {

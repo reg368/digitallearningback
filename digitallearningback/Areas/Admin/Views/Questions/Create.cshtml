@@ -8,7 +8,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Question</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
@@ -56,7 +55,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index","Questions", new { id = ViewBag.groupid, groupname = @ViewBag.groupname }, null)
+    @Html.ActionLink("Back to List", "Index", new { id = ViewBag.groupid})
 </div>
 
 @section Scripts {
