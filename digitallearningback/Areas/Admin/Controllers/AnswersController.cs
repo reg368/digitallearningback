@@ -192,7 +192,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             return View(answer);
         }
 
-        /*
+        
         // GET: Admin/Answers/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -200,7 +200,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Answer answer = db.Answer.Find(id);
+            Answer answer = answerservice.selectById(id);
             if (answer == null)
             {
                 return HttpNotFound();
@@ -213,12 +213,12 @@ namespace digitallearningback.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Answer answer = db.Answer.Find(id);
-            db.Answer.Remove(answer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Answer record = answerservice.selectById(id);
+            answerservice.deleteByPrimaryKey(id);
+
+            return RedirectToAction("Index", new { qid = record.qid });
         }
-        */
+        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
