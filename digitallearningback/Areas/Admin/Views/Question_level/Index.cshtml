@@ -1,36 +1,36 @@
-﻿@model IEnumerable<digitallearningback.Models.Question_level>
+﻿@model digitallearningback.Models.Question_group
 
-<h2> @ViewBag.groupname - 關卡設定</h2>
+<h2> @Model.name - 關卡設定</h2>
 <p>
-    @Html.ActionLink("Create New", "Create",new { id = ViewBag.group_id , groupname  = ViewBag.groupname })
+    @Html.ActionLink("Create New", "Create",new { id = Model.id , groupname = Model.name})
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.levelorder)
+            @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().levelorder)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.level)
+            @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().level)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isvisible)
+            @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().isvisible)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.israndom)
+            @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().israndom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.correctqnumber)
+            @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().correctqnumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.awardmoney)
+            @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().awardmoney)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.awardexperience)
+            @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().awardexperience)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Question_level.OrderBy(l => l.levelorder)) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.levelorder)
@@ -54,8 +54,8 @@
             @Html.DisplayFor(modelItem => item.awardexperience)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id, groupname = ViewBag.groupname }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id, groupname = ViewBag.groupname })
+            @Html.ActionLink("Edit", "Edit", new { id=item.id}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id})
         </td>
     </tr>
 }

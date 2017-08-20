@@ -1,0 +1,50 @@
+﻿@model digitallearningback.Models.Question
+
+<h2>題目選項設定</h2>
+@{
+    if (Model != null && Model.text != null)
+    {
+        <p>@Model.text</p>
+    }
+    if (Model != null && Model.pic_path != null)
+    {
+        <img src="@Model.pic_path"  height="200" width="400">
+    }
+}
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().is_correct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().pic_path)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Answer) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.is_correct)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pic_path)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

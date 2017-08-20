@@ -1,11 +1,10 @@
 ﻿@model digitallearningback.Models.Question_level
 
 
-<h2>@ViewBag.groupname - 關卡刪除</h2>
+<h2>@Model.Question_group.name - 關卡刪除</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Question_level</h4>
     <hr />
     <dl class="dl-horizontal">
 
@@ -71,12 +70,11 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <input type="hidden" name="groupname" value="@ViewBag.groupname" />
-        <input type="hidden" name="group_id" value="@ViewBag.group_id" />
+        <input type="hidden" name="group_id" value="@Model.Question_group.id" />
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "Index", new { id = Model.Question_group.id })
         </div>
     }
 </div>

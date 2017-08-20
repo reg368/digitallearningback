@@ -13,14 +13,13 @@ namespace digitallearningback.Areas.Admin.Controllers
 {
     public class Question_levelController : Controller
     {
+        private Question_groupService groupservice = new Question_groupService();
         private Question_levelService levelService = new Question_levelService();
 
         // GET: Admin/Question_level
-        public ActionResult Index(int id, String groupname)
+        public ActionResult Index(int id)
         {
-            ViewBag.group_id = id;
-            ViewBag.groupname = groupname;
-            return View(levelService.selectListByGroupid(id));
+            return View(groupservice.selectById(id));
         }
 
         /*
@@ -53,20 +52,19 @@ namespace digitallearningback.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            String groupname,
             [Bind(Include = "group_id,levelorder,level,isvisible,israndom,correctqnumber,awardmoney,awardexperience")] Question_level question_level)
         {
             if (ModelState.IsValid)
             {
                 levelService.insert(question_level);
-                return RedirectToAction("Index", new { id = question_level.group_id, groupname = groupname });
+                return RedirectToAction("Index", new { id = question_level.group_id});
             }
             return View(question_level);
         }
 
 
         // GET: Admin/Question_level/Edit/5
-        public ActionResult Edit(int? id, String groupname)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -77,9 +75,6 @@ namespace digitallearningback.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-
-            ViewBag.groupname = groupname;
-
             return View(question_level);
         }
 
@@ -89,7 +84,6 @@ namespace digitallearningback.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            String groupname,
             [Bind(Include = "id,level,isvisible,israndom,levelorder,correctqnumber,awardmoney,awardexperience")] Question_level question_level)
         {
 
@@ -113,7 +107,7 @@ namespace digitallearningback.Areas.Admin.Controllers
 
                 levelService.update(record);
 
-                return RedirectToAction("Index", new { id = record.group_id, groupname = groupname });
+                return RedirectToAction("Index", new { id = record.group_id });
             }
 
 
@@ -122,7 +116,7 @@ namespace digitallearningback.Areas.Admin.Controllers
 
         
        // GET: Admin/Question_level/Delete/5
-       public ActionResult Delete(int? id, String groupname)
+       public ActionResult Delete(int? id)
        {
            if (id == null)
            {
@@ -135,20 +129,16 @@ namespace digitallearningback.Areas.Admin.Controllers
            {
                return HttpNotFound();
            }
-
-            ViewBag.groupname = groupname;
-            ViewBag.group_id = question_level.group_id;
-
             return View(question_level);
        }
 
        // POST: Admin/Question_level/Delete/5
        [HttpPost, ActionName("Delete")]
        [ValidateAntiForgeryToken]
-       public ActionResult DeleteConfirmed(int id,int group_id, String groupname)
+       public ActionResult DeleteConfirmed(int id,int group_id)
        {
            levelService.deleteByPrimaryKey(id);
-           return RedirectToAction("Index", new { id = group_id, groupname = groupname });
+           return RedirectToAction("Index", new { id = group_id});
        }
        
         protected override void Dispose(bool disposing)

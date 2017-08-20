@@ -151,6 +151,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AnswersController.cs" />
     <Compile Include="Areas\Admin\Controllers\Character_imageController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="DAO\Cimage_moodService.cs" />
     <Compile Include="DAO\Cimage_professionService.cs" />
     <Compile Include="DAO\InfoUserService.cs" />
+    <Compile Include="DAO\AnswerService.cs" />
     <Compile Include="DAO\QuestionService.cs" />
     <Compile Include="DAO\Question_groupService.cs" />
     <Compile Include="DAO\Question_levelService.cs" />
@@ -189,6 +191,7 @@
     <Compile Include="Models\Cimage_profession.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extends\Answer.cs" />
     <Compile Include="Models\Extends\InfoUser.cs" />
     <Compile Include="Models\Extends\Question.cs" />
     <Compile Include="Models\Group_Class_Mapping.cs">
@@ -197,6 +200,7 @@
     <Compile Include="Models\InfoUser.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\Answer.cs" />
     <Compile Include="Models\Metadata\Character_image.cs" />
     <Compile Include="Models\Metadata\Cimage_moods.cs" />
     <Compile Include="Models\Metadata\Cimage_profession.cs" />
@@ -299,6 +303,11 @@
     <Content Include="Areas\Admin\Views\Questions\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Questions\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Questions\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Answers\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

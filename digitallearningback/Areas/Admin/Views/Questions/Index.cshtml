@@ -48,6 +48,9 @@
             @Html.ActionLink("Details", "Details", new { id=item.id , groupname = ViewBag.groupname }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.id , groupname = ViewBag.groupname })
         </td>
+        <td>
+            @Html.ActionLink("題目選項設定", "Index", "Answers", new { qid = item.id }, null)
+        </td>
     </tr>
 }
 
