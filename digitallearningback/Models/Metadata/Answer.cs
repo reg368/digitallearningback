@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace digitallearningback.Models
 {
@@ -8,6 +9,7 @@ namespace digitallearningback.Models
     {
         public class AnswerMD
         {
+            [AllowHtml]
             [Display(Name = "選項文字")]
             public string text { get; set; }
 

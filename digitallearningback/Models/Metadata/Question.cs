@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace digitallearningback.Models
 {
@@ -7,6 +8,7 @@ namespace digitallearningback.Models
     {
         public class QuestionMD
         {
+            [AllowHtml]
             [Display(Name = "題目")]
             public string text { get; set; }
 
