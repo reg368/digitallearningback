@@ -20,6 +20,8 @@
             @Html.DisplayNameFor(model => model.Question.FirstOrDefault().pic_path)
         </th>
         <th></th>
+        <th></th>
+        <th>@Html.ActionLink("回課程管理", "Index", "Question_group")</th>
     </tr>
 
 @foreach (var item in Model.Question) {
@@ -51,6 +53,7 @@
         <td>
             @Html.ActionLink("題目選項設定", "Index", "Answers", new { qid = item.id }, null)
         </td>
+        <td></td>
     </tr>
 }
 

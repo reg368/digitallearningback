@@ -346,6 +346,7 @@
     <Folder Include="App_Data\Logs\App_Debug\" />
     <Folder Include="App_Data\Logs\App_Exception\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Images\Answer_image\" />
     <Folder Include="Images\Character_image\" />
     <Folder Include="Images\Question_image\" />
     <Folder Include="Views\Shared\" />

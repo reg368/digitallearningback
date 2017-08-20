@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using digitallearningback.DAO;
 using digitallearningback.Models;
+using digitallearningback.Util;
 
 namespace digitallearningback.Areas.Admin.Controllers
 {
@@ -46,12 +47,13 @@ namespace digitallearningback.Areas.Admin.Controllers
             }
             return View(answer);
         }
-
+        */
         
         // GET: Admin/Answers/Create
-        public ActionResult Create()
+        public ActionResult Create(int qid , String qtext)
         {
-            ViewBag.qid = new SelectList(db.Question, "id", "text");
+            ViewBag.qid = qid;
+            ViewBag.qtext = qtext;
             return View();
         }
 
@@ -60,19 +62,47 @@ namespace digitallearningback.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,qid,text,is_correct,joindate,pic_path")] Answer answer)
+        public ActionResult Create(
+            [Bind(Include = "qtext")] String qtext,
+            [Bind(Include = "qid,text,is_correct")] Answer answer,
+            [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
-            if (ModelState.IsValid)
+
+            if ((answer.text == null || answer.text.Length == 0)
+                   && (uploadFile == null || uploadFile.ContentLength == 0))
             {
-                db.Answer.Add(answer);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ModelState.AddModelError("error", "請填寫選項文字或選項圖片");
             }
 
-            ViewBag.qid = new SelectList(db.Question, "id", "text", answer.qid);
+            if ((uploadFile != null && uploadFile.ContentLength != 0) &&
+                !UploadFileHelper.validImageTypes(uploadFile.ContentType))
+            {
+                ModelState.AddModelError("imageUploadFile", "Only accept for jpg / jpeg /png file");
+            }
+
+            if (ModelState.IsValid)
+            {
+                if (uploadFile != null && uploadFile.ContentLength != 0)
+                {
+
+                    var path = UploadFileHelper.uploadFile(uploadFile, "Answer_imageDir", "Answer_imageUrl");
+                    answer.pic_path = path;
+                }
+
+                answer.joindate = DateTime.Today;
+
+                answerservice.insert(answer);
+
+                return RedirectToAction("Index", new { qid = answer.qid});
+            }
+
+            ViewBag.qid = answer.qid;
+            ViewBag.qtext = qtext;
+
             return View(answer);
         }
 
+        /*
         // GET: Admin/Answers/Edit/5
         public ActionResult Edit(int? id)
         {

@@ -12,7 +12,7 @@
     }
 }
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create",new { qid = Model.id , qtext = Model.minimalText() })
 </p>
 <table class="table">
     <tr>
@@ -26,6 +26,7 @@
             @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().pic_path)
         </th>
         <th></th>
+        <th>@Html.ActionLink("回題目管理", "Index", "Questions",new { id = Model.Question_group.id} , null)</th>
     </tr>
 
 @foreach (var item in Model.Answer) {
@@ -34,16 +35,24 @@
             @Html.DisplayFor(modelItem => item.text)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.is_correct)
+            @Html.Raw(item.is_correct == 1 ? "是" : "否")
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.pic_path)
+            @if (item.pic_path != null)
+            {
+                <a href="@Html.DisplayFor(modelItem => item.pic_path)">查看</a>
+            }
+            else
+            {
+                @Html.Raw("無")
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
             @Html.ActionLink("Details", "Details", new { id=item.id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
+        <td></td>
     </tr>
 }
 
