@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -120,7 +116,8 @@ namespace digitallearningback.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "id,text,point,tip")] Question question,
+            [Bind(Include = "img_deleted")] String img_deleted,
+            [Bind(Include = "id,groupid,text,point,tip")] Question question,
             [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
             Question record = questionservice.selectById(question.id);
@@ -133,7 +130,26 @@ namespace digitallearningback.Areas.Admin.Controllers
             if ((question.text == null || question.text.Length == 0)
                    && (uploadFile == null || uploadFile.ContentLength == 0))
             {
-                ModelState.AddModelError("error", "請填寫題目文字或題目圖片");
+                //如果之前有上傳過圖檔 判斷是否有填舊圖存取動作
+                if (record.pic_path != null)
+                {
+                    //有舊圖 但沒選取舊圖選取動作
+                    if (img_deleted == null || "".Equals(img_deleted))
+                    {
+                        question.pic_path = record.pic_path;
+                        ModelState.AddModelError("error", "請填寫舊圖片存取動作");
+                        //刪除舊圖片 但沒填文字 
+                    }
+                    else if ("Y".Equals(img_deleted))
+                    {
+                        question.pic_path = record.pic_path;
+                        ModelState.AddModelError("error", "刪圖舊圖片時,請上傳新圖片或填寫選項文字");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("error", "請填寫選項文字或選項圖片");
+                }
             }
 
             if ((uploadFile != null && uploadFile.ContentLength != 0) &&
@@ -152,6 +168,11 @@ namespace digitallearningback.Areas.Admin.Controllers
                     record.pic_path = path;
                 }
 
+                if ("Y".Equals(img_deleted))
+                {
+                    record.pic_path = null;
+                }
+
                 record.text = question.text;
                 record.point = question.point;
                 record.tip = question.tip;
@@ -161,6 +182,7 @@ namespace digitallearningback.Areas.Admin.Controllers
                 return RedirectToAction("Index", new { id = record.groupid});
             }
 
+            question.Question_group = record.Question_group;
             return View(question);
         }
 

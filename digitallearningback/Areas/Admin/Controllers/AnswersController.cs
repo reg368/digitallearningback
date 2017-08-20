@@ -14,7 +14,7 @@ namespace digitallearningback.Areas.Admin.Controllers
 {
     public class AnswersController : Controller
     {
-
+        private Log4Net logger = new Log4Net("AnswersController");
         private QuestionService questionservice = new QuestionService();
         private AnswerService answerservice = new AnswerService();
 
@@ -102,7 +102,7 @@ namespace digitallearningback.Areas.Admin.Controllers
             return View(answer);
         }
 
-        /*
+        
         // GET: Admin/Answers/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -110,12 +110,11 @@ namespace digitallearningback.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Answer answer = db.Answer.Find(id);
+            Answer answer = answerservice.selectById(id);
             if (answer == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.qid = new SelectList(db.Question, "id", "text", answer.qid);
             return View(answer);
         }
 
@@ -124,18 +123,76 @@ namespace digitallearningback.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,qid,text,is_correct,joindate,pic_path")] Answer answer)
+        public ActionResult Edit(
+            [Bind(Include = "img_deleted")] String img_deleted,
+            [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile,
+            [Bind(Include = "id,qid,text,is_correct,pic_path")] Answer answer)
         {
+
+            Answer record = answerservice.selectById(answer.id);
+
+            if (record == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            //如果沒填文字和上傳檔案
+            if ((answer.text == null || answer.text.Length == 0)
+                              && (uploadFile == null || uploadFile.ContentLength == 0))
+            {
+
+                //如果之前有上傳過圖檔 判斷是否有填舊圖存取動作
+                if (record.pic_path != null)
+                {
+                    //有舊圖 但沒選取舊圖選取動作
+                    if(img_deleted == null || "".Equals(img_deleted))
+                    {
+                        answer.pic_path = record.pic_path;
+                        ModelState.AddModelError("error", "請填寫舊圖片存取動作");
+                    //刪除舊圖片 但沒填文字 
+                    } else if ("Y".Equals(img_deleted))
+                    {
+                        answer.pic_path = record.pic_path;
+                        ModelState.AddModelError("error", "刪圖舊圖片時,請上傳新圖片或填寫選項文字");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("error", "請填寫選項文字或選項圖片");
+                }
+            }
+
+            if ((uploadFile != null && uploadFile.ContentLength != 0) &&
+                !UploadFileHelper.validImageTypes(uploadFile.ContentType))
+            {
+                ModelState.AddModelError("imageUploadFile", "Only accept for jpg / jpeg /png file");
+            }
+
+
             if (ModelState.IsValid)
             {
-                db.Entry(answer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (uploadFile != null && uploadFile.ContentLength != 0)
+                {
+                    var path = UploadFileHelper.uploadFile(uploadFile, "Answer_imageDir", "Answer_imageUrl");
+                    record.pic_path = path;
+                }
+
+                if ("Y".Equals(img_deleted))
+                {
+                    record.pic_path = null;
+                }
+                record.text = answer.text;
+                record.is_correct = answer.is_correct;
+                answerservice.update(record);
+
+                return RedirectToAction("Index",new { qid = record.qid });
             }
-            ViewBag.qid = new SelectList(db.Question, "id", "text", answer.qid);
+
+            answer.Question = record.Question;
             return View(answer);
         }
 
+        /*
         // GET: Admin/Answers/Delete/5
         public ActionResult Delete(int? id)
         {

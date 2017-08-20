@@ -1,29 +1,18 @@
 ﻿@model digitallearningback.Models.Answer
 
-@{
-    ViewBag.Title = "Edit";
-}
-
-<h2>Edit</h2>
+<h2>編修題目選項</h2>
+<p>@Model.Question.minimalText()</p>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Answers", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Answer</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.qid, "qid", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("qid", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.qid, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.qid)
 
         <div class="form-group">
             @Html.LabelFor(model => model.text, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -36,26 +25,34 @@
         <div class="form-group">
             @Html.LabelFor(model => model.is_correct, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.is_correct, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.RadioButtonFor(model => model.is_correct, 1)  是
+                @Html.RadioButtonFor(model => model.is_correct, 0)  否
                 @Html.ValidationMessageFor(model => model.is_correct, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.joindate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("新圖片", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.joindate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.joindate, "", new { @class = "text-danger" })
+                @Html.TextBox("uploadFile", null, htmlAttributes: new { type = "file", @class = "form-control" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.pic_path, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.pic_path, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.pic_path, "", new { @class = "text-danger" })
+        @if (Model.pic_path != null)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    刪除舊圖片?<br>
+                    (若無上傳新圖片請選擇)
+                </label>
+                <div class="col-md-10">
+                    <input type="radio" name="img_deleted" value="Y" />是
+                    <input type="radio" name="img_deleted" value="N" />否(不變更圖片)
+                </div>
+                <br>
+                <img src="@Model.pic_path" height="200" width="400">
             </div>
-        </div>
+        }
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -66,7 +63,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", new { qid = Model.Question.id })
 </div>
 
 @section Scripts {

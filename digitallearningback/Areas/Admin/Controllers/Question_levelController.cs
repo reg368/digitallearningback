@@ -115,7 +115,7 @@ namespace digitallearningback.Areas.Admin.Controllers
                 return RedirectToAction("Index", new { id = record.group_id });
             }
 
-
+            question_level.Question_group = record.Question_group;
             return View(question_level);
         }
 

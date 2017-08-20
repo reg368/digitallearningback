@@ -11,6 +11,7 @@
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.groupid)
 
         <div class="form-group">
             @Html.LabelFor(model => model.text, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -38,11 +39,28 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("圖片", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("新圖片", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBox("uploadFile", null, htmlAttributes: new { type = "file", @class = "form-control" })
             </div>
         </div>
+
+        @if (Model.pic_path != null)
+        {
+            <div class="form-group">
+                <label class="control-label col-md-2">
+                    刪除舊圖片?<br>
+                    (若無上傳新圖片請選擇)
+                </label>
+                <div class="col-md-10">
+                    <input type="radio" name="img_deleted" value="Y" />是
+                    <input type="radio" name="img_deleted" value="N" />否(不變更圖片)
+                </div>
+                <br>
+                <img src="@Model.pic_path" height="200" width="400">
+            </div>
+        }
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
