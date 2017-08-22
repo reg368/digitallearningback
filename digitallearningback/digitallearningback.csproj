@@ -310,6 +310,8 @@
     <Content Include="Areas\Admin\Views\Answers\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Answers\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Answers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuestionLevelMapping\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuestionLevelMapping\AddQuestion.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -348,7 +350,6 @@
     <Folder Include="App_Data\Logs\App_Debug\" />
     <Folder Include="App_Data\Logs\App_Exception\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\QuestionLevelMapping\" />
     <Folder Include="Images\Answer_image\" />
     <Folder Include="Images\Character_image\" />
     <Folder Include="Images\Question_image\" />

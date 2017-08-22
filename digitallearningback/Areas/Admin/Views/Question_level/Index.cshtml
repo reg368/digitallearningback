@@ -55,7 +55,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.awardexperience)
         </td>
-        <td>@Html.ActionLink("題目設定", "Edit", new { id = item.id })</td>
+        <td>@Html.ActionLink("題目設定","Index", "QuestionLevelMapping", new { id = item.id },null)</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id}) |
             @Html.ActionLink("Delete", "Delete", new { id=item.id})

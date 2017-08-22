@@ -1,0 +1,58 @@
+﻿@model IEnumerable < digitallearningback.Models.Question_Level_Mapping>
+@using digitallearningback.Models
+
+@{ 
+    var level = ViewBag.level as Question_level;
+}
+<h2> @level.Question_group.name 關卡 : @level.level - 題目設定</h2>
+<p>
+    @Html.ActionLink("新增題目", "AddQuestion", "QuestionLevelMapping"
+                     ,new {  gid = level.group_id , lid = level.id }
+                     ,null)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Raw("題目")
+        </th>
+        <th>
+            @Html.Raw("分數")
+        </th>
+        <th>
+
+            @Html.Raw("提示")
+        </th>
+        <th>
+
+            @Html.Raw("圖片")
+        </th>
+        <th></th>
+        <th></th>
+        <th>@Html.ActionLink("回關卡設定", "Index", "Question_level",new { id = level.group_id },null)</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question.text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question.point)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question.tip)
+        </td>
+        <td>
+            @if (item.Question.pic_path != null)
+            {
+                <a href="@Html.DisplayFor(modelItem => item.Question.pic_path)">查看</a>
+            }
+            else
+            {
+                @Html.Raw("無")
+            }
+        </td>
+    </tr>
+}
+
+</table>
