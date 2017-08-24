@@ -8,7 +8,12 @@
 <p>
     @Html.ActionLink("新增題目", "AddQuestion", "QuestionLevelMapping"
                      ,new {  gid = level.group_id , lid = level.id }
-                     ,null)
+                     ,null) 
+    |
+    @Html.ActionLink("刪除題目", "DeleteQuestion", "QuestionLevelMapping"
+                     , new { gid = level.group_id, lid = level.id }
+                     , null)
+    
 </p>
 <table class="table">
     <tr>

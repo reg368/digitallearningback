@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using digitallearningback.Models;
@@ -28,6 +28,12 @@ namespace digitallearningback.DAO
         {
             db.Question_Level_Mapping.RemoveRange(models);
             return db.SaveChanges();
+        }
+
+        public int deleted(String ids) {
+            return db.Database.ExecuteSqlCommand(
+                string.Format("Delete from Question_Level_Mapping where id in ({0})",ids)
+                );
         }
 
         public List<Question_Level_Mapping> selectBylid(int lid)

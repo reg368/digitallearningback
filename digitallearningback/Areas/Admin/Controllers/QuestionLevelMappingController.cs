@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using digitallearningback.DAO;
 using digitallearningback.Models;
+using digitallearningback.Util;
 
 namespace digitallearningback.Areas.Admin.Controllers
 {
@@ -20,7 +22,6 @@ namespace digitallearningback.Areas.Admin.Controllers
             ViewBag.level = level;
             return View(service.selectBylid(id));
         }
-
 
         public ActionResult AddQuestion(int gid,int lid)
         {
@@ -42,8 +43,8 @@ namespace digitallearningback.Areas.Admin.Controllers
             }
 
             List<Question_Level_Mapping> models = new List<Question_Level_Mapping>();
-
-            foreach(String qid in qids)
+            
+            foreach (String qid in qids)
             {
                 Question_Level_Mapping model = new Question_Level_Mapping();
                 model.g_id = gid;
@@ -62,6 +63,33 @@ namespace digitallearningback.Areas.Admin.Controllers
                 ModelState.AddModelError("error", "請選擇欲加入至關卡的題目");
                 return RedirectToAction("AddQuestion", new { gid = gid, lid = lid });
             }
+        }
+
+        public ActionResult DeleteQuestion(int gid, int lid)
+        {
+            Question_level level = qlservice.selectById(lid);
+            ViewBag.level = level;
+            return View(service.selectBylid(lid));
+        }
+
+
+        public ActionResult DoDeleteQuestion(int? gid, int? lid, IEnumerable<String> mappingids)
+        {
+            if (gid == null || lid == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (mappingids == null || mappingids.Count() <= 0)
+            {
+                ModelState.AddModelError("error", "請選擇欲刪除關卡的題目");
+                return RedirectToAction("DeleteQuestion", new { gid = gid, lid = lid });
+            }
+
+            string ids = StringUtil.getContactString(mappingids, ",");
+            service.deleted(ids);
+
+            return RedirectToAction("Index", new { id = lid });
         }
     }
 }

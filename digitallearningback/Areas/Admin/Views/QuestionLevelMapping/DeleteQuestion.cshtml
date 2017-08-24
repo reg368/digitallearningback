@@ -1,0 +1,68 @@
+﻿@model IEnumerable<digitallearningback.Models.Question_Level_Mapping>
+@using digitallearningback.Models
+
+@{ 
+    var level = ViewBag.level as Question_level;
+}
+<h2> @level.Question_group.name 關卡 : @level.level - 刪除題目</h2>
+
+@using (Html.BeginForm("DoDeleteQuestion", "QuestionLevelMapping", FormMethod.Post))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Raw("勾選刪除")
+            </th>
+            <th>
+                @Html.Raw("題目")
+            </th>
+            <th>
+                @Html.Raw("分數")
+            </th>
+            <th>
+                @Html.Raw("提示")
+            </th>
+            <th>
+
+                @Html.Raw("圖片")
+            </th>
+            <th></th>
+            <th></th>
+            <th>@Html.ActionLink("回關卡題目設定", "Index", "QuestionLevelMapping", new { id = level.id }, null)</th>
+        </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <input type="checkbox" name="mappingids" value="@item.id" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question.text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question.point)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question.tip)
+            </td>
+            <td>
+                @if (item.Question.pic_path != null)
+                {
+                    <a href="@Html.DisplayFor(modelItem => item.Question.pic_path)">查看</a>
+                }
+                else
+                {
+                    @Html.Raw("無")
+                }
+            </td>
+        </tr>
+    }
+    </table>
+    <div>
+       <input type="hidden" name="gid" value="@level.group_id" />
+       <input type="hidden" name="lid" value="@level.id" />
+       <input type="submit" value="確定" class="btn btn-default" />
+    </div>
+}
