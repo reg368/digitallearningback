@@ -156,6 +156,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionLevelMappingController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Question_Concept_GroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_groupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_levelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="DAO\Cimage_professionService.cs" />
     <Compile Include="DAO\InfoUserService.cs" />
     <Compile Include="DAO\AnswerService.cs" />
+    <Compile Include="DAO\Question_Concept_GroupService.cs" />
     <Compile Include="DAO\QuestionService.cs" />
     <Compile Include="DAO\Question_groupService.cs" />
     <Compile Include="DAO\Question_levelService.cs" />
@@ -314,6 +316,11 @@
     <Content Include="Areas\Admin\Views\QuestionLevelMapping\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuestionLevelMapping\AddQuestion.cshtml" />
     <Content Include="Areas\Admin\Views\QuestionLevelMapping\DeleteQuestion.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept_Group\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept_Group\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept_Group\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept_Group\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept_Group\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
