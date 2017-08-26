@@ -160,6 +160,7 @@
     <Compile Include="Areas\Admin\Controllers\Question_Concept_GroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_groupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_levelController.cs" />
+    <Compile Include="Areas\Game\Controllers\CreateController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="DAO\QuestionLevelMappingService.cs" />
@@ -270,6 +271,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Game\SelectGender.css" />
     <Content Include="Content\login.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -333,6 +335,9 @@
     <Content Include="Areas\Admin\Views\Question_Concept\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Question_Concept\Index.cshtml" />
     <Content Include="Areas\Game\Views\web.config" />
+    <Content Include="Areas\Game\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Game\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Game\Views\Create\SelectGender.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -371,9 +376,7 @@
     <Folder Include="App_Data\Logs\App_Debug\" />
     <Folder Include="App_Data\Logs\App_Exception\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Game\Controllers\" />
     <Folder Include="Areas\Game\Models\" />
-    <Folder Include="Areas\Game\Views\Shared\" />
     <Folder Include="Images\Answer_image\" />
     <Folder Include="Images\Character_image\" />
     <Folder Include="Images\Question_image\" />

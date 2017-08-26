@@ -44,7 +44,16 @@ namespace digitallearningback.Controllers
                     else if ((dbuser.validLogined(user.password, InfoUser.UserRole.Student)))
                     {
                         Session["infoUser"] = dbuser;
-                        return RedirectToAction("Start", "Home", new { area = "Game" });
+
+                        //還沒有選擇遊戲角色 第一次登入 進入建立遊戲角色頁面
+                        if (dbuser.character_image == null || "".Equals(dbuser.character_image))
+                        {
+                            return RedirectToAction("SelectGender", "Create", new { area = "Game" });
+                        }
+                        //已選擇遊戲角色 (第n次登入) 開始遊戲
+                        else {
+                            return RedirectToAction("Start", "Start", new { area = "Game" });
+                        }
                     }
                 }
 

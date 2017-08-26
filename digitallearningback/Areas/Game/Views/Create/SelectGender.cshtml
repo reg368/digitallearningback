@@ -1,0 +1,30 @@
+﻿@model digitallearningback.Models.InfoUser
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>請選擇遊戲角色性別</title>
+    @Styles.Render("~/Content/Game/SelectGender.css")
+</head>
+<body>
+
+    <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
+
+    <form method="post" action="<%= request.getContextPath()%>/front/user/User_controller_new.do">
+        <button class="gwd-button-r673" type="submit" style="">男</button>
+        <input type="hidden" value="male" name="gender">
+        <input type="hidden" value="gender_select" name="action">
+    </form>
+
+    <form method="post" action="<%= request.getContextPath()%>/front/user/User_controller_new.do">
+        <button class="gwd-button-r673 gwd-button-1nxp" type="submit" style="">女</button>
+        <input type="hidden" value="female" name="gender">
+        <input type="hidden" value="gender_select" name="action">
+    </form>
+
+    <div class="gwd-div-ptqp" style="color:white">
+        <h1>請選擇遊戲角色性別</h1>
+    </div>
+
+</body>
+</html>
