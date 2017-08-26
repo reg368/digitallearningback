@@ -10,17 +10,19 @@
 
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
 
-    <form method="post" action="<%= request.getContextPath()%>/front/user/User_controller_new.do">
+    @using (Html.BeginForm("SelectCharacter", "Create", FormMethod.Post))
+    {
         <button class="gwd-button-r673" type="submit" style="">男</button>
         <input type="hidden" value="male" name="gender">
-        <input type="hidden" value="gender_select" name="action">
-    </form>
+        <input type="hidden" value="-1" name="pid">
+    }
 
-    <form method="post" action="<%= request.getContextPath()%>/front/user/User_controller_new.do">
+    @using (Html.BeginForm("SelectCharacter", "Create", FormMethod.Post))
+    {
         <button class="gwd-button-r673 gwd-button-1nxp" type="submit" style="">女</button>
-        <input type="hidden" value="female" name="gender">
-        <input type="hidden" value="gender_select" name="action">
-    </form>
+        <input type="hidden" value="male" name="gender">
+        <input type="hidden" value="-1" name="pid">
+    }
 
     <div class="gwd-div-ptqp" style="color:white">
         <h1>請選擇遊戲角色性別</h1>

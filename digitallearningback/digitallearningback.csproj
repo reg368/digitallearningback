@@ -271,6 +271,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Game\Gallery\gwdgallerynavigation_style.css" />
+    <Content Include="Content\Game\Gallery\gwdgesture_style.css" />
+    <Content Include="Content\Game\Gallery\gwdimage_style.css" />
+    <Content Include="Content\Game\Gallery\gwdpage_style.css" />
+    <Content Include="Content\Game\Gallery\gwdswipegallery_style.css" />
+    <Content Include="Content\Game\SelectCharacter.css" />
     <Content Include="Content\Game\SelectGender.css" />
     <Content Include="Content\login.css" />
     <Content Include="favicon.ico" />
@@ -338,7 +344,17 @@
     <Content Include="Areas\Game\Views\Shared\Error.cshtml" />
     <Content Include="Areas\Game\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Game\Views\Create\SelectGender.cshtml" />
+    <Content Include="Areas\Game\Views\Create\SelectCharacter.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Game\select_character.js" />
+    <Content Include="Scripts\Game\Gallery\googbase_min.js" />
+    <Content Include="Scripts\Game\Gallery\gwd-events-support.1.0.js" />
+    <Content Include="Scripts\Game\Gallery\gwdgallerynavigation_min.js" />
+    <Content Include="Scripts\Game\Gallery\gwdgesture_min.js" />
+    <Content Include="Scripts\Game\Gallery\gwdimage_min.js" />
+    <Content Include="Scripts\Game\Gallery\gwdpage_min.js" />
+    <Content Include="Scripts\Game\Gallery\gwdswipegallery_min.js" />
+    <Content Include="Scripts\Game\Gallery\gwd_webcomponents_min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

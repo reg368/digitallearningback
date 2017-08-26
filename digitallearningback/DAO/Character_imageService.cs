@@ -39,7 +39,13 @@ namespace digitallearningback.DAO
         public List<Character_image> selectAllInclude()
         {
             var linq = db.Character_image.Include(c => c.Cimage_mood1).Include(c => c.Cimage_profession1);
-            return linq.ToList<Character_image>();
+            return linq.ToList();
+        }
+
+        public List<Character_image> selectListByGenderAndPro(string gender , int pid)
+        {
+            var linq = db.Character_image.Where(c => c.cimage_gander == gender && c.cimage_profession == pid);
+            return linq.ToList();
         }
     }
 }

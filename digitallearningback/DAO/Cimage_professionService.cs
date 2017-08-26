@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using digitallearningback.Models;
 
 namespace digitallearningback.DAO
@@ -13,6 +15,12 @@ namespace digitallearningback.DAO
             {
                 db.Dispose();
             }
+        }
+
+        public List<Cimage_profession> selectAll()
+        {
+            var linq = db.Cimage_profession.SqlQuery("Select * from Cimage_profession where 1=1");
+            return linq.ToList<Cimage_profession>();
         }
 
         public DbSet<Cimage_profession> getDbSet()

@@ -26,6 +26,24 @@ namespace digitallearningback
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/Gallery").Include(
+                      "~/Content/Game/Gallery/gwdgesture_style.css",
+                      "~/Content/Game/Gallery/gwdimage_style.css",
+                      "~/Content/Game/Gallery/gwdpage_style.css",
+                      "~/Content/Game/Gallery/gwdgallerynavigation_style.css",
+                      "~/Content/Game/Gallery/gwdswipegallery_style.css"
+                      ));
+            bundles.Add(new ScriptBundle("~/bundles/Gallery").Include(
+                     "~/Scripts/Game/Gallery/googbase_min.js",
+                     "~/Scripts/Game/Gallery/gwd_webcomponents_min.js",
+                     "~/Scripts/Game/Gallery/gwdgesture_min.js",
+                     "~/Scripts/Game/Gallery/gwdimage_min.js",
+                     "~/Scripts/Game/Gallery/gwdpage_min.js",
+                     "~/Scripts/Game/Gallery/gwdgallerynavigation_min.js",
+                     "~/Scripts/Game/Gallery/gwdswipegallery_min.js",
+                     "~/Scripts/Game/Gallery/gwd-events-support.1.0.js"
+                     ));
         }
     }
 }
