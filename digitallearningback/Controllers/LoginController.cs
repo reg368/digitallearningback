@@ -30,20 +30,27 @@ namespace digitallearningback.Controllers
             if (ModelState.IsValid){
 
                 InfoUser dbuser  = userService.findByUserLoginId(user.login_id);
-               
+                if (dbuser != null && user.password.Equals(dbuser.password)){
 
-                //如果登入帳號 是管理者或老師 則進入後台
-                if (dbuser != null && 
-                        (dbuser.validLogined(user.password,InfoUser.UserRole.Teacher) ||
-                         dbuser.validLogined(user.password, InfoUser.UserRole.Admin))
-                    ){
-                    Session["infoUser"] = dbuser;
-                    return RedirectToAction("Index", "Home",new { area = "Admin" });
+                    //如果登入帳號 是管理者或老師 則進入管理端
+                    if ((dbuser.validLogined(user.password, InfoUser.UserRole.Teacher) ||
+                             dbuser.validLogined(user.password, InfoUser.UserRole.Admin))
+                        )
+                    {
+                        Session["infoUser"] = dbuser;
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    }
+                    //如果是學生就 進入遊戲
+                    else if ((dbuser.validLogined(user.password, InfoUser.UserRole.Student)))
+                    {
+                        Session["infoUser"] = dbuser;
+                        return RedirectToAction("Start", "Home", new { area = "Game" });
+                    }
                 }
-                else {
-                    ModelState.AddModelError(string.Empty, "帳號或密碼錯誤");
-                    return View(user);
-                }
+
+                ModelState.AddModelError(string.Empty, "帳號或密碼錯誤");
+                return View(user);
+
             }
             else{
                 return View(user);
