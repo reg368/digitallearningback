@@ -1,13 +1,10 @@
 ﻿@model IEnumerable<digitallearningback.Models.Question_Concept_Group>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+<h2>題目概念管理</h2>
+<h4>概念集</h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("新增概念集", "Create")
 </p>
 <table class="table">
     <tr>
@@ -21,6 +18,9 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+           @Html.ActionLink("子概念管理", "Index", "Question_Concept",new { id = item.id },null) 
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

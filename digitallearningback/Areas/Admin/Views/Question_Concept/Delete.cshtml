@@ -1,4 +1,4 @@
-﻿@model digitallearningback.Models.Question_Concept_Group
+﻿@model digitallearningback.Models.Question_Concept
 
 @{
     ViewBag.Title = "Delete";
@@ -26,14 +26,30 @@
             @Html.DisplayFor(model => model.user_id)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.percentage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percentage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question_Concept_Group.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question_Concept_Group.name)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-
+        <input type="hidden" value="@Model.group_id" name="gid" />
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "Index", "Question_Concept", new { id = Model.group_id }, null)
         </div>
     }
 </div>

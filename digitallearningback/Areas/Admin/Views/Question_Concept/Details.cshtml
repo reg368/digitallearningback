@@ -1,0 +1,50 @@
+﻿@model digitallearningback.Models.Question_Concept
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Question_Concept</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.percentage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percentage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question_Concept_Group.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question_Concept_Group.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", "Question_Concept", new { id = Model.id }, null) |
+    @Html.ActionLink("Back to List", "Index", "Question_Concept", new { id = Model.group_id }, null)
+</p>

@@ -1,0 +1,37 @@
+﻿@model digitallearningback.Models.Question_Concept_Group
+
+<h2>概念集:@Model.name - 子概念</h2>
+
+<p>
+    @Html.ActionLink("新增子概念", "Create",new {gid = Model.id , gname = Model.name })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Question_Concept.FirstOrDefault().name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question_Concept.FirstOrDefault().percentage)
+        </th>
+        <th></th>
+        <th>@Html.ActionLink("回概念集", "Index", "Question_Concept_Group")</th>
+    </tr>
+
+@foreach (var item in Model.Question_Concept) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.percentage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+        <td></td>
+    </tr>
+}
+
+</table>

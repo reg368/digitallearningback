@@ -156,6 +156,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionLevelMappingController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Question_ConceptController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_Concept_GroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_groupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_levelController.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="DAO\Cimage_professionService.cs" />
     <Compile Include="DAO\InfoUserService.cs" />
     <Compile Include="DAO\AnswerService.cs" />
+    <Compile Include="DAO\Question_ConceptService.cs" />
     <Compile Include="DAO\Question_Concept_GroupService.cs" />
     <Compile Include="DAO\QuestionService.cs" />
     <Compile Include="DAO\Question_groupService.cs" />
@@ -204,6 +206,8 @@
     <Compile Include="Models\InfoUser.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\Question_Concept.cs" />
+    <Compile Include="Models\Metadata\Question_Concept_Group.cs" />
     <Compile Include="Models\Metadata\Answer.cs" />
     <Compile Include="Models\Metadata\Character_image.cs" />
     <Compile Include="Models\Metadata\Cimage_moods.cs" />
@@ -321,6 +325,11 @@
     <Content Include="Areas\Admin\Views\Question_Concept_Group\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Question_Concept_Group\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Question_Concept_Group\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

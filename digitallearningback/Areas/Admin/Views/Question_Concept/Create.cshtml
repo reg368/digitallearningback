@@ -1,10 +1,6 @@
-﻿@model digitallearningback.Models.Question_Concept_Group
+﻿@model digitallearningback.Models.Question_Concept
 
-@{
-    ViewBag.Title = "Create";
-}
-
-<h2>Create</h2>
+<h2>概念集 @ViewBag.gname - 新增子概念</h2>
 
 
 @using (Html.BeginForm()) 
@@ -21,6 +17,18 @@
                 @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.percentage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.percentage, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.percentage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <input type="hidden" name="group_id" value="@ViewBag.gid" />
+        <input type="hidden" name="user_id" value="@ViewBag.userid" />
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -30,7 +38,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index","Question_Concept",new { id = @ViewBag.gid },null)
 </div>
 
 @section Scripts {
