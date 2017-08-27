@@ -17,9 +17,10 @@ namespace digitallearningback.DAO
             }
         }
 
-        public List<Cimage_profession> selectAll()
+        public List<Cimage_profession> selectListForSelectCharacter()
         {
-            var linq = db.Cimage_profession.SqlQuery("Select * from Cimage_profession where 1=1");
+            var linq = db.Cimage_profession.SqlQuery("Select * from Cimage_profession " +
+                "where cprofession_title not in ('寵物','敵人')");
             return linq.ToList<Cimage_profession>();
         }
 

@@ -27,14 +27,14 @@ namespace digitallearningback
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/bundles/Gallery").Include(
+            bundles.Add(new StyleBundle("~/bundles/Gallery/css").Include(
                       "~/Content/Game/Gallery/gwdgesture_style.css",
                       "~/Content/Game/Gallery/gwdimage_style.css",
                       "~/Content/Game/Gallery/gwdpage_style.css",
                       "~/Content/Game/Gallery/gwdgallerynavigation_style.css",
                       "~/Content/Game/Gallery/gwdswipegallery_style.css"
                       ));
-            bundles.Add(new ScriptBundle("~/bundles/Gallery").Include(
+            bundles.Add(new ScriptBundle("~/bundles/Gallery/js").Include(
                      "~/Scripts/Game/Gallery/googbase_min.js",
                      "~/Scripts/Game/Gallery/gwd_webcomponents_min.js",
                      "~/Scripts/Game/Gallery/gwdgesture_min.js",

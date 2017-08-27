@@ -24,7 +24,7 @@ namespace digitallearningback.Areas.Game.Controllers
 
             logger.debug("SelectCharacter ", "SelectCharacter action");
 
-            var prolist = cpservice.selectAll();
+            var prolist = cpservice.selectListForSelectCharacter();
             if (pid == -1)
             {
                 pid = prolist.FirstOrDefault().cprofession_id;
@@ -32,9 +32,10 @@ namespace digitallearningback.Areas.Game.Controllers
             ViewBag.prolist = prolist;
 
             var select_character = chservice.selectListByGenderAndPro(gender, pid);
+
             if (select_character != null && select_character.Count() > 0)
             {
-                var images = select_character.Aggregate
+                var imagepaths = select_character.Aggregate
                         (
                             (i, j) => new Character_image
                             {
@@ -42,7 +43,10 @@ namespace digitallearningback.Areas.Game.Controllers
                             }
                         ).cimage_path;
 
-                logger.debug("images path : ", images);
+                logger.debug("images path : ", imagepaths);
+
+                ViewBag.imagepaths = imagepaths;
+                ViewBag.gender = gender;
 
                 TempData["select_character"] = select_character;
             }

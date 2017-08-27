@@ -44,7 +44,10 @@ namespace digitallearningback.DAO
 
         public List<Character_image> selectListByGenderAndPro(string gender , int pid)
         {
-            var linq = db.Character_image.Where(c => c.cimage_gander == gender && c.cimage_profession == pid);
+            var linq = db.Character_image.Where(c => 
+                    c.cimage_gander == gender && 
+                    c.cimage_profession == pid &&
+                    c.image_level == 1);
             return linq.ToList();
         }
     }
