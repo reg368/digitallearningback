@@ -277,6 +277,7 @@
     <Content Include="Content\Game\Gallery\gwdpage_style.css" />
     <Content Include="Content\Game\Gallery\gwdswipegallery_style.css" />
     <Content Include="Content\Game\SelectCharacter.css" />
+    <Content Include="Content\Game\EditChNameAndPetName.css" />
     <Content Include="Content\Game\SelectGender.css" />
     <Content Include="Content\login.css" />
     <Content Include="favicon.ico" />
@@ -346,6 +347,7 @@
     <Content Include="Areas\Game\Views\Create\SelectGender.cshtml" />
     <Content Include="Areas\Game\Views\Create\SelectCharacter.cshtml" />
     <Content Include="Areas\Game\Views\Create\SelectedPet.cshtml" />
+    <Content Include="Areas\Game\Views\Create\EditChNameAndPetName.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Game\select_character.js" />
     <Content Include="Scripts\Game\Gallery\googbase_min.js" />

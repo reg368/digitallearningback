@@ -22,6 +22,7 @@ namespace digitallearningback.Areas.Game.Controllers
             return View(infoUser);
         }
 
+        //選擇遊戲角色
         public ActionResult SelectCharacter(string gender,int pid)
         {
             var prolist = cpservice.selectListForSelectCharacter();
@@ -55,6 +56,7 @@ namespace digitallearningback.Areas.Game.Controllers
             return View();
         }
 
+        //選擇遊戲寵物
         public ActionResult SelectedPet(int char_index)
         {
             //SelectCharacter view 是選 List characterlist 的 index
@@ -91,6 +93,27 @@ namespace digitallearningback.Areas.Game.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            return View();
+        }
+
+        //編輯遊戲角色和寵物名稱
+        public ActionResult EditChNameAndPetName(int char_index)
+        {
+            //SelectCharacter view 是選 List characterlist 的 index
+            var petlist = TempData["petlist"] as List<Character_image>;
+
+            if (petlist != null && petlist.Count() > 0)
+            {
+                //取得使用者選的遊戲角色 塞回session
+                var selected = petlist.ElementAt(char_index);
+                infoUser.pet_image = selected.cimage_id;
+                Session["infoUser"] = infoUser;
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             return View();
         }
     }

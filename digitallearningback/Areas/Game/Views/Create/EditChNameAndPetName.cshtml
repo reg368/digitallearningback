@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>歡迎登入數位學習系統</title>
+    @Styles.Render("~/Content/Game/EditChNameAndPetName.css")
+</head>
+<body>
+
+    <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
+    <div class="gwd-div-ilnq" style=""></div>
+
+    @using (Html.BeginForm("Create", "Create", FormMethod.Post))
+    {
+        <input  class="gwd-input-gbnv" name="char_name" style="" placeholder="角色名稱">
+        <input  class="gwd-input-imcr gwd-input-1aam" name="pet_name" style="" placeholder="寵物名稱">
+        <button type="submit" class="gwd-button-r673">完成</button>
+    }
+
+    <p class="gwd-button-fujb"> 歡迎登入數位學習系統  </p>
+
+    <div class="gwd-div-14v4" style="">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    </div>
+    <span class="gwd-span-1lyy" style="">請輸入角色名稱</span>
+    <span class="gwd-span-1lyy gwd-span-c0vd" style="">請輸入寵物名稱</span>
+
+</body>
+</html>
