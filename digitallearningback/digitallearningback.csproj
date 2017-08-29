@@ -345,6 +345,7 @@
     <Content Include="Areas\Game\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Game\Views\Create\SelectGender.cshtml" />
     <Content Include="Areas\Game\Views\Create\SelectCharacter.cshtml" />
+    <Content Include="Areas\Game\Views\Create\SelectedPet.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Game\select_character.js" />
     <Content Include="Scripts\Game\Gallery\googbase_min.js" />

@@ -27,8 +27,6 @@ namespace digitallearningback.Controllers
         [SkipMyGlobalActionFilter]
         public ActionResult Login(InfoUser user) {
 
-            logger.debug("Login", "Login");
-
             if (ModelState.IsValid){
 
                 InfoUser dbuser  = userService.findByUserLoginId(user.login_id);

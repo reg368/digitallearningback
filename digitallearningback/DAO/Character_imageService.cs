@@ -2,6 +2,7 @@
 using System.Linq;
 using digitallearningback.Models;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace digitallearningback.DAO
 {
@@ -48,6 +49,15 @@ namespace digitallearningback.DAO
                     c.cimage_gander == gender && 
                     c.cimage_profession == pid &&
                     c.image_level == 1);
+            return linq.ToList();
+        }
+
+        public List<Character_image> selectListByProName(string pname)
+        {
+            var linq = db.Character_image.SqlQuery("Select a.* from Character_image a join Cimage_profession b" +
+                " on a.cimage_profession = b.cprofession_id " +
+                "where b.cprofession_title = @pname ", 
+                new SqlParameter("@pname", pname));
             return linq.ToList();
         }
     }

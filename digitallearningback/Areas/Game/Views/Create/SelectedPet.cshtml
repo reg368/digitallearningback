@@ -1,12 +1,9 @@
 ﻿@using digitallearningback.Models
-@{ 
-    var prolist = ViewBag.prolist as List<Cimage_profession>;
-}
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>請選擇遊戲角色</title>
+    <title>請選擇遊戲寵物</title>
     @Styles.Render("~/bundles/Gallery/css")
     @Styles.Render("~/Content/Game/SelectCharacter.css")
     @Scripts.Render("~/bundles/jquery")
@@ -23,32 +20,17 @@
         <input type="hidden" name="char_index" id="char_index">
     </form>
 
-    @{
-        int proindex = 0;
-        int top = 0;
-     }
-    @foreach (var item in prolist)
-    {
-        top = 0;
-        top = (proindex * 35) + (proindex * 10) + 129;
-        <form method="post" action="/Game/Create/SelectCharacter">
-            <button type="submit"
-                    class="gwd-button-r673 gwd-button-4l0e gwd-button-1k6i "
-                    style='left: 4%; top: @top@Html.Raw("px");'>
-                @item.cprofession_title
-            </button>
-            <input type="hidden" name="pid" value="@item.cprofession_id" />
-            <input type="hidden" name="gender" value="@ViewBag.gender" />
-        </form>
-        
-        proindex ++;
-    }
+    <button class="gwd-button-r673 gwd-button-4l0e gwd-button-1k6i "
+            style='left: 4%; top:129px;'>
+        @Html.Raw("請選擇寵物")
+    </button>
+
 
     <p class="gwd-p-lswn" style="top:500px;"></p>
 
 
     <gwd-gallerynavigation id="gwd-gallerynavigation_1" class="gwd-gallerynavigation-15zl" for="gwd-swipegallery_1" data-gwd-name="gwd-swipegallery" highlight="rgba(38,158,209,1)"></gwd-gallerynavigation>
-    <p class="gwd-p-xfrq" style="">請選擇角色職業</p>
+    <p class="gwd-p-xfrq" style="">請選擇寵物</p>
     <!--  <p class="gwd-p-17d8" style="">description</p> -->
 
     <gwd-swipegallery id="gwd-swipegallery_1" scaling="contain" class="gwd-swipegallery-algo"

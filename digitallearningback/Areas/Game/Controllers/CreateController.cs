@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using digitallearningback.DAO;
 using digitallearningback.Models;
@@ -9,6 +11,7 @@ namespace digitallearningback.Areas.Game.Controllers
     public class CreateController : Controller
     {
         private InfoUser infoUser = SessionHelper.getLoginUser();
+        private InfoUserService uservice = new InfoUserService();
         private Character_imageService chservice = new Character_imageService();
         private Cimage_professionService cpservice = new Cimage_professionService();
         private Log4Net logger = new Log4Net("CreateController");
@@ -21,9 +24,6 @@ namespace digitallearningback.Areas.Game.Controllers
 
         public ActionResult SelectCharacter(string gender,int pid)
         {
-
-            logger.debug("SelectCharacter ", "SelectCharacter action");
-
             var prolist = cpservice.selectListForSelectCharacter();
             if (pid == -1)
             {
@@ -31,11 +31,11 @@ namespace digitallearningback.Areas.Game.Controllers
             }
             ViewBag.prolist = prolist;
 
-            var select_character = chservice.selectListByGenderAndPro(gender, pid);
+            var characterlist = chservice.selectListByGenderAndPro(gender, pid);
 
-            if (select_character != null && select_character.Count() > 0)
+            if (characterlist != null && characterlist.Count() > 0)
             {
-                var imagepaths = select_character.Aggregate
+                var imagepaths = characterlist.Aggregate
                         (
                             (i, j) => new Character_image
                             {
@@ -43,18 +43,55 @@ namespace digitallearningback.Areas.Game.Controllers
                             }
                         ).cimage_path;
 
-                logger.debug("images path : ", imagepaths);
 
                 ViewBag.imagepaths = imagepaths;
                 ViewBag.gender = gender;
 
-                TempData["select_character"] = select_character;
+                //遊戲角色 : action SelectedPet 會取出來用 
+                //SelectCharacter view 是選 List characterlist 的 index
+                TempData["characterlist"] = characterlist;
             }
-            else {
-                logger.debug("select_character path : ", "select_character is null");
-            }
+
             return View();
         }
 
+        public ActionResult SelectedPet(int char_index)
+        {
+            //SelectCharacter view 是選 List characterlist 的 index
+            var characterlist = TempData["characterlist"] as List<Character_image> ;
+
+            if (characterlist != null && characterlist.Count() > 0)
+            {
+                //取得使用者選的遊戲角色 塞回session
+                var selected = characterlist.ElementAt(char_index);
+                infoUser.character_image = selected.cimage_id;
+                Session["infoUser"] = infoUser;
+
+                var petlist = chservice.selectListByProName("寵物");
+
+                if (petlist != null && petlist.Count() > 0)
+                {
+                    var imagepaths = petlist.Aggregate
+                       (
+                           (i, j) => new Character_image
+                           {
+                               cimage_path = (i.cimage_path + "," + j.cimage_path)
+                           }
+                       ).cimage_path;
+
+                    ViewBag.imagepaths = imagepaths;
+                    TempData["petlist"] = petlist;
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            return View();
+        }
     }
 }
