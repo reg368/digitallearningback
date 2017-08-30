@@ -29,6 +29,7 @@ namespace digitallearningback.Models
         public string age { get; set; }
         public string grade { get; set; }
         public Nullable<int> character_image { get; set; }
+        public string character_name { get; set; }
         public Nullable<int> pet_image { get; set; }
         public string pet_name { get; set; }
         public string login_id { get; set; }

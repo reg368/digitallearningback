@@ -96,6 +96,8 @@ namespace digitallearningback.Areas.Game.Controllers
             return View();
         }
 
+
+
         //編輯遊戲角色和寵物名稱
         public ActionResult EditChNameAndPetName(int char_index)
         {
@@ -114,7 +116,20 @@ namespace digitallearningback.Areas.Game.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View();
+            return View(new EditCharNameViewMD());
         }
+
+        public ActionResult Create(EditCharNameViewMD model)
+        {
+            if (ModelState.IsValid)
+            {
+                infoUser.character_name = model.character_name;
+                infoUser.pet_name = model.pet_name;
+                uservice.update(infoUser);
+                return RedirectToAction("Login", "Login");
+            }
+            return View("EditChNameAndPetName", model);
+        }
+
     }
 }

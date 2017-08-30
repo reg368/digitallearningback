@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-
+﻿@model digitallearningback.Models.EditCharNameViewMD
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -13,8 +13,8 @@
 
     @using (Html.BeginForm("Create", "Create", FormMethod.Post))
     {
-        <input  class="gwd-input-gbnv" name="char_name" style="" placeholder="角色名稱">
-        <input  class="gwd-input-imcr gwd-input-1aam" name="pet_name" style="" placeholder="寵物名稱">
+        @Html.TextBoxFor(m => m.character_name, new { @class = "gwd-input-gbnv", @placeholder = "角色名稱" })
+        @Html.TextBoxFor(m => m.pet_name, new { @class = "gwd-input-imcr gwd-input-1aam", @placeholder = "寵物名稱" })
         <button type="submit" class="gwd-button-r673">完成</button>
     }
 

@@ -247,6 +247,7 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModel\EditCharNameViewMD.cs" />
     <Compile Include="Models\yzucs.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

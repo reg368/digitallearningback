@@ -88,6 +88,7 @@
           <Property Name="age" Type="nvarchar" MaxLength="100" />
           <Property Name="grade" Type="nvarchar" MaxLength="100" />
           <Property Name="character_image" Type="int" />
+          <Property Name="character_name" Type="nvarchar" MaxLength="100" />
           <Property Name="pet_image" Type="int" />
           <Property Name="pet_name" Type="nvarchar" MaxLength="100" />
           <Property Name="login_id" Type="nvarchar" MaxLength="100" />
@@ -770,6 +771,7 @@
           <NavigationProperty Name="Character_image2" Relationship="Self.infoUser_pet_image_fk" FromRole="InfoUser" ToRole="Character_image" />
           <NavigationProperty Name="Student_Class" Relationship="Self.SC_teacher_id_fk" FromRole="InfoUser" ToRole="Student_Class" />
           <NavigationProperty Name="Student_Class_Mapping" Relationship="Self.SCM_student_id_fk" FromRole="InfoUser" ToRole="Student_Class_Mapping" />
+          <Property Name="character_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -1428,6 +1430,7 @@
           <EntitySetMapping Name="InfoUser">
             <EntityTypeMapping TypeName="yzucsModel.InfoUser">
               <MappingFragment StoreEntitySet="InfoUser">
+                <ScalarProperty Name="character_name" ColumnName="character_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
