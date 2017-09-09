@@ -161,6 +161,7 @@
     <Compile Include="Areas\Admin\Controllers\Question_groupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_levelController.cs" />
     <Compile Include="Areas\Game\Controllers\CreateController.cs" />
+    <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="DAO\QuestionLevelMappingService.cs" />
@@ -277,9 +278,10 @@
     <Content Include="Content\Game\Gallery\gwdimage_style.css" />
     <Content Include="Content\Game\Gallery\gwdpage_style.css" />
     <Content Include="Content\Game\Gallery\gwdswipegallery_style.css" />
-    <Content Include="Content\Game\SelectCharacter.css" />
-    <Content Include="Content\Game\EditChNameAndPetName.css" />
-    <Content Include="Content\Game\SelectGender.css" />
+    <Content Include="Content\Game\Create\SelectCharacter.css" />
+    <Content Include="Content\Game\Create\EditChNameAndPetName.css" />
+    <Content Include="Content\Game\Create\SelectGender.css" />
+    <Content Include="Content\Game\Play\Index.css" />
     <Content Include="Content\login.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -349,6 +351,7 @@
     <Content Include="Areas\Game\Views\Create\SelectCharacter.cshtml" />
     <Content Include="Areas\Game\Views\Create\SelectedPet.cshtml" />
     <Content Include="Areas\Game\Views\Create\EditChNameAndPetName.cshtml" />
+    <Content Include="Areas\Game\Views\Play\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Game\select_character.js" />
     <Content Include="Scripts\Game\Gallery\googbase_min.js" />
@@ -397,6 +400,7 @@
     <Folder Include="App_Data\Logs\App_Exception\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Game\Models\" />
+    <Folder Include="Areas\Game\Views\Start\" />
     <Folder Include="Images\Answer_image\" />
     <Folder Include="Images\Character_image\" />
     <Folder Include="Images\Question_image\" />

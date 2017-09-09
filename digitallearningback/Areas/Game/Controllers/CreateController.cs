@@ -119,14 +119,21 @@ namespace digitallearningback.Areas.Game.Controllers
             return View(new EditCharNameViewMD());
         }
 
+        //建立遊戲角色以及寵物
         public ActionResult Create(EditCharNameViewMD model)
         {
             if (ModelState.IsValid)
             {
+                //更新infoUser 資訊
                 infoUser.character_name = model.character_name;
                 infoUser.pet_name = model.pet_name;
                 uservice.update(infoUser);
-                return RedirectToAction("Login", "Login");
+
+                //塞回 seession
+                Session["infoUser"] = infoUser;
+
+                //開始遊戲
+                return RedirectToAction("Index", "Play");
             }
             return View("EditChNameAndPetName", model);
         }

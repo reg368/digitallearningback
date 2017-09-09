@@ -1,0 +1,59 @@
+﻿@using digitallearningback.Models
+@{
+    var groups = ViewBag.groups as List<Question_group>;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>請選擇遊戲課程</title>
+    @Styles.Render("~/Content/Game/Play/Index.css")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
+
+    <div class="gwd-div-ilnq" style=""></div>
+
+
+    @{
+        int proindex = 0;
+        int top = 0;
+    }
+    @if (groups != null && groups.Count > 0)
+    {
+        foreach (var item in groups)
+        {
+            top = 0;
+            top = (proindex * 35) + (proindex * 10) + 129;
+            <form method="post" action="/Game/Create/SelectCharacter">
+                <button type="submit"
+                        class="gwd-button-r673 gwd-button-4l0e gwd-button-1k6i "
+                        style='left: 4%; top: @top@Html.Raw("px");'>
+                    @item.name
+                </button>
+                <input type="hidden" name="gid" value="@item.id" />
+            </form>
+
+            proindex++;
+        }
+    }
+    else
+    {
+        <font color="red" class="gwd-button-r673 gwd-button-4l0e gwd-button-1k6i" style="left:4%; top:30%;">
+            @Html.Raw("目前沒有課程 , 請聯絡您的課程導師")
+        </font>
+    }
+
+
+    <p class="gwd-p-lswn" style="top:500px;"></p>
+
+
+    <p class="gwd-p-xfrq" style="">請選擇課程</p>
+    <!--  <p class="gwd-p-17d8" style="">description</p> -->
+    <img class="character_image" style="" src="@ViewBag.charcterimage">
+    <img class="pet_image" style="" src="@ViewBag.petimage">
+
+
+</body>
+</html>

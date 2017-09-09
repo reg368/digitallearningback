@@ -38,6 +38,7 @@ namespace digitallearningback.DAO
             return db.SaveChanges();
         }
 
+
         public Question_group selectById(int? id)
         {
             return db.Question_group.Find(id);
@@ -47,6 +48,11 @@ namespace digitallearningback.DAO
         {
             var linq = db.Question_group.Where(q => q.userid == userid);
             return linq.ToList<Question_group>();
+        }
+
+        public List<Question_group> selectAll()
+        {
+            return db.Question_group.ToList();
         }
 
     }

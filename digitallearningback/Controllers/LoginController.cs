@@ -18,7 +18,6 @@ namespace digitallearningback.Controllers
         [SkipMyGlobalActionFilter]
         public ActionResult Login()
         {
-            logger.debug("test", "test .log");
             return View();
         }
 
@@ -30,6 +29,7 @@ namespace digitallearningback.Controllers
             if (ModelState.IsValid){
 
                 InfoUser dbuser  = userService.findByUserLoginId(user.login_id);
+
                 if (dbuser != null && user.password.Equals(dbuser.password)){
 
                     //如果登入帳號 是管理者或老師 則進入管理端
@@ -52,7 +52,7 @@ namespace digitallearningback.Controllers
                         }
                         //已選擇遊戲角色 (第n次登入) 開始遊戲
                         else {
-                            return RedirectToAction("Start", "Start", new { area = "Game" });
+                            return RedirectToAction("Index", "Play", new { area = "Game" });
                         }
                     }
                 }
