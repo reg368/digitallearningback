@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web.Mvc;
 using digitallearningback.DAO;
 using digitallearningback.Models;
@@ -36,15 +37,16 @@ namespace digitallearningback.Areas.Game.Controllers
 
             if (characterlist != null && characterlist.Count() > 0)
             {
-                var imagepaths = characterlist.Aggregate
-                        (
-                            (i, j) => new Character_image
-                            {
-                                cimage_path = (i.cimage_path + "," + j.cimage_path)
-                            }
-                        ).cimage_path;
+                
+                 var imagepaths = characterlist.Aggregate
+                         (
+                             (i, j) => new Character_image
+                             {
+                                 cimage_path = (i.cimage_path + "," + j.cimage_path)
+                             }
+                         ).cimage_path;
 
-
+              
                 ViewBag.imagepaths = imagepaths;
                 ViewBag.gender = gender;
 
@@ -65,7 +67,8 @@ namespace digitallearningback.Areas.Game.Controllers
             if (characterlist != null && characterlist.Count() > 0)
             {
                 //取得使用者選的遊戲角色 塞回session
-                var selected = characterlist.ElementAt(char_index);
+                var selected = characterlist.ElementAt(char_index-1);
+
                 infoUser.character_image = selected.cimage_id;
                 Session["infoUser"] = infoUser;
 
@@ -74,12 +77,12 @@ namespace digitallearningback.Areas.Game.Controllers
                 if (petlist != null && petlist.Count() > 0)
                 {
                     var imagepaths = petlist.Aggregate
-                       (
-                           (i, j) => new Character_image
-                           {
-                               cimage_path = (i.cimage_path + "," + j.cimage_path)
-                           }
-                       ).cimage_path;
+                          (
+                              (i, j) => new Character_image
+                              {
+                                  cimage_path = (i.cimage_path + "," + j.cimage_path)
+                              }
+                          ).cimage_path;
 
                     ViewBag.imagepaths = imagepaths;
                     TempData["petlist"] = petlist;
@@ -107,7 +110,7 @@ namespace digitallearningback.Areas.Game.Controllers
             if (petlist != null && petlist.Count() > 0)
             {
                 //取得使用者選的遊戲角色 塞回session
-                var selected = petlist.ElementAt(char_index);
+                var selected = petlist.ElementAt(char_index-1);
                 infoUser.pet_image = selected.cimage_id;
                 Session["infoUser"] = infoUser;
             }
