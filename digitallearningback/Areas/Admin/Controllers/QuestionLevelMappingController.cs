@@ -5,7 +5,6 @@ using System.Net;
 using System.Web.Mvc;
 using digitallearningback.DAO;
 using digitallearningback.Models;
-using digitallearningback.Util;
 
 namespace digitallearningback.Areas.Admin.Controllers
 {
@@ -86,7 +85,8 @@ namespace digitallearningback.Areas.Admin.Controllers
                 return RedirectToAction("DeleteQuestion", new { gid = gid, lid = lid });
             }
 
-            string ids = StringUtil.getContactString(mappingids, ",");
+            string ids = mappingids.ContactString(",");
+
             service.deleted(ids);
 
             return RedirectToAction("Index", new { id = lid });

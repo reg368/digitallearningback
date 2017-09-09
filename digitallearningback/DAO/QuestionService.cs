@@ -47,6 +47,12 @@ namespace digitallearningback.DAO
             return linq.ToList<Question>();
         }
 
+        public List<Question> selectByGroupidAndLevelid(int? groupid , int levelid)
+        {
+            var linq = db.Question.Where(q => q.groupid == groupid && q.level_id == levelid);
+            return linq.ToList<Question>();
+        }
+
         public List<Question> selectQuesitonLevelAddable(int gid , int lid)
         {
             var list = db.Question.SqlQuery(

@@ -26,7 +26,7 @@
         {
             top = 0;
             top = (proindex * 35) + (proindex * 10) + 129;
-            <form method="post" action="/Game/Create/SelectCharacter">
+            <form method="post" action="/Game/Play/GroupSelect">
                 <button type="submit"
                         class="gwd-button-r673 gwd-button-4l0e gwd-button-1k6i "
                         style='left: 4%; top: @top@Html.Raw("px");'>
@@ -46,7 +46,9 @@
     }
 
 
-    <p class="gwd-p-lswn" style="top:500px;"></p>
+    <p class="gwd-p-lswn" style="top:500px;">
+        @ViewBag.error
+    </p>
 
 
     <p class="gwd-p-xfrq" style="">請選擇課程</p>

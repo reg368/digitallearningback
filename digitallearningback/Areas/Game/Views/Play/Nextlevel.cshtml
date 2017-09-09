@@ -1,0 +1,26 @@
+﻿@model digitallearningback.Models.Question_level
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>請選擇遊戲課程</title>
+    @Styles.Render("~/Content/Game/Play/Nextlevel.css")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
+
+    <div class="gwd-div-ilnq" style=""></div>
+
+    <form action="/Game/Play/GameOn" method="post" class="gwd-form-14az" >
+        <font class="gwd-input-gbnv">@Html.Raw("第"+Model.levelorder+"關:"+Model.level)</font>
+        <input type="hidden" name="lid" value="@Model.id" />
+        <button type="submit" class="gwd-button-r673">開始遊戲</button>
+    </form>
+
+    <p class="gwd-p-lswn" style="top:500px;">
+        @ViewBag.error
+    </p>
+
+</body>
+</html>
