@@ -161,6 +161,7 @@
     <Compile Include="Areas\Admin\Controllers\Question_groupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_levelController.cs" />
     <Compile Include="Areas\Game\Controllers\CreateController.cs" />
+    <Compile Include="Areas\Game\Controllers\ModelViewController.cs" />
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -281,6 +282,7 @@
     <Content Include="Content\Game\Create\SelectCharacter.css" />
     <Content Include="Content\Game\Create\EditChNameAndPetName.css" />
     <Content Include="Content\Game\Create\SelectGender.css" />
+    <Content Include="Content\Game\Play\GameOn.css" />
     <Content Include="Content\Game\Play\Index.css" />
     <Content Include="Content\Game\Play\Nextlevel.css" />
     <Content Include="Content\login.css" />
@@ -289,6 +291,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\View_image\background_login.png" />
+    <Content Include="Images\View_image\background_question.png" />
     <Content Include="Models\yzucs.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>yzucs.edmx</DependentUpon>
@@ -354,6 +357,7 @@
     <Content Include="Areas\Game\Views\Create\EditChNameAndPetName.cshtml" />
     <Content Include="Areas\Game\Views\Play\Index.cshtml" />
     <Content Include="Areas\Game\Views\Play\Nextlevel.cshtml" />
+    <Content Include="Areas\Game\Views\Play\GameOn.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Game\select_character.js" />
     <Content Include="Scripts\Game\Gallery\googbase_min.js" />
@@ -402,6 +406,7 @@
     <Folder Include="App_Data\Logs\App_Exception\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Game\Models\" />
+    <Folder Include="Areas\Game\Views\ModelView\" />
     <Folder Include="Images\Answer_image\" />
     <Folder Include="Images\Character_image\" />
     <Folder Include="Images\Question_image\" />

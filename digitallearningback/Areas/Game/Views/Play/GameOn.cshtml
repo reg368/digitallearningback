@@ -1,0 +1,71 @@
+﻿@model digitallearningback.Models.Question
+@using digitallearningback.Models
+@using digitallearningback.Util
+@{ InfoUser user = SessionHelper.getLoginUser(); }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>開始作答</title>
+    @Styles.Render("~/Content/Game/Play/GameOn.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+
+    <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_question.png")" style="">
+    <form class="gwd-form-14az"></form>
+    <div class="gwd-div-8yx7"></div> <!--題目背景 --> 
+
+    <!-- 答題form表單 答完後接下一題 -->
+    <form id="question_form" mehtod="post" action="/Game/Play/NextQuestion">
+        <button type="button" id="submit_btn" class="gwd-button-eu7f" style="">送出</button>
+    </form>
+
+    <!-- 頁面傳送的參數 -->
+    <input type="hidden" name="answer_id" id="aid">
+    <input type="hidden" name="qid" id="qid" value="@Model.id">
+
+    <!-- 資訊顯示 -->
+    <div class="gwd-p-lgvv">
+        <!--題目 -->
+        @Html.Raw(Model.text)
+    </div>
+
+    <!-- 跳出作答視窗開始作答 -->
+    <div class="gwd-p-mjfw gwd-p-1m21 gwd-gen-1c1ngwdanimation"></div>
+    <input type="button"
+           value="開始作答"
+           class="gwd-button-fg7z gwd-button-v14w"
+           id="question_detail"
+           data-toggle="modal"
+           href="/Game/ModelView/QuestionDetail?qid=@Model.id"
+           data-target="#question_detail">
+    <div class="gwd-p-esc7" id="question_info">
+        尚未選擇任何選項
+    </div>
+
+    <div class="gwd-div-1xr0" style="">
+        <!--
+        <input type="button" value="答題狀況"
+               class="gwd-div-1xr0-btn"
+               id="report_button"
+               data-toggle="modal"
+               href="<%=request.getContextPath()%>/front/question/question_modal_report.jsp"
+               data-target="#report">
+        -->
+        <br>
+        <br>
+        @Html.Raw("玩家 : "+ @user.character_name)
+        <br>
+        @Html.Raw("寵物 : " + @user.pet_name)
+    </div> <!-- 角色資訊欄位 -->
+
+    <img id="cimage" class="gwd-img-char" src="@user.Character_image1.cimage_path"> <!-- 角色圖 -->
+    <img class="gwd-img-pet" src="@user.Character_image2.cimage_path"> <!-- 寵物圖 -->
+    <img class="gwd-img-rival" src="">  <!-- 對手圖 -->
+
+    <div class="gwd-div-1mcl" id="petDialog"></div><!-- 寵物對話框 -->
+
+</body>
+</html>

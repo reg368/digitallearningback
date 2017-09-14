@@ -17,6 +17,9 @@ namespace digitallearningback.Areas.Game.Controllers
         private Question_levelService levelservice = new Question_levelService(); //找課程關卡
         private QuestionService qservice = new QuestionService(); // 找 課程/關卡 題目
 
+        private readonly String grouplevelkey = "grouplevels";  //取得 存在 HttpSession 內  關卡集合的 key
+        private readonly String questionskey = "questions";     //取得 存在 HttpSession 內  題目集合的 key
+
         //課程選擇頁
         public ActionResult Index()
         {
@@ -50,7 +53,7 @@ namespace digitallearningback.Areas.Game.Controllers
             List<Question_level> grouplevels = levelservice.selectListByGroupid(gid);
             if(grouplevels != null && grouplevels.Count > 0)
             {
-                Session["grouplevels"] = grouplevels;
+                Session[grouplevelkey] = grouplevels;
 
                 return RedirectToAction("NextLevel", "Play");
             }
@@ -65,7 +68,7 @@ namespace digitallearningback.Areas.Game.Controllers
         public ActionResult Nextlevel()
         {
 
-           List<Question_level> grouplevels = Session["grouplevels"] as List<Question_level>;
+           List<Question_level> grouplevels = Session[grouplevelkey] as List<Question_level>;
 
             //結束了 所有關卡做完
             if (grouplevels == null || grouplevels.Count == 0)
@@ -76,14 +79,14 @@ namespace digitallearningback.Areas.Game.Controllers
             {
                 Question_level level = new Question_level();
                 level = grouplevels.PollFirst<Question_level>();
-                Session["grouplevels"] = grouplevels;
+                Session[grouplevelkey] = grouplevels;
                 return View(level);
             }
 
         }
 
         //開始找所有關卡內的題目
-        public ActionResult GameOn(int lid)
+        public ActionResult LevelStart(int lid)
         {
 
             Question_level level = levelservice.selectById(lid);
@@ -95,10 +98,31 @@ namespace digitallearningback.Areas.Game.Controllers
                 questions.Shuffle();
             }
 
+            Session[questionskey] = questions;
 
 
+            return RedirectToAction("GameOn", "Play");
+        }
 
-            return View();
+
+        //開始遊戲
+        public ActionResult GameOn()
+        {
+
+            List<Question> questions = Session[questionskey] as List<Question>;
+
+            //這一關題目都做完了
+            if(questions == null || questions.Count == 0)
+            {
+                return RedirectToAction("Nextlevel", "Play");
+            }
+            //還有題目
+            else
+            {
+                Question question = questions.PollFirst();
+                return View(question);
+
+            }
         }
 
     }

@@ -37,7 +37,10 @@ namespace digitallearningback.DAO
 
         public InfoUser findByUserLoginId(string loginid)
         {
-            var    lineQuery = db.InfoUser.Where(u => u.login_id == loginid);
+            var    lineQuery = db.InfoUser
+                    .Include(u => u.Character_image1)
+                    .Include(u => u.Character_image2)
+                    .Where(u => u.login_id == loginid);
             return lineQuery.FirstOrDefault<InfoUser>();
         }
 
