@@ -292,6 +292,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\View_image\background_login.png" />
     <Content Include="Images\View_image\background_question.png" />
+    <Content Include="Images\View_image\enemy\enemy1.png" />
+    <Content Include="Images\View_image\enemy\enemy2.png" />
+    <Content Include="Images\View_image\enemy\enemy3.png" />
     <Content Include="Models\yzucs.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>yzucs.edmx</DependentUpon>
