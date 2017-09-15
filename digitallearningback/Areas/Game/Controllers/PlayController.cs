@@ -16,6 +16,7 @@ namespace digitallearningback.Areas.Game.Controllers
         private Question_groupService groupservice = new Question_groupService(); //找有哪些課程
         private Question_levelService levelservice = new Question_levelService(); //找課程關卡
         private QuestionService qservice = new QuestionService(); // 找 課程/關卡 題目
+        private Log4Net logger = new Log4Net("PlayController");
 
         private readonly String grouplevelkey = "grouplevels";  //取得 存在 HttpSession 內  關卡集合的 key
         private readonly String questionskey = "questions";     //取得 存在 HttpSession 內  題目集合的 key
@@ -91,12 +92,19 @@ namespace digitallearningback.Areas.Game.Controllers
 
             Question_level level = levelservice.selectById(lid);
 
+
+
             //如果要隨機出題的話 就打亂順序
             List<Question> questions = qservice.selectByGroupidAndLevelid(level.group_id, level.id);
-            if(level.israndom == 1)
+
+            logger.debug("after search quesitons count ", "after search  questions.Count : " + questions.Count);
+
+            if (level.israndom == 1)
             {
                 questions.Shuffle();
             }
+
+            logger.debug("quesitons count ", " questions.Count : " + questions.Count);
 
             Session[questionskey] = questions;
 
@@ -111,8 +119,10 @@ namespace digitallearningback.Areas.Game.Controllers
 
             List<Question> questions = Session[questionskey] as List<Question>;
 
+            logger.debug("Session quesitons count ", "Session questions.Count : " + questions.Count);
+
             //這一關題目都做完了
-            if(questions == null || questions.Count == 0)
+            if (questions == null || questions.Count == 0)
             {
                 return RedirectToAction("Nextlevel", "Play");
             }

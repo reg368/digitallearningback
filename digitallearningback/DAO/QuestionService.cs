@@ -49,8 +49,13 @@ namespace digitallearningback.DAO
 
         public List<Question> selectByGroupidAndLevelid(int? groupid , int levelid)
         {
-            var linq = db.Question
-                       .Where(q => q.groupid == groupid && q.level_id == levelid);
+            var linq = db.Question.SqlQuery(
+               "select * from Question where groupid = @gid " +
+               "and id in(" +
+               "select q.id from Question q join Question_Level_Mapping m " +
+               "on q.id = m.q_id where m.l_id = @lid )",
+                new SqlParameter("@gid", groupid),
+                new SqlParameter("@lid", levelid));
             return linq.ToList<Question>();
         }
 
