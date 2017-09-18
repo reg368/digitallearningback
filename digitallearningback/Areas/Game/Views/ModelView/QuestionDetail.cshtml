@@ -1,0 +1,40 @@
+﻿@model digitallearningback.Models.Question
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+            <font size="5" color="blue">
+                <b>@Model.text</b>
+            </font>
+            @if (Model.pic_path != null)
+            {
+                <img src="@Model.pic_path" width="300">
+            }
+        </h4>
+    </div>
+    <div class="modal-body">
+        <table border="0" class="table table-hover">
+            @{int index = 0;}
+            @foreach (var item in Model.Answer)
+            {
+                        index++;
+                <tr class="warning" onclick="onSelectionClick('@Html.Raw(item.id)')">
+                    <td>@index</td>
+                    @if (item.text != null)
+                    {
+                        <td>@Html.Raw(item.text)</td>
+                    }
+                    @if (item.pic_path != null)
+                    {
+                        <td><img src="@item.pic_path"></td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

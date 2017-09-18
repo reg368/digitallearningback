@@ -42,6 +42,11 @@ namespace digitallearningback.DAO
             return db.Question.Find(id);
         }
 
+        public Question selectByIdIncludeAnswer(int id)
+        {
+            return db.Question.Include(q => q.Answer).SingleOrDefault(q => q.id == id);
+        }
+
         public List<Question> selectByGroupid(int groupid) {
             var linq = db.Question.Where(q => q.groupid == groupid);
             return linq.ToList<Question>();

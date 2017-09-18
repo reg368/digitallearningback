@@ -9,9 +9,13 @@
     <title>開始作答</title>
     @Styles.Render("~/Content/Game/Play/GameOn.css")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/Game/Play/bootstrap.css")
+    @Scripts.Render("~/Scripts/Game/bootstrap.min.js")
 </head>
 <body>
+    
+    <!--  開始作答ModelView框架 -->
+    @Html.Partial("_Question_detail")
 
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_question.png")" style="">
     <form class="gwd-form-14az"></form>
@@ -63,7 +67,7 @@
 
     <img id="cimage" class="gwd-img-char" src="@user.Character_image1.cimage_path"> <!-- 角色圖 -->
     <img class="gwd-img-pet" src="@user.Character_image2.cimage_path"> <!-- 寵物圖 -->
-    <img class="gwd-img-rival" src="">  <!-- 對手圖 -->
+    <img class="gwd-img-rival" src="@Url.Content("~/Images/View_image/enemy/enemy1.png")">  <!-- 對手圖 -->
 
     <div class="gwd-div-1mcl" id="petDialog"></div><!-- 寵物對話框 -->
 

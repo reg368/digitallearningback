@@ -92,19 +92,14 @@ namespace digitallearningback.Areas.Game.Controllers
 
             Question_level level = levelservice.selectById(lid);
 
-
-
             //如果要隨機出題的話 就打亂順序
             List<Question> questions = qservice.selectByGroupidAndLevelid(level.group_id, level.id);
 
-            logger.debug("after search quesitons count ", "after search  questions.Count : " + questions.Count);
 
             if (level.israndom == 1)
             {
                 questions.Shuffle();
             }
-
-            logger.debug("quesitons count ", " questions.Count : " + questions.Count);
 
             Session[questionskey] = questions;
 
@@ -118,8 +113,6 @@ namespace digitallearningback.Areas.Game.Controllers
         {
 
             List<Question> questions = Session[questionskey] as List<Question>;
-
-            logger.debug("Session quesitons count ", "Session questions.Count : " + questions.Count);
 
             //這一關題目都做完了
             if (questions == null || questions.Count == 0)
