@@ -11,6 +11,27 @@
     @Scripts.Render("~/bundles/jquery")
     @Styles.Render("~/Content/Game/Play/bootstrap.css")
     @Scripts.Render("~/Scripts/Game/bootstrap.min.js")
+<script>
+    $(document).ready(function () {
+
+        $("#petDialog").hide();
+        $("#submit_btn").attr("disabled", false);
+
+        $("#submit_btn").click(function () {
+            $("#submit_btn").attr("disabled", true);
+
+            var aid = $('#aid').val();
+            if (aid == '' || typeof (aid) === "undefined") {
+                alert('請點選開始作答選擇答案');
+                return;
+            } else {
+
+
+            }
+
+        }
+    });
+</script>
 </head>
 <body>
     
@@ -27,7 +48,7 @@
     </form>
 
     <!-- 頁面傳送的參數 -->
-    <input type="hidden" name="answer_id" id="aid">
+    <input type="hidden" name="aid" id="aid">
     <input type="hidden" name="qid" id="qid" value="@Model.id">
 
     <!-- 資訊顯示 -->

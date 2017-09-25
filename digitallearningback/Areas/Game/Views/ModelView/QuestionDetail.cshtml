@@ -2,6 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+    function onSelectionClick(element,id) {
+
+        var content = '';
+
+        $(element).find('.content').each(function () {
+            content = content + $(this).html() + '<br>';
+        });
+
+        $("#question_info").html(decodeURI(content));
+        $('#aid').val(id);
+        $('#question_detail').modal('hide');
+    }
+</script>
 </head>
 <body>
     <div class="modal-header">
@@ -22,15 +36,15 @@
             @foreach (var item in Model.Answer)
             {
                         index++;
-                <tr class="warning" onclick="onSelectionClick('@Html.Raw(item.id)')">
+                <tr class="warning" onclick="onSelectionClick(this,'@Html.Raw(item.id)')">
                     <td>@index</td>
                     @if (item.text != null)
                     {
-                        <td>@Html.Raw(item.text)</td>
+                        <td class="content">@Html.Raw(item.text)</td>
                     }
                     @if (item.pic_path != null)
                     {
-                        <td><img src="@item.pic_path"></td>
+                        <td class="content"><img src="@item.pic_path"></td>
                     }
                 </tr>
             }
