@@ -15,5 +15,7 @@ namespace digitallearningback.Areas.Game.Controllers
             Question question = qservice.selectByIdIncludeAnswer(qid);
             return View(question);
         }
+
+
     }
 }

@@ -16,6 +16,7 @@ namespace digitallearningback.Areas.Game.Controllers
         private Question_groupService groupservice = new Question_groupService(); //找有哪些課程
         private Question_levelService levelservice = new Question_levelService(); //找課程關卡
         private QuestionService qservice = new QuestionService(); // 找 課程/關卡 題目
+        private AnswerService answerervice = new AnswerService(); // 找 課程/關卡 題目
         private Log4Net logger = new Log4Net("PlayController");
 
         private readonly String grouplevelkey = "grouplevels";  //取得 存在 HttpSession 內  關卡集合的 key
@@ -42,7 +43,7 @@ namespace digitallearningback.Areas.Game.Controllers
             {
                 return RedirectToAction("Login", "Login", new { area = "" });
             }
-          
+
             return View();
         }
 
@@ -52,7 +53,7 @@ namespace digitallearningback.Areas.Game.Controllers
         {
 
             List<Question_level> grouplevels = levelservice.selectListByGroupid(gid);
-            if(grouplevels != null && grouplevels.Count > 0)
+            if (grouplevels != null && grouplevels.Count > 0)
             {
                 Session[grouplevelkey] = grouplevels;
 
@@ -69,7 +70,7 @@ namespace digitallearningback.Areas.Game.Controllers
         public ActionResult Nextlevel()
         {
 
-           List<Question_level> grouplevels = Session[grouplevelkey] as List<Question_level>;
+            List<Question_level> grouplevels = Session[grouplevelkey] as List<Question_level>;
 
             //結束了 所有關卡做完
             if (grouplevels == null || grouplevels.Count == 0)
@@ -128,5 +129,21 @@ namespace digitallearningback.Areas.Game.Controllers
             }
         }
 
+        public ActionResult CheckAnswer(string said)
+        {
+
+            int aid = Convert.ToInt32(said);
+
+            Answer answer = answerervice.selectById(aid);
+
+            var result = new
+            {
+                id = answer.id,
+                qid = answer.qid,
+                is_correct = answer.is_correct
+            };
+
+            return Json(result);
+        }
     }
 }
