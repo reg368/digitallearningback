@@ -2,24 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-    function onSelectionClick(element,id) {
-
-        var content = '';
-
-        $(element).find('.content').each(function () {
-            content = content + $(this).html() + '<br>';
-        });
-
-        $("#question_info").html(decodeURI(content));
-        $('#aid').val(id);
-        $('#question_detail').modal('hide');
-    }
-</script>
 </head>
 <body>
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <div class="modal-header">     
         <h4 class="modal-title" id="myModalLabel">
             <font size="5" color="blue">
                 <b>@Model.text</b>
@@ -35,24 +20,28 @@
             @{int index = 0;}
             @foreach (var item in Model.Answer)
             {
-                index++;
-                <tr class="warning" onclick="onSelectionClick(this,'@Html.Raw(item.id)')">
+                        index++;
+                <tr class="warning" >
                     <td>@index</td>
                     <td class="content">
                         @if (item.text != null)
                         {
-                            @Html.Raw(item.text)
+                                @Html.Raw(item.text)
                         }
                         @if (item.pic_path != null)
                         {
-
-                            <img src="@item.pic_path" width="150" height="100">
+                                <img src="@item.pic_path" width="150" height="100">
                         }
-                        <font color="red">@(item.is_correct == 1 ? "我是答案" : "")</font>
+                        <font color="blue">@(item.id == ViewBag.selectaid ? "您選擇的答案" : "")</font>
+                        <font color="red">@(item.is_correct == 1 ? "正確答案" : "")</font>
                     </td>
                 </tr>
             }
         </table>
+        <form mehtod="post" action="">
+            <input type="hidden" name="qindex" value="${qindex}">
+            <button type="submit" style="">繼續</button>
+        </form>
     </div>
 </body>
 </html>

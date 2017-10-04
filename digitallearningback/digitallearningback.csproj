@@ -364,6 +364,8 @@
     <Content Include="Areas\Game\Views\Play\GameOn.cshtml" />
     <Content Include="Areas\Game\Views\Shared\_Question_detail.cshtml" />
     <Content Include="Areas\Game\Views\ModelView\QuestionDetail.cshtml" />
+    <Content Include="Areas\Game\Views\ModelView\QuestionDetailInfo.cshtml" />
+    <Content Include="Areas\Game\Views\Shared\_Question_detail_info.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />
     <Content Include="Scripts\Game\select_character.js" />

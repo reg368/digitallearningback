@@ -29,8 +29,6 @@
                 return;
             } else {
 
-                console.log('aid : ' + aid);
-
                 $.ajax({
                     type: "POST",
                     url: "/Game/Play/CheckAnswer",
@@ -39,11 +37,7 @@
                     dataType: "json",
                     success: function (data) {
 
-                        console.log('data.aid : ' + data.id);
-                        console.log('data.qid : ' + data.qid);
-                        console.log('data.is_correct : ' + data.is_correct);
-
-                        /*
+                        
                         if (data.is_correct == '1') {
                             $("#petDialog").html("<p>好棒!答對了</p>");
                             $("#petDialog").show();
@@ -54,27 +48,27 @@
                             )
 
                         } else {
-                            $("#submit_btn").attr("disabled", false);
+   
                             $("#petDialog").html("<p>糟糕!答錯了</p>");
                             $("#petDialog").show();
 
                             setTimeout(
                                 function () {
-                                    $("#question_detail_body").load($("#url").val() + "/front/question/question_modal_answerFail.jsp?a_id=" + a_id, function (response, status, xhr) {
+                                    console.log('start setTimeout');
+                                    $("#question_detail_body").load("/Game/ModelView/QuestionDetailInfo?qid=" + data.qid + "&selectaid=" + data.id, function (response, status, xhr) {
                                         if (status == "error") {
-                                            //error handle
-                                            //var msg = "Sorry but there was an error: ";
-                                            //$( "#error" ).html( msg + xhr.status + " " + xhr.statusText );
+                                            console.log(' load model question_detail_body error : '+msg + xhr.status + " " + xhr.statusText);
                                         } else {
+                                            console.log(' load model question_detail_body success ');
                                             //background 點擊關閉彈跳視窗取消
-                                            $('#question_incorrect_detail').modal({ backdrop: 'static', keyboard: false })
-                                            $("#question_incorrect_detail").modal('show');
+                                            $('#question_detail_info').modal({ backdrop: 'static', keyboard: false })
+                                            $("#question_detail_info").modal('show');
                                         }
                                     });
                                 }, 500
                             )
                         }
-                        */
+                        
                     }
                 });
 
@@ -87,7 +81,13 @@
 <body>
     
     <!--  開始作答ModelView框架 -->
-    @Html.Partial("_Question_detail")
+    @{
+        Html.RenderPartial("_Question_detail");
+    }
+    <!--  答題錯誤後 顯示正確答案框架 -->
+    @{
+        Html.RenderPartial("_Question_detail_info");
+    }
 
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_question.png")" style="">
     <form class="gwd-form-14az"></form>
