@@ -43,5 +43,6 @@ namespace digitallearningback.Models
         public virtual DbSet<Student_Class> Student_Class { get; set; }
         public virtual DbSet<Student_Class_Mapping> Student_Class_Mapping { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<vw_QuestionConceptDetail> vw_QuestionConceptDetail { get; set; }
     }
 }

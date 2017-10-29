@@ -49,6 +49,7 @@
         <AssociationConnector Association="yzucsModel.QLM_g_id_fk" ManuallyRouted="false" />
         <AssociationConnector Association="yzucsModel.QLM_l_id_fk" ManuallyRouted="false" />
         <AssociationConnector Association="yzucsModel.SCM_class_id_fk" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="yzucsModel.vw_QuestionConceptDetail" Width="1.5" PointX="0.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

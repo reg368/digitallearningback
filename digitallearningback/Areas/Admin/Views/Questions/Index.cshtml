@@ -19,8 +19,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Question.FirstOrDefault().pic_path)
         </th>
-        <th></th>
-        <th></th>
+        <th>@Html.Raw("題目選項設定")</th>
+        <th>@Html.Raw("題目概念設定")</th>
+        <th>@Html.Raw("動作")</th>
         <th>@Html.ActionLink("回課程管理", "Index", "Question_group")</th>
     </tr>
 
@@ -45,13 +46,14 @@
                 @Html.Raw("無")
             }
         </td>
+        <td>@Html.ActionLink("選項設定", "Index", "Answers", new { qid = item.id }, null)</td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("概念設定", "Index", "Question_Concept_Mapping", new { qid = item.id }, null)
         </td>
         <td>
-            @Html.ActionLink("題目選項設定", "Index", "Answers", new { qid = item.id }, null)
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
         </td>
         <td></td>
     </tr>

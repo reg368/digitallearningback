@@ -209,6 +209,17 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'yzucs.dbo.vw_QuestionConceptDetail' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="vw_QuestionConceptDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="text" Type="nvarchar" MaxLength="100" />
+          <Property Name="conceptgroup" Type="nvarchar(max)" />
+          <Property Name="concept" Type="nvarchar(max)" />
+        </EntityType>
         <Association Name="AGL_level_id_fk">
           <End Role="Question_level" Type="Self.Question_level" Multiplicity="0..1" />
           <End Role="Answer_Group_Log" Type="Self.Answer_Group_Log" Multiplicity="*" />
@@ -540,6 +551,14 @@
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Class_Mapping" EntityType="Self.Student_Class_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_QuestionConceptDetail" EntityType="Self.vw_QuestionConceptDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_QuestionConceptDetail].[id] AS [id], 
+    [vw_QuestionConceptDetail].[text] AS [text], 
+    [vw_QuestionConceptDetail].[conceptgroup] AS [conceptgroup], 
+    [vw_QuestionConceptDetail].[concept] AS [concept]
+    FROM [dbo].[vw_QuestionConceptDetail] AS [vw_QuestionConceptDetail]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="AGL_level_id_fk" Association="Self.AGL_level_id_fk">
             <End Role="Question_level" EntitySet="Question_level" />
             <End Role="Answer_Group_Log" EntitySet="Answer_Group_Log" />
@@ -1340,7 +1359,17 @@
             <End Role="Student_Class" EntitySet="Student_Class" />
             <End Role="Student_Class_Mapping" EntitySet="Student_Class_Mapping" />
           </AssociationSet>
+          <EntitySet Name="vw_QuestionConceptDetail" EntityType="yzucsModel.vw_QuestionConceptDetail" />
         </EntityContainer>
+        <EntityType Name="vw_QuestionConceptDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="conceptgroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="concept" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1566,6 +1595,16 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_QuestionConceptDetail">
+            <EntityTypeMapping TypeName="yzucsModel.vw_QuestionConceptDetail">
+              <MappingFragment StoreEntitySet="vw_QuestionConceptDetail">
+                <ScalarProperty Name="concept" ColumnName="concept" />
+                <ScalarProperty Name="conceptgroup" ColumnName="conceptgroup" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,0 +1,58 @@
+﻿@model digitallearningback.Models.Question
+
+<h2>題目選項設定</h2>
+@{
+    if (Model != null && Model.text != null)
+    {
+        <p>@Model.text</p>
+    }
+    if (Model != null && Model.pic_path != null)
+    {
+        <img src="@Model.pic_path"  height="200" width="400">
+    }
+}
+<p>
+    @Html.ActionLink("Create New", "Create",new { qid = Model.id , qtext = Model.minimalText() })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().text)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().is_correct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().pic_path)
+        </th>
+        <th></th>
+        <th>@Html.ActionLink("回題目管理", "Index", "Questions",new { id = Model.Question_group.id} , null)</th>
+    </tr>
+
+@foreach (var item in Model.Answer) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.text)
+        </td>
+        <td>
+            @Html.Raw(item.is_correct == 1 ? "是" : "否")
+        </td>
+        <td>
+            @if (item.pic_path != null)
+            {
+                <a href="@Html.DisplayFor(modelItem => item.pic_path)">查看</a>
+            }
+            else
+            {
+                @Html.Raw("無")
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+        <td></td>
+    </tr>
+}
+
+</table>

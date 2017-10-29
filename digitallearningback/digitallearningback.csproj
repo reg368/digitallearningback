@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -158,6 +159,7 @@
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_ConceptController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_Concept_GroupController.cs" />
+    <Compile Include="Areas\Admin\Controllers\Question_Concept_MappingController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_groupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_levelController.cs" />
     <Compile Include="Areas\Game\Controllers\CreateController.cs" />
@@ -251,6 +253,9 @@
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\EditCharNameViewMD.cs" />
+    <Compile Include="Models\vw_QuestionConceptDetail.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\yzucs.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -366,6 +371,7 @@
     <Content Include="Areas\Game\Views\ModelView\QuestionDetail.cshtml" />
     <Content Include="Areas\Game\Views\ModelView\QuestionDetailInfo.cshtml" />
     <Content Include="Areas\Game\Views\Shared\_Question_detail_info.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept_Mapping\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />
     <Content Include="Scripts\Game\select_character.js" />
