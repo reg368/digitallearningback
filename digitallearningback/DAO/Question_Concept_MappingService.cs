@@ -22,5 +22,17 @@ namespace digitallearningback.DAO
             db.Question_Concept_Mapping.AddRange(models);
             return db.SaveChanges();
         }
+
+        public int updatePercentageById(int id , int percentage)
+        {
+            var model = db.Question_Concept_Mapping.Where(m => m.id == id).
+                        FirstOrDefault<Question_Concept_Mapping>();
+            if (model != null) {
+                model.percentage = percentage;
+                db.Entry(model).State = EntityState.Modified;
+            }
+            return db.SaveChanges();
+        }
+
     }
 }

@@ -12,51 +12,68 @@
     }
     if (Model != null && Model.pic_path != null)
     {
-        <img src="@Model.pic_path"  height="200" width="400">
+        <img src="@Model.pic_path" height="200" width="400">
     }
 }
 <p>
-    @Html.ActionLink("加入概念", "AddConcept",new { qid = Model.id })
+    @Html.ActionLink("加入概念", "AddConcept", new { qid = Model.id })
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().q_percentage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().c_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().c_percentage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().g_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().g_percentage)
-        </th>
-        <th></th>
-        <th>@Html.ActionLink("回題目管理", "Index", "Questions",new { id = Model.Question_group.id} , null)</th>
-    </tr>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm("DoEditConceptPercentage", "Question_Concept_Mapping", FormMethod.Post))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().q_percentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().c_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().c_percentage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().g_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().g_percentage)
+            </th>
+            <th>刪除概念</th>
+            <th>@Html.ActionLink("回題目管理", "Index", "Questions", new { id = Model.Question_group.id }, null)</th>
+        </tr>
 
-@foreach (var item in conceptlist) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.q_percentage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.c_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.c_percentage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.g_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.g_percentage)
-        </td>
-    </tr>
+        @foreach (var item in conceptlist)
+        {
+            <tr>
+                <td>
+                    <input type="number" name="percentages" value="@item.q_percentage" />
+                    <input type="hidden" name="ids" value="@item.id" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.c_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.c_percentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.g_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.g_percentage)
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+
+    </table>
+    if(conceptlist != null && conceptlist.Count > 0)
+    {
+        <div>
+            <input type="hidden" name="qid" value="@Model.id" />
+            <input type="submit" value="確定" class="btn btn-default" />
+        </div>
+    }
+
 }
 
-</table>

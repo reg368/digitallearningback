@@ -1,5 +1,6 @@
 ﻿using digitallearningback.DAO;
 using digitallearningback.Models;
+using digitallearningback.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace digitallearningback.Areas.Admin.Controllers
 {
     public class Question_Concept_MappingController : Controller
     {
+        private Log4Net logger = new Log4Net("Question_Concept_MappingController");
         private VW_QuestionConceptDetailService vw_service = new VW_QuestionConceptDetailService();
         private QuestionService questionservice = new QuestionService();
         private Question_ConceptService conceptservice = new Question_ConceptService();
@@ -73,6 +75,26 @@ namespace digitallearningback.Areas.Admin.Controllers
                 ModelState.AddModelError("error", "請選擇欲加入至題目的概念");
                 return RedirectToAction("AddQuestion", new { qid = qid });
             }
+        }
+
+        public ActionResult DoEditConceptPercentage(int qid,ICollection<String> percentages, ICollection<String> ids)
+        {
+            if (percentages == null || ids == null) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (percentages.Count != ids.Count) {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+
+            for (int i = 0; i < percentages.Count; i++) {
+                qcmservice.updatePercentageById(
+                    Convert.ToInt32(ids.ElementAtOrDefault(i)),
+                     Convert.ToInt32(percentages.ElementAtOrDefault(i)));
+            }
+
+            return RedirectToAction("Index", new { qid = qid });
         }
 
     }
