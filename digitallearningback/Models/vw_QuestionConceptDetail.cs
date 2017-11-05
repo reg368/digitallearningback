@@ -15,8 +15,11 @@ namespace digitallearningback.Models
     public partial class vw_QuestionConceptDetail
     {
         public int id { get; set; }
-        public string text { get; set; }
-        public string conceptgroup { get; set; }
-        public string concept { get; set; }
+        public Nullable<int> q_id { get; set; }
+        public Nullable<int> q_percentage { get; set; }
+        public string c_name { get; set; }
+        public Nullable<int> c_percentage { get; set; }
+        public string g_name { get; set; }
+        public Nullable<int> g_percentage { get; set; }
     }
 }

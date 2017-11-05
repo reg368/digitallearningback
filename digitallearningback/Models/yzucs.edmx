@@ -216,10 +216,13 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="text" Type="nvarchar" MaxLength="100" />
-          <Property Name="conceptgroup" Type="nvarchar(max)" />
-          <Property Name="concept" Type="nvarchar(max)" />
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="q_id" Type="int" />
+          <Property Name="q_percentage" Type="int" />
+          <Property Name="c_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="c_percentage" Type="int" />
+          <Property Name="g_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="g_percentage" Type="int" />
         </EntityType>
         <Association Name="AGL_level_id_fk">
           <End Role="Question_level" Type="Self.Question_level" Multiplicity="0..1" />
@@ -555,9 +558,12 @@
           <EntitySet Name="vw_QuestionConceptDetail" EntityType="Self.vw_QuestionConceptDetail" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_QuestionConceptDetail].[id] AS [id], 
-    [vw_QuestionConceptDetail].[text] AS [text], 
-    [vw_QuestionConceptDetail].[conceptgroup] AS [conceptgroup], 
-    [vw_QuestionConceptDetail].[concept] AS [concept]
+    [vw_QuestionConceptDetail].[q_id] AS [q_id], 
+    [vw_QuestionConceptDetail].[q_percentage] AS [q_percentage], 
+    [vw_QuestionConceptDetail].[c_name] AS [c_name], 
+    [vw_QuestionConceptDetail].[c_percentage] AS [c_percentage], 
+    [vw_QuestionConceptDetail].[g_name] AS [g_name], 
+    [vw_QuestionConceptDetail].[g_percentage] AS [g_percentage]
     FROM [dbo].[vw_QuestionConceptDetail] AS [vw_QuestionConceptDetail]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="AGL_level_id_fk" Association="Self.AGL_level_id_fk">
@@ -1367,10 +1373,13 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="conceptgroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="concept" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="q_id" Type="Int32" />
+          <Property Name="q_percentage" Type="Int32" />
+          <Property Name="c_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="c_percentage" Type="Int32" />
+          <Property Name="g_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="g_percentage" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1604,9 +1613,12 @@
           <EntitySetMapping Name="vw_QuestionConceptDetail">
             <EntityTypeMapping TypeName="yzucsModel.vw_QuestionConceptDetail">
               <MappingFragment StoreEntitySet="vw_QuestionConceptDetail">
-                <ScalarProperty Name="concept" ColumnName="concept" />
-                <ScalarProperty Name="conceptgroup" ColumnName="conceptgroup" />
-                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="g_percentage" ColumnName="g_percentage" />
+                <ScalarProperty Name="g_name" ColumnName="g_name" />
+                <ScalarProperty Name="c_percentage" ColumnName="c_percentage" />
+                <ScalarProperty Name="c_name" ColumnName="c_name" />
+                <ScalarProperty Name="q_percentage" ColumnName="q_percentage" />
+                <ScalarProperty Name="q_id" ColumnName="q_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

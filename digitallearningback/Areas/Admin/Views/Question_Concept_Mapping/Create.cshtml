@@ -1,0 +1,74 @@
+﻿@model digitallearningback.Models.Question
+@using digitallearningback.Models
+@{
+    var conceptlist = ViewBag.conceptlist as List<Question_Concept>;
+}
+
+<h2>題目概念設定-加入概念</h2>
+@{
+    if (Model != null && Model.text != null)
+    {
+        <p>@Model.text</p>
+    }
+    if (Model != null && Model.pic_path != null)
+    {
+        <img src="@Model.pic_path"  height="200" width="400">
+    }
+}
+
+
+<p>以下是可以加入題目的概念 - 請勾選加入</p>
+
+@using (Html.BeginForm("DoAddConcept", "Question_Concept_Mapping", FormMethod.Post))
+{
+    <table class="table">
+
+        <tr>
+            <th>
+                @Html.Raw("勾選加入")
+            </th>
+            <th>
+                @Html.Raw("概念")
+            </th>
+            <th>
+                @Html.Raw("概念權重")
+            </th>
+            <th>
+                @Html.Raw("概念集")
+            </th>
+            <th>
+
+                @Html.Raw("概念集權重")
+            </th>
+            <th>@Html.ActionLink("回題目概念設定", "Index", new { qid = Model.id })</th>
+        </tr>
+
+
+        @foreach (var item in conceptlist)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" name="cids" value="@item.id" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.percentage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Question_Concept_Group.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Question_Concept_Group.percentage)
+                </td>
+                <td></td>
+            </tr>
+        }
+    </table>
+    <div>
+        <input type="hidden" name="qid" value="@Model.id" />
+        <input type="submit" value="確定" class="btn btn-default" />
+    </div>
+}
+

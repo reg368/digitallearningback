@@ -167,6 +167,7 @@
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\VW_QuestionConceptDetailService.cs" />
     <Compile Include="DAO\QuestionLevelMappingService.cs" />
     <Compile Include="DAO\Character_imageService.cs" />
     <Compile Include="DAO\Cimage_moodService.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Models\InfoUser.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Metadata\vw_QuestionConceptDetail.cs" />
     <Compile Include="Models\Metadata\Question_Concept.cs" />
     <Compile Include="Models\Metadata\Question_Concept_Group.cs" />
     <Compile Include="Models\Metadata\Answer.cs" />
@@ -372,6 +374,7 @@
     <Content Include="Areas\Game\Views\ModelView\QuestionDetailInfo.cshtml" />
     <Content Include="Areas\Game\Views\Shared\_Question_detail_info.cshtml" />
     <Content Include="Areas\Admin\Views\Question_Concept_Mapping\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept_Mapping\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />
     <Content Include="Scripts\Game\select_character.js" />

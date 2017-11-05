@@ -1,6 +1,10 @@
 ﻿@model digitallearningback.Models.Question
+@using digitallearningback.Models
+@{
+    var conceptlist = ViewBag.conceptlist as List<vw_QuestionConceptDetail>;
+}
 
-<h2>題目選項設定</h2>
+<h2>題目概念設定</h2>
 @{
     if (Model != null && Model.text != null)
     {
@@ -17,41 +21,41 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().text)
+            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().q_percentage)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().is_correct)
+            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().c_name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Answer.FirstOrDefault().pic_path)
+            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().c_percentage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().g_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => conceptlist.FirstOrDefault().g_percentage)
         </th>
         <th></th>
         <th>@Html.ActionLink("回題目管理", "Index", "Questions",new { id = Model.Question_group.id} , null)</th>
     </tr>
 
-@foreach (var item in Model.Answer) {
+@foreach (var item in conceptlist) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.text)
+            @Html.DisplayFor(modelItem => item.q_percentage)
         </td>
         <td>
-            @Html.Raw(item.is_correct == 1 ? "是" : "否")
+            @Html.DisplayFor(modelItem => item.c_name)
         </td>
         <td>
-            @if (item.pic_path != null)
-            {
-                <a href="@Html.DisplayFor(modelItem => item.pic_path)">查看</a>
-            }
-            else
-            {
-                @Html.Raw("無")
-            }
+            @Html.DisplayFor(modelItem => item.c_percentage)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.DisplayFor(modelItem => item.g_name)
         </td>
-        <td></td>
+        <td>
+            @Html.DisplayFor(modelItem => item.g_percentage)
+        </td>
     </tr>
 }
 
