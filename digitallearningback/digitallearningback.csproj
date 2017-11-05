@@ -167,6 +167,7 @@
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\Question_Concept_MappingService.cs" />
     <Compile Include="DAO\VW_QuestionConceptDetailService.cs" />
     <Compile Include="DAO\QuestionLevelMappingService.cs" />
     <Compile Include="DAO\Character_imageService.cs" />
@@ -374,7 +375,7 @@
     <Content Include="Areas\Game\Views\ModelView\QuestionDetailInfo.cshtml" />
     <Content Include="Areas\Game\Views\Shared\_Question_detail_info.cshtml" />
     <Content Include="Areas\Admin\Views\Question_Concept_Mapping\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Question_Concept_Mapping\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Question_Concept_Mapping\AddConcept.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />
     <Content Include="Scripts\Game\select_character.js" />
