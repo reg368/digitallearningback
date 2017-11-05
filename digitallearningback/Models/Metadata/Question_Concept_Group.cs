@@ -10,6 +10,8 @@ namespace digitallearningback.Models
             [Required]
             [Display(Name = "概念集名稱")]
             public string name { get; set; }
+            [Display(Name = "權重")]
+            public int percentage { get; set; }
         }
     }
 }

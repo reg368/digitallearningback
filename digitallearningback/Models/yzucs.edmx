@@ -134,6 +134,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="user_id" Type="int" />
+          <Property Name="percentage" Type="int" />
         </EntityType>
         <EntityType Name="Question_Concept_Mapping">
           <Key>
@@ -831,6 +832,7 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_id" Type="Int32" />
           <NavigationProperty Name="Question_Concept" Relationship="Self.QC_group_id_fk" FromRole="Question_Concept_Group" ToRole="Question_Concept" />
+          <Property Name="percentage" Type="Int32" />
         </EntityType>
         <EntityType Name="Question_Concept_Mapping">
           <Key>
@@ -1511,6 +1513,7 @@
           <EntitySetMapping Name="Question_Concept_Group">
             <EntityTypeMapping TypeName="yzucsModel.Question_Concept_Group">
               <MappingFragment StoreEntitySet="Question_Concept_Group">
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />

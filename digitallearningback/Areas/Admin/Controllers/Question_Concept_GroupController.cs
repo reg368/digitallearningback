@@ -12,6 +12,7 @@ namespace digitallearningback.Areas.Admin.Controllers
     {
         private InfoUser infoUser = SessionHelper.getLoginUser();
         private Question_Concept_GroupService service = new Question_Concept_GroupService();
+        private Log4Net logger = new Log4Net("Question_Concept_GroupController");
 
         // GET: Admin/Question_Concept_Group
         public ActionResult Index()
@@ -45,7 +46,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name")] Question_Concept_Group question_Concept_Group)
+        public ActionResult Create([Bind(Include = "id,name,percentage")] Question_Concept_Group question_Concept_Group)
         {
             if (ModelState.IsValid)
             {
@@ -77,12 +78,13 @@ namespace digitallearningback.Areas.Admin.Controllers
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name")] Question_Concept_Group question_Concept_Group)
+        public ActionResult Edit([Bind(Include = "id,name,percentage")] Question_Concept_Group question_Concept_Group)
         {
             if (ModelState.IsValid)
             {
                 Question_Concept_Group record = service.selectById(question_Concept_Group.id);
                 record.name = question_Concept_Group.name;
+                record.percentage = question_Concept_Group.percentage;
 
                 service.update(record);
 
