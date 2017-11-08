@@ -34,5 +34,12 @@ namespace digitallearningback.DAO
             return db.SaveChanges();
         }
 
+        public int deleteByPrimaryKey(int pk)
+        {
+            Question_Concept_Mapping record = db.Question_Concept_Mapping.Find(pk);
+            db.Question_Concept_Mapping.Remove(record);
+            return db.SaveChanges();
+        }
+
     }
 }

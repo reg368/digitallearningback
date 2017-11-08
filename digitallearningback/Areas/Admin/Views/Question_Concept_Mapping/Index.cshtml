@@ -3,7 +3,14 @@
 @{
     var conceptlist = ViewBag.conceptlist as List<vw_QuestionConceptDetail>;
 }
+<script>
+    function doDelete(concept, id) {
+        if (confirm('確定刪除概念:' + concept + '?')) {
+            window.location = '/Admin/Question_Concept_Mapping/DoDelete?id=' + id +'&qid='+@Model.id;
+        }
+    }
 
+</script>
 <h2>題目概念設定</h2>
 @{
     if (Model != null && Model.text != null)
@@ -61,7 +68,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.g_percentage)
                 </td>
-                <td></td>
+                <td>
+                   <a href="#" onclick="doDelete('@item.c_name','@item.id');">刪除</a>
+                </td>
                 <td></td>
             </tr>
         }

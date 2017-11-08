@@ -16,15 +16,16 @@ namespace digitallearningback.Models
             [Display(Name = "是否啟用")]
             public Nullable<int> isvisible { get; set; }
 
-            [Required]
+
             [Display(Name = "是否隨機出題")]
             public Nullable<int> israndom { get; set; }
 
             [Required]
-            [Display(Name = "關卡編號")]
+            [Display(Name = "關卡排序編號")]
             public Nullable<int> levelorder { get; set; }
 
-            [Display(Name = "答對題數過關")]
+            [Required]
+            [Display(Name = "出題數")]
             public Nullable<int> correctqnumber { get; set; }
 
             [Display(Name = "過關金錢")]
@@ -32,6 +33,11 @@ namespace digitallearningback.Models
 
             [Display(Name = "過關經驗值")]
             public Nullable<int> awardexperience { get; set; }
+
+            [Required]
+            [Display(Name = "關卡過關積分")]
+            public Nullable<int> passpoint { get; set; }
+
         }
     }
 }

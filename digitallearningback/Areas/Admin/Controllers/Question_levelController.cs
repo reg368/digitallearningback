@@ -53,7 +53,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(
             [Bind(Include = "groupname")] String groupname,
-            [Bind(Include = "group_id,levelorder,level,isvisible,israndom,correctqnumber,awardmoney,awardexperience")] Question_level question_level)
+            [Bind(Include = "group_id,levelorder,level,isvisible,passpoint,correctqnumber")] Question_level question_level)
         {
             if (ModelState.IsValid)
             {

@@ -97,5 +97,11 @@ namespace digitallearningback.Areas.Admin.Controllers
             return RedirectToAction("Index", new { qid = qid });
         }
 
+        public ActionResult DoDelete(int id , int qid) {
+
+            qcmservice.deleteByPrimaryKey(id);
+
+            return RedirectToAction("Index", new { qid = qid });
+        }
     }
 }

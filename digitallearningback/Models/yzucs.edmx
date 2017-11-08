@@ -172,6 +172,7 @@
           <Property Name="awardexperience" Type="int" />
           <Property Name="fromquestion" Type="int" />
           <Property Name="toquestion" Type="int" />
+          <Property Name="passpoint" Type="int" />
         </EntityType>
         <EntityType Name="Question_Level_Mapping">
           <Key>
@@ -886,6 +887,7 @@
           <NavigationProperty Name="Answer_Group_Log" Relationship="Self.AGL_level_id_fk" FromRole="Question_level" ToRole="Answer_Group_Log" />
           <NavigationProperty Name="Question_group" Relationship="Self.QL_groupid_fk" FromRole="Question_level" ToRole="Question_group" />
           <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_l_id_fk" FromRole="Question_level" ToRole="Question_Level_Mapping" />
+          <Property Name="passpoint" Type="Int32" />
         </EntityType>
         <EntityType Name="Question_Level_Mapping">
           <Key>
@@ -1554,6 +1556,7 @@
           <EntitySetMapping Name="Question_level">
             <EntityTypeMapping TypeName="yzucsModel.Question_level">
               <MappingFragment StoreEntitySet="Question_level">
+                <ScalarProperty Name="passpoint" ColumnName="passpoint" />
                 <ScalarProperty Name="levelorder" ColumnName="levelorder" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="level" ColumnName="level" />

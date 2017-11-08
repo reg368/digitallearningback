@@ -41,10 +41,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.israndom, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.passpoint, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.RadioButtonFor(model => model.israndom, 1)  是
-                @Html.RadioButtonFor(model => model.israndom, 0)  否
+                <select name="passpoint" id="passpoint" class="form-control">
+                    <option value="0">不設限</option>
+                    <option value="100">五顆星</option>
+                    <option value="90">四顆星</option>
+                    <option value="80">三顆星</option>
+                    <option value="70">二顆星</option>
+                    <option value="60">顆星</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.israndom, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,22 +60,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.correctqnumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.correctqnumber, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.awardmoney, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.awardmoney, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.awardmoney, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.awardexperience, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.awardexperience, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.awardexperience, "", new { @class = "text-danger" })
             </div>
         </div>
 
