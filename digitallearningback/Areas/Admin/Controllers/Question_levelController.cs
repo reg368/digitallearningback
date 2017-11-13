@@ -89,7 +89,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "id,level,isvisible,israndom,levelorder,correctqnumber,awardmoney,awardexperience")] Question_level question_level)
+            [Bind(Include = "id,levelorder,level,isvisible,passpoint,correctqnumber")] Question_level question_level)
         {
 
             Question_level record = levelService.selectById(question_level.id);
@@ -104,11 +104,9 @@ namespace digitallearningback.Areas.Admin.Controllers
 
                 record.level = question_level.level;
                 record.isvisible = question_level.isvisible;
-                record.israndom = question_level.israndom;
                 record.levelorder = question_level.levelorder;
+                record.passpoint = question_level.passpoint;
                 record.correctqnumber = question_level.correctqnumber;
-                record.awardmoney = question_level.awardmoney;
-                record.awardexperience = question_level.awardexperience;
 
                 levelService.update(record);
 
