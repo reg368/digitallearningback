@@ -49,15 +49,17 @@ namespace digitallearningback.Areas.Game.Controllers
 
         //課程關卡查詢
         [HttpPost]
-        public ActionResult GroupSelect(int gid)
+        public ActionResult LevelSelect(int gid)
         {
 
             List<Question_level> grouplevels = levelservice.selectListByGroupid(gid);
             if (grouplevels != null && grouplevels.Count > 0)
             {
-                Session[grouplevelkey] = grouplevels;
+                Question_level level = grouplevels.FirstOrDefault();
 
-                return RedirectToAction("NextLevel", "Play");
+                ViewBag.groupname = level.Question_group.name;
+                ViewBag.levels = grouplevels;
+                return View();
             }
             else
             {
@@ -65,6 +67,9 @@ namespace digitallearningback.Areas.Game.Controllers
                 return Index();
             }
         }
+
+
+
 
         //下一關卡
         public ActionResult Nextlevel()
