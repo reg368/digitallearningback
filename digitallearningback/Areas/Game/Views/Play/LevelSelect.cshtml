@@ -9,6 +9,12 @@
     <title>請選擇課程關卡</title>
     @Styles.Render("~/Content/Game/Play/LevelSelect.css")
     @Scripts.Render("~/bundles/jquery")
+    <script>
+        function nextlevel(lid) {
+            $('#lid').val(lid);
+            $('#formNextLevel').submit();
+        }
+    </script>
 </head>
 <body>
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
@@ -20,7 +26,8 @@
             @foreach (var item in levels)
             {
                 <tr>
-                    <th style="font-size: 30px;border-bottom: 1px solid ;">
+                    <th style="font-size: 30px;border-bottom: 1px solid ;" 
+                        onclick="nextlevel('@item.id')">
                         @item.level<font size="2">過關: @( (item.passpoint / 10 - 5) > 0 ? item.passpoint / 10 - 5+"" : "0" ) 顆星</font><br>
                         <a href="#"><font size="2">查看有幾個人過關了</font><br></a>
                         ★★★☆☆☆
@@ -28,6 +35,9 @@
                 </tr>   
             }
         </table>
+        <form id="formNextLevel" action="/Game/Play/Nextlevel" method="post">
+            <input type="hidden" name="lid" id="lid"/>
+        </form>
     </div>
 
     
