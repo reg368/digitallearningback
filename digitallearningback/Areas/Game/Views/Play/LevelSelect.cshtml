@@ -14,6 +14,9 @@
             $('#lid').val(lid);
             $('#formNextLevel').submit();
         }
+        function showOthers() {
+            window.open('', '', 'location=yes,width=650,height=600');
+        }
     </script>
 </head>
 <body>
@@ -26,13 +29,12 @@
             @foreach (var item in levels)
             {
                 <tr>
-                    <th style="font-size: 30px;border-bottom: 1px solid ;" 
-                        onclick="nextlevel('@item.id')">
-                        @item.level<font size="2">過關: @( (item.passpoint / 10 - 5) > 0 ? item.passpoint / 10 - 5+"" : "0" ) 顆星</font><br>
-                        <a href="#"><font size="2">查看有幾個人過關了</font><br></a>
-                        ★★★☆☆☆
+                    <th style="font-size: 30px;border-bottom: 1px solid ;" >
+                        @item.level<font size="2">過關: @item.getPasspointStarNumber() 顆星</font><br>
+                        <button onclick="nextlevel('@item.id')">開始作答</button><br>
+                        @item.getPasspointStar(item.getPasspointStarNumber());
                     </th>
-                </tr>   
+                </tr>
             }
         </table>
         <form id="formNextLevel" action="/Game/Play/Nextlevel" method="post">
