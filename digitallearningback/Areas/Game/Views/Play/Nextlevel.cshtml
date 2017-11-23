@@ -14,7 +14,7 @@
 
     <form action="/Game/Play/LevelStart" method="post" class="gwd-form-14az" >
         <font class="gwd-input-gbnv">@Html.Raw("第"+Model.levelorder+"關:"+Model.level)  </font>
-        <font class="gwd-input-gbnv gwd-input-gbnv-2">過關: @( (Model.passpoint / 10 - 5) > 0 ? Model.passpoint / 10 - 5 + "" : "0" ) 顆星</font>
+        <font class="gwd-input-gbnv gwd-input-gbnv-2">過關: @Model.getPasspointStarNumber() 顆星</font>
         <input type="hidden" name="lid" value="@Model.id" />
         <input type="hidden" name="gid" value="@Model.group_id" />
         <button type="submit" class="gwd-button-r673">開始遊戲</button>

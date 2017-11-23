@@ -68,7 +68,7 @@ namespace digitallearningback.Areas.Game.Controllers
         }
 
 
-        //下一關卡
+        //關卡開始
         public ActionResult Nextlevel(int lid)
         {
                 Question_level level = levelservice.selectById(lid);
@@ -94,10 +94,10 @@ namespace digitallearningback.Areas.Game.Controllers
 
             List<Question> questions = Session[questionskey] as List<Question>;
 
-            //這一關題目都做完了
+            //關卡題目都做完了
             if (questions == null || questions.Count == 0)
             {
-                return RedirectToAction("Nextlevel", "Play");
+                return RedirectToAction("Result", "Play");
             }
             //還有題目
             else
@@ -106,6 +106,12 @@ namespace digitallearningback.Areas.Game.Controllers
                 return View(question);
 
             }
+        }
+
+
+        public ActionResult Result()
+        {
+            return View();
         }
 
         public ActionResult CheckAnswer(string said)

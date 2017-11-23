@@ -1,0 +1,59 @@
+﻿@using digitallearningback.Models
+@{
+    var levels = ViewBag.levels as List<Question_level>;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>請選擇課程關卡</title>
+    @Styles.Render("~/Content/Game/Play/Result.css?date=" + DateTime.Now)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/Chart.min.js")
+    <script>
+        $(document).ready(function () {
+
+            var ctx = document.getElementById('ctx');
+            ctx.height = 420;
+
+            var chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ["include", "namespace", "變數基本概念", "區域變數"],
+                    datasets: [{
+                        label: "my first dataset",
+                        borderColor: 'rgb(255,99,132)',
+                        data:[27,30,20,50],
+                    }]
+                },
+                options: {
+                    scale: {
+                        ticks: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
+
+    <div class="gwd-div-ilnq">
+        <canvas  id="ctx" ></canvas>
+    </div>
+
+    
+
+    <p class="gwd-p-lswn" style="top:500px;">
+        @ViewBag.error
+    </p>
+
+
+    <p class="gwd-p-xfrq" style="">Title</p>
+
+
+</body>
+</html>
