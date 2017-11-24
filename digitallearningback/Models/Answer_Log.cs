@@ -15,17 +15,20 @@ namespace digitallearningback.Models
     public partial class Answer_Log
     {
         public int id { get; set; }
-        public Nullable<int> ag_id { get; set; }
-        public Nullable<int> user_id { get; set; }
-        public Nullable<int> q_id { get; set; }
-        public Nullable<int> a_id { get; set; }
-        public Nullable<int> correct_a_id { get; set; }
-        public Nullable<int> user_login_count { get; set; }
-        public Nullable<int> is_correct { get; set; }
+        public Nullable<int> userid { get; set; }
+        public Nullable<int> loginid { get; set; }
+        public Nullable<int> gid { get; set; }
+        public Nullable<int> lid { get; set; }
+        public Nullable<int> lidTimes { get; set; }
+        public Nullable<int> qid { get; set; }
+        public Nullable<int> aid { get; set; }
+        public Nullable<int> iscorrect { get; set; }
+        public Nullable<System.DateTime> createTime { get; set; }
     
         public virtual Answer Answer { get; set; }
-        public virtual Answer Answer1 { get; set; }
-        public virtual Answer_Group_Log Answer_Group_Log { get; set; }
+        public virtual Question_group Question_group { get; set; }
+        public virtual Question_level Question_level { get; set; }
+        public virtual LoginLog LoginLog { get; set; }
         public virtual Question Question { get; set; }
         public virtual InfoUser InfoUser { get; set; }
     }

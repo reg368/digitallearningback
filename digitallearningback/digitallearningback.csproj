@@ -191,9 +191,6 @@
     <Compile Include="Models\Answer.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Answer_Group_Log.cs">
-      <DependentUpon>yzucs.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Answer_Log.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>

@@ -14,11 +14,19 @@ namespace digitallearningback.Models
     
     public partial class LoginLog
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LoginLog()
+        {
+            this.Answer_Log = new HashSet<Answer_Log>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> userid { get; set; }
         public Nullable<int> group_id { get; set; }
         public Nullable<System.DateTime> createTime { get; set; }
     
         public virtual InfoUser InfoUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Log> Answer_Log { get; set; }
     }
 }

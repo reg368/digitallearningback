@@ -17,11 +17,10 @@ namespace digitallearningback.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public InfoUser()
         {
-            this.Answer_Group_Log = new HashSet<Answer_Group_Log>();
-            this.Answer_Log = new HashSet<Answer_Log>();
             this.Student_Class = new HashSet<Student_Class>();
             this.Student_Class_Mapping = new HashSet<Student_Class_Mapping>();
             this.LoginLog = new HashSet<LoginLog>();
+            this.Answer_Log = new HashSet<Answer_Log>();
         }
     
         public int id { get; set; }
@@ -45,10 +44,6 @@ namespace digitallearningback.Models
         public Nullable<int> hp { get; set; }
         public string character_name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Answer_Group_Log> Answer_Group_Log { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Answer_Log> Answer_Log { get; set; }
         public virtual Character_image Character_image1 { get; set; }
         public virtual Character_image Character_image2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -57,5 +52,7 @@ namespace digitallearningback.Models
         public virtual ICollection<Student_Class_Mapping> Student_Class_Mapping { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LoginLog> LoginLog { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Log> Answer_Log { get; set; }
     }
 }

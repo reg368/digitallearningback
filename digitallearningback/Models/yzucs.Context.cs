@@ -26,8 +26,6 @@ namespace digitallearningback.Models
         }
     
         public virtual DbSet<Answer> Answer { get; set; }
-        public virtual DbSet<Answer_Group_Log> Answer_Group_Log { get; set; }
-        public virtual DbSet<Answer_Log> Answer_Log { get; set; }
         public virtual DbSet<Character_image> Character_image { get; set; }
         public virtual DbSet<Cimage_mood> Cimage_mood { get; set; }
         public virtual DbSet<Cimage_profession> Cimage_profession { get; set; }
@@ -45,5 +43,6 @@ namespace digitallearningback.Models
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<vw_QuestionConceptDetail> vw_QuestionConceptDetail { get; set; }
         public virtual DbSet<LoginLog> LoginLog { get; set; }
+        public virtual DbSet<Answer_Log> Answer_Log { get; set; }
     }
 }

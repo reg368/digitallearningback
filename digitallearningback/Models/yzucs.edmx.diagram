@@ -4,10 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c079fdc0f16940bdbce3ca1576527399" Name="Diagram1">
+      <Diagram DiagramId="c079fdc0f16940bdbce3ca1576527399" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="yzucsModel.Answer" Width="1.5" PointX="7.5" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Answer_Group_Log" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="yzucsModel.Answer_Log" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="yzucsModel.Character_image" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="yzucsModel.Cimage_mood" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="yzucsModel.Cimage_profession" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
@@ -24,14 +22,6 @@
         <EntityTypeShape EntityType="yzucsModel.Student_Class_Mapping" Width="1.5" PointX="9.75" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="yzucsModel.sysdiagrams" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="yzucsModel.answer_qid_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.answerlog_a_id_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.answerlog_correct_a_id_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.AGL_level_id_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.AGL_Question_group_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.AGL_user_id_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.answerlog_ag_id_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.answerlog_q_id_fk" ManuallyRouted="false" />
-        <AssociationConnector Association="yzucsModel.answerlog_user_id_fk" ManuallyRouted="false" />
         <AssociationConnector Association="yzucsModel.Character_image_mood_fk" ManuallyRouted="false" />
         <AssociationConnector Association="yzucsModel.Character_image_profession_fk" ManuallyRouted="false" />
         <AssociationConnector Association="yzucsModel.infoUser_character_image_fk" ManuallyRouted="false" />
@@ -52,7 +42,14 @@
         <EntityTypeShape EntityType="yzucsModel.vw_QuestionConceptDetail" Width="1.5" PointX="10.375" PointY="11.75" />
         <EntityTypeShape EntityType="yzucsModel.LoginLog" Width="1.5" PointX="7.5" PointY="0.875" />
         <AssociationConnector Association="yzucsModel.LoginLog_user_fk" />
-      </Diagram>
+        <EntityTypeShape EntityType="yzucsModel.Answer_Log" Width="1.5" PointX="12.75" PointY="9.25" />
+        <AssociationConnector Association="yzucsModel.answerlog_aid_fk" />
+        <AssociationConnector Association="yzucsModel.answerlog_gid_fk" />
+        <AssociationConnector Association="yzucsModel.answerlog_lid_fk" />
+        <AssociationConnector Association="yzucsModel.answerlog_loginid_fk" />
+        <AssociationConnector Association="yzucsModel.answerlog_qid_fk" />
+        <AssociationConnector Association="yzucsModel.answerlog_user_id_fk" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
