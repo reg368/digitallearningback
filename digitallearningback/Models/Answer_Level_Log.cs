@@ -28,6 +28,9 @@ namespace digitallearningback.Models
         public Nullable<int> qids { get; set; }
         public Nullable<int> isfinished { get; set; }
         public Nullable<System.DateTime> createTime { get; set; }
+        public Nullable<int> correctnumber { get; set; }
+        public Nullable<int> passpoint { get; set; }
+        public string charjson { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer_Log> Answer_Log { get; set; }

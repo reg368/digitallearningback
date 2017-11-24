@@ -12,7 +12,7 @@ namespace digitallearningback.Areas.Admin.Controllers
     public class Question_groupController : Controller
     {
         private Question_groupService gropuService = new Question_groupService();
-        private InfoUser user = SessionHelper.getLoginUser();
+        private InfoUser user = InfoUser.getLoginUser();
 
         // GET: Admin/Question_group
         public ActionResult Index()

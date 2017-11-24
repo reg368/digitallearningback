@@ -42,7 +42,8 @@ namespace digitallearningback.DAO
             model.group_id = user.group_id;
             model.createTime = System.DateTime.Now;
             db.LoginLog.Add(model);
-            return db.SaveChanges();
+            db.SaveChanges();
+            return model.id;
         }
 
     }

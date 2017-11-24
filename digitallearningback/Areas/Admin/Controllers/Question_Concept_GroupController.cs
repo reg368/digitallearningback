@@ -10,7 +10,7 @@ namespace digitallearningback.Areas.Admin.Controllers
 {
     public class Question_Concept_GroupController : Controller
     {
-        private InfoUser infoUser = SessionHelper.getLoginUser();
+        private InfoUser infoUser = InfoUser.getLoginUser();
         private Question_Concept_GroupService service = new Question_Concept_GroupService();
         private Log4Net logger = new Log4Net("Question_Concept_GroupController");
 

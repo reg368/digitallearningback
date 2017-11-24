@@ -11,7 +11,7 @@ namespace digitallearningback.Areas.Game.Controllers
 {
     public class CreateController : Controller
     {
-        private InfoUser infoUser = SessionHelper.getLoginUser();
+        private InfoUser infoUser = InfoUser.getLoginUser();
         private InfoUserService uservice = new InfoUserService();
         private Character_imageService chservice = new Character_imageService();
         private Cimage_professionService cpservice = new Cimage_professionService();

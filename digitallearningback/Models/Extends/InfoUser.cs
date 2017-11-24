@@ -8,6 +8,12 @@ namespace digitallearningback.Models
     public partial class InfoUser
     {
 
+        public static InfoUser getLoginUser()
+        {
+            return (InfoUser)HttpContext.Current.Session["infoUser"];
+        }
+
+
         public UserRole role { get; set; }
 
         public enum UserRole

@@ -73,7 +73,8 @@ namespace digitallearningback.Controllers
             if (isLogingSuccess)
             {
                 //登入成功 紀錄寫到DB
-                logingService.doLog(user);
+                user.login_count = logingService.doLog(user);
+                logger.debug("login_count id", user.login_count+"");
                 Session["infoUser"] = user;
             }
             return result;

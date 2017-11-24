@@ -16,7 +16,7 @@ namespace digitallearningback.Areas.Admin.Controllers
     {
         private Question_ConceptService service = new Question_ConceptService();
         private Question_Concept_GroupService gservice = new Question_Concept_GroupService();
-        private InfoUser infoUser = SessionHelper.getLoginUser();
+        private InfoUser infoUser = InfoUser.getLoginUser();
 
         // GET: Admin/Question_Concept
         public ActionResult Index(int id)

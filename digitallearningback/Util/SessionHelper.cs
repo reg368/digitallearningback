@@ -8,8 +8,5 @@ namespace digitallearningback.Util
 {
     public class SessionHelper
     {
-        public static InfoUser getLoginUser() {
-            return (InfoUser) HttpContext.Current.Session["infoUser"];
-        }
     }
 }

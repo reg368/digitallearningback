@@ -28,6 +28,9 @@
           <Property Name="qids" Type="int" />
           <Property Name="isfinished" Type="int" />
           <Property Name="createTime" Type="datetime" />
+          <Property Name="correctnumber" Type="int" />
+          <Property Name="passpoint" Type="int" />
+          <Property Name="charjson" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Answer_Log">
           <Key>
@@ -1482,6 +1485,9 @@
           <NavigationProperty Name="Question_level" Relationship="yzucsModel.levellog_lid_fk" FromRole="Answer_Level_Log" ToRole="Question_level" />
           <NavigationProperty Name="LoginLog" Relationship="yzucsModel.levellog_loginid_fk" FromRole="Answer_Level_Log" ToRole="LoginLog" />
           <NavigationProperty Name="InfoUser" Relationship="yzucsModel.levellog_user_id_fk" FromRole="Answer_Level_Log" ToRole="InfoUser" />
+          <Property Name="correctnumber" Type="Int32" />
+          <Property Name="passpoint" Type="Int32" />
+          <Property Name="charjson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="answerlog_lgid_fk">
           <End Type="yzucsModel.Answer_Level_Log" Role="Answer_Level_Log" Multiplicity="0..1" />
@@ -1787,6 +1793,9 @@
           <EntitySetMapping Name="Answer_Level_Log">
             <EntityTypeMapping TypeName="yzucsModel.Answer_Level_Log">
               <MappingFragment StoreEntitySet="Answer_Level_Log">
+                <ScalarProperty Name="charjson" ColumnName="charjson" />
+                <ScalarProperty Name="passpoint" ColumnName="passpoint" />
+                <ScalarProperty Name="correctnumber" ColumnName="correctnumber" />
                 <ScalarProperty Name="createTime" ColumnName="createTime" />
                 <ScalarProperty Name="isfinished" ColumnName="isfinished" />
                 <ScalarProperty Name="qids" ColumnName="qids" />

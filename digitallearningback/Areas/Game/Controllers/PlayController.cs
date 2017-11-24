@@ -25,7 +25,7 @@ namespace digitallearningback.Areas.Game.Controllers
         public ActionResult Index()
         {
 
-            InfoUser user = SessionHelper.getLoginUser();
+            InfoUser user = InfoUser.getLoginUser();
             if (user != null)
             {
 
