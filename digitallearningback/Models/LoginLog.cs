@@ -18,6 +18,7 @@ namespace digitallearningback.Models
         public LoginLog()
         {
             this.Answer_Log = new HashSet<Answer_Log>();
+            this.Answer_Level_Log = new HashSet<Answer_Level_Log>();
         }
     
         public int id { get; set; }
@@ -28,5 +29,7 @@ namespace digitallearningback.Models
         public virtual InfoUser InfoUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer_Log> Answer_Log { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Level_Log> Answer_Level_Log { get; set; }
     }
 }

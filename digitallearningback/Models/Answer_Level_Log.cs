@@ -12,25 +12,28 @@ namespace digitallearningback.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Answer_Log
+    public partial class Answer_Level_Log
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Answer_Level_Log()
+        {
+            this.Answer_Log = new HashSet<Answer_Log>();
+        }
+    
         public int id { get; set; }
         public Nullable<int> userid { get; set; }
         public Nullable<int> loginid { get; set; }
         public Nullable<int> gid { get; set; }
         public Nullable<int> lid { get; set; }
-        public Nullable<int> qid { get; set; }
-        public Nullable<int> aid { get; set; }
-        public Nullable<int> iscorrect { get; set; }
+        public Nullable<int> qids { get; set; }
+        public Nullable<int> isfinished { get; set; }
         public Nullable<System.DateTime> createTime { get; set; }
-        public Nullable<int> levelLogid { get; set; }
     
-        public virtual Answer Answer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer_Log> Answer_Log { get; set; }
         public virtual Question_group Question_group { get; set; }
         public virtual Question_level Question_level { get; set; }
         public virtual LoginLog LoginLog { get; set; }
-        public virtual Question Question { get; set; }
         public virtual InfoUser InfoUser { get; set; }
-        public virtual Answer_Level_Log Answer_Level_Log { get; set; }
     }
 }

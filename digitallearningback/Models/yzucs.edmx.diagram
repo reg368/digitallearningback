@@ -49,6 +49,12 @@
         <AssociationConnector Association="yzucsModel.answerlog_loginid_fk" />
         <AssociationConnector Association="yzucsModel.answerlog_qid_fk" />
         <AssociationConnector Association="yzucsModel.answerlog_user_id_fk" />
+        <EntityTypeShape EntityType="yzucsModel.Answer_Level_Log" Width="1.5" PointX="12.75" PointY="4.25" />
+        <AssociationConnector Association="yzucsModel.answerlog_lgid_fk" />
+        <AssociationConnector Association="yzucsModel.levellog_gid_fk" />
+        <AssociationConnector Association="yzucsModel.levellog_lid_fk" />
+        <AssociationConnector Association="yzucsModel.levellog_loginid_fk" />
+        <AssociationConnector Association="yzucsModel.levellog_user_id_fk" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

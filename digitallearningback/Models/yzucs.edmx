@@ -16,6 +16,19 @@
           <Property Name="joindate" Type="datetime" />
           <Property Name="pic_path" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Answer_Level_Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="int" />
+          <Property Name="loginid" Type="int" />
+          <Property Name="gid" Type="int" />
+          <Property Name="lid" Type="int" />
+          <Property Name="qids" Type="int" />
+          <Property Name="isfinished" Type="int" />
+          <Property Name="createTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="Answer_Log">
           <Key>
             <PropertyRef Name="id" />
@@ -25,7 +38,7 @@
           <Property Name="loginid" Type="int" />
           <Property Name="gid" Type="int" />
           <Property Name="lid" Type="int" />
-          <Property Name="lidTimes" Type="int" />
+          <Property Name="levelLogid" Type="int" />
           <Property Name="qid" Type="int" />
           <Property Name="aid" Type="int" />
           <Property Name="iscorrect" Type="int" />
@@ -259,6 +272,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="answerlog_lgid_fk">
+          <End Role="Answer_Level_Log" Type="Self.Answer_Level_Log" Multiplicity="0..1" />
+          <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer_Level_Log">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="levelLogid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="answerlog_lid_fk">
           <End Role="Question_level" Type="Self.Question_level" Multiplicity="0..1" />
           <End Role="Answer_Log" Type="Self.Answer_Log" Multiplicity="*" />
@@ -376,6 +401,54 @@
             </Principal>
             <Dependent Role="InfoUser">
               <PropertyRef Name="pet_image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="levellog_gid_fk">
+          <End Role="Question_group" Type="Self.Question_group" Multiplicity="0..1" />
+          <End Role="Answer_Level_Log" Type="Self.Answer_Level_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Level_Log">
+              <PropertyRef Name="gid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="levellog_lid_fk">
+          <End Role="Question_level" Type="Self.Question_level" Multiplicity="0..1" />
+          <End Role="Answer_Level_Log" Type="Self.Answer_Level_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_level">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Level_Log">
+              <PropertyRef Name="lid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="levellog_loginid_fk">
+          <End Role="LoginLog" Type="Self.LoginLog" Multiplicity="0..1" />
+          <End Role="Answer_Level_Log" Type="Self.Answer_Level_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginLog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Level_Log">
+              <PropertyRef Name="loginid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="levellog_user_id_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="Answer_Level_Log" Type="Self.Answer_Level_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Level_Log">
+              <PropertyRef Name="userid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -525,6 +598,7 @@
         </Association>
         <EntityContainer Name="yzucsModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answer_Level_Log" EntityType="Self.Answer_Level_Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Answer_Log" EntityType="Self.Answer_Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Character_image" EntityType="Self.Character_image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cimage_mood" EntityType="Self.Cimage_mood" Schema="dbo" store:Type="Tables" />
@@ -563,6 +637,10 @@
           </AssociationSet>
           <AssociationSet Name="answerlog_gid_fk" Association="Self.answerlog_gid_fk">
             <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="answerlog_lgid_fk" Association="Self.answerlog_lgid_fk">
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
             <End Role="Answer_Log" EntitySet="Answer_Log" />
           </AssociationSet>
           <AssociationSet Name="answerlog_lid_fk" Association="Self.answerlog_lid_fk">
@@ -604,6 +682,22 @@
           <AssociationSet Name="infoUser_pet_image_fk" Association="Self.infoUser_pet_image_fk">
             <End Role="Character_image" EntitySet="Character_image" />
             <End Role="InfoUser" EntitySet="InfoUser" />
+          </AssociationSet>
+          <AssociationSet Name="levellog_gid_fk" Association="Self.levellog_gid_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
+          </AssociationSet>
+          <AssociationSet Name="levellog_lid_fk" Association="Self.levellog_lid_fk">
+            <End Role="Question_level" EntitySet="Question_level" />
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
+          </AssociationSet>
+          <AssociationSet Name="levellog_loginid_fk" Association="Self.levellog_loginid_fk">
+            <End Role="LoginLog" EntitySet="LoginLog" />
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
+          </AssociationSet>
+          <AssociationSet Name="levellog_user_id_fk" Association="Self.levellog_user_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
           </AssociationSet>
           <AssociationSet Name="LoginLog_user_fk" Association="Self.LoginLog_user_fk">
             <End Role="InfoUser" EntitySet="InfoUser" />
@@ -745,6 +839,7 @@
           <Property Name="character_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LoginLog" Relationship="yzucsModel.LoginLog_user_fk" FromRole="InfoUser" ToRole="LoginLog" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_user_id_fk" FromRole="InfoUser" ToRole="Answer_Log" />
+          <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.levellog_user_id_fk" FromRole="InfoUser" ToRole="Answer_Level_Log" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -813,6 +908,7 @@
           <NavigationProperty Name="Question_level" Relationship="Self.QL_groupid_fk" FromRole="Question_group" ToRole="Question_level" />
           <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_g_id_fk" FromRole="Question_group" ToRole="Question_Level_Mapping" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_gid_fk" FromRole="Question_group" ToRole="Answer_Log" />
+          <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.levellog_gid_fk" FromRole="Question_group" ToRole="Answer_Level_Log" />
         </EntityType>
         <EntityType Name="Question_level">
           <Key>
@@ -834,6 +930,7 @@
           <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_l_id_fk" FromRole="Question_level" ToRole="Question_Level_Mapping" />
           <Property Name="passpoint" Type="Int32" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_lid_fk" FromRole="Question_level" ToRole="Answer_Log" />
+          <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.levellog_lid_fk" FromRole="Question_level" ToRole="Answer_Level_Log" />
         </EntityType>
         <EntityType Name="Question_Level_Mapping">
           <Key>
@@ -1216,6 +1313,27 @@
             <End Role="InfoUser" EntitySet="InfoUser" />
             <End Role="Answer_Log" EntitySet="Answer_Log" />
           </AssociationSet>
+          <EntitySet Name="Answer_Level_Log" EntityType="yzucsModel.Answer_Level_Log" />
+          <AssociationSet Name="answerlog_lgid_fk" Association="yzucsModel.answerlog_lgid_fk">
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
+            <End Role="Answer_Log" EntitySet="Answer_Log" />
+          </AssociationSet>
+          <AssociationSet Name="levellog_gid_fk" Association="yzucsModel.levellog_gid_fk">
+            <End Role="Question_group" EntitySet="Question_group" />
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
+          </AssociationSet>
+          <AssociationSet Name="levellog_lid_fk" Association="yzucsModel.levellog_lid_fk">
+            <End Role="Question_level" EntitySet="Question_level" />
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
+          </AssociationSet>
+          <AssociationSet Name="levellog_loginid_fk" Association="yzucsModel.levellog_loginid_fk">
+            <End Role="LoginLog" EntitySet="LoginLog" />
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
+          </AssociationSet>
+          <AssociationSet Name="levellog_user_id_fk" Association="yzucsModel.levellog_user_id_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="vw_QuestionConceptDetail">
           <Key>
@@ -1239,6 +1357,7 @@
           <Property Name="createTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="InfoUser" Relationship="yzucsModel.LoginLog_user_fk" FromRole="LoginLog" ToRole="InfoUser" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_loginid_fk" FromRole="LoginLog" ToRole="Answer_Log" />
+          <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.levellog_loginid_fk" FromRole="LoginLog" ToRole="Answer_Level_Log" />
         </EntityType>
         <Association Name="LoginLog_user_fk">
           <End Type="yzucsModel.InfoUser" Role="InfoUser" Multiplicity="0..1" />
@@ -1261,7 +1380,6 @@
           <Property Name="loginid" Type="Int32" />
           <Property Name="gid" Type="Int32" />
           <Property Name="lid" Type="Int32" />
-          <Property Name="lidTimes" Type="Int32" />
           <Property Name="qid" Type="Int32" />
           <Property Name="aid" Type="Int32" />
           <Property Name="iscorrect" Type="Int32" />
@@ -1272,6 +1390,8 @@
           <NavigationProperty Name="LoginLog" Relationship="yzucsModel.answerlog_loginid_fk" FromRole="Answer_Log" ToRole="LoginLog" />
           <NavigationProperty Name="Question" Relationship="yzucsModel.answerlog_qid_fk" FromRole="Answer_Log" ToRole="Question" />
           <NavigationProperty Name="InfoUser" Relationship="yzucsModel.answerlog_user_id_fk" FromRole="Answer_Log" ToRole="InfoUser" />
+          <Property Name="levelLogid" Type="Int32" />
+          <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.answerlog_lgid_fk" FromRole="Answer_Log" ToRole="Answer_Level_Log" />
         </EntityType>
         <Association Name="answerlog_aid_fk">
           <End Type="yzucsModel.Answer" Role="Answer" Multiplicity="0..1" />
@@ -1341,6 +1461,84 @@
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="Answer_Log">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Answer_Level_Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="loginid" Type="Int32" />
+          <Property Name="gid" Type="Int32" />
+          <Property Name="lid" Type="Int32" />
+          <Property Name="qids" Type="Int32" />
+          <Property Name="isfinished" Type="Int32" />
+          <Property Name="createTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_lgid_fk" FromRole="Answer_Level_Log" ToRole="Answer_Log" />
+          <NavigationProperty Name="Question_group" Relationship="yzucsModel.levellog_gid_fk" FromRole="Answer_Level_Log" ToRole="Question_group" />
+          <NavigationProperty Name="Question_level" Relationship="yzucsModel.levellog_lid_fk" FromRole="Answer_Level_Log" ToRole="Question_level" />
+          <NavigationProperty Name="LoginLog" Relationship="yzucsModel.levellog_loginid_fk" FromRole="Answer_Level_Log" ToRole="LoginLog" />
+          <NavigationProperty Name="InfoUser" Relationship="yzucsModel.levellog_user_id_fk" FromRole="Answer_Level_Log" ToRole="InfoUser" />
+        </EntityType>
+        <Association Name="answerlog_lgid_fk">
+          <End Type="yzucsModel.Answer_Level_Log" Role="Answer_Level_Log" Multiplicity="0..1" />
+          <End Type="yzucsModel.Answer_Log" Role="Answer_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer_Level_Log">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Log">
+              <PropertyRef Name="levelLogid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="levellog_gid_fk">
+          <End Type="yzucsModel.Question_group" Role="Question_group" Multiplicity="0..1" />
+          <End Type="yzucsModel.Answer_Level_Log" Role="Answer_Level_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Level_Log">
+              <PropertyRef Name="gid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="levellog_lid_fk">
+          <End Type="yzucsModel.Question_level" Role="Question_level" Multiplicity="0..1" />
+          <End Type="yzucsModel.Answer_Level_Log" Role="Answer_Level_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_level">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Level_Log">
+              <PropertyRef Name="lid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="levellog_loginid_fk">
+          <End Type="yzucsModel.LoginLog" Role="LoginLog" Multiplicity="0..1" />
+          <End Type="yzucsModel.Answer_Level_Log" Role="Answer_Level_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginLog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Level_Log">
+              <PropertyRef Name="loginid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="levellog_user_id_fk">
+          <End Type="yzucsModel.InfoUser" Role="InfoUser" Multiplicity="0..1" />
+          <End Type="yzucsModel.Answer_Level_Log" Role="Answer_Level_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Answer_Level_Log">
               <PropertyRef Name="userid" />
             </Dependent>
           </ReferentialConstraint>
@@ -1573,11 +1771,25 @@
           <EntitySetMapping Name="Answer_Log">
             <EntityTypeMapping TypeName="yzucsModel.Answer_Log">
               <MappingFragment StoreEntitySet="Answer_Log">
+                <ScalarProperty Name="levelLogid" ColumnName="levelLogid" />
                 <ScalarProperty Name="createTime" ColumnName="createTime" />
                 <ScalarProperty Name="iscorrect" ColumnName="iscorrect" />
                 <ScalarProperty Name="aid" ColumnName="aid" />
                 <ScalarProperty Name="qid" ColumnName="qid" />
-                <ScalarProperty Name="lidTimes" ColumnName="lidTimes" />
+                <ScalarProperty Name="lid" ColumnName="lid" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+                <ScalarProperty Name="loginid" ColumnName="loginid" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answer_Level_Log">
+            <EntityTypeMapping TypeName="yzucsModel.Answer_Level_Log">
+              <MappingFragment StoreEntitySet="Answer_Level_Log">
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="isfinished" ColumnName="isfinished" />
+                <ScalarProperty Name="qids" ColumnName="qids" />
                 <ScalarProperty Name="lid" ColumnName="lid" />
                 <ScalarProperty Name="gid" ColumnName="gid" />
                 <ScalarProperty Name="loginid" ColumnName="loginid" />

@@ -44,5 +44,6 @@ namespace digitallearningback.Models
         public virtual DbSet<vw_QuestionConceptDetail> vw_QuestionConceptDetail { get; set; }
         public virtual DbSet<LoginLog> LoginLog { get; set; }
         public virtual DbSet<Answer_Log> Answer_Log { get; set; }
+        public virtual DbSet<Answer_Level_Log> Answer_Level_Log { get; set; }
     }
 }
