@@ -11,6 +11,7 @@ namespace digitallearningback.Controllers
     public class LoginController : Controller
     {
         private InfoUserService userService = new InfoUserService();
+        private LoginLogService logingService = new LoginLogService();
         private Log4Net logger = new Log4Net("LoginController");
 
 
@@ -37,34 +38,45 @@ namespace digitallearningback.Controllers
                              dbuser.validLogined(user.password, InfoUser.UserRole.Admin))
                         )
                     {
-                        Session["infoUser"] = dbuser;
-                        return RedirectToAction("Index", "Home", new { area = "Admin" });
+                        return forward(RedirectToAction("Index", "Home", new { area = "Admin" }), dbuser,true);
                     }
                     //如果是學生就 進入遊戲
                     else if ((dbuser.validLogined(user.password, InfoUser.UserRole.Student)))
                     {
-                        Session["infoUser"] = dbuser;
-
                         //還沒有選擇遊戲角色 第一次登入 進入建立遊戲角色頁面
                         if (dbuser.character_image == null || "".Equals(dbuser.character_image))
                         {
-                            return RedirectToAction("SelectGender", "Create", new { area = "Game" });
+                            return forward(RedirectToAction("SelectGender", "Create", new { area = "Game" }), dbuser, true);
                         }
                         //已選擇遊戲角色 (第n次登入) 開始遊戲
                         else {
-                            return RedirectToAction("Index", "Play", new { area = "Game" });
+                            return forward(RedirectToAction("Index", "Play", new { area = "Game" }),dbuser, true);
                         }
                     }
                 }
 
                 ModelState.AddModelError(string.Empty, "帳號或密碼錯誤");
-                return View(user);
+                return forward(View(user), user,false);
 
             }
             else{
                 return View(user);
             }
 
+        }
+
+        private ActionResult forward(ActionResult result,InfoUser user,bool isLogingSuccess)
+        {
+            //紀錄每次登入請求資訊
+            logger.doLoginlog(user, isLogingSuccess);
+
+            if (isLogingSuccess)
+            {
+                //登入成功 紀錄寫到DB
+                logingService.doLog(user);
+                Session["infoUser"] = user;
+            }
+            return result;
         }
 
         protected override void Dispose(bool disposing)

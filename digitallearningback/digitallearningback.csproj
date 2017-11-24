@@ -167,6 +167,7 @@
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\LoginLogService.cs" />
     <Compile Include="DAO\Question_Concept_MappingService.cs" />
     <Compile Include="DAO\VW_QuestionConceptDetailService.cs" />
     <Compile Include="DAO\QuestionLevelMappingService.cs" />
@@ -214,6 +215,9 @@
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\InfoUser.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginLog.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata\vw_QuestionConceptDetail.cs" />
@@ -429,6 +433,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Logs\App_Debug\" />
     <Folder Include="App_Data\Logs\App_Exception\" />
+    <Folder Include="App_Data\Logs\App_Login\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Game\Models\" />
     <Folder Include="Images\Answer_image\" />
