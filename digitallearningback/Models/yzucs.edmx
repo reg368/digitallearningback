@@ -103,6 +103,15 @@
           <Property Name="experience" Type="int" />
           <Property Name="hp" Type="int" />
         </EntityType>
+        <EntityType Name="LoginLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="int" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="createTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="id" />
@@ -405,6 +414,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="LoginLog_user_fk">
+          <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
+          <End Role="LoginLog" Type="Self.LoginLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LoginLog">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="QC_group_id_fk">
           <End Role="Question_Concept_Group" Type="Self.Question_Concept_Group" Multiplicity="0..1" />
           <End Role="Question_Concept" Type="Self.Question_Concept" Multiplicity="*" />
@@ -546,6 +567,7 @@
           <EntitySet Name="Cimage_profession" EntityType="Self.Cimage_profession" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group_Class_Mapping" EntityType="Self.Group_Class_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InfoUser" EntityType="Self.InfoUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginLog" EntityType="Self.LoginLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question_Concept" EntityType="Self.Question_Concept" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question_Concept_Group" EntityType="Self.Question_Concept_Group" Schema="dbo" store:Type="Tables" />
@@ -626,6 +648,10 @@
           <AssociationSet Name="infoUser_pet_image_fk" Association="Self.infoUser_pet_image_fk">
             <End Role="Character_image" EntitySet="Character_image" />
             <End Role="InfoUser" EntitySet="InfoUser" />
+          </AssociationSet>
+          <AssociationSet Name="LoginLog_user_fk" Association="Self.LoginLog_user_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="LoginLog" EntitySet="LoginLog" />
           </AssociationSet>
           <AssociationSet Name="QC_group_id_fk" Association="Self.QC_group_id_fk">
             <End Role="Question_Concept_Group" EntitySet="Question_Concept_Group" />
@@ -799,6 +825,7 @@
           <NavigationProperty Name="Student_Class" Relationship="Self.SC_teacher_id_fk" FromRole="InfoUser" ToRole="Student_Class" />
           <NavigationProperty Name="Student_Class_Mapping" Relationship="Self.SCM_student_id_fk" FromRole="InfoUser" ToRole="Student_Class_Mapping" />
           <Property Name="character_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoginLog" Relationship="yzucsModel.LoginLog_user_fk" FromRole="InfoUser" ToRole="LoginLog" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -1370,6 +1397,11 @@
             <End Role="Student_Class_Mapping" EntitySet="Student_Class_Mapping" />
           </AssociationSet>
           <EntitySet Name="vw_QuestionConceptDetail" EntityType="yzucsModel.vw_QuestionConceptDetail" />
+          <EntitySet Name="LoginLog" EntityType="yzucsModel.LoginLog" />
+          <AssociationSet Name="LoginLog_user_fk" Association="yzucsModel.LoginLog_user_fk">
+            <End Role="InfoUser" EntitySet="InfoUser" />
+            <End Role="LoginLog" EntitySet="LoginLog" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="vw_QuestionConceptDetail">
           <Key>
@@ -1383,6 +1415,28 @@
           <Property Name="g_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="g_percentage" Type="Int32" />
         </EntityType>
+        <EntityType Name="LoginLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="group_id" Type="Int32" />
+          <Property Name="createTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="InfoUser" Relationship="yzucsModel.LoginLog_user_fk" FromRole="LoginLog" ToRole="InfoUser" />
+        </EntityType>
+        <Association Name="LoginLog_user_fk">
+          <End Type="yzucsModel.InfoUser" Role="InfoUser" Multiplicity="0..1" />
+          <End Type="yzucsModel.LoginLog" Role="LoginLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InfoUser">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LoginLog">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1622,6 +1676,16 @@
                 <ScalarProperty Name="c_name" ColumnName="c_name" />
                 <ScalarProperty Name="q_percentage" ColumnName="q_percentage" />
                 <ScalarProperty Name="q_id" ColumnName="q_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginLog">
+            <EntityTypeMapping TypeName="yzucsModel.LoginLog">
+              <MappingFragment StoreEntitySet="LoginLog">
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

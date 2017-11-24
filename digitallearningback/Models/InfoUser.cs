@@ -21,6 +21,7 @@ namespace digitallearningback.Models
             this.Answer_Log = new HashSet<Answer_Log>();
             this.Student_Class = new HashSet<Student_Class>();
             this.Student_Class_Mapping = new HashSet<Student_Class_Mapping>();
+            this.LoginLog = new HashSet<LoginLog>();
         }
     
         public int id { get; set; }
@@ -54,5 +55,7 @@ namespace digitallearningback.Models
         public virtual ICollection<Student_Class> Student_Class { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Student_Class_Mapping> Student_Class_Mapping { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LoginLog> LoginLog { get; set; }
     }
 }

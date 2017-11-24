@@ -50,6 +50,8 @@
         <AssociationConnector Association="yzucsModel.QLM_l_id_fk" ManuallyRouted="false" />
         <AssociationConnector Association="yzucsModel.SCM_class_id_fk" ManuallyRouted="false" />
         <EntityTypeShape EntityType="yzucsModel.vw_QuestionConceptDetail" Width="1.5" PointX="10.375" PointY="11.75" />
+        <EntityTypeShape EntityType="yzucsModel.LoginLog" Width="1.5" PointX="7.5" PointY="0.875" />
+        <AssociationConnector Association="yzucsModel.LoginLog_user_fk" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
