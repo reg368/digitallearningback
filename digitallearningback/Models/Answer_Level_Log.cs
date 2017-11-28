@@ -25,7 +25,7 @@ namespace digitallearningback.Models
         public Nullable<int> loginid { get; set; }
         public Nullable<int> gid { get; set; }
         public Nullable<int> lid { get; set; }
-        public Nullable<int> qids { get; set; }
+        public string qids { get; set; }
         public Nullable<int> isfinished { get; set; }
         public Nullable<System.DateTime> createTime { get; set; }
         public Nullable<int> correctnumber { get; set; }

@@ -25,7 +25,7 @@
           <Property Name="loginid" Type="int" />
           <Property Name="gid" Type="int" />
           <Property Name="lid" Type="int" />
-          <Property Name="qids" Type="int" />
+          <Property Name="qids" Type="nvarchar" MaxLength="200" />
           <Property Name="isfinished" Type="int" />
           <Property Name="createTime" Type="datetime" />
           <Property Name="correctnumber" Type="int" />
@@ -1477,7 +1477,7 @@
           <Property Name="loginid" Type="Int32" />
           <Property Name="gid" Type="Int32" />
           <Property Name="lid" Type="Int32" />
-          <Property Name="qids" Type="Int32" />
+          <Property Name="qids" Type="String" />
           <Property Name="isfinished" Type="Int32" />
           <Property Name="createTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_lgid_fk" FromRole="Answer_Level_Log" ToRole="Answer_Log" />

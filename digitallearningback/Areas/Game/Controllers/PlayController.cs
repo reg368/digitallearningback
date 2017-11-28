@@ -19,8 +19,6 @@ namespace digitallearningback.Areas.Game.Controllers
         private AnswerService answerervice = new AnswerService(); // 找 課程/關卡 題目
         private Log4Net logger = new Log4Net("PlayController");
 
-        private readonly String questionskey = "questions";     //取得 存在 HttpSession 內  題目集合的 key
-
         //課程選擇頁
         public ActionResult Index()
         {
@@ -76,13 +74,17 @@ namespace digitallearningback.Areas.Game.Controllers
         }
 
         //開始找所有關卡內的題目
-        public ActionResult LevelStart(int lid,int gid)
+        public ActionResult LevelStart(int lid,int gid ,int passpoint)
         {
 
             //如果要隨機出題的話 就打亂順序
             List<Question> questions = qservice.selectByGroupidAndLevelid(gid, lid);
 
-            Session[questionskey] = questions;
+            //將這次的題目存到HttpSession
+            Question.setSessionListQuestions(questions);
+
+            //關卡Log紀錄
+            Answer_Level_Log.doLevelStartLog(questions, lid, gid, passpoint);
 
             return RedirectToAction("GameOn", "Play");
         }
@@ -92,7 +94,8 @@ namespace digitallearningback.Areas.Game.Controllers
         public ActionResult GameOn()
         {
 
-            List<Question> questions = Session[questionskey] as List<Question>;
+            //從HttpSession取出題目
+            List<Question> questions = Question.getSessionListQuestions();
 
             //關卡題目都做完了
             if (questions == null || questions.Count == 0)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using digitallearningback.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,11 +9,28 @@ namespace digitallearningback.Models
     public partial class InfoUser
     {
 
-        public static InfoUser getLoginUser()
+        private LoginLogService logingService = new LoginLogService();
+
+        private static readonly String infoUserkey = "infoUser";     //取得 存在 HttpSession 內  題目集合的 key
+
+        //存入 HttpSession 登入user資訊
+        public static void setLoginUser(InfoUser model)
         {
-            return (InfoUser)HttpContext.Current.Session["infoUser"];
+            HttpContext.Current.Session[infoUserkey] = model;
         }
 
+        //取得 HttpSession 登入user資訊
+        public static InfoUser getLoginUser()
+        {
+            return (InfoUser)HttpContext.Current.Session[infoUserkey];
+        }
+
+        //LoginController.cs 紀錄登入log
+        public void doLoginLog()
+        {
+            int logid = logingService.doLog(this);
+            this.login_count = logid;
+        }
 
         public UserRole role { get; set; }
 

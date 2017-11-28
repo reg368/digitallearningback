@@ -11,7 +11,6 @@ namespace digitallearningback.Controllers
     public class LoginController : Controller
     {
         private InfoUserService userService = new InfoUserService();
-        private LoginLogService logingService = new LoginLogService();
         private Log4Net logger = new Log4Net("LoginController");
 
 
@@ -73,9 +72,9 @@ namespace digitallearningback.Controllers
             if (isLogingSuccess)
             {
                 //登入成功 紀錄寫到DB
-                user.login_count = logingService.doLog(user);
-                logger.debug("login_count id", user.login_count+"");
-                Session["infoUser"] = user;
+                user.doLoginLog();
+                //logger.debug("login_count id", user.login_count+"");
+                InfoUser.setLoginUser(user);
             }
             return result;
         }
