@@ -1,7 +1,9 @@
 ﻿using digitallearningback.DAO;
+using digitallearningback.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace digitallearningback.Models
@@ -26,19 +28,29 @@ namespace digitallearningback.Models
         //PlayController.cs  LevelStart關卡開始 的資料紀錄
         public static void doLevelStartLog(List<Question> questions , int lid , int gid , int passpoint)
         {
+
+            Log4Net logger = new Log4Net("Answer_Level_Log");
             Answer_Level_Log model = new Answer_Level_Log();
             model.userid = InfoUser.getLoginUser().id;
             model.loginid = InfoUser.getLoginUser().login_count;
             model.lid = lid;
             model.gid = gid;
+
             //這次關卡的所有題目id
-            model.qids = questions.Aggregate
-                         (
-                             (i, j) => new Question
-                             {
-                                 text = (i.id + "," + j.id)
-                             }
-                         ).text;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < questions.Count(); i++)
+            {
+                if (i < (questions.Count() - 1))
+                {
+                    sb.Append(questions.ElementAt(i).id + ",");
+                }
+                else
+                {
+                    sb.Append(questions.ElementAt(i).id);
+                }
+            }
+            model.qids = sb.ToString();
+
             model.createTime = DateTime.Now;
             model.passpoint = passpoint;
 
