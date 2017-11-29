@@ -29,13 +29,17 @@ namespace digitallearningback.Models
             model.iscorrect = answer.is_correct; //是否答對 0 : 錯 , 1 : 對
             model.createTime = DateTime.Now;
             
-            //如果這題答對 總答題對數+1 更新關卡紀錄
+            //如果這題答對 總答題對數+1 
             if(answer.is_correct == 1)
             {
                 levelLog.correctnumber = levelLog.correctnumber + 1;
-                Answer_Level_Log.setSessionAnswer_Level_Log(levelLog);
-                levelLog.doUpdateLog();
             }
+
+            //紀錄回答題數
+            levelLog.answernumber = levelLog.answernumber + 1;
+            Answer_Level_Log.setSessionAnswer_Level_Log(levelLog);
+            //更新關卡紀錄
+            levelLog.doUpdateLog();
 
             service.insert(model);
         }

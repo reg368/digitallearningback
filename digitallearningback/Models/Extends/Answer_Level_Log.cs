@@ -10,6 +10,7 @@ namespace digitallearningback.Models
 {
     public partial class Answer_Level_Log
     {
+        private Log4Net logger = new Log4Net("Answer_Level_Log");
         private Answer_Level_LogService service = new Answer_Level_LogService();
         private static readonly String levelLogkey = "Answer_Level_Log";     //取得 存在 HttpSession 內  題目集合的 key
 
@@ -50,10 +51,12 @@ namespace digitallearningback.Models
                 }
             }
             model.qids = sb.ToString();
-            model.isfinished = 0;
+            model.isfinished = 0;  //是否做完關卡所有的題目 初始化 
             model.createTime = DateTime.Now;
-            model.correctnumber = 0;
-            model.passpoint = 0;
+            model.correctnumber = 0; //答對的題目數 初始化
+            model.passpoint = 0;  //使用者這次做完關卡獲得的答對率(看可以得到幾個星星) 初始化
+            model.questionnumber = questions.Count(); //總題目數 
+            model.answernumber = 0;  //答對的題目數 初始化
 
             new Answer_Level_LogService().insert(model);
 
@@ -64,7 +67,9 @@ namespace digitallearningback.Models
 
         public void doFinishedLog()
         {
-            
+            this.passpoint = ((decimal)this.correctnumber / (decimal)this.questionnumber ) * (decimal)100;
+            setSessionAnswer_Level_Log(this);
+            this.doUpdateLog();
         }
 
         public void doUpdateLog()

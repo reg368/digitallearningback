@@ -29,7 +29,7 @@
           <Property Name="isfinished" Type="int" />
           <Property Name="createTime" Type="datetime" />
           <Property Name="correctnumber" Type="int" />
-          <Property Name="passpoint" Type="int" />
+          <Property Name="passpoint" Type="decimal" Precision="4" Scale="1" />
           <Property Name="charjson" Type="nvarchar(max)" />
           <Property Name="answernumber" Type="int" />
           <Property Name="questionnumber" Type="int" />
@@ -188,7 +188,7 @@
           <Property Name="awardexperience" Type="int" />
           <Property Name="fromquestion" Type="int" />
           <Property Name="toquestion" Type="int" />
-          <Property Name="passpoint" Type="int" />
+          <Property Name="passpoint" Type="decimal" Precision="4" Scale="1" />
         </EntityType>
         <EntityType Name="Question_Level_Mapping">
           <Key>
@@ -933,7 +933,7 @@
           <Property Name="toquestion" Type="Int32" />
           <NavigationProperty Name="Question_group" Relationship="Self.QL_groupid_fk" FromRole="Question_level" ToRole="Question_group" />
           <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_l_id_fk" FromRole="Question_level" ToRole="Question_Level_Mapping" />
-          <Property Name="passpoint" Type="Int32" />
+          <Property Name="passpoint" Type="Decimal" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_lid_fk" FromRole="Question_level" ToRole="Answer_Log" />
           <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.levellog_lid_fk" FromRole="Question_level" ToRole="Answer_Level_Log" />
         </EntityType>
@@ -1488,7 +1488,7 @@
           <NavigationProperty Name="LoginLog" Relationship="yzucsModel.levellog_loginid_fk" FromRole="Answer_Level_Log" ToRole="LoginLog" />
           <NavigationProperty Name="InfoUser" Relationship="yzucsModel.levellog_user_id_fk" FromRole="Answer_Level_Log" ToRole="InfoUser" />
           <Property Name="correctnumber" Type="Int32" />
-          <Property Name="passpoint" Type="Int32" />
+          <Property Name="passpoint" Type="Decimal" />
           <Property Name="charjson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="answernumber" Type="Int32" />
           <Property Name="questionnumber" Type="Int32" />

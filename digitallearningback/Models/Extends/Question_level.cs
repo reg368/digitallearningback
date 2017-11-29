@@ -13,7 +13,7 @@ namespace digitallearningback.Models
 
             if (this.passpoint != null && this.passpoint > 0)
             {
-                return (this.passpoint / 10) - 5;
+                return (int)(this.passpoint / 10) - 5;
             }
             else
             {

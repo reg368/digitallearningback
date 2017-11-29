@@ -30,7 +30,7 @@
             {
                 <tr>
                     <th style="font-size: 30px;border-bottom: 1px solid ;" >
-                        @item.level<font size="2">過關: @item.getPasspointStarNumber() 顆星</font><br>
+                        @item.level<font size="2">過關: @item.getPasspointStarNumber() 顆星</font>
                         <button onclick="nextlevel('@item.id')">開始作答</button><br>
                         @item.getPasspointStar(item.getPasspointStarNumber());
                     </th>

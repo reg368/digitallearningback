@@ -34,7 +34,7 @@ namespace digitallearningback.Models
         public Nullable<int> awardexperience { get; set; }
         public Nullable<int> fromquestion { get; set; }
         public Nullable<int> toquestion { get; set; }
-        public Nullable<int> passpoint { get; set; }
+        public Nullable<decimal> passpoint { get; set; }
     
         public virtual Question_group Question_group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

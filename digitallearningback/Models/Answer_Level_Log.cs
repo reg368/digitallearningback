@@ -29,7 +29,7 @@ namespace digitallearningback.Models
         public Nullable<int> isfinished { get; set; }
         public Nullable<System.DateTime> createTime { get; set; }
         public Nullable<int> correctnumber { get; set; }
-        public Nullable<int> passpoint { get; set; }
+        public Nullable<decimal> passpoint { get; set; }
         public string charjson { get; set; }
         public Nullable<int> answernumber { get; set; }
         public Nullable<int> questionnumber { get; set; }

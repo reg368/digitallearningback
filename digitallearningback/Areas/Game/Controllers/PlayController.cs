@@ -73,7 +73,7 @@ namespace digitallearningback.Areas.Game.Controllers
         }
 
         //開始找所有關卡內的題目
-        public ActionResult LevelStart(int lid,int gid ,int passpoint)
+        public ActionResult LevelStart(int lid,int gid)
         {
 
             //如果要隨機出題的話 就打亂順序
@@ -99,6 +99,8 @@ namespace digitallearningback.Areas.Game.Controllers
             //關卡題目都做完了
             if (questions == null || questions.Count == 0)
             {
+                //算出這一次作答的答題率 並且儲存
+                Answer_Level_Log.getSessionAnswer_Level_Log().doFinishedLog();
                 return RedirectToAction("Result", "Play");
             }
             //還有題目
