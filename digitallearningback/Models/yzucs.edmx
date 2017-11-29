@@ -601,6 +601,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="fun_CalculateAnswerConceptPoint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="levellogid" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="cid" Type="int" />
+                <Property Name="cname" Type="nvarchar" MaxLength="100" />
+                <Property Name="point" Type="int" />
+                <Property Name="fullpoint" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="yzucsModelStoreContainer">
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Answer_Level_Log" EntityType="Self.Answer_Level_Log" Schema="dbo" store:Type="Tables" />
@@ -933,7 +946,7 @@
           <Property Name="toquestion" Type="Int32" />
           <NavigationProperty Name="Question_group" Relationship="Self.QL_groupid_fk" FromRole="Question_level" ToRole="Question_group" />
           <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_l_id_fk" FromRole="Question_level" ToRole="Question_Level_Mapping" />
-          <Property Name="passpoint" Type="Decimal" />
+          <Property Name="passpoint" Type="Decimal" Precision="4" Scale="1" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_lid_fk" FromRole="Question_level" ToRole="Answer_Log" />
           <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.levellog_lid_fk" FromRole="Question_level" ToRole="Answer_Level_Log" />
         </EntityType>
@@ -1339,6 +1352,9 @@
             <End Role="InfoUser" EntitySet="InfoUser" />
             <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
           </AssociationSet>
+          <FunctionImport Name="fun_CalculateAnswerConceptPoint" IsComposable="true" ReturnType="Collection(yzucsModel.fun_CalculateAnswerConceptPoint_Result)">
+            <Parameter Name="levellogid" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="vw_QuestionConceptDetail">
           <Key>
@@ -1488,7 +1504,7 @@
           <NavigationProperty Name="LoginLog" Relationship="yzucsModel.levellog_loginid_fk" FromRole="Answer_Level_Log" ToRole="LoginLog" />
           <NavigationProperty Name="InfoUser" Relationship="yzucsModel.levellog_user_id_fk" FromRole="Answer_Level_Log" ToRole="InfoUser" />
           <Property Name="correctnumber" Type="Int32" />
-          <Property Name="passpoint" Type="Decimal" />
+          <Property Name="passpoint" Type="Decimal" Precision="4" Scale="1" />
           <Property Name="charjson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="answernumber" Type="Int32" />
           <Property Name="questionnumber" Type="Int32" />
@@ -1553,6 +1569,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="fun_CalculateAnswerConceptPoint_Result">
+          <Property Type="Int32" Name="cid" Nullable="true" />
+          <Property Type="String" Name="cname" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="point" Nullable="true" />
+          <Property Type="Int32" Name="fullpoint" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1813,6 +1835,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fun_CalculateAnswerConceptPoint" FunctionName="yzucsModel.Store.fun_CalculateAnswerConceptPoint">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="yzucsModel.fun_CalculateAnswerConceptPoint_Result">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="cname" ColumnName="cname" />
+                <ScalarProperty Name="point" ColumnName="point" />
+                <ScalarProperty Name="fullpoint" ColumnName="fullpoint" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

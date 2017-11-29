@@ -12,6 +12,8 @@ namespace digitallearningback.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class yzucsEntities : DbContext
     {
@@ -45,5 +47,15 @@ namespace digitallearningback.Models
         public virtual DbSet<LoginLog> LoginLog { get; set; }
         public virtual DbSet<Answer_Log> Answer_Log { get; set; }
         public virtual DbSet<Answer_Level_Log> Answer_Level_Log { get; set; }
+    
+        [DbFunction("yzucsEntities", "fun_CalculateAnswerConceptPoint")]
+        public virtual IQueryable<fun_CalculateAnswerConceptPoint_Result> fun_CalculateAnswerConceptPoint(Nullable<int> levellogid)
+        {
+            var levellogidParameter = levellogid.HasValue ?
+                new ObjectParameter("levellogid", levellogid) :
+                new ObjectParameter("levellogid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fun_CalculateAnswerConceptPoint_Result>("[yzucsEntities].[fun_CalculateAnswerConceptPoint](@levellogid)", levellogidParameter);
+        }
     }
 }

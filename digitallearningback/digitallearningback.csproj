@@ -215,6 +215,9 @@
     <Compile Include="Models\Extends\ExtensionsList.cs" />
     <Compile Include="Models\Extends\Question_level.cs" />
     <Compile Include="Models\Extends\Question.cs" />
+    <Compile Include="Models\fun_CalculateAnswerConceptPoint_Result.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Group_Class_Mapping.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
