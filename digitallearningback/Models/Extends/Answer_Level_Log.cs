@@ -10,7 +10,7 @@ namespace digitallearningback.Models
 {
     public partial class Answer_Level_Log
     {
-
+        private Answer_Level_LogService service = new Answer_Level_LogService();
         private static readonly String levelLogkey = "Answer_Level_Log";     //取得 存在 HttpSession 內  題目集合的 key
 
         //存入 HttpSession 當下遊戲關卡資訊
@@ -26,7 +26,7 @@ namespace digitallearningback.Models
         }
 
         //PlayController.cs  LevelStart關卡開始 的資料紀錄
-        public static void doLevelStartLog(List<Question> questions , int lid , int gid , int passpoint)
+        public static void doLevelStartLog(List<Question> questions , int lid , int gid)
         {
 
             Log4Net logger = new Log4Net("Answer_Level_Log");
@@ -50,14 +50,26 @@ namespace digitallearningback.Models
                 }
             }
             model.qids = sb.ToString();
-
+            model.isfinished = 0;
             model.createTime = DateTime.Now;
-            model.passpoint = passpoint;
+            model.correctnumber = 0;
+            model.passpoint = 0;
 
             new Answer_Level_LogService().insert(model);
 
             HttpContext.Current.Session[levelLogkey] = model;
 
+        }
+
+
+        public void doFinishedLog()
+        {
+            
+        }
+
+        public void doUpdateLog()
+        {
+            service.update(this);
         }
     }
 }

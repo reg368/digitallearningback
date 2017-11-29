@@ -31,6 +31,8 @@ namespace digitallearningback.Models
         public Nullable<int> correctnumber { get; set; }
         public Nullable<int> passpoint { get; set; }
         public string charjson { get; set; }
+        public Nullable<int> answernumber { get; set; }
+        public Nullable<int> questionnumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer_Log> Answer_Log { get; set; }

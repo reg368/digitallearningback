@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using digitallearningback.DAO;
+﻿using digitallearningback.DAO;
 using digitallearningback.Models;
 using digitallearningback.Util;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace digitallearningback.Areas.Game.Controllers
 {
@@ -84,7 +83,7 @@ namespace digitallearningback.Areas.Game.Controllers
             Question.setSessionListQuestions(questions);
 
             //關卡Log紀錄
-            Answer_Level_Log.doLevelStartLog(questions, lid, gid, passpoint);
+            Answer_Level_Log.doLevelStartLog(questions, lid, gid);
 
             return RedirectToAction("GameOn", "Play");
         }
@@ -111,18 +110,16 @@ namespace digitallearningback.Areas.Game.Controllers
             }
         }
 
-
-        public ActionResult Result()
-        {
-            return View();
-        }
-
+        //答題正不正確判斷 said : 使用者選的 答案id 
         public ActionResult CheckAnswer(string said)
         {
 
             int aid = Convert.ToInt32(said);
 
             Answer answer = answerervice.selectById(aid);
+
+            //紀錄這次答題的狀況 並且如果答對的話更新關卡狀態
+            new Answer_Log().doCheckAnswerLog(answer);
 
             var result = new
             {
@@ -134,7 +131,10 @@ namespace digitallearningback.Areas.Game.Controllers
             return Json(result);
         }
 
-
+        public ActionResult Result()
+        {
+            return View();
+        }
 
     }
 }

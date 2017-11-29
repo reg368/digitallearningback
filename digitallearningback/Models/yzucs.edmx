@@ -31,6 +31,8 @@
           <Property Name="correctnumber" Type="int" />
           <Property Name="passpoint" Type="int" />
           <Property Name="charjson" Type="nvarchar(max)" />
+          <Property Name="answernumber" Type="int" />
+          <Property Name="questionnumber" Type="int" />
         </EntityType>
         <EntityType Name="Answer_Log">
           <Key>
@@ -1477,7 +1479,7 @@
           <Property Name="loginid" Type="Int32" />
           <Property Name="gid" Type="Int32" />
           <Property Name="lid" Type="Int32" />
-          <Property Name="qids" Type="String" />
+          <Property Name="qids" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="isfinished" Type="Int32" />
           <Property Name="createTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_lgid_fk" FromRole="Answer_Level_Log" ToRole="Answer_Log" />
@@ -1488,6 +1490,8 @@
           <Property Name="correctnumber" Type="Int32" />
           <Property Name="passpoint" Type="Int32" />
           <Property Name="charjson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="answernumber" Type="Int32" />
+          <Property Name="questionnumber" Type="Int32" />
         </EntityType>
         <Association Name="answerlog_lgid_fk">
           <End Type="yzucsModel.Answer_Level_Log" Role="Answer_Level_Log" Multiplicity="0..1" />
@@ -1793,6 +1797,8 @@
           <EntitySetMapping Name="Answer_Level_Log">
             <EntityTypeMapping TypeName="yzucsModel.Answer_Level_Log">
               <MappingFragment StoreEntitySet="Answer_Level_Log">
+                <ScalarProperty Name="questionnumber" ColumnName="questionnumber" />
+                <ScalarProperty Name="answernumber" ColumnName="answernumber" />
                 <ScalarProperty Name="charjson" ColumnName="charjson" />
                 <ScalarProperty Name="passpoint" ColumnName="passpoint" />
                 <ScalarProperty Name="correctnumber" ColumnName="correctnumber" />
