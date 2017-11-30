@@ -13,6 +13,8 @@
     <script>
         $(document).ready(function () {
 
+            $('#title').text('結果計算中請稍後...');
+
             $.ajax({
                 type: "POST",
                 url: "/Game/Play/GetResultData",
@@ -20,32 +22,48 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
-                }
-            });
 
+                    $('#title').text('');
 
+                    //console.log(data);
 
-            var ctx = document.getElementById('ctx');
-            ctx.height = 420;
+                    var ctx = document.getElementById('ctx');
+                    ctx.height = 420;
 
-            var chart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ["include", "namespace", "變數基本概念", "區域變數"],
-                    datasets: [{
-                        label: "my first dataset",
-                        borderColor: 'rgb(255,99,132)',
-                        data:[27,30,20,50],
-                    }]
-                },
-                options: {
-                    scale: {
-                        ticks: {
-                            beginAtZero: true,
-                            max: 100
+                    var labels = [], data1 = [] , data2 = []; //data1: 滿分 , data2 : 得分
+
+                    data.forEach(function (model) {
+                        labels.push(model.cname);
+                        data1.push(model.fullpoint);
+                        data2.push(model.point);
+                    });
+
+                    var chart = new Chart(ctx, {
+                        type: 'radar',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: "此次測驗各項概念的滿分",
+                                    borderColor: 'rgb(72,61,139)',
+                                    data: data1,
+                                },
+                                {
+                                    label: "此次測驗所獲得的概念分數",
+                                    borderColor: 'rgb(255,0,0)',
+                                    data: data2,
+                                }
+                            ]
+                        },
+                        options: {
+                            scale: {
+                                ticks: {
+                                    beginAtZero: true,
+                                    max: 100
+                                }
+                            }
                         }
-                    }
+                    });
                 }
             });
         })
@@ -65,7 +83,8 @@
     </p>
 
 
-    <p class="gwd-p-xfrq" style="">Title</p>
+    <p id="title" class="gwd-p-xfrq" style="">
+    </p>
 
 
 </body>
