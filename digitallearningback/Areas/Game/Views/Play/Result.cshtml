@@ -13,6 +13,19 @@
     <script>
         $(document).ready(function () {
 
+            $.ajax({
+                type: "POST",
+                url: "/Game/Play/GetResultData",
+                data: "{logid:" + @ViewBag.levellogid + "}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+
+
+
             var ctx = document.getElementById('ctx');
             ctx.height = 420;
 

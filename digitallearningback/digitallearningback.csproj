@@ -167,6 +167,7 @@
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\fun_CalculateAnswerConceptPoint_ResultService.cs" />
     <Compile Include="DAO\Answer_Level_LogService.cs" />
     <Compile Include="DAO\Answer_LogService.cs" />
     <Compile Include="DAO\LoginLogService.cs" />

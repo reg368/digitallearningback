@@ -16,6 +16,8 @@ namespace digitallearningback.Areas.Game.Controllers
         private Question_levelService levelservice = new Question_levelService(); //找課程關卡
         private QuestionService qservice = new QuestionService(); // 找 課程/關卡 題目
         private AnswerService answerervice = new AnswerService(); // 找 課程/關卡 題目
+        private fun_CalculateAnswerConceptPoint_ResultService resultservice = new fun_CalculateAnswerConceptPoint_ResultService(); // 題目做完查概念權重結果
+
         private Log4Net logger = new Log4Net("PlayController");
 
         //課程選擇頁
@@ -133,9 +135,19 @@ namespace digitallearningback.Areas.Game.Controllers
             return Json(result);
         }
 
+        //呈現結果雷達圖的頁面
         public ActionResult Result()
         {
+            ViewBag.levellogid = Answer_Level_Log.getSessionAnswer_Level_Log().id;
             return View();
+        }
+
+        //呈現雷達圖的頁面 ajax call 回傳概念權重資料
+        public ActionResult GetResultData(string logid)
+        {
+            int levellogid = Convert.ToInt32(logid);
+
+            return Json(resultservice.selectByLevelLogId(levellogid));
         }
 
     }
