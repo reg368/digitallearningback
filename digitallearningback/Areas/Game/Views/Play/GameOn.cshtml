@@ -75,7 +75,30 @@
             }
 
         });
+
+        if (window.history && window.history.pushState) {
+
+            $(window).on('popstate', function () {
+                var hashLocation = location.hash;
+                var hashSplit = hashLocation.split("#!/");
+                var hashName = hashSplit[1];
+
+                if (hashName !== '') {
+                    var hash = window.location.hash;
+                    if (hash === '') {
+                        alert('遊戲進行中...請勿按上一頁操作,謝謝');
+                        window.history.pushState('forward', null, './#forward');
+                       // location.reload();
+                    }
+                }
+            });
+
+            window.history.pushState('forward', null, './#forward');
+        }
+
     });
+
+  
 </script>
 </head>
 <body>
