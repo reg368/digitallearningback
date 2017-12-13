@@ -16,7 +16,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         // GET: Admin/Question_Concept_Group
         public ActionResult Index()
         {
-            return View(service.selectListByUserid(new InfoUser().getLoginUser().id));
+            return View(service.selectListByUserid(InfoUser.getLoginUser().id));
         }
 
         // GET: Admin/Question_Concept_Group/Details/5
@@ -49,7 +49,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                question_Concept_Group.user_id = new InfoUser().getLoginUser().id;
+                question_Concept_Group.user_id = InfoUser.getLoginUser().id;
                 service.insert(question_Concept_Group);
                 return RedirectToAction("Index");
             }

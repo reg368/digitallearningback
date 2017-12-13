@@ -19,7 +19,7 @@ namespace digitallearningback.Areas.Game.Controllers
         // GET: Game/Create
         public ActionResult SelectGender()
         {
-            return View(new InfoUser().getLoginUser());
+            return View(InfoUser.getLoginUser());
         }
 
         //選擇遊戲角色
@@ -68,7 +68,7 @@ namespace digitallearningback.Areas.Game.Controllers
                 //取得使用者選的遊戲角色 塞回session
                 var selected = characterlist.ElementAt(char_index-1);
 
-                InfoUser user = new InfoUser().getLoginUser();
+                InfoUser user = InfoUser.getLoginUser();
 
                 user.character_image = selected.cimage_id;
                 Session["infoUser"] = user;
@@ -112,8 +112,8 @@ namespace digitallearningback.Areas.Game.Controllers
             {
                 //取得使用者選的遊戲角色 塞回session
                 var selected = petlist.ElementAt(char_index-1);
-                new InfoUser().getLoginUser().pet_image = selected.cimage_id;
-                Session["infoUser"] = new InfoUser().getLoginUser();
+                InfoUser.getLoginUser().pet_image = selected.cimage_id;
+                Session["infoUser"] = InfoUser.getLoginUser();
             }
             else
             {
@@ -128,11 +128,11 @@ namespace digitallearningback.Areas.Game.Controllers
         {
             if (ModelState.IsValid)
             {
-                InfoUser infouser = new InfoUser().getLoginUser();
+                InfoUser infouser = InfoUser.getLoginUser();
 
                 //更新infoUser 資訊
                 infouser.character_name = model.character_name;
-                infouser.getLoginUser().pet_name = model.pet_name;
+                infouser.pet_name = model.pet_name;
                 uservice.update(infouser);
 
                 //塞回 seession

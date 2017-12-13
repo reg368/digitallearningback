@@ -22,7 +22,7 @@ namespace digitallearningback.Filter
             }
             else
             {
-                var infoUser = new InfoUser().getLoginUser(filterContext);
+                var infoUser = InfoUser.getLoginUser(filterContext);
 
                 if (infoUser == null)
                 {

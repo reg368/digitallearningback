@@ -18,7 +18,37 @@ namespace digitallearningback.Controllers
         [SkipMyGlobalActionFilter]
         public ActionResult Login()
         {
+            if (InfoUser.getLoginUser() != null && Question.getSessionListQuestions() != null && Question.getSessionListQuestions().Count > 0)
+            {
+                return RedirectToAction("LoginBlock", "Login", new { area = "" });
+            }
+            else if (InfoUser.getLoginUser() != null)
+            {
+                return InfoUser.getLoginUser().LoginRedirect();
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        //遊戲進行到一半異常中斷 就會阻止二次登入
+        //如果 HttpSession InfoUser & Question 都有資料就會進入這個畫面
+        //要求使用者登出
+        [SkipMyGlobalActionFilter]
+        public ActionResult LoginBlock()
+        {
             return View();
+        }
+
+        //刪掉 InfoUser & Question 存在 HTTPsession 的資料 
+        [SkipMyGlobalActionFilter]
+        public ActionResult LoginDataClean()
+        {
+            InfoUser.cleanLoginUser();
+            Question.cleanQuestions();
+
+            return RedirectToAction("Login", "Login", new { area = "" });
         }
 
         // POST : check login
@@ -31,32 +61,12 @@ namespace digitallearningback.Controllers
                 InfoUser dbuser  = userService.findByUserLoginId(user.login_id);
 
                 if (dbuser != null && user.password.Equals(dbuser.password)){
-
-                    //如果登入帳號 是管理者或老師 則進入管理端
-                    if ((dbuser.validLogined(user.password, InfoUser.UserRole.Teacher) ||
-                             dbuser.validLogined(user.password, InfoUser.UserRole.Admin))
-                        )
-                    {
-                        return forward(RedirectToAction("Index", "Home", new { area = "Admin" }), dbuser,true);
-                    }
-                    //如果是學生就 進入遊戲
-                    else if ((dbuser.validLogined(user.password, InfoUser.UserRole.Student)))
-                    {
-                        //還沒有選擇遊戲角色 第一次登入 進入建立遊戲角色頁面
-                        if (dbuser.character_image == null || "".Equals(dbuser.character_image))
-                        {
-                            return forward(RedirectToAction("SelectGender", "Create", new { area = "Game" }), dbuser, true);
-                        }
-                        //已選擇遊戲角色 (第n次登入) 開始遊戲
-                        else {
-                            logger.debug("Login(InfoUser user)", " to Index/Play ");
-                            return forward(RedirectToAction("Index", "Play", new { area = "Game" }),dbuser, true);
-                        }
-                    }
+                    return forward(dbuser.LoginRedirect(), dbuser, true);
                 }
-
-                return forward(View(user), user,false);
-
+                else
+                {
+                    return forward(View(user), user, false);
+                }
             }
             else{
                 return View(user);
@@ -76,7 +86,7 @@ namespace digitallearningback.Controllers
                 user.doLoginLog();
 
                 //logger.debug("login_count id", user.login_count+"");
-                user.setLoginUser();
+                InfoUser.setLoginUser(user);
 
             }
             return result;

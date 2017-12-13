@@ -43,7 +43,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         {
             ViewBag.gid = gid;
             ViewBag.gname = gname;
-            ViewBag.userid = new InfoUser().getLoginUser().id;
+            ViewBag.userid = InfoUser.getLoginUser().id;
             return View();
         }
 

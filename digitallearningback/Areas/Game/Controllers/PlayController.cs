@@ -26,7 +26,7 @@ namespace digitallearningback.Areas.Game.Controllers
 
             logger.debug("Index()", " Index() ");
 
-            InfoUser user = new InfoUser().getLoginUser();
+            InfoUser user = InfoUser.getLoginUser();
             if (user != null)
             {
 

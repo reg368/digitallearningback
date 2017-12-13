@@ -29,7 +29,7 @@ namespace digitallearningback.Models
         //PlayController.cs  LevelStart關卡開始 的資料紀錄
         public static void doLevelStartLog(List<Question> questions , int lid , int gid)
         {
-            InfoUser user = new InfoUser().getLoginUser();
+            InfoUser user = InfoUser.getLoginUser();
             Log4Net logger = new Log4Net("Answer_Level_Log");
             Answer_Level_Log model = new Answer_Level_Log();
             model.userid = user.id;

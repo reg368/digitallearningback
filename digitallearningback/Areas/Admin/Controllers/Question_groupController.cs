@@ -16,7 +16,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         // GET: Admin/Question_group
         public ActionResult Index()
         {
-            return View(gropuService.selectListByUserid(new InfoUser().getLoginUser().id));
+            return View(gropuService.selectListByUserid(InfoUser.getLoginUser().id));
         }
 
         // GET: Admin/Question_group/Details/5
@@ -49,7 +49,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                question_group.userid = new InfoUser().getLoginUser().id;
+                question_group.userid = InfoUser.getLoginUser().id;
                 question_group.joindate = DateTime.Today;
 
                 gropuService.insert(question_group);

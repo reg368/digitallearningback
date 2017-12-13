@@ -10,14 +10,22 @@ namespace digitallearningback.Models
 
         private static readonly String questionskey = "questions";     //取得 存在 HttpSession 內  題目集合的 key
 
+        //存入 HttpSession  題目集合 資訊
         public static void setSessionListQuestions(List<Question> list)
         {
             HttpContext.Current.Session[questionskey] = list;
         }
 
+        //取得  HttpSession  題目集合 資訊
         public static List<Question> getSessionListQuestions()
         {
             return (List<Question>)HttpContext.Current.Session[questionskey];
+        }
+
+        //清除登入的資料
+        public static void cleanQuestions()
+        {
+            HttpContext.Current.Session[questionskey] = null;
         }
 
         public String  minimalText() {

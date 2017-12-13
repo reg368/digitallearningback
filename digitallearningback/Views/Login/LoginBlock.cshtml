@@ -1,0 +1,31 @@
+﻿@model digitallearningback.Models.InfoUser
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>歡迎登入數位學習系統</title>
+    @Styles.Render("~/Content/login.css")
+</head>
+<body>
+
+    <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
+    <div class="gwd-div-ilnq" style=""></div>
+
+    @using (Html.BeginForm("LoginDataClean", "Login", FormMethod.Post))
+    {
+        <button type="submit" class="gwd-button-r673">重新登入開始遊戲</button>
+    }
+
+    <p class="gwd-button-fujb"> 
+        <font color="red">
+            您有未作答完的遊戲課程進行中 , 如要重新開始請點選"重新登入開始遊戲" , 謝謝
+        </font>  
+    </p>
+
+    <div class="gwd-div-14v4" style="">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    </div>
+
+</body>
+</html>
