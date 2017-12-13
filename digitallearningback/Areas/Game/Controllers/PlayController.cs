@@ -24,7 +24,9 @@ namespace digitallearningback.Areas.Game.Controllers
         public ActionResult Index()
         {
 
-            InfoUser user = InfoUser.getLoginUser();
+            logger.debug("Index()", " Index() ");
+
+            InfoUser user = new InfoUser().getLoginUser();
             if (user != null)
             {
 
@@ -36,10 +38,6 @@ namespace digitallearningback.Areas.Game.Controllers
 
                 List<Question_group> groups = groupservice.selectAll();
                 ViewBag.groups = groups;
-            }
-            else
-            {
-                return RedirectToAction("Login", "Login", new { area = "" });
             }
 
             return View();
@@ -97,6 +95,7 @@ namespace digitallearningback.Areas.Game.Controllers
 
             //從HttpSession取出題目
             List<Question> questions = Question.getSessionListQuestions();
+            logger.debug("from session questions size ", ":"+questions.Count);
 
             //關卡題目都做完了
             if (questions == null || questions.Count == 0)
@@ -108,7 +107,13 @@ namespace digitallearningback.Areas.Game.Controllers
             //還有題目
             else
             {
+                //從集合中取出第一個題目 且 集合中題目數-1
                 Question question = questions.PollFirst();
+                
+                //-1數量後的集合題目 塞回session
+                Question.setSessionListQuestions(questions);
+
+                logger.debug("PollFirst questions size ", ":" + questions.Count);
                 return View(question);
 
             }

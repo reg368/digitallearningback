@@ -15,7 +15,7 @@ namespace digitallearningback.Models
         //作答後的Log 紀錄
         public void doCheckAnswerLog(Answer answer)
         {
-            InfoUser user = InfoUser.getLoginUser();
+            InfoUser user = new InfoUser().getLoginUser();
             Answer_Level_Log levelLog = Answer_Level_Log.getSessionAnswer_Level_Log();
 
             Answer_Log model = new Answer_Log();

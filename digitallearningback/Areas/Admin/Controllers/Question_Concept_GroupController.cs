@@ -10,14 +10,13 @@ namespace digitallearningback.Areas.Admin.Controllers
 {
     public class Question_Concept_GroupController : Controller
     {
-        private InfoUser infoUser = InfoUser.getLoginUser();
         private Question_Concept_GroupService service = new Question_Concept_GroupService();
         private Log4Net logger = new Log4Net("Question_Concept_GroupController");
 
         // GET: Admin/Question_Concept_Group
         public ActionResult Index()
         {
-            return View(service.selectListByUserid(infoUser.id));
+            return View(service.selectListByUserid(new InfoUser().getLoginUser().id));
         }
 
         // GET: Admin/Question_Concept_Group/Details/5
@@ -50,7 +49,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                question_Concept_Group.user_id = infoUser.id;
+                question_Concept_Group.user_id = new InfoUser().getLoginUser().id;
                 service.insert(question_Concept_Group);
                 return RedirectToAction("Index");
             }

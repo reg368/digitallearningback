@@ -11,7 +11,6 @@ namespace digitallearningback.Areas.Game.Controllers
 {
     public class CreateController : Controller
     {
-        private InfoUser infoUser = InfoUser.getLoginUser();
         private InfoUserService uservice = new InfoUserService();
         private Character_imageService chservice = new Character_imageService();
         private Cimage_professionService cpservice = new Cimage_professionService();
@@ -20,7 +19,7 @@ namespace digitallearningback.Areas.Game.Controllers
         // GET: Game/Create
         public ActionResult SelectGender()
         {
-            return View(infoUser);
+            return View(new InfoUser().getLoginUser());
         }
 
         //選擇遊戲角色
@@ -69,8 +68,10 @@ namespace digitallearningback.Areas.Game.Controllers
                 //取得使用者選的遊戲角色 塞回session
                 var selected = characterlist.ElementAt(char_index-1);
 
-                infoUser.character_image = selected.cimage_id;
-                Session["infoUser"] = infoUser;
+                InfoUser user = new InfoUser().getLoginUser();
+
+                user.character_image = selected.cimage_id;
+                Session["infoUser"] = user;
 
                 var petlist = chservice.selectListByProName("寵物");
 
@@ -111,8 +112,8 @@ namespace digitallearningback.Areas.Game.Controllers
             {
                 //取得使用者選的遊戲角色 塞回session
                 var selected = petlist.ElementAt(char_index-1);
-                infoUser.pet_image = selected.cimage_id;
-                Session["infoUser"] = infoUser;
+                new InfoUser().getLoginUser().pet_image = selected.cimage_id;
+                Session["infoUser"] = new InfoUser().getLoginUser();
             }
             else
             {
@@ -127,13 +128,15 @@ namespace digitallearningback.Areas.Game.Controllers
         {
             if (ModelState.IsValid)
             {
+                InfoUser infouser = new InfoUser().getLoginUser();
+
                 //更新infoUser 資訊
-                infoUser.character_name = model.character_name;
-                infoUser.pet_name = model.pet_name;
-                uservice.update(infoUser);
+                infouser.character_name = model.character_name;
+                infouser.getLoginUser().pet_name = model.pet_name;
+                uservice.update(infouser);
 
                 //塞回 seession
-                Session["infoUser"] = infoUser;
+                Session["infoUser"] = infouser;
 
                 //開始遊戲
                 return RedirectToAction("Index", "Play");

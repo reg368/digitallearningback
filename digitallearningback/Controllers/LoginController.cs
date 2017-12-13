@@ -49,12 +49,12 @@ namespace digitallearningback.Controllers
                         }
                         //已選擇遊戲角色 (第n次登入) 開始遊戲
                         else {
+                            logger.debug("Login(InfoUser user)", " to Index/Play ");
                             return forward(RedirectToAction("Index", "Play", new { area = "Game" }),dbuser, true);
                         }
                     }
                 }
 
-                ModelState.AddModelError(string.Empty, "帳號或密碼錯誤");
                 return forward(View(user), user,false);
 
             }
@@ -71,10 +71,13 @@ namespace digitallearningback.Controllers
 
             if (isLogingSuccess)
             {
+
                 //登入成功 紀錄寫到DB
                 user.doLoginLog();
+
                 //logger.debug("login_count id", user.login_count+"");
-                InfoUser.setLoginUser(user);
+                user.setLoginUser();
+
             }
             return result;
         }

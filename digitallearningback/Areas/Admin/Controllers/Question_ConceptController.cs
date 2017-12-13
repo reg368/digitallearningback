@@ -16,7 +16,6 @@ namespace digitallearningback.Areas.Admin.Controllers
     {
         private Question_ConceptService service = new Question_ConceptService();
         private Question_Concept_GroupService gservice = new Question_Concept_GroupService();
-        private InfoUser infoUser = InfoUser.getLoginUser();
 
         // GET: Admin/Question_Concept
         public ActionResult Index(int id)
@@ -44,7 +43,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         {
             ViewBag.gid = gid;
             ViewBag.gname = gname;
-            ViewBag.userid = infoUser.id;
+            ViewBag.userid = new InfoUser().getLoginUser().id;
             return View();
         }
 

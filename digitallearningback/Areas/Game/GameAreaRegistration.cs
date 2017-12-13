@@ -17,7 +17,7 @@ namespace digitallearningback.Areas.Game
             context.MapRoute(
                 "Game_default",
                 "Game/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                new { controller = "Play", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace digitallearningback.Models
 {
@@ -11,18 +12,28 @@ namespace digitallearningback.Models
 
         private LoginLogService logingService = new LoginLogService();
 
+        //private static readonly String loginLogIdkey = "loginLogIdkey";     //取得 存在 Cookie 內  登入記錄的編號
         private static readonly String infoUserkey = "infoUser";     //取得 存在 HttpSession 內  題目集合的 key
 
         //存入 HttpSession 登入user資訊
-        public static void setLoginUser(InfoUser model)
+        public  void setLoginUser()
         {
-            HttpContext.Current.Session[infoUserkey] = model;
+            //HttpContext.Current.Response.Cookies[loginLogIdkey].Value = "-" + this.login_count;
+            HttpContext.Current.Session[infoUserkey] = this;
         }
 
         //取得 HttpSession 登入user資訊
-        public static InfoUser getLoginUser()
+        public  InfoUser getLoginUser()
         {
+            //string login_count = HttpContext.Current.Request.Cookies[loginLogIdkey].Value.ToString();
             return (InfoUser)HttpContext.Current.Session[infoUserkey];
+        }
+
+        //filterContext 取得資訊
+        public InfoUser getLoginUser(ActionExecutingContext context)
+        {
+            //string login_count = context.HttpContext.Request.Cookies[loginLogIdkey].Value.ToString();
+            return (InfoUser)context.HttpContext.Session[infoUserkey];
         }
 
         //LoginController.cs 紀錄登入log

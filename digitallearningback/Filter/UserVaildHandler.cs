@@ -1,4 +1,6 @@
-﻿using System;
+﻿using digitallearningback.Models;
+using digitallearningback.Util;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,34 +11,37 @@ namespace digitallearningback.Filter
     public class UserVaildHandler : ActionFilterAttribute
     {
 
+        private Log4Net logger = new Log4Net("UserVaildHandler");
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            FilterHelper.Log("OnActionExecuting", filterContext.RouteData, "UserVaildHandler");
 
             if (filterContext.ActionDescriptor.GetCustomAttributes(typeof(SkipMyGlobalActionFilterAttribute), false).Any())
             {
                 return;
             }
-
-            if (filterContext.HttpContext.Session != null)
+            else
             {
-                var infoUser = filterContext.HttpContext.Session["infoUser"];
+                var infoUser = new InfoUser().getLoginUser(filterContext);
+
                 if (infoUser == null)
                 {
+
                     filterContext.Result = new RedirectToRouteResult(
-                                 new RouteValueDictionary {{ "Controller", "Login" },
-                                                    { "Action", "Login" } });
+                                    new RouteValueDictionary(
+                                            new
+                                            {
+                                                action = "Login",
+                                                controller = "Login",
+                                                area = ""
+                                            }
+                                        ));
                 }
                 else
                 {
                     base.OnActionExecuting(filterContext);
                 }
-            }else {
-                filterContext.Result = new RedirectToRouteResult(
-                                 new RouteValueDictionary {{ "Controller", "LoginController" },
-                                                    { "Action", "Login" } });
             }
-
         }
     }
 
