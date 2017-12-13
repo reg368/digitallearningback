@@ -1,4 +1,7 @@
-﻿@model digitallearningback.Models.InfoUser
+﻿@using digitallearningback.Models
+@{
+    var user = InfoUser.getLoginUser();
+}
 <!DOCTYPE html>
 
 <html>
@@ -10,21 +13,29 @@
 <body>
 
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
-    <div class="gwd-div-ilnq" style=""></div>
+    <div class="gwd-div-ilnq" style=""> 
+        <font color="red">
+            您有未作答完的遊戲課程進行中 , 如要重新開始請點選"重新登入遊戲" , 謝謝
+        </font> 
+        <br>
+        <font color="blue">
+            角色名稱 : @user.character_name
+        </font>
+        <br>
+        <font color="blue">
+            寵物名稱 : @user.pet_name
+        </font>
+    </div>
 
-    @using (Html.BeginForm("LoginDataClean", "Login", FormMethod.Post))
+    @using (Html.BeginForm("LoginOut", "Login", FormMethod.Post))
     {
-        <button type="submit" class="gwd-button-r673">重新登入開始遊戲</button>
+        <button type="submit" class="gwd-button-r673">重新登入遊戲</button>
     }
 
-    <p class="gwd-button-fujb"> 
-        <font color="red">
-            您有未作答完的遊戲課程進行中 , 如要重新開始請點選"重新登入開始遊戲" , 謝謝
-        </font>  
-    </p>
+    <p class="gwd-button-fujb"> 如果要進行同時兩位角色遊戲 請使用chrome無痕視窗 </p>
 
     <div class="gwd-div-14v4" style="">
-        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })  
     </div>
 
 </body>

@@ -41,9 +41,9 @@ namespace digitallearningback.Controllers
             return View();
         }
 
-        //刪掉 InfoUser & Question 存在 HTTPsession 的資料 
+        //登出 刪掉 InfoUser & Question 存在 HTTPsession 的資料 
         [SkipMyGlobalActionFilter]
-        public ActionResult LoginDataClean()
+        public ActionResult LoginOut()
         {
             InfoUser.cleanLoginUser();
             Question.cleanQuestions();
