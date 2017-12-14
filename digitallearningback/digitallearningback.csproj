@@ -209,7 +209,6 @@
     <Compile Include="Models\Cimage_profession.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Extends\LoginLog.cs" />
     <Compile Include="Models\Extends\Answer_Log.cs" />
     <Compile Include="Models\Extends\Answer_Level_Log.cs" />
     <Compile Include="Models\Extends\Answer.cs" />

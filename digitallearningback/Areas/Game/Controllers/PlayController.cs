@@ -93,7 +93,7 @@ namespace digitallearningback.Areas.Game.Controllers
 
             //從HttpSession取出題目
             List<Question> questions = Question.getSessionListQuestions();
-            logger.debug("from session questions size ", ":"+questions.Count);
+        
 
             //關卡題目都做完了
             if (questions == null || questions.Count == 0)
@@ -110,6 +110,9 @@ namespace digitallearningback.Areas.Game.Controllers
                 
                 //-1數量後的集合題目 塞回session
                 Question.setSessionListQuestions(questions);
+                
+                //目前做到第幾題 
+                ViewBag.currentQuestionIndex = Answer_Level_Log.getSessionAnswer_Level_Log().questionnumber - questions.Count;
 
                 logger.debug("PollFirst questions size ", ":" + questions.Count);
                 return View(question);

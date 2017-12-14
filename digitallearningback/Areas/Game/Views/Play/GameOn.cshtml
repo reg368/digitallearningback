@@ -145,15 +145,9 @@
     </div>
 
     <div class="gwd-div-1xr0" style="">
-        <!--
-        <input type="button" value="答題狀況"
-               class="gwd-div-1xr0-btn"
-               id="report_button"
-               data-toggle="modal"
-               href="<%=request.getContextPath()%>/front/question/question_modal_report.jsp"
-               data-target="#report">
-        -->
+        @Html.Raw("第"+@ViewBag.currentQuestionIndex+"題")
         <br>
+        @Html.Raw("共"+ @Answer_Level_Log.getSessionAnswer_Level_Log().questionnumber+"題")
         <br>
         @Html.Raw("玩家 : "+ @user.character_name)
         <br>
