@@ -305,6 +305,7 @@
     <Content Include="Content\Game\Create\SelectGender.css" />
     <Content Include="Content\Game\Play\bootstrap.css" />
     <Content Include="Content\Game\Play\GameOn.css" />
+    <Content Include="Content\Game\Play\SearchPassedLevelUser.css" />
     <Content Include="Content\Game\Play\Result.css" />
     <Content Include="Content\Game\Play\LevelSelect.css" />
     <Content Include="Content\Game\Play\Index.css" />
@@ -393,6 +394,7 @@
     <Content Include="Areas\Admin\Views\Question_Concept_Mapping\AddConcept.cshtml" />
     <Content Include="Areas\Game\Views\Play\LevelSelect.cshtml" />
     <Content Include="Areas\Game\Views\Play\Result.cshtml" />
+    <Content Include="Areas\Game\Views\Play\SearchPassedLevelUser.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />

@@ -1,0 +1,66 @@
+﻿@using digitallearningback.Models
+@model IEnumerable<digitallearningback.Models.InfoUser>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>請選擇課程關卡</title>
+    @Styles.Render("~/Content/Game/Play/SearchPassedLevelUser.css?date=" + DateTime.Now)
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(document).ready(function () {
+                
+        })
+    </script>
+</head>
+<body>
+    <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
+
+    <div class="gwd-div-ilnq">
+       <br>
+       <br>
+       <br> 
+         <blockquote><blockquote><blockquote><blockquote><blockquote>
+            <table class="table">
+                <tr>
+                    <th>過關排名順序</th>
+                    <th>姓名</th>
+                </tr>
+                @if (Model != null && Model.Count<InfoUser>() > 0)
+                {
+                int i = 1;
+                    foreach (var item in Model)
+                    {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.name</td>
+                            </tr>
+                        i++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2">目前無任何人過關</td>
+                    </tr>
+                }
+
+            </table>
+          </blockquote></blockquote></blockquote></blockquote></blockquote>
+</div>
+
+    
+
+    <div class="gwd-p-lswn" style="top:500px;">
+    </div>
+
+
+    <p id="title" class="gwd-p-xfrq" style="" >
+        @ViewBag.gname 
+        -
+        @ViewBag.level
+    </p>
+
+
+</body>
+</html>

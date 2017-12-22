@@ -10,7 +10,7 @@ namespace digitallearningback.Areas.Game.Controllers
 {
     public class PlayController : Controller
     {
-
+        private InfoUserService userservice = new InfoUserService(); //找有哪些其他玩家這一關過關了
         private Character_imageService chservice = new Character_imageService(); //找角色圖片
         private Question_groupService groupservice = new Question_groupService(); //找有哪些課程
         private Question_levelService levelservice = new Question_levelService(); //找課程關卡
@@ -154,6 +154,13 @@ namespace digitallearningback.Areas.Game.Controllers
             int levellogid = Convert.ToInt32(logid);
 
             return Json(resultservice.selectByLevelLogId(levellogid));
+        }
+
+        public ActionResult SearchPassedLevelUser(int lid , String level , String gname)
+        {
+            ViewBag.level = level;
+            ViewBag.gname = gname;
+            return View(userservice.selectLevelPassedUser(lid));
         }
 
     }

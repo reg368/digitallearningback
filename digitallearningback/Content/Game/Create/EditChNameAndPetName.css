@@ -58,6 +58,7 @@ body {
     left: 25%;
     top: 105px;
     background-color: rgb(197, 186, 193);
+    overflow: scroll;
 }
 
 .gwd-input-1puq {

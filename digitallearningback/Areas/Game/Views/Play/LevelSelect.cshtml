@@ -9,16 +9,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>請選擇課程關卡</title>
-    @Styles.Render("~/Content/Game/Play/LevelSelect.css")
+    @Styles.Render("~/Content/Game/Play/LevelSelect.css?date=" + DateTime.Now)
     @Scripts.Render("~/bundles/jquery")
     <script>
         function nextlevel(lid) {
             $('#lid').val(lid);
             $('#formNextLevel').submit();
         }
-        function showOthers() {
-            window.open('', '', 'location=yes,width=650,height=600');
+        function searchPassedUser(lid, level) {
+            window.open('/Game/Play/SearchPassedLevelUser?lid=' + lid + '&level=' + level + '&gname=@ViewBag.groupname', 
+                '', 'location=yes,width=650,height=600');
         }
+
     </script>
 </head>
 <body>
@@ -38,7 +40,8 @@
                                 logservice.selectMaxPasspointByUseridAndLevelid
                                 (
                                 InfoUser.getLoginUser().id,
-                                item.id))
+                                item.id)) 
+                        <a href="#" onclick="searchPassedUser('@item.id','@item.level');"><font size="2">查看有誰過關了</font></a>
                     </th>
                 </tr>
             }
@@ -55,7 +58,7 @@
     </p>
 
 
-    <p class="gwd-p-xfrq" style="">請選擇課程: @ViewBag.groupname -  關卡開始作答</p>
+    <p class="gwd-p-xfrq" style="color:red;">請選擇課程: @ViewBag.groupname -  關卡開始作答</p>
 
 
 </body>

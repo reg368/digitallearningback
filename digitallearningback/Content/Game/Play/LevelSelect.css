@@ -57,6 +57,7 @@ body {
     -webkit-transform-origin: 145px 211.085px 0px;
     -moz-transform-origin: 145px 211.085px 0px;
     background-color: rgb(197, 186, 193);
+    overflow: scroll;
 }
 
 .gwd-input-1puq {
