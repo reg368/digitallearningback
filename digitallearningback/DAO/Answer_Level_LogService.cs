@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using digitallearningback.Models;
 using System.Data.Entity;
+using System.Data.SqlClient;
 
 namespace digitallearningback.DAO
 {
@@ -33,6 +34,17 @@ namespace digitallearningback.DAO
             Answer_Level_Log record = db.Answer_Level_Log.Find(pk);
             db.Answer_Level_Log.Remove(record);
             return db.SaveChanges();
+        }
+
+        public int selectMaxPasspointByUseridAndLevelid(int userid , int lid)
+        {
+            var linq = db.Database.SqlQuery<decimal>(
+                "SELECT isnull(MAX(passpoint),0) as maxpasspoint" +
+                " FROM Answer_Level_Log " +
+               " where userid = @userid and lid = @lid ",
+                new SqlParameter("@userid", userid),
+                new SqlParameter("@lid", lid));
+            return (int)linq.SingleOrDefault<decimal>();
         }
 
     }

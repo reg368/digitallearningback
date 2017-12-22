@@ -1,6 +1,8 @@
 ﻿@using digitallearningback.Models
+@using digitallearningback.DAO
 @{
     var levels = ViewBag.levels as List<Question_level>;
+    var logservice = new Answer_Level_LogService();
 }
 <!DOCTYPE html>
 <html>
@@ -30,9 +32,13 @@
             {
                 <tr>
                     <th style="font-size: 30px;border-bottom: 1px solid ;" >
-                        @item.level<font size="2">過關: @item.getPasspointStarNumber() 顆星</font>
+                        @item.level<font size="2">過關要求: @item.getPasspointStarNumber() 顆星</font>
                         <button onclick="nextlevel('@item.id')">開始作答</button><br>
-                        @item.getPasspointStar(item.getPasspointStarNumber());
+                        @item.getPasspointStar(
+                                logservice.selectMaxPasspointByUseridAndLevelid
+                                (
+                                InfoUser.getLoginUser().id,
+                                item.id))
                     </th>
                 </tr>
             }
