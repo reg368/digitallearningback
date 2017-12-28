@@ -4,6 +4,7 @@ using digitallearningback.Filter;
 using digitallearningback.Models;
 using digitallearningback.DAO;
 using digitallearningback.Util;
+using System.Net;
 
 namespace digitallearningback.Controllers
 {
@@ -73,6 +74,32 @@ namespace digitallearningback.Controllers
             }
 
         }
+
+        /*[SkipMyGlobalActionFilter]
+        public ActionResult LoginForLtLab()
+        {
+            return View();
+        }*/
+
+        // POST : check login
+        [HttpPost]
+        [SkipMyGlobalActionFilter]
+        public ActionResult LoginForLtLab(String userid , String password)
+        {
+
+            InfoUser dbuser = userService.findByUserLoginId(userid);
+
+            if (dbuser != null && password.Equals(dbuser.password))
+            {
+                return forward(dbuser.LoginRedirect(), dbuser, true);
+            }
+            else
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+        }
+
 
         private ActionResult forward(ActionResult result,InfoUser user,bool isLogingSuccess)
         {

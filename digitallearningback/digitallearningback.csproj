@@ -440,6 +440,7 @@
     <Content Include="Areas\Admin\Views\Character_image\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Character_image\Index.cshtml" />
     <Content Include="Views\Login\LoginBlock.cshtml" />
+    <Content Include="Views\Login\LoginForLtLab.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Logs\App_Debug\" />

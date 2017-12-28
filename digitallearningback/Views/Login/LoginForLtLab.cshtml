@@ -1,5 +1,4 @@
-﻿@model digitallearningback.Models.InfoUser
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -12,18 +11,16 @@
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
     <div class="gwd-div-ilnq" style=""></div>
 
-    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
-    {
-        @Html.TextBoxFor(m => m.login_id, new { @class = "gwd-input-gbnv", @placeholder = "請輸入帳號" })
-        @Html.PasswordFor(m => m.password, new { @class = "gwd-input-imcr", @placeholder = "請輸入密碼" })
+    <form action="/Login/LoginForLtLab" method="post">
+        <input type="text" name="userid" class="gwd-input-gbnv">
+        <input type="password"  name="password" class="gwd-input-imcr">
         <button type="submit" class="gwd-button-r673">登入</button>
-    }
+    </form>
 
     <p class="gwd-button-fujb"> 歡迎登入數位學習系統  </p>
 
     <div class="gwd-div-14v4" style="">
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-        @ViewBag.msg
     </div>
 
 </body>
