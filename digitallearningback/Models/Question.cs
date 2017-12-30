@@ -32,6 +32,7 @@ namespace digitallearningback.Models
         public string pic_path { get; set; }
         public Nullable<int> level_id { get; set; }
         public Nullable<int> ismulti { get; set; }
+        public string similar_group { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer> Answer { get; set; }

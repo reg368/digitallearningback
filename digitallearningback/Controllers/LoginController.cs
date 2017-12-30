@@ -81,7 +81,7 @@ namespace digitallearningback.Controllers
             return View();
         }*/
 
-        // POST : check login
+        // POST : for LtLab Entery view access
         [HttpPost]
         [SkipMyGlobalActionFilter]
         public ActionResult LoginForLtLab(String userid , String password)

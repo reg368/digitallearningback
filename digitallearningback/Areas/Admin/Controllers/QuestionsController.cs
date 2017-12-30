@@ -51,7 +51,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(
             [Bind(Include = "groupname")] String groupname,
-            [Bind(Include = "groupid,text,point,tip")] Question question,
+            [Bind(Include = "groupid,text,point,tip,similar_group")] Question question,
             [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
 
@@ -117,7 +117,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
             [Bind(Include = "img_deleted")] String img_deleted,
-            [Bind(Include = "id,groupid,text,point,tip")] Question question,
+            [Bind(Include = "id,groupid,text,point,tip,similar_group")] Question question,
             [Bind(Include = "uploadFile")]HttpPostedFileBase uploadFile)
         {
             Question record = questionservice.selectById(question.id);
@@ -176,6 +176,7 @@ namespace digitallearningback.Areas.Admin.Controllers
                 record.text = question.text;
                 record.point = question.point;
                 record.tip = question.tip;
+                record.similar_group = question.similar_group;
 
                 questionservice.update(record);
 

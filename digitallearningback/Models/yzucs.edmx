@@ -132,6 +132,7 @@
           <Property Name="pic_path" Type="nvarchar" MaxLength="100" />
           <Property Name="level_id" Type="int" />
           <Property Name="ismulti" Type="int" />
+          <Property Name="similar_group" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Question_Concept">
           <Key>
@@ -877,6 +878,7 @@
           <NavigationProperty Name="Question_Level_Mapping" Relationship="Self.QLM_q_id_fk" FromRole="Question" ToRole="Question_Level_Mapping" />
           <NavigationProperty Name="Question_group" Relationship="Self.Question_groupid_fk" FromRole="Question" ToRole="Question_group" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_qid_fk" FromRole="Question" ToRole="Answer_Log" />
+          <Property Name="similar_group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Question_Concept">
           <Key>
@@ -1353,7 +1355,7 @@
             <End Role="Answer_Level_Log" EntitySet="Answer_Level_Log" />
           </AssociationSet>
           <FunctionImport Name="fun_CalculateAnswerConceptPoint" IsComposable="true" ReturnType="Collection(yzucsModel.fun_CalculateAnswerConceptPoint_Result)">
-            <Parameter Name="levellogid" Mode="In" Type="Int32" />
+          <Parameter Name="levellogid" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="vw_QuestionConceptDetail">
@@ -1662,6 +1664,7 @@
           <EntitySetMapping Name="Question">
             <EntityTypeMapping TypeName="yzucsModel.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="similar_group" ColumnName="similar_group" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="groupid" ColumnName="groupid" />
                 <ScalarProperty Name="text" ColumnName="text" />

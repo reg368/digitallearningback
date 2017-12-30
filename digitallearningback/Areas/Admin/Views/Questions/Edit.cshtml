@@ -31,6 +31,23 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.similar_group, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="similar_group" id="similar_group" class="form-control">
+                    @for (int i = 1; i <= 5; i++)  //有幾關
+                    {
+                        for (int j = 1; j <= 5; j++) //有幾題
+                        {
+                            <option value='@Html.Raw("L")@i@Html.Raw("Q")@j' @(("L"+i+"Q"+j).Equals(Model.similar_group) ? "selected" : "")>
+                                @Html.Raw("第")@i@Html.Raw("關"),@Html.Raw("第")@j@Html.Raw("題")
+                            </option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.tip, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.tip, new { htmlAttributes = new { @class = "form-control" } })

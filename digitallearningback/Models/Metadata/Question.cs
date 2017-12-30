@@ -22,6 +22,9 @@ namespace digitallearningback.Models
 
             [Display(Name = "圖片")]
             public string pic_path { get; set; }
+
+            [Display(Name = "相似題群組")]
+            public string similar_group { get; set; }
         }
     }
 }
