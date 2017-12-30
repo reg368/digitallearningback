@@ -67,10 +67,13 @@ namespace digitallearningback.Models
 
         public void doFinishedLog()
         {
-            this.passpoint = ((decimal)this.correctnumber / (decimal)this.questionnumber ) * (decimal)100;
-            this.isfinished = 1;
-            setSessionAnswer_Level_Log(this);
-            this.doUpdateLog();
+            if(this.correctnumber != 0 && this.questionnumber != 0)
+            {
+                this.passpoint = ((decimal)this.correctnumber / (decimal)this.questionnumber) * (decimal)100;
+                this.isfinished = 1;
+                setSessionAnswer_Level_Log(this);
+                this.doUpdateLog();
+            }
         }
 
         public void doUpdateLog()

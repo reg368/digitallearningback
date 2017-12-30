@@ -54,7 +54,7 @@ namespace digitallearningback.DAO
 
         public List<Question> selectByGroupidAndLevelid(int? groupid , int levelid)
         {
-            var linq = db.Question.SqlQuery(
+            /*var linq = db.Question.SqlQuery(
                "select top  (select correctqnumber from Question_level where id = @lid )  * from" +
                " ("+
                "select * from Question where groupid = @gid " +
@@ -63,6 +63,11 @@ namespace digitallearningback.DAO
                "on q.id = m.q_id where m.l_id = @lid ) "+
                 ") " +
                 "as tb  ORDER BY NEWID()",
+                new SqlParameter("@gid", groupid),
+                new SqlParameter("@lid", levelid));*/
+
+            //20171230 要針對相似題隨機出題 詳細邏輯請看 sp_SelectRandomSimilarQuestion 
+            var linq = db.Question.SqlQuery("exec sp_SelectRandomSimilarQuestion @gid , @lid ", 
                 new SqlParameter("@gid", groupid),
                 new SqlParameter("@lid", levelid));
             return linq.ToList<Question>();
