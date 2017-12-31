@@ -11,14 +11,14 @@ namespace digitallearningback.Models
 
         private Log4Net logger = new Log4Net("Question_level");
 
-        //passpoint 過關分數換算 幾顆星星
-        //例: 過關分數 80 / 10 = 8 ; 8 - 5 = 3 *80分就是 = 3顆星
+        //過關要求幾顆星 
+        //例: 設定80分 , 80 / 20 = 4顆星
         public int?  getPasspointStarNumber() {
 
-            if (this.passpoint != null && this.passpoint > 0)
+            if (this.passpoint != null && this.passpoint > 0 )
             {
 
-                return ((int)(this.passpoint / 10) - 5) < 0 ?  0 : ((int)(this.passpoint / 10) - 5) ;
+                return ((int)this.passpoint / 20 );
             }
             else
             {
@@ -26,19 +26,19 @@ namespace digitallearningback.Models
             }
         }
 
-        //passpoint 過關分數換算 幾顆星星
-        //例: 過關分數 80 / 10 = 8 ; 8 - 5 = 3 *80分就是 = 3顆星
-        public string getPasspointStar(int? passpoint)
+        //point 過關分數換算 幾顆星星
+        //例: 過關分數 80 / 20 = 4 , 4顆星星
+        public string getPasspointStar(int? point)
         {
             //logger.debug("getPasspointStar", "init passpoint : "+ passpoint);
 
-            if (passpoint != null && passpoint > 0)
+            if (point != null && point > 0)
             {
-                passpoint = (int)(passpoint / 10) - 5;
+                point = point / 20;
             }
 
-            if (passpoint < 0) {
-                passpoint = 0;
+            if (point < 0) {
+                point = 0;
             }
 
             //logger.debug("getPasspointStar", "after calculate passpoint : " + passpoint);
@@ -47,7 +47,7 @@ namespace digitallearningback.Models
 
             for (int i = 0; i < this.getPasspointStarNumber() ; i++)
             {
-                if (i < passpoint)
+                if (i < point)
                 {
                     star = star + "★";
                 }
@@ -55,6 +55,34 @@ namespace digitallearningback.Models
                 {
                     star = star + "☆";
                 }
+            }
+
+            return star;
+        }
+
+        //passpoint 過關分數換算 幾顆星星
+        //例: 過關分數 80 / 20 = 3 , 3顆星星
+        public string getCorrectPasspointStar(int? point)
+        {
+            //logger.debug("getPasspointStar", "init passpoint : "+ passpoint);
+
+            if (point != null && point > 0)
+            {
+                point = point / 20;
+            }
+
+            if (point < 0)
+            {
+                point = 0;
+            }
+
+            //logger.debug("getPasspointStar", "after calculate passpoint : " + passpoint);
+
+            string star = "";
+
+            for (int i = 0; i < point; i++)
+            {
+                star = star + "★";
             }
 
             return star;

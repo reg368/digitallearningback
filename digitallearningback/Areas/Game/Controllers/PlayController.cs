@@ -145,6 +145,8 @@ namespace digitallearningback.Areas.Game.Controllers
         public ActionResult Result()
         {
             ViewBag.levellogid = Answer_Level_Log.getSessionAnswer_Level_Log().id;
+            Question_level level = levelservice.selectById(Answer_Level_Log.getSessionAnswer_Level_Log().lid);
+            ViewBag.start = level.getCorrectPasspointStar((int)Answer_Level_Log.getSessionAnswer_Level_Log().passpoint);
             return View();
         }
 

@@ -190,6 +190,7 @@
           <Property Name="fromquestion" Type="int" />
           <Property Name="toquestion" Type="int" />
           <Property Name="passpoint" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="minpasspoint" Type="decimal" Precision="4" Scale="1" />
         </EntityType>
         <EntityType Name="Question_Level_Mapping">
           <Key>
@@ -951,6 +952,7 @@
           <Property Name="passpoint" Type="Decimal" Precision="4" Scale="1" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_lid_fk" FromRole="Question_level" ToRole="Answer_Log" />
           <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.levellog_lid_fk" FromRole="Question_level" ToRole="Answer_Level_Log" />
+          <Property Name="minpasspoint" Type="Decimal" Precision="4" Scale="1" />
         </EntityType>
         <EntityType Name="Question_Level_Mapping">
           <Key>
@@ -1723,6 +1725,7 @@
           <EntitySetMapping Name="Question_level">
             <EntityTypeMapping TypeName="yzucsModel.Question_level">
               <MappingFragment StoreEntitySet="Question_level">
+                <ScalarProperty Name="minpasspoint" ColumnName="minpasspoint" />
                 <ScalarProperty Name="passpoint" ColumnName="passpoint" />
                 <ScalarProperty Name="levelorder" ColumnName="levelorder" />
                 <ScalarProperty Name="id" ColumnName="id" />

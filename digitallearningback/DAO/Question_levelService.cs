@@ -45,7 +45,7 @@ namespace digitallearningback.DAO
 
         public List<Question_level> selectListByGroupid(int groupid)
         {
-            var linq = db.Question_level.Where(l => l.group_id == groupid).OrderBy(l => l.levelorder);
+            var linq = db.Question_level.Where(l => l.group_id == groupid && l.isvisible == 1).OrderBy(l => l.levelorder);
             return linq.ToList<Question_level>();
         }
     }

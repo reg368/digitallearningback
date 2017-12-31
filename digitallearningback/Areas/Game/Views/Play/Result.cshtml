@@ -1,7 +1,4 @@
 ﻿@using digitallearningback.Models
-@{
-    var levels = ViewBag.levels as List<Question_level>;
-}
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +20,7 @@
                 dataType: "json",
                 success: function (data) {
 
-                    $('#title').text('');
+                    $('#title').text('此次測驗獲得的星星數 : '+'@ViewBag.start');
 
                     //console.log(data);
 
@@ -43,13 +40,14 @@
                         data: {
                             labels: labels,
                             datasets: [
-                                {
+                               /* {
                                     label: "此次測驗各項概念的滿分",
                                     borderColor: 'rgb(72,61,139)',
                                     data: data1,
-                                },
+                                }
+                                ,*/
                                 {
-                                    label: "此次測驗所獲得的概念分數",
+                                    label: "此次測驗題目概念權重分佈",
                                     borderColor: 'rgb(255,0,0)',
                                     data: data2,
                                 }

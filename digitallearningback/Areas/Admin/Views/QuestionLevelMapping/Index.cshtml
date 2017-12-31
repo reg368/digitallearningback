@@ -31,6 +31,10 @@
 
             @Html.Raw("圖片")
         </th>
+        <th>
+
+            @Html.Raw("相似題群組代碼")
+        </th>
         <th></th>
         <th></th>
         <th>@Html.ActionLink("回關卡設定", "Index", "Question_level",new { id = level.group_id },null)</th>
@@ -56,6 +60,9 @@
             {
                 @Html.Raw("無")
             }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question.similar_group)
         </td>
     </tr>
 }

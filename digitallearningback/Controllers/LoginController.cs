@@ -87,15 +87,22 @@ namespace digitallearningback.Controllers
         public ActionResult LoginForLtLab(String userid , String password)
         {
 
-            InfoUser dbuser = userService.findByUserLoginId(userid);
-
-            if (dbuser != null && password.Equals(dbuser.password))
+            if(InfoUser.getLoginUser() == null)
             {
-                return forward(dbuser.LoginRedirect(), dbuser, true);
+                InfoUser dbuser = userService.findByUserLoginId(userid);
+
+                if (dbuser != null && password.Equals(dbuser.password))
+                {
+                    return forward(dbuser.LoginRedirect(), dbuser, true);
+                }
+                else
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
             }
             else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return InfoUser.getLoginUser().LoginRedirect();
             }
 
         }
