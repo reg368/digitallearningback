@@ -43,12 +43,26 @@
                 <select name="passpoint" id="passpoint" class="form-control">
                     <option value="0"   @(Model.passpoint == 0 ? "" : "")>不設限</option>
                     <option value="100" @(Model.passpoint == 100 ? "selected" : "")>五顆星</option>
-                    <option value="90"  @(Model.passpoint == 80 ? "selected" : "")>四顆星</option>
-                    <option value="80"  @(Model.passpoint == 60 ? "selected" : "")>三顆星</option>
-                    <option value="70"  @(Model.passpoint == 40 ? "selected" : "")>二顆星</option>
-                    <option value="60"  @(Model.passpoint == 20 ? "selected" : "")>一顆星</option>
+                    <option value="80"  @(Model.passpoint == 80 ? "selected" : "")>四顆星</option>
+                    <option value="60"  @(Model.passpoint == 60 ? "selected" : "")>三顆星</option>
+                    <option value="40"  @(Model.passpoint == 40 ? "selected" : "")>二顆星</option>
+                    <option value="20"  @(Model.passpoint == 20 ? "selected" : "")>一顆星</option>
                 </select>
                 @Html.ValidationMessageFor(model => model.israndom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.minpasspoint, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="minpasspoint" id="minpasspoint" class="form-control">
+                    <option value="0" @(Model.minpasspoint == 0 ? "" : "")>不設限</option>
+                    <option value="100" @(Model.minpasspoint == 100 ? "selected" : "")>五顆星</option>
+                    <option value="80" @(Model.minpasspoint == 80 ? "selected" : "")>四顆星</option>
+                    <option value="60" @(Model.minpasspoint == 60 ? "selected" : "")>三顆星</option>
+                    <option value="40" @(Model.minpasspoint == 40 ? "selected" : "")>二顆星</option>
+                    <option value="20" @(Model.minpasspoint == 20 ? "selected" : "")>一顆星</option>
+                </select>
             </div>
         </div>
 

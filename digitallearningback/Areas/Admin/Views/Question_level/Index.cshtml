@@ -19,6 +19,9 @@
             @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().passpoint)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().minpasspoint)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Question_level.FirstOrDefault().correctqnumber)
         </th>
         <th>@Html.Raw("關卡題目設定")</th>
@@ -39,6 +42,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.passpoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minpasspoint)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.correctqnumber)

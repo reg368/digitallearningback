@@ -1,5 +1,8 @@
 ﻿@using digitallearningback.Models
 @model IEnumerable<digitallearningback.Models.InfoUser>
+@{ 
+    var  level = new Question_level();
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,10 +24,11 @@
        <br>
        <br> 
          <blockquote><blockquote><blockquote><blockquote><blockquote>
-            <table class="table">
+            <table class="table" border="1">
                 <tr>
                     <th>過關排名順序</th>
                     <th>姓名</th>
+                    <th>獲得星星數</th>
                 </tr>
                 @if (Model != null && Model.Count<InfoUser>() > 0)
                 {
@@ -34,6 +38,7 @@
                             <tr>
                                 <td>@i</td>
                                 <td>@item.name</td>
+                                <td>@level.getCorrectPasspointStar(item.hp)</td>
                             </tr>
                         i++;
                     }

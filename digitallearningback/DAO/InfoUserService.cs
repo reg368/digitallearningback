@@ -48,17 +48,23 @@ namespace digitallearningback.DAO
 
         //查有哪些角色在這一關卡中過關了
         //並且依照順序列出誰先過關
+        //這邊的 infoUser 欄位 hp : 儲存過關分數
         public List<InfoUser> selectLevelPassedUser(int lid)
         {
             var linq = db.InfoUser.SqlQuery(
-                       "select * from InfoUser u join " + 
+                       "select  u.id, u.name , u.gender , u.age , u.grade , u.character_image ,  " +
+                        " u.character_name , u.pet_image , u.pet_name ,u.login_id, " +
+                        " u.password , u.joindate , u.cimage_type , u.pimage_type ," +
+                        " u.login_count ,u.group_id ,u.teacher_id ,u.money , " +
+                        " u.experience , tb.passpoint as hp , tb.sort  " +
+                       "from InfoUser u join " + 
                            " ( "+
-                           " select g.userid as userid , MIN(g.id) as sort from " +
+                           " select g.userid as userid , MIN(g.id) as sort  , CAST(g.passpoint AS INT) as passpoint from " +
                            " Answer_Level_Log g join Question_level l  " +
                            " on g.lid = l.id" +
                            " where  g.lid = @lid and " +
-                           " g.passpoint >= l.passpoint" +
-                           " group by g.userid " + 
+                           " g.passpoint >= l.minpasspoint" +
+                           " group by g.userid ,  g.passpoint " + 
                            ") as tb" +
                        " on u.id = tb.userid "+
                        "order by sort "

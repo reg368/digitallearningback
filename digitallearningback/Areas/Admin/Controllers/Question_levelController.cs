@@ -53,7 +53,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(
             [Bind(Include = "groupname")] String groupname,
-            [Bind(Include = "group_id,levelorder,level,isvisible,passpoint,correctqnumber")] Question_level question_level)
+            [Bind(Include = "group_id,levelorder,level,isvisible,passpoint,correctqnumber,minpasspoint")] Question_level question_level)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace digitallearningback.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(
-            [Bind(Include = "id,levelorder,level,isvisible,passpoint,correctqnumber")] Question_level question_level)
+            [Bind(Include = "id,levelorder,level,isvisible,passpoint,correctqnumber,minpasspoint")] Question_level question_level)
         {
 
             Question_level record = levelService.selectById(question_level.id);
@@ -107,6 +107,7 @@ namespace digitallearningback.Areas.Admin.Controllers
                 record.levelorder = question_level.levelorder;
                 record.passpoint = question_level.passpoint;
                 record.correctqnumber = question_level.correctqnumber;
+                record.minpasspoint = question_level.minpasspoint;
 
                 levelService.update(record);
 

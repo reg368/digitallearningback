@@ -35,8 +35,12 @@ namespace digitallearningback.Models
             public Nullable<int> awardexperience { get; set; }
 
             [Required]
-            [Display(Name = "關卡過關積分")]
+            [Display(Name = "關卡總積分")]
             public Nullable<int> passpoint { get; set; }
+
+            [Required]
+            [Display(Name = "關卡過關積分")]
+            public Nullable<int> minpasspoint { get; set; }
 
         }
     }

@@ -13,6 +13,22 @@ namespace digitallearningback.Models
 
         //過關要求幾顆星 
         //例: 設定80分 , 80 / 20 = 4顆星
+        public int? getMinPasspointStarNumber()
+        {
+
+            if (this.minpasspoint != null && this.minpasspoint > 0)
+            {
+
+                return ((int)this.minpasspoint / 20);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        //關卡總共設定幾顆星
+        //例: 設定80分 , 80 / 20 = 4顆星
         public int?  getPasspointStarNumber() {
 
             if (this.passpoint != null && this.passpoint > 0 )
