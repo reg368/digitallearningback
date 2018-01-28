@@ -57,6 +57,13 @@ namespace digitallearningback.Controllers
         [SkipMyGlobalActionFilter]
         public ActionResult Login(InfoUser user) {
 
+            //重新嘗試登入後 就要刪掉原本儲存在session的資訊
+            if (InfoUser.getLoginUser() != null || Question.getSessionListQuestions() != null)
+            {
+                InfoUser.cleanLoginUser();
+                Question.cleanQuestions();
+            }
+
             if (ModelState.IsValid){
 
                 InfoUser dbuser  = userService.findByUserLoginId(user.login_id);
@@ -86,24 +93,31 @@ namespace digitallearningback.Controllers
         [SkipMyGlobalActionFilter]
         public ActionResult LoginForLtLab(String userid , String password)
         {
+            logger.debug("LoginForLtLab", "userid: "+ userid+ " password : "+ password);
 
-            if(InfoUser.getLoginUser() == null)
-            {
+                //重新嘗試登入後 就要刪掉原本儲存在session的資訊
+            if (InfoUser.getLoginUser() != null || Question.getSessionListQuestions() != null)
+                {
+                logger.debug("LoginForLtLab", "session InfoUser is not null clearn");
+                    InfoUser.cleanLoginUser();
+                    Question.cleanQuestions();
+                }
+
                 InfoUser dbuser = userService.findByUserLoginId(userid);
 
                 if (dbuser != null && password.Equals(dbuser.password))
                 {
+                    logger.debug("LoginForLtLab", "user vaild");
+
                     return forward(dbuser.LoginRedirect(), dbuser, true);
                 }
                 else
                 {
+                    logger.debug("LoginForLtLab", "user invaild");
+                    //紀錄每次登入請求資訊
+                    logger.doLoginlog(userid,password, false);
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-            }
-            else
-            {
-                return InfoUser.getLoginUser().LoginRedirect();
-            }
 
         }
 

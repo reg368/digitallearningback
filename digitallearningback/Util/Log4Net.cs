@@ -36,6 +36,21 @@ namespace digitallearningback.Util
             }
         }
 
+
+        //user login log
+        public void doLoginlog(string userid , string password, bool isLogingSuccess)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(DateTime.Now.ToString());
+            sb.AppendLine("Class :" + this.className);
+            sb.AppendLine("user login id  : " + userid);
+            sb.AppendLine("userpassword : " + password);
+            sb.AppendLine("isLogingSuccess : " + (isLogingSuccess ? "true" : "false"));
+            sb.AppendLine("=========================================================================");
+            string filePath = loginglogDir + DateTime.Now.ToString("yyyy-MM-dd") + ".log";
+            System.IO.File.AppendAllText(HttpContext.Current.Server.MapPath(filePath), sb.ToString());
+        }
+
         //user login log
         public void doLoginlog(InfoUser user,bool isLogingSuccess)
         {
