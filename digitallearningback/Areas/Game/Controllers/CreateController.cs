@@ -71,7 +71,7 @@ namespace digitallearningback.Areas.Game.Controllers
                 InfoUser user = InfoUser.getLoginUser();
 
                 user.character_image = selected.cimage_id;
-                Session["infoUser"] = user;
+                InfoUser.setLoginUser(user);
 
                 var petlist = chservice.selectListByProName("寵物");
 
@@ -112,8 +112,11 @@ namespace digitallearningback.Areas.Game.Controllers
             {
                 //取得使用者選的遊戲角色 塞回session
                 var selected = petlist.ElementAt(char_index-1);
-                InfoUser.getLoginUser().pet_image = selected.cimage_id;
-                Session["infoUser"] = InfoUser.getLoginUser();
+                InfoUser user = InfoUser.getLoginUser();
+                user.pet_image = selected.cimage_id;
+                InfoUser.setLoginUser(user);
+                //Session["infoUser"] = InfoUser.getLoginUser();
+
             }
             else
             {
@@ -135,8 +138,10 @@ namespace digitallearningback.Areas.Game.Controllers
                 infouser.pet_name = model.pet_name;
                 uservice.update(infouser);
 
+                InfoUser user = uservice.findByUserLoginId(infouser.login_id);
                 //塞回 seession
-                Session["infoUser"] = infouser;
+                //Session["infoUser"] = infouser;
+                InfoUser.setLoginUser(user);
 
                 //開始遊戲
                 return RedirectToAction("Index", "Play");

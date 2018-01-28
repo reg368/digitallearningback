@@ -11,98 +11,98 @@
     @Scripts.Render("~/bundles/jquery")
     @Styles.Render("~/Content/Game/Play/bootstrap.css")
     @Scripts.Render("~/Scripts/Game/bootstrap.min.js")
-<script>
-    $(document).ready(function () {
+    <script>
+        $(document).ready(function () {
 
-        $("#petDialog").hide();
-        $("#submit_btn").attr("disabled", false);
+            $("#petDialog").hide();
+            $("#submit_btn").attr("disabled", false);
 
-        $("#submit_btn").click(function () {
+            $("#submit_btn").click(function () {
 
-            $("#submit_btn").attr("disabled", true);
+                $("#submit_btn").attr("disabled", true);
 
-            var aid = $('#aid').val();
+                var aid = $('#aid').val();
 
-            if (aid == '' || typeof (aid) === "undefined") {
-                alert('請點選開始作答選擇答案');
-                $("#submit_btn").attr("disabled", false);
-                return;
-            } else {
+                if (aid == '' || typeof (aid) === "undefined") {
+                    alert('請點選開始作答選擇答案');
+                    $("#submit_btn").attr("disabled", false);
+                    return;
+                } else {
 
-                $.ajax({
-                    type: "POST",
-                    url: "/Game/Play/CheckAnswer",
-                    data: "{said:" + aid + "}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Game/Play/CheckAnswer",
+                        data: "{said:" + aid + "}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
 
-                        
-                        if (data.is_correct == '1') {
-                            $("#petDialog").html("<p>好棒!答對了</p>");
-                            $("#petDialog").show();
-                            setTimeout(
-                                function () {
-                                    $("#question_form").submit();
-                                }, 1000
-                            )
 
-                        } else {
-   
-                            $("#petDialog").html("<p>糟糕!答錯了</p>");
-                            $("#petDialog").show();
+                            if (data.is_correct == '1') {
+                                $("#petDialog").html("<p>好棒!答對了</p>");
+                                $("#petDialog").show();
+                                setTimeout(
+                                    function () {
+                                        $("#question_form").submit();
+                                    }, 1000
+                                )
 
-                            setTimeout(
-                                function () {
-                                    console.log('start setTimeout');
-                                    $("#question_detail_body").load("/Game/ModelView/QuestionDetailInfo?qid=" + data.qid + "&selectaid=" + data.id, function (response, status, xhr) {
-                                        if (status == "error") {
-                                            console.log(' load model question_detail_body error : '+msg + xhr.status + " " + xhr.statusText);
-                                        } else {
-                                            console.log(' load model question_detail_body success ');
-                                            //background 點擊關閉彈跳視窗取消
-                                            $('#question_detail_info').modal({ backdrop: 'static', keyboard: false })
-                                            $("#question_detail_info").modal('show');
-                                        }
-                                    });
-                                }, 500
-                            )
+                            } else {
+
+                                $("#petDialog").html("<p>糟糕!答錯了</p>");
+                                $("#petDialog").show();
+
+                                setTimeout(
+                                    function () {
+                                        console.log('start setTimeout');
+                                        $("#question_detail_body").load("/Game/ModelView/QuestionDetailInfo?qid=" + data.qid + "&selectaid=" + data.id, function (response, status, xhr) {
+                                            if (status == "error") {
+                                                console.log(' load model question_detail_body error : ' + msg + xhr.status + " " + xhr.statusText);
+                                            } else {
+                                                console.log(' load model question_detail_body success ');
+                                                //background 點擊關閉彈跳視窗取消
+                                                $('#question_detail_info').modal({ backdrop: 'static', keyboard: false })
+                                                $("#question_detail_info").modal('show');
+                                            }
+                                        });
+                                    }, 500
+                                )
+                            }
+
                         }
-                        
+                    });
+
+                }
+
+            });
+
+            if (window.history && window.history.pushState) {
+
+                $(window).on('popstate', function () {
+                    var hashLocation = location.hash;
+                    var hashSplit = hashLocation.split("#!/");
+                    var hashName = hashSplit[1];
+
+                    if (hashName !== '') {
+                        var hash = window.location.hash;
+                        if (hash === '') {
+                            alert('遊戲進行中...請勿按上一頁操作,謝謝');
+                            window.history.pushState('forward', null, './#forward');
+                            // location.reload();
+                        }
                     }
                 });
 
+                window.history.pushState('forward', null, './#forward');
             }
 
         });
 
-        if (window.history && window.history.pushState) {
 
-            $(window).on('popstate', function () {
-                var hashLocation = location.hash;
-                var hashSplit = hashLocation.split("#!/");
-                var hashName = hashSplit[1];
-
-                if (hashName !== '') {
-                    var hash = window.location.hash;
-                    if (hash === '') {
-                        alert('遊戲進行中...請勿按上一頁操作,謝謝');
-                        window.history.pushState('forward', null, './#forward');
-                       // location.reload();
-                    }
-                }
-            });
-
-            window.history.pushState('forward', null, './#forward');
-        }
-
-    });
-
-  
-</script>
+    </script>
 </head>
 <body>
-    
+
     <!--  開始作答ModelView框架 -->
     @{
         Html.RenderPartial("_Question_detail");
@@ -114,8 +114,7 @@
 
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_question.png")" style="">
     <form class="gwd-form-14az"></form>
-    <div class="gwd-div-8yx7"></div> <!--題目背景 --> 
-
+    <div class="gwd-div-8yx7"></div> <!--題目背景 -->
     <!-- 答題form表單 答完後接下一題 -->
     <form id="question_form" mehtod="post" action="/Game/Play/GameOn">
         <button type="button" id="submit_btn" class="gwd-button-eu7f" style="">送出</button>
@@ -145,11 +144,11 @@
     </div>
 
     <div class="gwd-div-1xr0" style="">
-        @Html.Raw("第"+@ViewBag.currentQuestionIndex+"題")
+        @Html.Raw("第" + @ViewBag.currentQuestionIndex + "題")
         <br>
-        @Html.Raw("共"+ @Answer_Level_Log.getSessionAnswer_Level_Log().questionnumber+"題")
+        @Html.Raw("共" + @Answer_Level_Log.getSessionAnswer_Level_Log().questionnumber + "題")
         <br>
-        @Html.Raw("玩家 : "+ @user.character_name)
+        @Html.Raw("玩家 : " + @user.character_name)
         <br>
         @Html.Raw("寵物 : " + @user.pet_name)
     </div> <!-- 角色資訊欄位 -->
