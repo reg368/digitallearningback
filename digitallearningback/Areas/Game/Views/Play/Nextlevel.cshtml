@@ -10,7 +10,8 @@
 <body>
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
 
-    <div class="gwd-div-ilnq" style=""></div>
+    <div class="gwd-div-ilnq" style="">
+    </div>
 
     <form action="/Game/Play/LevelStart" method="post" class="gwd-form-14az" >
         <font class="gwd-input-gbnv">@Html.Raw("第"+Model.levelorder+"關:"+Model.level)  </font>
@@ -18,11 +19,18 @@
         <input type="hidden" name="lid" value="@Model.id" />
         <input type="hidden" name="gid" value="@Model.group_id" />
         <button type="submit" class="gwd-button-r673">開始遊戲</button>
+        <br>
+        <br>
+        <button  type="button" onclick="$('#backIndex').submit();"
+                class="gwd-button-back">回關卡選擇</button>
     </form>
 
     <p class="gwd-p-lswn" style="top:500px;">
         @ViewBag.error
     </p>
 
+    <form method="post" action="/Game/Play/LevelSelect" id="backIndex">
+        <input type="hidden" name="gid" value="@ViewBag.gid" />
+    </form>
 </body>
 </html>

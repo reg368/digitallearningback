@@ -155,6 +155,17 @@ body {
     background-color: rgb(21, 201, 69);
 }
 
+.gwd-button-back {
+    position: absolute;
+    height: 25.125px;
+    border-radius: 3px;
+    top: 304px;
+    left: 45%;
+    width: 8%;
+    background-image: none;
+    background-color: rgb(21, 201, 69);
+}
+
 .gwd-div-14v4 {
     position: absolute;
     width: 445px;

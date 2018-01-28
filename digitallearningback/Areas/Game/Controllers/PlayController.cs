@@ -53,6 +53,7 @@ namespace digitallearningback.Areas.Game.Controllers
 
                 ViewBag.groupname = level.Question_group.name;
                 ViewBag.levels = grouplevels;
+                ViewBag.gid = gid;
                 return View();
             }
             else
@@ -67,6 +68,7 @@ namespace digitallearningback.Areas.Game.Controllers
         public ActionResult Nextlevel(int lid)
         {
                 Question_level level = levelservice.selectById(lid);
+                ViewBag.gid = level.group_id;
                 return View(level);
         }
 
