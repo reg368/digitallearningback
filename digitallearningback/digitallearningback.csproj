@@ -154,6 +154,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AnswersController.cs" />
     <Compile Include="Areas\Admin\Controllers\Character_imageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StudentLevelLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionLevelMappingController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
@@ -167,6 +168,7 @@
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\VW_StudentLevelLogService.cs" />
     <Compile Include="DAO\fun_CalculateAnswerConceptPoint_ResultService.cs" />
     <Compile Include="DAO\Answer_Level_LogService.cs" />
     <Compile Include="DAO\Answer_LogService.cs" />
@@ -209,6 +211,7 @@
     <Compile Include="Models\Cimage_profession.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Extends\vw_StudentAnswerLevelLog.cs" />
     <Compile Include="Models\Extends\Answer_Log.cs" />
     <Compile Include="Models\Extends\Answer_Level_Log.cs" />
     <Compile Include="Models\Extends\Answer.cs" />
@@ -270,6 +273,9 @@
     </Compile>
     <Compile Include="Models\ViewModel\EditCharNameViewMD.cs" />
     <Compile Include="Models\vw_QuestionConceptDetail.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_StudentAnswerLevelLog.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\yzucs.Context.cs">
@@ -395,6 +401,8 @@
     <Content Include="Areas\Game\Views\Play\LevelSelect.cshtml" />
     <Content Include="Areas\Game\Views\Play\Result.cshtml" />
     <Content Include="Areas\Game\Views\Play\SearchPassedLevelUser.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentLevelLog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\StudentLevelLog\ViewRecord.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />

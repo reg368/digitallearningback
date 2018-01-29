@@ -1,0 +1,30 @@
+﻿@model IEnumerable<digitallearningback.Models.Question_group>
+<h2>學生管理 - 查看學生各個關卡的答題結果</h2>
+<h3>請先選擇想要查看的關卡:</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Raw("課程名稱")
+        </th>
+        <th>
+           @Html.Raw("關卡名稱")
+        </th>
+    </tr>
+
+@foreach (var group in Model)
+{
+    foreach (var level in group.Question_level)
+    {
+        <tr>
+            <td>
+               @group.name
+            </td>
+            <td>
+               <a href="/Admin/StudentLevelLog/ViewRecord?lid=@level.id">@level.level</a>
+            </td>
+        </tr>
+    }
+}
+
+</table>

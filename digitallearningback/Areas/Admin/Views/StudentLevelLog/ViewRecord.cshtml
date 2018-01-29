@@ -1,0 +1,47 @@
+﻿@model IEnumerable<digitallearningback.Models.vw_StudentAnswerLevelLog>
+<h2>課程 : @ViewBag.groupname</h2>
+<h3>關卡 : @ViewBag.levelname</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Raw("學生姓名")
+        </th>
+        <th>
+           @Html.Raw("最高分過關成績")
+        </th>
+        <th>
+            @Html.Raw("最高分星星")
+        </th>
+    </tr>
+
+@foreach (var record in Model)
+{
+        <tr>
+            <td>
+               @record.name
+            </td>
+               @if (record.passpoint != null)
+               {
+                   <td>
+                        @record.passpoint
+                   </td>
+                   <td>
+                        @record.getCorrectPasspointStar((int)record.passpoint)
+                   </td>
+               }
+               else
+               {
+                   <td>
+                       @Html.Raw("尚未作答");
+                   </td>
+                   <td></td>
+                
+               }
+            <td>
+
+            </td>
+        </tr>
+}
+
+</table>

@@ -47,6 +47,7 @@ namespace digitallearningback.Models
         public virtual DbSet<LoginLog> LoginLog { get; set; }
         public virtual DbSet<Answer_Log> Answer_Log { get; set; }
         public virtual DbSet<Answer_Level_Log> Answer_Level_Log { get; set; }
+        public virtual DbSet<vw_StudentAnswerLevelLog> vw_StudentAnswerLevelLog { get; set; }
     
         [DbFunction("yzucsEntities", "fun_CalculateAnswerConceptPoint")]
         public virtual IQueryable<fun_CalculateAnswerConceptPoint_Result> fun_CalculateAnswerConceptPoint(Nullable<int> levellogid)

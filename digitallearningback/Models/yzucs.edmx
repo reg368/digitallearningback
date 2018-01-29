@@ -243,6 +243,21 @@
           <Property Name="g_name" Type="nvarchar" MaxLength="50" />
           <Property Name="g_percentage" Type="int" />
         </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'yzucs.dbo.vw_StudentAnswerLevelLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="vw_StudentAnswerLevelLog">
+          <Key>
+            <PropertyRef Name="userid" />
+            <PropertyRef Name="lid" />
+          </Key>
+          <Property Name="userid" Type="int" Nullable="false" />
+          <Property Name="login_id" Type="nvarchar" MaxLength="100" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="lid" Type="int" Nullable="false" />
+          <Property Name="level" Type="nvarchar" MaxLength="100" />
+          <Property Name="levelorder" Type="int" />
+          <Property Name="passpoint" Type="decimal" Precision="4" Scale="1" />
+        </EntityType>
         <Association Name="answer_qid_fk">
           <End Role="Question" Type="Self.Question" Multiplicity="1" />
           <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
@@ -646,6 +661,17 @@
     [vw_QuestionConceptDetail].[g_name] AS [g_name], 
     [vw_QuestionConceptDetail].[g_percentage] AS [g_percentage]
     FROM [dbo].[vw_QuestionConceptDetail] AS [vw_QuestionConceptDetail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_StudentAnswerLevelLog" EntityType="Self.vw_StudentAnswerLevelLog" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_StudentAnswerLevelLog].[userid] AS [userid], 
+    [vw_StudentAnswerLevelLog].[login_id] AS [login_id], 
+    [vw_StudentAnswerLevelLog].[name] AS [name], 
+    [vw_StudentAnswerLevelLog].[lid] AS [lid], 
+    [vw_StudentAnswerLevelLog].[level] AS [level], 
+    [vw_StudentAnswerLevelLog].[levelorder] AS [levelorder], 
+    [vw_StudentAnswerLevelLog].[passpoint] AS [passpoint]
+    FROM [dbo].[vw_StudentAnswerLevelLog] AS [vw_StudentAnswerLevelLog]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="answer_qid_fk" Association="Self.answer_qid_fk">
             <End Role="Question" EntitySet="Question" />
@@ -1359,6 +1385,7 @@
           <FunctionImport Name="fun_CalculateAnswerConceptPoint" IsComposable="true" ReturnType="Collection(yzucsModel.fun_CalculateAnswerConceptPoint_Result)">
           <Parameter Name="levellogid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="vw_StudentAnswerLevelLog" EntityType="yzucsModel.vw_StudentAnswerLevelLog" />
           </EntityContainer>
         <EntityType Name="vw_QuestionConceptDetail">
           <Key>
@@ -1579,6 +1606,19 @@
           <Property Type="Int32" Name="point" Nullable="true" />
           <Property Type="Int32" Name="fullpoint" Nullable="true" />
         </ComplexType>
+        <EntityType Name="vw_StudentAnswerLevelLog">
+          <Key>
+            <PropertyRef Name="userid" />
+            <PropertyRef Name="lid" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" />
+          <Property Name="login_id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="lid" Type="Int32" Nullable="false" />
+          <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="levelorder" Type="Int32" />
+          <Property Name="passpoint" Type="Decimal" Precision="4" Scale="1" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1851,6 +1891,19 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="vw_StudentAnswerLevelLog">
+            <EntityTypeMapping TypeName="yzucsModel.vw_StudentAnswerLevelLog">
+              <MappingFragment StoreEntitySet="vw_StudentAnswerLevelLog">
+                <ScalarProperty Name="passpoint" ColumnName="passpoint" />
+                <ScalarProperty Name="levelorder" ColumnName="levelorder" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="lid" ColumnName="lid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="login_id" ColumnName="login_id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
