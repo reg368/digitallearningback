@@ -27,6 +27,7 @@
             <table class="table" border="1">
                 <tr>
                     <th>過關排名順序</th>
+                    <th>過關時間</th>
                     <th>姓名</th>
                     <th>獲得星星數</th>
                 </tr>
@@ -37,6 +38,7 @@
                     {
                             <tr>
                                 <td>@i</td>
+                                <td>@item.joindate</td>
                                 <td>@item.name</td>
                                 <td>@level.getCorrectPasspointStar(item.hp)</td>
                             </tr>
