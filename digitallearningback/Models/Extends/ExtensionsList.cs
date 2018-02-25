@@ -13,7 +13,34 @@ namespace digitallearningback.Models
         private static Random rng = new Random();
 
         /**
-         *  打亂原集合內的順序
+         *  打亂原集合內的順序 ICollection
+         */
+        public static void Shuffle<T>(this ICollection<T> list)
+        {
+
+            T[] tarray = new T[list.Count];
+            list.CopyTo(tarray, 0);
+
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = tarray[k];
+                tarray[k] = tarray[n];
+                tarray[n] = value;
+            }
+
+            list.Clear();
+
+            foreach(T t in tarray) {
+                list.Add(t);
+            }
+
+        }
+
+        /**
+         *  打亂原集合內的順序 IList
          */
         public static void Shuffle<T>(this IList<T> list)
         {

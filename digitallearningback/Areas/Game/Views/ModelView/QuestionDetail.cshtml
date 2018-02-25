@@ -1,4 +1,5 @@
 ﻿@model digitallearningback.Models.Question
+@using digitallearningback.Models
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,10 @@
     </div>
     <div class="modal-body">
         <table border="0" class="table table-hover">
-            @{int index = 0;}
+            @{
+                int index = 0;
+                //Model.Answer.Shuffle(); //打亂順序
+             }
             @foreach (var item in Model.Answer)
             {
                 index++;

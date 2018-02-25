@@ -144,14 +144,16 @@
     </div>
 
     <div class="gwd-div-1xr0" style="">
-        @Html.Raw("第" + @ViewBag.currentQuestionIndex + "題")
+        <font size="3"><b>@Html.Raw("第" + @ViewBag.currentQuestionIndex + "題")</b></font>
         <br>
-        @Html.Raw("共" + @Answer_Level_Log.getSessionAnswer_Level_Log().questionnumber + "題")
+        <font size="3"><b> @Html.Raw("共" + @Answer_Level_Log.getSessionAnswer_Level_Log().questionnumber + "題")</b></font>
         <br>
-        @Html.Raw("玩家 : " + @user.character_name)
+        <font size="3"><b>@Html.Raw("玩家 : " + @user.character_name)</b></font>
         <br>
-        @Html.Raw("寵物 : " + @user.pet_name)
-    </div> <!-- 角色資訊欄位 -->
+        <font size="3"><b>@Html.Raw("寵物 : " + @user.pet_name)</b></font>
+        <br>
+        <font size="4" color="red"><b>請點選開始作答選擇答案</b></font>
+</div> <!-- 角色資訊欄位 -->
 
     <img id="cimage" class="gwd-img-char" src="@user.Character_image1.cimage_path"> <!-- 角色圖 -->
     <img class="gwd-img-pet" src="@user.Character_image2.cimage_path"> <!-- 寵物圖 -->

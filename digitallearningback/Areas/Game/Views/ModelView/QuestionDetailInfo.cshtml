@@ -4,7 +4,11 @@
 <head>
 </head>
 <body>
-    <div class="modal-header">     
+    <div class="modal-header"> 
+        <font size="3" color="red">很抱歉答錯了,底下是正確解答</font>
+        <form mehtod="post" action="/Game/Play/GameOn">
+            <button type="submit" style="">繼續下一題</button>
+        </form>
         <h4 class="modal-title" id="myModalLabel">
             <font size="5" color="blue">
                 <b>@Model.text</b>
@@ -39,7 +43,7 @@
             }
         </table>
         <form mehtod="post" action="/Game/Play/GameOn">
-            <button type="submit" style="">繼續</button>
+            <button type="submit" style="">繼續下一題</button>
         </form>
     </div>
 </body>

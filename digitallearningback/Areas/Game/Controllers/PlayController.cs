@@ -109,7 +109,8 @@ namespace digitallearningback.Areas.Game.Controllers
             {
                 //從集合中取出第一個題目 且 集合中題目數-1
                 Question question = questions.PollFirst();
-                
+                questions.Shuffle();
+
                 //-1數量後的集合題目 塞回session
                 Question.setSessionListQuestions(questions);
                 

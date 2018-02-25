@@ -12,6 +12,7 @@
 
             $('#title').text('結果計算中請稍後...');
 
+
             $.ajax({
                 type: "POST",
                 url: "/Game/Play/GetResultData",
@@ -25,7 +26,15 @@
                     //console.log(data);
 
                     var ctx = document.getElementById('ctx');
-                    ctx.height = 420;
+
+                    /*
+                    console.log('window h : '+$(window).height());
+                    console.log('document h :' +$(document).height());
+                    console.log('screeb h :' +screen.height);
+                    console.log('ctx h :' +ctx.height);
+                    */
+
+                    ctx.height = 400;
 
                     var labels = [], data1 = [] , data2 = []; //data1: 滿分 , data2 : 得分
 
@@ -58,6 +67,9 @@
                                 ticks: {
                                     beginAtZero: true,
                                     max: 100
+                                },
+                                pointLabels: {
+                                    fontSize: 20,
                                 }
                             }
                         }
