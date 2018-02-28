@@ -25,9 +25,10 @@
             <font size="5" color="blue">
                 <b>@Model.text</b>
             </font>
+            <br>
             @if (Model.pic_path != null)
             {
-                <img src="@Model.pic_path" height="300" width="400">
+                <img src="@Model.pic_path" height="500" width="800">
             }
         </h4>
     </div>
@@ -52,7 +53,7 @@
 
                             <img src="@item.pic_path" width="250" height="200">
                         }
-                        <font color="red">@(item.is_correct == 1 ? "" : "")</font>
+                        <font color="red">@(item.is_correct == 1 ? "*" : "")</font>
                     </td>
                 </tr>
             }
