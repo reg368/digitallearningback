@@ -71,7 +71,7 @@ namespace digitallearningback.DAO
                            " group by g.userid " + 
                            ") as tb" +
                        " on u.id = tb.userid "+
-                       "order by sort "
+                       "order by hp desc , sort "
                        , new SqlParameter("@lid", lid)
                        );
 

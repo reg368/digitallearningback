@@ -11,7 +11,7 @@
         </form>
         <h4 class="modal-title" id="myModalLabel">
             <font size="5" color="blue">
-                <b>@Model.text</b>
+                <b>@Html.Raw(@Model.text)</b>
             </font>
             <br>
             @if (Model.pic_path != null)
@@ -31,7 +31,7 @@
                     <td class="content">
                         @if (item.text != null)
                         {
-                                @Html.Raw(item.text)
+                               item.text
                         }
                         @if (item.pic_path != null)
                         {
