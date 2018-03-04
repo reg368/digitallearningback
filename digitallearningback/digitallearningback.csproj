@@ -403,6 +403,7 @@
     <Content Include="Areas\Game\Views\Play\SearchPassedLevelUser.cshtml" />
     <Content Include="Areas\Admin\Views\StudentLevelLog\Index.cshtml" />
     <Content Include="Areas\Admin\Views\StudentLevelLog\ViewRecord.cshtml" />
+    <Content Include="Files\readme.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />
