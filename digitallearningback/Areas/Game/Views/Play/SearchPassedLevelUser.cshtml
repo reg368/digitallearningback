@@ -1,7 +1,7 @@
 ﻿@using digitallearningback.Models
 @model IEnumerable<digitallearningback.Models.InfoUser>
-@{ 
-    var  level = new Question_level();
+@{
+    var level = new Question_level();
 }
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@
     @Scripts.Render("~/bundles/jquery")
     <script>
         $(document).ready(function () {
-                
+
         })
     </script>
 </head>
@@ -20,50 +20,67 @@
     <img class="gwd-img-1j4a" src="@Url.Content("~/Images/View_image/background_login.png")" style="">
 
     <div class="gwd-div-ilnq">
-       <br>
-       <br>
-       <br> 
-         <blockquote><blockquote><blockquote><blockquote><blockquote>
-            <table class="table" border="1">
-                <tr>
-                    <th>過關排名順序</th>
-                    <th>過關時間</th>
-                    <th>姓名</th>
-                    <th>獲得星星數</th>
-                </tr>
-                @if (Model != null && Model.Count<InfoUser>() > 0)
-                {
-                int i = 1;
-                    foreach (var item in Model)
-                    {
-                            <tr>
-                                <td>@i</td>
-                                <td>@item.joindate</td>
-                                <td>@item.name</td>
-                                <td>@level.getCorrectPasspointStar(item.hp)</td>
-                            </tr>
-                        i++;
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="2">目前無任何人過關</td>
-                    </tr>
-                }
+        <br>
+        <br>
+        <br>
+        <blockquote>
+            <blockquote>
+                <blockquote>
+                    <blockquote>
+                        <blockquote>
+                            <table class="table" border="1">
+                                @if (Model != null && Model.Count<InfoUser>() > 0)
+                                {
+                                    int i = 1;
+                                    int? hp = -1;
+                                    foreach (var item in Model)
+                                    {
+                                        if (hp != item.hp)
+                                        {
+                                            <tr bgcolor="#FFFF00">
+                                                <th>@level.getCorrectPasspointStar(item.hp) 群組</th>
+                                                <th>過關排名順序</th>
+                                                <th>過關時間</th>
+                                                <th>姓名</th>
+                                                <th>獲得星星數</th>
+                                            </tr>
+                                            hp = item.hp;
+                                            i = 1;
+                                        }
 
-            </table>
-          </blockquote></blockquote></blockquote></blockquote></blockquote>
-</div>
+                                        <tr>
+                                            <td></td>
+                                            <td>@i</td>
+                                            <td>@item.joindate</td>
+                                            <td>@item.name</td>
+                                            <td>@level.getCorrectPasspointStar(item.hp)</td>
+                                        </tr>
+                                        i++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="2">目前無任何人過關</td>
+                                    </tr>
+                                }
 
-    
+                            </table>
+                        </blockquote>
+                    </blockquote>
+                </blockquote>
+            </blockquote>
+        </blockquote>
+    </div>
+
+
 
     <div class="gwd-p-lswn" style="top:500px;">
     </div>
 
 
-    <p id="title" class="gwd-p-xfrq" style="" >
-        @ViewBag.gname 
+    <p id="title" class="gwd-p-xfrq" style="">
+        @ViewBag.gname
         -
         @ViewBag.level
     </p>
