@@ -13,6 +13,9 @@
         <th>
             @Html.Raw("最高分星星")
         </th>
+        <th>
+            @Html.Raw("關卡總共作答了幾次")
+        </th>
     </tr>
 
 @foreach (var record in Model)
@@ -39,7 +42,7 @@
                 
                }
             <td>
-
+                @record.practice_count
             </td>
         </tr>
 }

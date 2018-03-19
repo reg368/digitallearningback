@@ -109,6 +109,8 @@
           <Property Name="money" Type="int" />
           <Property Name="experience" Type="int" />
           <Property Name="hp" Type="int" />
+          <Property Name="dept" Type="nvarchar" MaxLength="50" />
+          <Property Name="nickname" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LoginLog">
           <Key>
@@ -257,6 +259,7 @@
           <Property Name="level" Type="nvarchar" MaxLength="100" />
           <Property Name="levelorder" Type="int" />
           <Property Name="passpoint" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="practice_count" Type="int" />
         </EntityType>
         <Association Name="answer_qid_fk">
           <End Role="Question" Type="Self.Question" Multiplicity="1" />
@@ -670,7 +673,8 @@
     [vw_StudentAnswerLevelLog].[lid] AS [lid], 
     [vw_StudentAnswerLevelLog].[level] AS [level], 
     [vw_StudentAnswerLevelLog].[levelorder] AS [levelorder], 
-    [vw_StudentAnswerLevelLog].[passpoint] AS [passpoint]
+    [vw_StudentAnswerLevelLog].[passpoint] AS [passpoint], 
+    [vw_StudentAnswerLevelLog].[practice_count] AS [practice_count]
     FROM [dbo].[vw_StudentAnswerLevelLog] AS [vw_StudentAnswerLevelLog]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="answer_qid_fk" Association="Self.answer_qid_fk">
@@ -886,6 +890,8 @@
           <NavigationProperty Name="LoginLog" Relationship="yzucsModel.LoginLog_user_fk" FromRole="InfoUser" ToRole="LoginLog" />
           <NavigationProperty Name="Answer_Log" Relationship="yzucsModel.answerlog_user_id_fk" FromRole="InfoUser" ToRole="Answer_Log" />
           <NavigationProperty Name="Answer_Level_Log" Relationship="yzucsModel.levellog_user_id_fk" FromRole="InfoUser" ToRole="Answer_Level_Log" />
+          <Property Name="dept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -1618,6 +1624,7 @@
           <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="levelorder" Type="Int32" />
           <Property Name="passpoint" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="practice_count" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1680,6 +1687,8 @@
           <EntitySetMapping Name="InfoUser">
             <EntityTypeMapping TypeName="yzucsModel.InfoUser">
               <MappingFragment StoreEntitySet="InfoUser">
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="dept" ColumnName="dept" />
                 <ScalarProperty Name="character_name" ColumnName="character_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1894,6 +1903,7 @@
           <EntitySetMapping Name="vw_StudentAnswerLevelLog">
             <EntityTypeMapping TypeName="yzucsModel.vw_StudentAnswerLevelLog">
               <MappingFragment StoreEntitySet="vw_StudentAnswerLevelLog">
+                <ScalarProperty Name="practice_count" ColumnName="practice_count" />
                 <ScalarProperty Name="passpoint" ColumnName="passpoint" />
                 <ScalarProperty Name="levelorder" ColumnName="levelorder" />
                 <ScalarProperty Name="level" ColumnName="level" />

@@ -21,5 +21,6 @@ namespace digitallearningback.Models
         public string level { get; set; }
         public Nullable<int> levelorder { get; set; }
         public Nullable<decimal> passpoint { get; set; }
+        public Nullable<int> practice_count { get; set; }
     }
 }

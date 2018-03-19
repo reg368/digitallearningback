@@ -60,7 +60,7 @@ namespace digitallearningback.DAO
                         " u.login_count ,u.group_id ,u.teacher_id ,u.money , " +
                         " u.experience , " +
                         " (select CAST(passpoint as int) from Answer_Level_Log where id = tb.sort) as hp  , " +
-                        "tb.sort  " +
+                        "  u.dept ,  u.nickname, tb.sort  " +
                        "from InfoUser u join " + 
                            " ( "+
                            " select g.userid as userid , MIN(g.id) as sort  from " +

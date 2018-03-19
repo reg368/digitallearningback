@@ -44,6 +44,8 @@ namespace digitallearningback.Models
         public Nullable<int> experience { get; set; }
         public Nullable<int> hp { get; set; }
         public string character_name { get; set; }
+        public string dept { get; set; }
+        public string nickname { get; set; }
     
         public virtual Character_image Character_image1 { get; set; }
         public virtual Character_image Character_image2 { get; set; }
