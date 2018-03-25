@@ -240,10 +240,15 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="level" Type="nvarchar" MaxLength="100" />
           <Property Name="levelcount" Type="int" />
+          <Property Name="oncelevelcount" Type="int" />
+          <Property Name="multiplelevelcount" Type="int" />
+          <Property Name="multipleTestCompleteCount" Type="int" />
           <Property Name="logincount" Type="int" />
           <Property Name="stdusagcount" Type="int" />
           <Property Name="stdcount" Type="int" />
           <Property Name="percentage" Type="nvarchar" MaxLength="6" />
+          <Property Name="oncespercentage" Type="nvarchar" MaxLength="6" />
+          <Property Name="multiplepercentage" Type="nvarchar" MaxLength="6" />
         </EntityType>
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'yzucs.dbo.vw_QuestionConceptDetail' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
@@ -673,10 +678,15 @@
     [vw_DataAnalysisIndexInfo].[id] AS [id], 
     [vw_DataAnalysisIndexInfo].[level] AS [level], 
     [vw_DataAnalysisIndexInfo].[levelcount] AS [levelcount], 
+    [vw_DataAnalysisIndexInfo].[oncelevelcount] AS [oncelevelcount], 
+    [vw_DataAnalysisIndexInfo].[multiplelevelcount] AS [multiplelevelcount], 
+    [vw_DataAnalysisIndexInfo].[multipleTestCompleteCount] AS [multipleTestCompleteCount], 
     [vw_DataAnalysisIndexInfo].[logincount] AS [logincount], 
     [vw_DataAnalysisIndexInfo].[stdusagcount] AS [stdusagcount], 
     [vw_DataAnalysisIndexInfo].[stdcount] AS [stdcount], 
-    [vw_DataAnalysisIndexInfo].[percentage] AS [percentage]
+    [vw_DataAnalysisIndexInfo].[percentage] AS [percentage], 
+    [vw_DataAnalysisIndexInfo].[oncespercentage] AS [oncespercentage], 
+    [vw_DataAnalysisIndexInfo].[multiplepercentage] AS [multiplepercentage]
     FROM [dbo].[vw_DataAnalysisIndexInfo] AS [vw_DataAnalysisIndexInfo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_QuestionConceptDetail" EntityType="Self.vw_QuestionConceptDetail" store:Type="Views" store:Schema="dbo">
@@ -1663,6 +1673,11 @@
           <Property Name="percentage" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
           <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="levelcount" Type="Int32" />
+          <Property Name="oncelevelcount" Type="Int32" />
+          <Property Name="multiplelevelcount" Type="Int32" />
+          <Property Name="multipleTestCompleteCount" Type="Int32" />
+          <Property Name="oncespercentage" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="multiplepercentage" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1955,6 +1970,11 @@
           <EntitySetMapping Name="vw_DataAnalysisIndexInfo">
             <EntityTypeMapping TypeName="yzucsModel.vw_DataAnalysisIndexInfo">
               <MappingFragment StoreEntitySet="vw_DataAnalysisIndexInfo">
+                <ScalarProperty Name="multiplepercentage" ColumnName="multiplepercentage" />
+                <ScalarProperty Name="oncespercentage" ColumnName="oncespercentage" />
+                <ScalarProperty Name="multipleTestCompleteCount" ColumnName="multipleTestCompleteCount" />
+                <ScalarProperty Name="multiplelevelcount" ColumnName="multiplelevelcount" />
+                <ScalarProperty Name="oncelevelcount" ColumnName="oncelevelcount" />
                 <ScalarProperty Name="levelcount" ColumnName="levelcount" />
                 <ScalarProperty Name="level" ColumnName="level" />
                 <ScalarProperty Name="percentage" ColumnName="percentage" />

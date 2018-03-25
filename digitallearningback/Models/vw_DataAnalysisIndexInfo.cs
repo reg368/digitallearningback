@@ -21,5 +21,10 @@ namespace digitallearningback.Models
         public string percentage { get; set; }
         public string level { get; set; }
         public Nullable<int> levelcount { get; set; }
+        public Nullable<int> oncelevelcount { get; set; }
+        public Nullable<int> multiplelevelcount { get; set; }
+        public Nullable<int> multipleTestCompleteCount { get; set; }
+        public string oncespercentage { get; set; }
+        public string multiplepercentage { get; set; }
     }
 }

@@ -27,10 +27,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.Raw("關卡名稱")
+            <font size="2">@Html.Raw("關卡名稱")</font>
         </th>
         <th>
-            @Html.Raw("有幾位學生玩此關卡了")
+            <font size="2">@Html.Raw("幾位學生玩此關卡了")</font>
+        </th>
+        <th>
+            <font size="2">@Html.Raw("只玩一次的學生人數")</font>
+        </th>
+        <th>
+            <font size="2">@Html.Raw("只玩一次的學生人數比例")</font>
+        </th>
+        <th>
+            <font size="2">@Html.Raw("玩超過一次的學生人數")</font>
+        </th>
+        <th>
+            <font size="2">@Html.Raw("玩超過一次的學生人數比例")</font>
+        </th>
+        <th>
+            <font size="2">@Html.Raw("玩超過一次後拿到滿分的學生人數")
         </th>
     </tr>
 
@@ -43,6 +58,21 @@
                 </td>
                 <td>
                     @info.levelcount
+                </td>
+                <td>
+                    @info.oncelevelcount
+                </td>
+                <td>
+                    @info.oncespercentage
+                </td>
+                <td>
+                    @info.multiplelevelcount
+                </td>
+                <td>
+                    @info.multiplepercentage
+                </td>
+                <td>
+                    @info.multipleTestCompleteCount
                 </td>
             </tr>
     }
