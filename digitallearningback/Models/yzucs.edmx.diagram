@@ -56,6 +56,7 @@
         <AssociationConnector Association="yzucsModel.levellog_loginid_fk" />
         <AssociationConnector Association="yzucsModel.levellog_user_id_fk" />
         <EntityTypeShape EntityType="yzucsModel.vw_StudentAnswerLevelLog" Width="1.5" PointX="14.375" PointY="0.75" />
+        <EntityTypeShape EntityType="yzucsModel.vw_DataAnalysisIndexInfo" Width="1.5" PointX="13.375" PointY="14.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -154,6 +154,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AnswersController.cs" />
     <Compile Include="Areas\Admin\Controllers\Character_imageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DataAnalysisController.cs" />
     <Compile Include="Areas\Admin\Controllers\StudentLevelLogController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionLevelMappingController.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\VW_DataAnalysisIndexInfoService.cs" />
     <Compile Include="DAO\VW_StudentLevelLogService.cs" />
     <Compile Include="DAO\fun_CalculateAnswerConceptPoint_ResultService.cs" />
     <Compile Include="DAO\Answer_Level_LogService.cs" />
@@ -272,6 +274,9 @@
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModel\EditCharNameViewMD.cs" />
+    <Compile Include="Models\vw_DataAnalysisIndexInfo.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_QuestionConceptDetail.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
@@ -404,6 +409,7 @@
     <Content Include="Areas\Admin\Views\StudentLevelLog\Index.cshtml" />
     <Content Include="Areas\Admin\Views\StudentLevelLog\ViewRecord.cshtml" />
     <Content Include="Files\readme.pdf" />
+    <Content Include="Areas\Admin\Views\DataAnalysis\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />

@@ -232,6 +232,20 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'yzucs.dbo.vw_DataAnalysisIndexInfo' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="vw_DataAnalysisIndexInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="level" Type="nvarchar" MaxLength="100" />
+          <Property Name="levelcount" Type="int" />
+          <Property Name="logincount" Type="int" />
+          <Property Name="stdusagcount" Type="int" />
+          <Property Name="stdcount" Type="int" />
+          <Property Name="percentage" Type="nvarchar" MaxLength="6" />
+        </EntityType>
+        <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'yzucs.dbo.vw_QuestionConceptDetail' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="vw_QuestionConceptDetail">
           <Key>
@@ -654,6 +668,17 @@
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Class_Mapping" EntityType="Self.Student_Class_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_DataAnalysisIndexInfo" EntityType="Self.vw_DataAnalysisIndexInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_DataAnalysisIndexInfo].[id] AS [id], 
+    [vw_DataAnalysisIndexInfo].[level] AS [level], 
+    [vw_DataAnalysisIndexInfo].[levelcount] AS [levelcount], 
+    [vw_DataAnalysisIndexInfo].[logincount] AS [logincount], 
+    [vw_DataAnalysisIndexInfo].[stdusagcount] AS [stdusagcount], 
+    [vw_DataAnalysisIndexInfo].[stdcount] AS [stdcount], 
+    [vw_DataAnalysisIndexInfo].[percentage] AS [percentage]
+    FROM [dbo].[vw_DataAnalysisIndexInfo] AS [vw_DataAnalysisIndexInfo]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vw_QuestionConceptDetail" EntityType="Self.vw_QuestionConceptDetail" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_QuestionConceptDetail].[id] AS [id], 
@@ -1392,6 +1417,7 @@
           <Parameter Name="levellogid" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="vw_StudentAnswerLevelLog" EntityType="yzucsModel.vw_StudentAnswerLevelLog" />
+          <EntitySet Name="vw_DataAnalysisIndexInfo" EntityType="yzucsModel.vw_DataAnalysisIndexInfo" />
           </EntityContainer>
         <EntityType Name="vw_QuestionConceptDetail">
           <Key>
@@ -1625,6 +1651,18 @@
           <Property Name="levelorder" Type="Int32" />
           <Property Name="passpoint" Type="Decimal" Precision="4" Scale="1" />
           <Property Name="practice_count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_DataAnalysisIndexInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="logincount" Type="Int32" />
+          <Property Name="stdusagcount" Type="Int32" />
+          <Property Name="stdcount" Type="Int32" />
+          <Property Name="percentage" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="levelcount" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1911,6 +1949,19 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="login_id" ColumnName="login_id" />
                 <ScalarProperty Name="userid" ColumnName="userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_DataAnalysisIndexInfo">
+            <EntityTypeMapping TypeName="yzucsModel.vw_DataAnalysisIndexInfo">
+              <MappingFragment StoreEntitySet="vw_DataAnalysisIndexInfo">
+                <ScalarProperty Name="levelcount" ColumnName="levelcount" />
+                <ScalarProperty Name="level" ColumnName="level" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+                <ScalarProperty Name="stdcount" ColumnName="stdcount" />
+                <ScalarProperty Name="stdusagcount" ColumnName="stdusagcount" />
+                <ScalarProperty Name="logincount" ColumnName="logincount" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

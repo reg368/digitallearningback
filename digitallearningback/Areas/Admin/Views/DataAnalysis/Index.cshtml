@@ -1,0 +1,52 @@
+﻿@using digitallearningback.Models
+@model digitallearningback.Models.vw_DataAnalysisIndexInfo
+@{
+    var infolist = ViewBag.infolist as List<vw_DataAnalysisIndexInfo>;
+}
+<h2>遊戲式前台資料分析</h2>
+<p>分析的資料僅蒐集學生的帳號,不含老師帳號以及測試帳號</p>
+<br>
+<p>系統使用率</p>
+<table class="table">
+    <tr>
+        <th>學生總人數</th> 
+        <th>系統登入次數</th>
+        <th>有幾位學生開始作答了</th>
+        <th>學生作答人次佔總人數的百分比</th>
+    </tr>
+    <tr>
+        <td>@Html.Raw(Model.stdcount)</td>
+        <td>@Html.Raw(Model.logincount)</td>
+        <td>@Html.Raw(Model.stdusagcount)</td>
+        <td>@Html.Raw(Model.percentage)</td>
+    </tr>
+</table>
+
+
+<p>關卡資料分析-查看學生作答資料請點選欲查看的關卡:</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Raw("關卡名稱")
+        </th>
+        <th>
+            @Html.Raw("有幾位學生玩此關卡了")
+        </th>
+    </tr>
+
+    @foreach (var info in infolist)
+    {
+       
+            <tr>
+                <td>
+                    @info.level
+                </td>
+                <td>
+                    @info.levelcount
+                </td>
+            </tr>
+    }
+
+</table>
+
+
