@@ -68,15 +68,17 @@ namespace digitallearningback.Controllers
 
                 InfoUser dbuser  = userService.findByUserLoginId(user.login_id);
 
-                if (dbuser != null && user.password.Equals(dbuser.password)){
+                if (dbuser != null && user != null &&  user.password != null && user.password.Equals(dbuser.password)){
                     return forward(dbuser.LoginRedirect(), dbuser, true);
                 }
                 else
                 {
+                    ViewBag.msg = "帳號密碼錯誤 , 請輸入學號再次登入 , 或至portal聯絡助教";
                     return forward(View(user), user, false);
                 }
             }
             else{
+                ViewBag.msg = "帳號密碼輸入不正確 , 請輸入學號再次登入 , 或至portal聯絡助教";
                 return View(user);
             }
 
@@ -105,7 +107,7 @@ namespace digitallearningback.Controllers
 
                 InfoUser dbuser = userService.findByUserLoginId(userid);
 
-                if (dbuser != null && password.Equals(dbuser.password))
+                if (dbuser != null &&  password != null && password.Equals(dbuser.password))
                 {
                     logger.debug("LoginForLtLab", "user vaild");
 
@@ -116,7 +118,8 @@ namespace digitallearningback.Controllers
                     logger.debug("LoginForLtLab", "user invaild");
                     //紀錄每次登入請求資訊
                     logger.doLoginlog(userid,password, false);
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    ViewBag.msg = "登入失敗 , 請輸入學號再次登入 , 或至portal聯絡助教";
+                    return View();
                 }
 
         }
