@@ -55,6 +55,7 @@ namespace digitallearningback.Models
             Admin,
             Teacher,
             Student,
+            Test_student,
             None
         };
 
@@ -98,6 +99,17 @@ namespace digitallearningback.Models
                             this.role = UserRole.None;
                             return false;
                         }
+                    case UserRole.Test_student:
+                        if (this.group_id == 4)
+                        {
+                            this.role = UserRole.Test_student;
+                            return true;
+                        }
+                        else
+                        {
+                            this.role = UserRole.None;
+                            return false;
+                        }
                     default:
                         this.role = UserRole.None;
                         return false;
@@ -126,7 +138,8 @@ namespace digitallearningback.Models
                                         ));
             }
             //如果是學生就 進入遊戲
-            else if (validLogined(this.password, InfoUser.UserRole.Student))
+            else if (validLogined(this.password, InfoUser.UserRole.Student) ||
+                     validLogined(this.password, InfoUser.UserRole.Test_student))
             {
                 //還沒有選擇遊戲角色 第一次登入 進入建立遊戲角色頁面
                 if (this.character_image == null || "".Equals(this.character_image))
@@ -159,6 +172,8 @@ namespace digitallearningback.Models
             //不是任何角色 , 回登入頁
             else
             {
+                cleanLoginUser();
+                Question.cleanQuestions();
                 return new RedirectToRouteResult(
                                   new RouteValueDictionary(
                                           new
