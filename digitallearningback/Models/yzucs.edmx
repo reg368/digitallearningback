@@ -246,9 +246,46 @@
           <Property Name="logincount" Type="int" />
           <Property Name="stdusagcount" Type="int" />
           <Property Name="stdcount" Type="int" />
-          <Property Name="percentage" Type="nvarchar" MaxLength="6" />
-          <Property Name="oncespercentage" Type="nvarchar" MaxLength="6" />
-          <Property Name="multiplepercentage" Type="nvarchar" MaxLength="6" />
+          <Property Name="percentage" Type="nvarchar" MaxLength="5" />
+          <Property Name="oncespercentage" Type="nvarchar" MaxLength="5" />
+          <Property Name="multiplepercentage" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'yzucs.dbo.vw_DataAnalysisLevelDetailInfo' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+        <EntityType Name="vw_DataAnalysisLevelDetailInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="lid" Type="int" />
+          <Property Name="stop_one" Type="int" />
+          <Property Name="stop_two" Type="int" />
+          <Property Name="stop_three" Type="int" />
+          <Property Name="stop_four" Type="int" />
+          <Property Name="stop_five" Type="int" />
+          <Property Name="stop_six" Type="int" />
+          <Property Name="continue_one" Type="int" />
+          <Property Name="continue_two" Type="int" />
+          <Property Name="continue_three" Type="int" />
+          <Property Name="continue_four" Type="int" />
+          <Property Name="continue5" Type="int" />
+          <Property Name="continue6" Type="int" />
+          <Property Name="once_zero" Type="int" />
+          <Property Name="once_one" Type="int" />
+          <Property Name="once_two" Type="int" />
+          <Property Name="once_three" Type="int" />
+          <Property Name="once_four" Type="int" />
+          <Property Name="once_five" Type="int" />
+          <Property Name="once_six" Type="int" />
+          <Property Name="mulitple_zero" Type="int" />
+          <Property Name="mulitple_one" Type="int" />
+          <Property Name="mulitple_two" Type="int" />
+          <Property Name="mulitple_three" Type="int" />
+          <Property Name="mulitple_four" Type="int" />
+          <Property Name="mulitple_five" Type="int" />
+          <Property Name="mulitple_six" Type="int" />
+          <Property Name="oncetotal" Type="int" />
+          <Property Name="multipletotal" Type="int" />
         </EntityType>
         <!--產生期間發現錯誤:
 警告 6002: 資料表/檢視 'yzucs.dbo.vw_QuestionConceptDetail' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
@@ -688,6 +725,40 @@
     [vw_DataAnalysisIndexInfo].[oncespercentage] AS [oncespercentage], 
     [vw_DataAnalysisIndexInfo].[multiplepercentage] AS [multiplepercentage]
     FROM [dbo].[vw_DataAnalysisIndexInfo] AS [vw_DataAnalysisIndexInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_DataAnalysisLevelDetailInfo" EntityType="Self.vw_DataAnalysisLevelDetailInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_DataAnalysisLevelDetailInfo].[id] AS [id], 
+    [vw_DataAnalysisLevelDetailInfo].[lid] AS [lid], 
+    [vw_DataAnalysisLevelDetailInfo].[stop_one] AS [stop_one], 
+    [vw_DataAnalysisLevelDetailInfo].[stop_two] AS [stop_two], 
+    [vw_DataAnalysisLevelDetailInfo].[stop_three] AS [stop_three], 
+    [vw_DataAnalysisLevelDetailInfo].[stop_four] AS [stop_four], 
+    [vw_DataAnalysisLevelDetailInfo].[stop_five] AS [stop_five], 
+    [vw_DataAnalysisLevelDetailInfo].[stop_six] AS [stop_six], 
+    [vw_DataAnalysisLevelDetailInfo].[continue_one] AS [continue_one], 
+    [vw_DataAnalysisLevelDetailInfo].[continue_two] AS [continue_two], 
+    [vw_DataAnalysisLevelDetailInfo].[continue_three] AS [continue_three], 
+    [vw_DataAnalysisLevelDetailInfo].[continue_four] AS [continue_four], 
+    [vw_DataAnalysisLevelDetailInfo].[continue5] AS [continue5], 
+    [vw_DataAnalysisLevelDetailInfo].[continue6] AS [continue6], 
+    [vw_DataAnalysisLevelDetailInfo].[once_zero] AS [once_zero], 
+    [vw_DataAnalysisLevelDetailInfo].[once_one] AS [once_one], 
+    [vw_DataAnalysisLevelDetailInfo].[once_two] AS [once_two], 
+    [vw_DataAnalysisLevelDetailInfo].[once_three] AS [once_three], 
+    [vw_DataAnalysisLevelDetailInfo].[once_four] AS [once_four], 
+    [vw_DataAnalysisLevelDetailInfo].[once_five] AS [once_five], 
+    [vw_DataAnalysisLevelDetailInfo].[once_six] AS [once_six], 
+    [vw_DataAnalysisLevelDetailInfo].[mulitple_zero] AS [mulitple_zero], 
+    [vw_DataAnalysisLevelDetailInfo].[mulitple_one] AS [mulitple_one], 
+    [vw_DataAnalysisLevelDetailInfo].[mulitple_two] AS [mulitple_two], 
+    [vw_DataAnalysisLevelDetailInfo].[mulitple_three] AS [mulitple_three], 
+    [vw_DataAnalysisLevelDetailInfo].[mulitple_four] AS [mulitple_four], 
+    [vw_DataAnalysisLevelDetailInfo].[mulitple_five] AS [mulitple_five], 
+    [vw_DataAnalysisLevelDetailInfo].[mulitple_six] AS [mulitple_six], 
+    [vw_DataAnalysisLevelDetailInfo].[oncetotal] AS [oncetotal], 
+    [vw_DataAnalysisLevelDetailInfo].[multipletotal] AS [multipletotal]
+    FROM [dbo].[vw_DataAnalysisLevelDetailInfo] AS [vw_DataAnalysisLevelDetailInfo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_QuestionConceptDetail" EntityType="Self.vw_QuestionConceptDetail" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1428,6 +1499,7 @@
           </FunctionImport>
           <EntitySet Name="vw_StudentAnswerLevelLog" EntityType="yzucsModel.vw_StudentAnswerLevelLog" />
           <EntitySet Name="vw_DataAnalysisIndexInfo" EntityType="yzucsModel.vw_DataAnalysisIndexInfo" />
+          <EntitySet Name="vw_DataAnalysisLevelDetailInfo" EntityType="yzucsModel.vw_DataAnalysisLevelDetailInfo" />
           </EntityContainer>
         <EntityType Name="vw_QuestionConceptDetail">
           <Key>
@@ -1670,14 +1742,49 @@
           <Property Name="logincount" Type="Int32" />
           <Property Name="stdusagcount" Type="Int32" />
           <Property Name="stdcount" Type="Int32" />
-          <Property Name="percentage" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="percentage" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="levelcount" Type="Int32" />
           <Property Name="oncelevelcount" Type="Int32" />
           <Property Name="multiplelevelcount" Type="Int32" />
           <Property Name="multipleTestCompleteCount" Type="Int32" />
-          <Property Name="oncespercentage" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
-          <Property Name="multiplepercentage" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="oncespercentage" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="multiplepercentage" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_DataAnalysisLevelDetailInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="lid" Type="Int32" />
+          <Property Name="stop_one" Type="Int32" />
+          <Property Name="stop_two" Type="Int32" />
+          <Property Name="stop_three" Type="Int32" />
+          <Property Name="stop_four" Type="Int32" />
+          <Property Name="stop_five" Type="Int32" />
+          <Property Name="stop_six" Type="Int32" />
+          <Property Name="continue_one" Type="Int32" />
+          <Property Name="continue_two" Type="Int32" />
+          <Property Name="continue_three" Type="Int32" />
+          <Property Name="continue_four" Type="Int32" />
+          <Property Name="continue5" Type="Int32" />
+          <Property Name="continue6" Type="Int32" />
+          <Property Name="once_zero" Type="Int32" />
+          <Property Name="once_one" Type="Int32" />
+          <Property Name="once_two" Type="Int32" />
+          <Property Name="once_three" Type="Int32" />
+          <Property Name="once_four" Type="Int32" />
+          <Property Name="once_five" Type="Int32" />
+          <Property Name="once_six" Type="Int32" />
+          <Property Name="mulitple_zero" Type="Int32" />
+          <Property Name="mulitple_one" Type="Int32" />
+          <Property Name="mulitple_two" Type="Int32" />
+          <Property Name="mulitple_three" Type="Int32" />
+          <Property Name="mulitple_four" Type="Int32" />
+          <Property Name="mulitple_five" Type="Int32" />
+          <Property Name="mulitple_six" Type="Int32" />
+          <Property Name="oncetotal" Type="Int32" />
+          <Property Name="multipletotal" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1981,6 +2088,42 @@
                 <ScalarProperty Name="stdcount" ColumnName="stdcount" />
                 <ScalarProperty Name="stdusagcount" ColumnName="stdusagcount" />
                 <ScalarProperty Name="logincount" ColumnName="logincount" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_DataAnalysisLevelDetailInfo">
+            <EntityTypeMapping TypeName="yzucsModel.vw_DataAnalysisLevelDetailInfo">
+              <MappingFragment StoreEntitySet="vw_DataAnalysisLevelDetailInfo">
+                <ScalarProperty Name="multipletotal" ColumnName="multipletotal" />
+                <ScalarProperty Name="oncetotal" ColumnName="oncetotal" />
+                <ScalarProperty Name="mulitple_six" ColumnName="mulitple_six" />
+                <ScalarProperty Name="mulitple_five" ColumnName="mulitple_five" />
+                <ScalarProperty Name="mulitple_four" ColumnName="mulitple_four" />
+                <ScalarProperty Name="mulitple_three" ColumnName="mulitple_three" />
+                <ScalarProperty Name="mulitple_two" ColumnName="mulitple_two" />
+                <ScalarProperty Name="mulitple_one" ColumnName="mulitple_one" />
+                <ScalarProperty Name="mulitple_zero" ColumnName="mulitple_zero" />
+                <ScalarProperty Name="once_six" ColumnName="once_six" />
+                <ScalarProperty Name="once_five" ColumnName="once_five" />
+                <ScalarProperty Name="once_four" ColumnName="once_four" />
+                <ScalarProperty Name="once_three" ColumnName="once_three" />
+                <ScalarProperty Name="once_two" ColumnName="once_two" />
+                <ScalarProperty Name="once_one" ColumnName="once_one" />
+                <ScalarProperty Name="once_zero" ColumnName="once_zero" />
+                <ScalarProperty Name="continue6" ColumnName="continue6" />
+                <ScalarProperty Name="continue5" ColumnName="continue5" />
+                <ScalarProperty Name="continue_four" ColumnName="continue_four" />
+                <ScalarProperty Name="continue_three" ColumnName="continue_three" />
+                <ScalarProperty Name="continue_two" ColumnName="continue_two" />
+                <ScalarProperty Name="continue_one" ColumnName="continue_one" />
+                <ScalarProperty Name="stop_six" ColumnName="stop_six" />
+                <ScalarProperty Name="stop_five" ColumnName="stop_five" />
+                <ScalarProperty Name="stop_four" ColumnName="stop_four" />
+                <ScalarProperty Name="stop_three" ColumnName="stop_three" />
+                <ScalarProperty Name="stop_two" ColumnName="stop_two" />
+                <ScalarProperty Name="stop_one" ColumnName="stop_one" />
+                <ScalarProperty Name="lid" ColumnName="lid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
