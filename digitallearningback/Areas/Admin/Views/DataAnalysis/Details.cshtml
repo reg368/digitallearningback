@@ -1,0 +1,95 @@
+﻿@model digitallearningback.Models.vw_DataAnalysisLevelDetailInfo
+<h2>  @ViewBag.level  作答次數資料分析 - 題目總共6題</h2>
+<h2>  只有作答一次的學生人數 :  @Model.oncetotal  /    作答多次的學生人數 :  @Model.multipletotal </h2>
+<br>
+<p><font color="red">只有作答一次的學生-答對題數統計</font></p>
+<table class="table">
+    <tr>
+        <th>答對0題</th>
+        <th>答對1題</th>
+        <th>答對2題</th>
+        <th>答對3題</th>
+        <th>答對4題</th>
+        <th>答對5題</th>
+        <th>答對6題</th>
+    </tr>
+    <tr>
+        <td>@Model.once_zero</td>
+        <td>@Model.once_one</td>
+        <td>@Model.once_two</td>
+        <td>@Model.once_three</td>
+        <td>@Model.once_four</td>
+        <td>@Model.once_five</td>
+        <td>@Model.once_six</td>
+    </tr>
+</table>
+
+<br><br><br><br>
+
+<p><font color="blue">作答多次的學生-最後一次作答答對題數統計</font></p>
+<table class="table">
+    <tr>
+        <th>答對0題</th>
+        <th>答對1題</th>
+        <th>答對2題</th>
+        <th>答對3題</th>
+        <th>答對4題</th>
+        <th>答對5題</th>
+        <th>答對6題</th>
+    </tr>
+    <tr>
+        <td>@Model.mulitple_zero</td>
+        <td>@Model.mulitple_one</td>
+        <td>@Model.mulitple_two</td>
+        <td>@Model.mulitple_three</td>
+        <td>@Model.mulitple_four</td>
+        <td>@Model.mulitple_five</td>
+        <td>@Model.mulitple_six</td>
+    </tr>
+</table>
+
+<br>
+
+<p><font color="blue">作答多次的學生-答對幾題後就停止不繼續玩了-人數統計</font></p>
+<table class="table">
+    <tr>
+        <th>答對1題</th>
+        <th>答對2題</th>
+        <th>答對3題</th>
+        <th>答對4題</th>
+        <th>答對5題</th>
+        <th>答對6題</th>
+    </tr>
+    <tr>
+        <td>@Model.stop_one</td>
+        <td>@Model.stop_two</td>
+        <td>@Model.stop_three</td>
+        <td>@Model.stop_four</td>
+        <td>@Model.stop_five</td>
+        <td>@Model.stop_six</td>
+    </tr>
+</table>
+
+<br>
+
+<p><font color="blue">作答多次的學生-答對幾題還會繼續玩-人數統計</font></p>
+<table class="table">
+    <tr>
+        <th>答對1題</th>
+        <th>答對2題</th>
+        <th>答對3題</th>
+        <th>答對4題</th>
+        <th>答對5題</th>
+        <th>答對6題</th>
+    </tr>
+    <tr>
+        <td>@Model.continue_one</td>
+        <td>@Model.continue_two</td>
+        <td>@Model.continue_three</td>
+        <td>@Model.continue_four</td>
+        <td>@Model.continue5</td>
+        <td>@Model.continue6</td>
+    </tr>
+</table>
+
+<br>

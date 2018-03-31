@@ -12,6 +12,7 @@ namespace digitallearningback.Areas.Admin.Controllers
     {
 
         private VW_DataAnalysisIndexInfoService daservice = new VW_DataAnalysisIndexInfoService();
+        private VW_DataAnalysisLevelDetailInfoService dadetailservice = new VW_DataAnalysisLevelDetailInfoService();
 
 
         // GET: Admin/DataAnalysis
@@ -20,6 +21,11 @@ namespace digitallearningback.Areas.Admin.Controllers
             List<vw_DataAnalysisIndexInfo> infolist = daservice.selectAll();
             ViewBag.infolist = infolist;
             return View(infolist.FirstOrDefault<vw_DataAnalysisIndexInfo>());
+        }
+
+        public ActionResult Details(int lid , string level) {
+            ViewBag.level = level;
+            return View(dadetailservice.selectByLevelId(lid));
         }
     }
 }

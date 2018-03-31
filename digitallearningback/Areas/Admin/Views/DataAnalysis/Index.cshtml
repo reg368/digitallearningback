@@ -12,13 +12,11 @@
         <th>學生總人數</th> 
         <th>系統登入次數</th>
         <th>有幾位學生開始作答了</th>
-        <th>學生作答人次佔總人數的百分比</th>
     </tr>
     <tr>
         <td>@Html.Raw(Model.stdcount)</td>
         <td>@Html.Raw(Model.logincount)</td>
-        <td>@Html.Raw(Model.stdusagcount)</td>
-        <td>@Html.Raw(Model.percentage)</td>
+        <td>@Html.Raw(Model.stdusagcount)  /  @Html.Raw(Model.percentage)</td>
     </tr>
 </table>
 
@@ -36,17 +34,9 @@
             <font size="2">@Html.Raw("只玩一次的學生人數")</font>
         </th>
         <th>
-            <font size="2">@Html.Raw("只玩一次的學生人數比例")</font>
-        </th>
-        <th>
             <font size="2">@Html.Raw("玩超過一次的學生人數")</font>
         </th>
-        <th>
-            <font size="2">@Html.Raw("玩超過一次的學生人數比例")</font>
-        </th>
-        <th>
-            <font size="2">@Html.Raw("玩超過一次後拿到滿分的學生人數")
-        </th>
+        <th></th>
     </tr>
 
     @foreach (var info in infolist)
@@ -60,19 +50,13 @@
                     @info.levelcount
                 </td>
                 <td>
-                    @info.oncelevelcount
+                    @info.oncelevelcount / @info.oncespercentage
                 </td>
                 <td>
-                    @info.oncespercentage
+                    @info.multiplelevelcount  / @info.multiplepercentage
                 </td>
                 <td>
-                    @info.multiplelevelcount
-                </td>
-                <td>
-                    @info.multiplepercentage
-                </td>
-                <td>
-                    @info.multipleTestCompleteCount
+                    <a href="/Admin/DataAnalysis/Details?lid=@info.id&level=@info.level">作答次數詳細資料分析</a>
                 </td>
             </tr>
     }
