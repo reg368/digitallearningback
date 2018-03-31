@@ -169,6 +169,7 @@
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\VW_DataAnalysisLevelDetailInfoService.cs" />
     <Compile Include="DAO\VW_DataAnalysisIndexInfoService.cs" />
     <Compile Include="DAO\VW_StudentLevelLogService.cs" />
     <Compile Include="DAO\fun_CalculateAnswerConceptPoint_ResultService.cs" />
@@ -275,6 +276,9 @@
     </Compile>
     <Compile Include="Models\ViewModel\EditCharNameViewMD.cs" />
     <Compile Include="Models\vw_DataAnalysisIndexInfo.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_DataAnalysisLevelDetailInfo.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_QuestionConceptDetail.cs">
