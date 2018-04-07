@@ -44,5 +44,6 @@ namespace digitallearningback.Models
         public Nullable<int> mulitple_six { get; set; }
         public Nullable<int> oncetotal { get; set; }
         public Nullable<int> multipletotal { get; set; }
+        public Nullable<int> stop_zero { get; set; }
     }
 }

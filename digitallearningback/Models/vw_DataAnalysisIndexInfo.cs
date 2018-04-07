@@ -19,12 +19,12 @@ namespace digitallearningback.Models
         public Nullable<int> stdusagcount { get; set; }
         public Nullable<int> stdcount { get; set; }
         public string percentage { get; set; }
-        public string level { get; set; }
         public Nullable<int> levelcount { get; set; }
         public Nullable<int> oncelevelcount { get; set; }
         public Nullable<int> multiplelevelcount { get; set; }
         public Nullable<int> multipleTestCompleteCount { get; set; }
         public string oncespercentage { get; set; }
         public string multiplepercentage { get; set; }
+        public string qlevel { get; set; }
     }
 }

@@ -238,7 +238,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="level" Type="nvarchar" MaxLength="100" />
+          <Property Name="qlevel" Type="nvarchar" MaxLength="100" />
           <Property Name="levelcount" Type="int" />
           <Property Name="oncelevelcount" Type="int" />
           <Property Name="multiplelevelcount" Type="int" />
@@ -258,6 +258,7 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="lid" Type="int" />
+          <Property Name="stop_zero" Type="int" />
           <Property Name="stop_one" Type="int" />
           <Property Name="stop_two" Type="int" />
           <Property Name="stop_three" Type="int" />
@@ -713,7 +714,7 @@
           <EntitySet Name="vw_DataAnalysisIndexInfo" EntityType="Self.vw_DataAnalysisIndexInfo" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_DataAnalysisIndexInfo].[id] AS [id], 
-    [vw_DataAnalysisIndexInfo].[level] AS [level], 
+    [vw_DataAnalysisIndexInfo].[qlevel] AS [qlevel], 
     [vw_DataAnalysisIndexInfo].[levelcount] AS [levelcount], 
     [vw_DataAnalysisIndexInfo].[oncelevelcount] AS [oncelevelcount], 
     [vw_DataAnalysisIndexInfo].[multiplelevelcount] AS [multiplelevelcount], 
@@ -730,6 +731,7 @@
             <DefiningQuery>SELECT 
     [vw_DataAnalysisLevelDetailInfo].[id] AS [id], 
     [vw_DataAnalysisLevelDetailInfo].[lid] AS [lid], 
+    [vw_DataAnalysisLevelDetailInfo].[stop_zero] AS [stop_zero], 
     [vw_DataAnalysisLevelDetailInfo].[stop_one] AS [stop_one], 
     [vw_DataAnalysisLevelDetailInfo].[stop_two] AS [stop_two], 
     [vw_DataAnalysisLevelDetailInfo].[stop_three] AS [stop_three], 
@@ -1743,13 +1745,13 @@
           <Property Name="stdusagcount" Type="Int32" />
           <Property Name="stdcount" Type="Int32" />
           <Property Name="percentage" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Name="level" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="levelcount" Type="Int32" />
           <Property Name="oncelevelcount" Type="Int32" />
           <Property Name="multiplelevelcount" Type="Int32" />
           <Property Name="multipleTestCompleteCount" Type="Int32" />
           <Property Name="oncespercentage" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="multiplepercentage" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="qlevel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vw_DataAnalysisLevelDetailInfo">
           <Key>
@@ -1785,6 +1787,7 @@
           <Property Name="mulitple_six" Type="Int32" />
           <Property Name="oncetotal" Type="Int32" />
           <Property Name="multipletotal" Type="Int32" />
+          <Property Name="stop_zero" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2077,13 +2080,13 @@
           <EntitySetMapping Name="vw_DataAnalysisIndexInfo">
             <EntityTypeMapping TypeName="yzucsModel.vw_DataAnalysisIndexInfo">
               <MappingFragment StoreEntitySet="vw_DataAnalysisIndexInfo">
+                <ScalarProperty Name="qlevel" ColumnName="qlevel" />
                 <ScalarProperty Name="multiplepercentage" ColumnName="multiplepercentage" />
                 <ScalarProperty Name="oncespercentage" ColumnName="oncespercentage" />
                 <ScalarProperty Name="multipleTestCompleteCount" ColumnName="multipleTestCompleteCount" />
                 <ScalarProperty Name="multiplelevelcount" ColumnName="multiplelevelcount" />
                 <ScalarProperty Name="oncelevelcount" ColumnName="oncelevelcount" />
                 <ScalarProperty Name="levelcount" ColumnName="levelcount" />
-                <ScalarProperty Name="level" ColumnName="level" />
                 <ScalarProperty Name="percentage" ColumnName="percentage" />
                 <ScalarProperty Name="stdcount" ColumnName="stdcount" />
                 <ScalarProperty Name="stdusagcount" ColumnName="stdusagcount" />
@@ -2095,6 +2098,7 @@
           <EntitySetMapping Name="vw_DataAnalysisLevelDetailInfo">
             <EntityTypeMapping TypeName="yzucsModel.vw_DataAnalysisLevelDetailInfo">
               <MappingFragment StoreEntitySet="vw_DataAnalysisLevelDetailInfo">
+                <ScalarProperty Name="stop_zero" ColumnName="stop_zero" />
                 <ScalarProperty Name="multipletotal" ColumnName="multipletotal" />
                 <ScalarProperty Name="oncetotal" ColumnName="oncetotal" />
                 <ScalarProperty Name="mulitple_six" ColumnName="mulitple_six" />

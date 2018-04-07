@@ -117,7 +117,7 @@ namespace digitallearningback.Controllers
                 {
                     logger.debug("LoginForLtLab", "user invaild");
                     //紀錄每次登入請求資訊
-                    logger.doLoginlog(userid,password, false);
+                    //logger.doLoginlog(userid,password, false);
                     ViewBag.msg = "登入失敗 , 請輸入學號再次登入 , 或至portal聯絡助教";
                     return View();
                 }
@@ -128,7 +128,7 @@ namespace digitallearningback.Controllers
         private ActionResult forward(ActionResult result,InfoUser user,bool isLogingSuccess)
         {
             //紀錄每次登入請求資訊
-            logger.doLoginlog(user, isLogingSuccess);
+            //logger.doLoginlog(user, isLogingSuccess);
 
             if (isLogingSuccess)
             {
