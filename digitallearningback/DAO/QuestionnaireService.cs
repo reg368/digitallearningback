@@ -26,6 +26,12 @@ namespace digitallearningback.DAO
             return result;
         }
 
+        public int insertQuestionnaire_data(Questionnaire_data model)
+        {
+            db.Questionnaire_data.Add(model);
+            return db.SaveChanges();
+        }
+
         public int selectCountForQuestionnaire_main()
         {
             var result = db.Database.SqlQuery<int>(

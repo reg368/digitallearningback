@@ -169,6 +169,11 @@
     <Compile Include="Areas\Game\Controllers\ModelViewController.cs" />
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
+    <Compile Include="Areas\Game\Models\IsQuestionnaireMultiTest_json.cs" />
+    <Compile Include="Areas\Game\Models\JsonStatus.cs" />
+    <Compile Include="Areas\Game\Models\Questionnaire_info_json.cs" />
+    <Compile Include="Areas\Game\Models\Questionnaire_main_json.cs" />
+    <Compile Include="Areas\Game\Models\Questionnaire_option_json.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="DAO\QuestionnaireService.cs" />
     <Compile Include="DAO\VW_DataAnalysisLevelDetailInfoService.cs" />
@@ -478,7 +483,6 @@
     <Folder Include="App_Data\Logs\App_Exception\" />
     <Folder Include="App_Data\Logs\App_Login\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Game\Models\" />
     <Folder Include="Images\Answer_image\" />
     <Folder Include="Images\Character_image\" />
     <Folder Include="Images\Question_image\" />
