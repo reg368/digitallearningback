@@ -324,6 +324,7 @@
     <Compile Include="Util\UploadFileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Game\Views\Questionnaire\angularTemplate\questionnaire-index.template.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Game\Gallery\gwdgallerynavigation_style.css" />
@@ -361,6 +362,12 @@
       <DependentUpon>yzucs.edmx</DependentUpon>
       <LastGenOutput>yzucs.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\angular-route\angular-route.js" />
+    <Content Include="Scripts\angular-route\angular-route.min.js" />
+    <Content Include="Scripts\angular-route\index.js" />
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\angular\index.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -435,6 +442,11 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />
+    <Content Include="Scripts\Game\Questionnaire\app.config.js" />
+    <Content Include="Scripts\Game\Questionnaire\app.module.js" />
+    <Content Include="Scripts\Game\Questionnaire\questionnaireIndex\questionnaire-index.component.js" />
+    <Content Include="Scripts\Game\Questionnaire\questionnaireIndex\questionnaire-index.module.js" />
+    <Content Include="Scripts\Game\Questionnaire\questionnaireIndex\questionnaire-index.template.html" />
     <Content Include="Scripts\Game\select_character.js" />
     <Content Include="Scripts\Game\Gallery\googbase_min.js" />
     <Content Include="Scripts\Game\Gallery\gwd-events-support.1.0.js" />
@@ -487,6 +499,7 @@
     <Folder Include="Images\Answer_image\" />
     <Folder Include="Images\Character_image\" />
     <Folder Include="Images\Question_image\" />
+    <Folder Include="Scripts\Game\Questionnaire\questionnaireDetail\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

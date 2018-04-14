@@ -1,5 +1,4 @@
 ﻿@using digitallearningback.Models
-@using digitallearningback.Util
 @{ InfoUser user = InfoUser.getLoginUser(); }
 <!DOCTYPE html>
 <html>
@@ -12,8 +11,14 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/angular/angular.js")
+    @Scripts.Render("~/Scripts/angular-route/angular-route.js")
+    @Scripts.Render("~/Scripts/Game/Questionnaire/app.module.js")
+    @Scripts.Render("~/Scripts/Game/Questionnaire/app.config.js")
+    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireIndex/questionnaire-index.module.js")
+    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireIndex/questionnaire-index.component.js")
 </head>
-<body>
+<body ng-app="QuestionnaireApp">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -32,8 +37,7 @@
     <div class="container body-content">
         
 
-
-
+        <div ng-view></div>
 
 
         <hr />
