@@ -431,6 +431,7 @@
     <Content Include="Files\readme.pdf" />
     <Content Include="Areas\Admin\Views\DataAnalysis\Index.cshtml" />
     <Content Include="Areas\Admin\Views\DataAnalysis\Details.cshtml" />
+    <Content Include="Areas\Game\Views\Questionnaire\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Chart.min.js" />
     <Content Include="Scripts\Game\bootstrap.min.js" />
