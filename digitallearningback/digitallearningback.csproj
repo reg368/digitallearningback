@@ -164,11 +164,13 @@
     <Compile Include="Areas\Admin\Controllers\Question_Concept_MappingController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_groupController.cs" />
     <Compile Include="Areas\Admin\Controllers\Question_levelController.cs" />
+    <Compile Include="Areas\Game\Controllers\QuestionnaireController.cs" />
     <Compile Include="Areas\Game\Controllers\CreateController.cs" />
     <Compile Include="Areas\Game\Controllers\ModelViewController.cs" />
     <Compile Include="Areas\Game\Controllers\PlayController.cs" />
     <Compile Include="Areas\Game\GameAreaRegistration.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\QuestionnaireService.cs" />
     <Compile Include="DAO\VW_DataAnalysisLevelDetailInfoService.cs" />
     <Compile Include="DAO\VW_DataAnalysisIndexInfoService.cs" />
     <Compile Include="DAO\VW_StudentLevelLogService.cs" />
@@ -245,6 +247,15 @@
     <Compile Include="Models\Metadata\Question_group.cs" />
     <Compile Include="Models\Metadata\Question_level.cs" />
     <Compile Include="Models\Question.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Questionnaire_data.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Questionnaire_main.cs">
+      <DependentUpon>yzucs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Questionnaire_option.cs">
       <DependentUpon>yzucs.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Question_Concept.cs">

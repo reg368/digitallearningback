@@ -50,6 +50,9 @@ namespace digitallearningback.Models
         public virtual DbSet<vw_StudentAnswerLevelLog> vw_StudentAnswerLevelLog { get; set; }
         public virtual DbSet<vw_DataAnalysisIndexInfo> vw_DataAnalysisIndexInfo { get; set; }
         public virtual DbSet<vw_DataAnalysisLevelDetailInfo> vw_DataAnalysisLevelDetailInfo { get; set; }
+        public virtual DbSet<Questionnaire_data> Questionnaire_data { get; set; }
+        public virtual DbSet<Questionnaire_main> Questionnaire_main { get; set; }
+        public virtual DbSet<Questionnaire_option> Questionnaire_option { get; set; }
     
         [DbFunction("yzucsEntities", "fun_CalculateAnswerConceptPoint")]
         public virtual IQueryable<fun_CalculateAnswerConceptPoint_Result> fun_CalculateAnswerConceptPoint(Nullable<int> levellogid)

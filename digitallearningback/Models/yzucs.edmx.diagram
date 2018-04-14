@@ -58,6 +58,10 @@
         <EntityTypeShape EntityType="yzucsModel.vw_StudentAnswerLevelLog" Width="1.5" PointX="14.375" PointY="0.75" />
         <EntityTypeShape EntityType="yzucsModel.vw_DataAnalysisIndexInfo" Width="1.5" PointX="13.375" PointY="14.75" />
         <EntityTypeShape EntityType="yzucsModel.vw_DataAnalysisLevelDetailInfo" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="yzucsModel.Questionnaire_data" Width="1.5" PointX="15.375" PointY="7.75" />
+        <EntityTypeShape EntityType="yzucsModel.Questionnaire_main" Width="1.5" PointX="15.375" PointY="4.875" />
+        <EntityTypeShape EntityType="yzucsModel.Questionnaire_option" Width="1.5" PointX="17.625" PointY="4.875" />
+        <AssociationConnector Association="yzucsModel.Questionnaire_option_fk" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -203,6 +203,33 @@
           <Property Name="q_id" Type="int" />
           <Property Name="g_id" Type="int" />
         </EntityType>
+        <EntityType Name="Questionnaire_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="int" />
+          <Property Name="main_id" Type="int" />
+          <Property Name="option_id" Type="int" />
+          <Property Name="createTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Questionnaire_main">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="text" Type="nvarchar" MaxLength="100" />
+          <Property Name="show_order" Type="int" />
+        </EntityType>
+        <EntityType Name="Questionnaire_option">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="main_id" Type="int" />
+          <Property Name="text" Type="nvarchar" MaxLength="100" />
+          <Property Name="show_order" Type="int" />
+        </EntityType>
         <EntityType Name="Student_Class">
           <Key>
             <PropertyRef Name="id" />
@@ -642,6 +669,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="Questionnaire_option_fk">
+          <End Role="Questionnaire_main" Type="Self.Questionnaire_main" Multiplicity="0..1" />
+          <End Role="Questionnaire_option" Type="Self.Questionnaire_option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questionnaire_main">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Questionnaire_option">
+              <PropertyRef Name="main_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="SC_teacher_id_fk">
           <End Role="InfoUser" Type="Self.InfoUser" Multiplicity="0..1" />
           <End Role="Student_Class" Type="Self.Student_Class" Multiplicity="*" />
@@ -708,6 +747,9 @@
           <EntitySet Name="Question_group" EntityType="Self.Question_group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question_level" EntityType="Self.Question_level" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question_Level_Mapping" EntityType="Self.Question_Level_Mapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questionnaire_data" EntityType="Self.Questionnaire_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questionnaire_main" EntityType="Self.Questionnaire_main" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questionnaire_option" EntityType="Self.Questionnaire_option" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Class" EntityType="Self.Student_Class" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student_Class_Mapping" EntityType="Self.Student_Class_Mapping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -892,6 +934,10 @@
           <AssociationSet Name="Question_groupid_fk" Association="Self.Question_groupid_fk">
             <End Role="Question_group" EntitySet="Question_group" />
             <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="Questionnaire_option_fk" Association="Self.Questionnaire_option_fk">
+            <End Role="Questionnaire_main" EntitySet="Questionnaire_main" />
+            <End Role="Questionnaire_option" EntitySet="Questionnaire_option" />
           </AssociationSet>
           <AssociationSet Name="SC_teacher_id_fk" Association="Self.SC_teacher_id_fk">
             <End Role="InfoUser" EntitySet="InfoUser" />
@@ -1502,6 +1548,13 @@
           <EntitySet Name="vw_StudentAnswerLevelLog" EntityType="yzucsModel.vw_StudentAnswerLevelLog" />
           <EntitySet Name="vw_DataAnalysisIndexInfo" EntityType="yzucsModel.vw_DataAnalysisIndexInfo" />
           <EntitySet Name="vw_DataAnalysisLevelDetailInfo" EntityType="yzucsModel.vw_DataAnalysisLevelDetailInfo" />
+          <EntitySet Name="Questionnaire_data" EntityType="yzucsModel.Questionnaire_data" />
+          <EntitySet Name="Questionnaire_main" EntityType="yzucsModel.Questionnaire_main" />
+          <EntitySet Name="Questionnaire_option" EntityType="yzucsModel.Questionnaire_option" />
+          <AssociationSet Name="Questionnaire_option_fk" Association="yzucsModel.Questionnaire_option_fk">
+            <End Role="Questionnaire_main" EntitySet="Questionnaire_main" />
+            <End Role="Questionnaire_option" EntitySet="Questionnaire_option" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="vw_QuestionConceptDetail">
           <Key>
@@ -1789,6 +1842,47 @@
           <Property Name="multipletotal" Type="Int32" />
           <Property Name="stop_zero" Type="Int32" />
         </EntityType>
+        <EntityType Name="Questionnaire_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="main_id" Type="Int32" />
+          <Property Name="option_id" Type="Int32" />
+          <Property Name="createTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Questionnaire_main">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="show_order" Type="Int32" />
+          <NavigationProperty Name="Questionnaire_option" Relationship="yzucsModel.Questionnaire_option_fk" FromRole="Questionnaire_main" ToRole="Questionnaire_option" />
+        </EntityType>
+        <EntityType Name="Questionnaire_option">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="main_id" Type="Int32" />
+          <Property Name="text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Questionnaire_main" Relationship="yzucsModel.Questionnaire_option_fk" FromRole="Questionnaire_option" ToRole="Questionnaire_main" />
+          <Property Name="show_order" Type="Int32" />
+        </EntityType>
+        <Association Name="Questionnaire_option_fk">
+          <End Type="yzucsModel.Questionnaire_main" Role="Questionnaire_main" Multiplicity="0..1" />
+          <End Type="yzucsModel.Questionnaire_option" Role="Questionnaire_option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questionnaire_main">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Questionnaire_option">
+              <PropertyRef Name="main_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2128,6 +2222,36 @@
                 <ScalarProperty Name="stop_two" ColumnName="stop_two" />
                 <ScalarProperty Name="stop_one" ColumnName="stop_one" />
                 <ScalarProperty Name="lid" ColumnName="lid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questionnaire_data">
+            <EntityTypeMapping TypeName="yzucsModel.Questionnaire_data">
+              <MappingFragment StoreEntitySet="Questionnaire_data">
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="option_id" ColumnName="option_id" />
+                <ScalarProperty Name="main_id" ColumnName="main_id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questionnaire_main">
+            <EntityTypeMapping TypeName="yzucsModel.Questionnaire_main">
+              <MappingFragment StoreEntitySet="Questionnaire_main">
+                <ScalarProperty Name="show_order" ColumnName="show_order" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questionnaire_option">
+            <EntityTypeMapping TypeName="yzucsModel.Questionnaire_option">
+              <MappingFragment StoreEntitySet="Questionnaire_option">
+                <ScalarProperty Name="show_order" ColumnName="show_order" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="main_id" ColumnName="main_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
