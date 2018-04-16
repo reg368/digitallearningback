@@ -5,7 +5,7 @@ angular.
     module('questionnaireIndex').
     component('questionnaireIndex', {
         templateUrl: '/Scripts/Game/Questionnaire/questionnaireIndex/questionnaire-index.template.html',
-        controller: function QuestionnaireIndexController($scope, $http) {
+        controller: function QuestionnaireIndexController($scope, $http, $location) {
 
                 $scope.startBtnValue = '開始';
                 $scope.startBtnIsDisabled = false;
@@ -28,8 +28,8 @@ angular.
 
                                 //使用者沒有寫過問卷 - 開始填寫
                                 } else {
-
-
+                              
+                                    $location.path('/questionnaireDetail/:1');
                                 }
                             }
                         }).

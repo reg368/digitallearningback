@@ -1,0 +1,22 @@
+﻿<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+</head>
+<div class="jumbotron">
+    <p><font color="blue" size="3">第{{$ctrl.current_index}}題 , 總共有{{$ctrl.total_question}}題</font></p>
+    <p class="lead"><b>{{$ctrl.questionnaire_Main.text}}</b></p>
+
+    <ul>
+        <li ng-repeat="option in $ctrl.option_list">
+            <input type="radio" value="{{option.id}}" />{{option.text}}<br>
+        </li>
+    </ul>
+
+
+    <div class="col-md-offset-2 col-md-10">
+    <button class="btn btn-default" 
+            ng-click="next()">送出</button>
+   </div>
+
+
+</div>

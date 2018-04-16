@@ -3,5 +3,6 @@
 // Define the `QuestionnaireApp` module
 angular.module('QuestionnaireApp', [
   'ngRoute',
-  'questionnaireIndex'
+  'questionnaireIndex',
+  'questionnaireDetail'
 ]);

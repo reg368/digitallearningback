@@ -443,6 +443,9 @@
     <Content Include="Scripts\Game\bootstrap.min.js" />
     <Content Include="Scripts\Game\Questionnaire\app.config.js" />
     <Content Include="Scripts\Game\Questionnaire\app.module.js" />
+    <Content Include="Scripts\Game\Questionnaire\questionnaireDetail\questionnaire-detail.component.js" />
+    <Content Include="Scripts\Game\Questionnaire\questionnaireDetail\questionnaire-detail.module.js" />
+    <Content Include="Scripts\Game\Questionnaire\questionnaireDetail\questionnaire-detail.template.html" />
     <Content Include="Scripts\Game\Questionnaire\questionnaireIndex\questionnaire-index.component.js" />
     <Content Include="Scripts\Game\Questionnaire\questionnaireIndex\questionnaire-index.module.js" />
     <Content Include="Scripts\Game\Questionnaire\questionnaireIndex\questionnaire-index.template.html" />
@@ -498,7 +501,6 @@
     <Folder Include="Images\Answer_image\" />
     <Folder Include="Images\Character_image\" />
     <Folder Include="Images\Question_image\" />
-    <Folder Include="Scripts\Game\Questionnaire\questionnaireDetail\" />
     <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>

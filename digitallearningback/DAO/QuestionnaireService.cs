@@ -48,7 +48,7 @@ namespace digitallearningback.DAO
 
         public List<Questionnaire_option> selectQuestionnaire_optionByMain_id(int main_id) {
             var query = db.Questionnaire_option.SqlQuery(
-               "Select * from Questionnaire_option where main_id = @main_id",
+               "Select * from Questionnaire_option where main_id = @main_id order by show_order",
                new SqlParameter("@main_id", main_id));
             return query.ToList<Questionnaire_option>();
         }

@@ -10,7 +10,7 @@ angular.
           when('/questionnaireIndex', {
             template: '<questionnaire-index></questionnaire-index>'
         }).
-          when('/questionnaireDetail/:qid', {
+          when('/questionnaireDetail/:current_index', {
             template: '<questionnaire-detail></questionnaire-detail>'
         }).
         otherwise('/questionnaireIndex');
