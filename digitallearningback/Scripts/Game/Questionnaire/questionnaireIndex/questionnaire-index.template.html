@@ -4,8 +4,10 @@
 </head>
 <div class="jumbotron">
     <h1> 歡迎使用 </h1>
-    <p class="lead">{{$ctrl.user}}請點擊開始按鈕進行問卷作答</p>
+    <p class="lead">請點擊開始按鈕進行問卷作答</p>
     <div class="col-md-offset-2 col-md-10">
-   <input type="button" value="開始" class="btn btn-default" />
+    <button class="btn btn-default" 
+            ng-disabled="startBtnIsDisabled" ng-model="startBtnIsDisabled"
+            ng-click="statr()">{{startBtnValue}}</button>
   </div>
 </div>
