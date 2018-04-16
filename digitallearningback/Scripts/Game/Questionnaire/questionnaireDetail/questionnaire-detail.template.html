@@ -8,13 +8,14 @@
 
     <ul>
         <li ng-repeat="option in $ctrl.option_list">
-            <input type="radio" value="{{option.id}}" />{{option.text}}<br>
+            <input type="radio" value="{{option.id}}" name="options" id="options" />{{option.text}}<br>
         </li>
     </ul>
 
 
     <div class="col-md-offset-2 col-md-10">
-    <button class="btn btn-default" 
+    <button class="btn btn-default"  
+            ng-disabled="nextBtnIsDisabled" ng-model="nextBtnIsDisabled"
             ng-click="next()">送出</button>
    </div>
 
