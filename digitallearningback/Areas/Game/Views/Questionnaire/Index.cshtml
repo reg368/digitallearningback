@@ -13,12 +13,14 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/Scripts/angular/angular.js")
     @Scripts.Render("~/Scripts/angular-route/angular-route.js")
-    @Scripts.Render("~/Scripts/Game/Questionnaire/app.module.js")
-    @Scripts.Render("~/Scripts/Game/Questionnaire/app.config.js")
-    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireIndex/questionnaire-index.module.js")
-    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireIndex/questionnaire-index.component.js")
-    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireDetail/questionnaire-detail.module.js")
-    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireDetail/questionnaire-detail.component.js")
+    @Scripts.Render("~/Scripts/Game/Questionnaire/app.module.js?date=" + DateTime.Now)
+    @Scripts.Render("~/Scripts/Game/Questionnaire/app.config.js?date=" + DateTime.Now)
+    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireIndex/questionnaire-index.module.js?date=" + DateTime.Now)
+    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireIndex/questionnaire-index.component.js?date=" + DateTime.Now)
+    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireDetail/questionnaire-detail.module.js?date=" + DateTime.Now)
+    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireDetail/questionnaire-detail.component.js?date=" + DateTime.Now)
+    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireEnd/questionnaire-end.module.js?date=" + DateTime.Now)
+    @Scripts.Render("~/Scripts/Game/Questionnaire/questionnaireEnd/questionnaire-end.component.js?date=" + DateTime.Now)
 </head>
 <body ng-app="QuestionnaireApp">
     <div class="navbar navbar-inverse navbar-fixed-top">

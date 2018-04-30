@@ -13,6 +13,9 @@ angular.
           when('/questionnaireDetail/:current_index', {
             template: '<questionnaire-detail></questionnaire-detail>'
         }).
+          when('/questionnaireEnd', {
+              template: '<questionnaire-end></questionnaire-end>'
+        }).
         otherwise('/questionnaireIndex');
     }
   ]);

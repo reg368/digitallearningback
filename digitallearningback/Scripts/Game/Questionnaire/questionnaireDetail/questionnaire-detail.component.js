@@ -44,11 +44,18 @@ angular.
                     var userid = $('#userid').val();
                     var main_id = self.questionnaire_Main.id;
                     var optionid = selected.val();
-               
+
+
                     $http.post('/Game/Questionnaire/PUTQuestionnaire_data',
                         { "userid": userid, "main_id": main_id, "option_id": optionid }).
                         success(function (data, status, headers, config) {
-                            $location.path('/questionnaireDetail/:' + next);
+
+                            // 如果使用者選 : 第一題 , 第一個選項 :'還沒開始作答' 的話 直接跳到結束畫面 , 後面的問題不用做答
+                            if (optionid == '1' && main_id == '1') {
+                                $location.path('/questionnaireEnd/');
+                            } else {
+                                $location.path('/questionnaireDetail/:' + next);
+                            }
                         }).
                         error(function (data, status, headers, config) {
                             console.log('error data : ' + data);

@@ -4,5 +4,6 @@
 angular.module('QuestionnaireApp', [
   'ngRoute',
   'questionnaireIndex',
-  'questionnaireDetail'
+  'questionnaireDetail',
+  'questionnaireEnd'
 ]);
